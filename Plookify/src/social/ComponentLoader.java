@@ -1,6 +1,6 @@
 /* @author Hamza */
 package social;
-import java.util.*;
+import javax.swing.JOptionPane;
 public class ComponentLoader
 {    
     public static void main(String[] args)
