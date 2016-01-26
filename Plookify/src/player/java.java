@@ -9,7 +9,7 @@ package player;
  *
  * @author prarthana
  */
-public class java {
+public class Player {
     
     public String getStatus(){
         
