@@ -9,7 +9,7 @@ public class ComponentLoader
 {
     public static void main(String[] args)
     {
-        JOptionPane.showMessageDialog(null,"This application works!");
+        JOptionPane.showMessageDialog(null,"This application works correctly!");
     }
     
 }

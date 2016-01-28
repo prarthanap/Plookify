@@ -1,7 +1,6 @@
 package account.logic;
 
 /**
- *
  * @author jlleow
  */
 public class logic {
