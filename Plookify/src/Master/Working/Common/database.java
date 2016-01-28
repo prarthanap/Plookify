@@ -42,8 +42,8 @@ public class database
 		try {
 			statement = connection.createStatement();
 			statement.setQueryTimeout(10);
-			statement.executeUpdate("drop table PERSONAL");
-                        //statement.executeUpdate("create table PERSONAL('ID' INT(3),'USERNAME' STRING(10))");
+                        //statement.executeUpdate("create table TRACKS('TRACKID' INT(3),'SONG NAME' STRING(10),'ARTIST' STRING(10),'GENRE' STRING(10),'ALBUM' STRING(16),'LENGTH' INT(6))");
+                        //statement.executeUpdate("create table PLAYLISTS('ID' INT(3),'PLAYLISTID' INT(4),'SONGS' BIGINT(10),'PLAYLISTTYPE' STRING(10))");
                     }
 		catch (SQLException ex) {
 			System.err.println(ex.getMessage());
