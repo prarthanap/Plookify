@@ -42,15 +42,8 @@ public class database
 		try {
 			statement = connection.createStatement();
 			statement.setQueryTimeout(10);
-			//statement.executeUpdate("drop table PERSONAL");
+			statement.executeUpdate("drop table PERSONAL");
                         //statement.executeUpdate("create table PERSONAL('ID' INT(3),'USERNAME' STRING(10))");
-                        statement.executeUpdate("INSERT INTO PERSONAL VALUES (14,'ab')");
-                        ResultSet rs=statement.executeQuery("SELECT ID,USERNAME FROM PERSONAL");
-                        while (rs.next())
-                        {
-                            System.out.println("ID = " + rs.getString("ID"));
-                            System.out.println("USERNAME = " + rs.getString("USERNAME"));
-                        }
                     }
 		catch (SQLException ex) {
 			System.err.println(ex.getMessage());
