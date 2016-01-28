@@ -70,4 +70,30 @@ public class database
 	public Connection getConnection(){
 		return this.connection;
 	}
+        
+        public ResultSet makeQuery(String query)//generic query method for database
+        {
+            Statement stat;
+            ResultSet result=null;
+            try {
+			stat = connection.createStatement();
+			stat.setQueryTimeout(10);
+                        result=stat.executeQuery(query);
+                }
+            catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+		finally {
+			if (connection != null){
+				try{
+					connection.close();
+				}
+				catch(SQLException ex){
+					System.err.println(ex.getMessage());
+				}
+			}
+		}
+            return result;
+        }
+        
 }
