@@ -11,11 +11,13 @@ package player;
  */
 public class Player {
     
-    public String getStatus(){
-        
+    public String getStatus()
+    {
+        return null;
     }
     
-    public void play(){
+    public void play()
+    {
         
     }
     
