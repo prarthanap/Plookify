@@ -1,10 +1,5 @@
 package Master.Working.account.logic;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import Master.Working.Common.database;
-
 /**
  * @author jlleow
  */

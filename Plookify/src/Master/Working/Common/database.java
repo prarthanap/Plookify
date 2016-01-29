@@ -4,7 +4,6 @@ package Master.Working.Common;
  *
  * @author jlleow AKA ec14002
  * 
- * 
  * Code for making queries or updates to database
  */
 import java.sql.Connection;
@@ -108,8 +107,6 @@ public class database
             inst.add("create table PLAYLIST('ID' INT(3),'PLAYLISTID' INT(3),'SONGIDS' INT(15),'PTYPE' STRING(10))");
             inst.add("create table FRIENDLIST('ID' INT(3),FRIENDIDS INT(15))");
             inst.add("create table PERSONAL('ID' INT(3), 'USERNAME' STRING(12),'PASSWORD' STRING(16), 'TITLE' STRING(4),'FORENAME' STRING(15), 'SURNAME' STRING(15))");
-            //inst.add("");
-            //inst.add("");
             return inst;            
         }
         
