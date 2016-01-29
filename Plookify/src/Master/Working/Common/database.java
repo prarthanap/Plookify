@@ -13,13 +13,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class database
 {
     private Connection connection = null;
  
     public void Database(){}
-    public static void main(String[] args)
+    public static void main(String[] args)//just testing code (DO NOT RUN)
         {
             System.out.println("starto!");
             database data1=new database();
@@ -96,9 +98,7 @@ public class database
 		}
         }
         
-	public Connection getConnection(){
-		return this.connection;
-	}
+	public Connection getConnection(){return this.connection;}
         
         
         public static ArrayList<String> fillAl()
@@ -111,6 +111,21 @@ public class database
             //inst.add("");
             //inst.add("");
             return inst;            
+        }
+        
+        public boolean dupcheck(String query)//checks if there is a match
+        {
+            ResultSet check=makeQuery(query);
+        try {
+            int count=0;
+            while(check.next())
+                {
+                    count++;
+                }
+                return count != 0;
+            } 
+        catch (SQLException ex) {Logger.getLogger(database.class.getName()).log(Level.SEVERE, null, ex);}
+        return false;
         }
 
         
