@@ -2,94 +2,116 @@ package Master.Working.Common;
 
 /**
  *
- * @author jlleow
+ * @author jlleow AKA ec14002
  * 
  * 
- * Database testing area
+ * Code for making queries or updates to database
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class database
 {
     private Connection connection = null;
-
  
+    public void Database(){}
     public static void main(String[] args)
         {
             System.out.println("starto!");
-            database test=new database();
-            test.makeTables();
+            database data1=new database();
+            ArrayList<String> inst1=fillAl();
+            data1.makeUpdate(inst1);
             System.out.println("endo!");
         }
-
-	private void Database(){}
 	
-	public void makeTables()//CURRENTLY RANDOM TESTING
+	public ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
         {
-		try {
-                connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-                }
+		try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
                 catch (SQLException ex)
-                {
-                    throw new RuntimeException("Database connection failed!", ex);
-		}
+                {throw new RuntimeException("Database connection failed!", ex);}
                 
 		Statement statement;
 		try {
 			statement = connection.createStatement();
 			statement.setQueryTimeout(10);
-                        statement.executeUpdate("create table TRACKS('TRACKID' INT(3),'SONG NAME' STRING(10),'ARTIST' STRING(10),'GENRE' STRING(10),'ALBUM' STRING(16),'LENGTH' INT(6))");
-                        statement.executeUpdate("create table PLAYLISTS('ID' INT(3),'PLAYLISTID' INT(4),'SONGS' BIGINT(10),'PLAYLISTTYPE' STRING(10))");
-                        statement.executeUpdate("create table FRIENDSLIST('ID' INT(3), 'FRIENDID' BIGINT(10)");
+                        return statement.executeQuery(query);
                     }
-		catch (SQLException ex) {
-			System.err.println(ex.getMessage());
-		}
+		catch (SQLException ex) {System.err.println(ex.getMessage());}
 		finally {
 			if (connection != null){
-				try{
-					connection.close();
-				}
-				catch(SQLException ex){
-					System.err.println(ex.getMessage());
-				}
+				try{connection.close();}
+				catch(SQLException ex){System.err.println(ex.getMessage());}
 			}
 		}
+            return null;
 	}
-
+        
+        public void makeUpdate(ArrayList<String> list1)//method for running multiple statements from an arraylist
+        {
+            try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
+                catch (SQLException ex)
+                {throw new RuntimeException("Database connection failed!", ex);}
+                
+		Statement statement;
+		try {
+			statement = connection.createStatement();
+			statement.setQueryTimeout(10);
+                        for(int i=0;i<list1.size();i++)
+                        {
+                            statement.executeUpdate(list1.get(i));
+                        }
+                    }
+		catch (SQLException ex) {System.err.println(ex.getMessage());}
+		finally {
+			if (connection != null){
+				try{connection.close();}
+				catch(SQLException ex){System.err.println(ex.getMessage());}
+			}
+		}
+            
+        }
+        
+        public void makeUpdate(String query)//method running only one statement(not worth creating an arraylist for 1 update using the prev method
+        {
+            try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
+                catch (SQLException ex)
+                {throw new RuntimeException("Database connection failed!", ex);}
+                
+		Statement statement;
+		try {
+                            statement = connection.createStatement();
+                            statement.setQueryTimeout(10);
+                            statement.executeUpdate(query);
+                    }
+		catch (SQLException ex) {System.err.println(ex.getMessage());}
+		finally {
+			if (connection != null){
+				try{connection.close();}
+				catch(SQLException ex){System.err.println(ex.getMessage());}
+			}
+		}
+        }
+        
 	public Connection getConnection(){
 		return this.connection;
 	}
         
-        public ResultSet makeQuery(String query)//generic query method for database
+        
+        public static ArrayList<String> fillAl()
         {
-            Statement stat;
-            ResultSet result=null;
-            try {
-			stat = connection.createStatement();
-			stat.setQueryTimeout(10);
-                        result=stat.executeQuery(query);
-                }
-            catch (SQLException ex) {
-			System.err.println(ex.getMessage());
-		}
-		finally {
-			if (connection != null){
-				try{
-					connection.close();
-				}
-				catch(SQLException ex){
-					System.err.println(ex.getMessage());
-				}
-			}
-		}
-            return result;
+            ArrayList<String> inst=new ArrayList();
+            inst.add("create table TRACKS('SONGID' INT(3),'SONG_NAME' STRING(16),'ARTIST' STRING(20),'GENRE' STRING(12),'ALBUM' STRING(15),'LENGTH' INT(6))");
+            inst.add("create table PLAYLIST('ID' INT(3),'PLAYLISTID' INT(3),'SONGIDS' INT(15),'PTYPE' STRING(10))");
+            inst.add("create table FRIENDLIST('ID' INT(3),FRIENDIDS INT(15))");
+            inst.add("create table PERSONAL('ID' INT(3), 'USERNAME' STRING(12),'PASSWORD' STRING(16), 'TITLE' STRING(4),'FORENAME' STRING(15), 'SURNAME' STRING(15))");
+            //inst.add("");
+            //inst.add("");
+            return inst;            
         }
-        
-        
+
         
 }
