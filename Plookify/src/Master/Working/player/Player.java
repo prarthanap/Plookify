@@ -9,6 +9,7 @@ package Master.Working.player;
  *
  * @author prarthana
  */
+
 public class Player {
     
     public String getStatus()
