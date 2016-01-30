@@ -10,7 +10,6 @@ package Master.Working.player.logic;
  * @author prarthana
  */
 
-
 public class Player {
     
     public String getStatus()
