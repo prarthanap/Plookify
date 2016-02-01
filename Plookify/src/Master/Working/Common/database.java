@@ -107,6 +107,8 @@ public class database
             inst.add("create table PLAYLIST('ID' INT(3),'PLAYLISTID' INT(3),'SONGIDS' INT(15),'PTYPE' STRING(10))");
             inst.add("create table FRIENDLIST('ID' INT(3),FRIENDIDS INT(15))");
             inst.add("create table PERSONAL('ID' INT(3), 'USERNAME' STRING(12),'PASSWORD' STRING(16), 'TITLE' STRING(4),'FORENAME' STRING(15), 'SURNAME' STRING(15))");
+            inst.add("create table ADDRESS('ID' INT(3), 'DOORNO' INT(3),'STREET' STRING(16), 'CITY' STRING(12), 'COUNTY' STRING(10),'POSTCODE' STRING(8))");
+            inst.add("create table ACCOUNT('ID' INT(3), 'TYPE' STRING(10),'SUBTYPE' INT(2),'DUEDATE' DATE,'LASTPAYED' DATE)");
             return inst;            
         }
         
