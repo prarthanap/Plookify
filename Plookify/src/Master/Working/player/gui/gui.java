@@ -10,6 +10,6 @@ package Master.Working.player.gui;
  * @author prarthana
  */
 public class gui {
-   System.out.println("Hello world");
+  // System.out.println("Hello world");
 }
 
