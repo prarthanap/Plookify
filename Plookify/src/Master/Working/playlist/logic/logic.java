@@ -30,4 +30,9 @@ public class logic {
     {
         
     }
+    
+    public void searchPlaylist()
+    {
+        
+    }
 }
