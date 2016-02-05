@@ -1,6 +1,8 @@
 package Master.Working.social.GUI;
 
 import java.io.File;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,14 +15,17 @@ import javafx.stage.Stage;
  *
  * @author Hamza
  */
-public class gui extends Application {
+public class gui extends Application implements EventHandler<ActionEvent> {
     
     Scene scene;
+    Button close;
     @Override
     public void start(Stage primaryStage) {
         VBox root = new VBox();
-        scene = new Scene(root, 300, 250);
+        scene = new Scene(root, 1100, 600);
 
+        close = new Button("Close");        
+        close.setOnAction(this);
         /**
          * Load CSS from a local file
          */
@@ -47,20 +52,33 @@ public class gui extends Application {
         clear.setText("Clear");
         clear.setOnAction(e -> {scene.getStylesheets().clear();});
         
-        root.getChildren().addAll(file, url, clear);
+        root.getChildren().addAll(close, file, url, clear);
         
         root.setAlignment(Pos.CENTER);
         root.getChildren().stream().forEach(btn->{((Button)btn).setPrefWidth(100);});
         
-        primaryStage.setTitle("Dynamic CSS");
+        primaryStage.setTitle("Plookify");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    @Override
+    public void handle(ActionEvent event) {
+        if(event.getSource()==close)
+        {
+          System.out.println("Closing app");
+        }
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
     
