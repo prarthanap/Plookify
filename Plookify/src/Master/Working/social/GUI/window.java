@@ -13,6 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author Hamza
+ */
 public class window extends Application implements EventHandler<ActionEvent> {
 
     Button button;
