@@ -29,7 +29,7 @@ public class menu extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        window.setTitle("Plookify");
+        window.setTitle("thenewboston - JavaFX");
 
         //GridPane with 10px padding around edge
         GridPane grid = new GridPane();
@@ -57,12 +57,12 @@ public class menu extends Application {
 
         //Login
         Button loginButton = new Button("Log In");
-        GridPane.setConstraints(loginButton, 11, 12);
+        GridPane.setConstraints(loginButton, 11, 2);
 
         //Sign up
         Button signUpButton = new Button("Sign Up");
         signUpButton.getStyleClass().add("button-blue");
-        GridPane.setConstraints(signUpButton, 11, 13);
+        GridPane.setConstraints(signUpButton, 1, 3);
 
         //Add everything to grid
         grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, signUpButton);
