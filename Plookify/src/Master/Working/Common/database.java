@@ -24,8 +24,6 @@ public class database
         {
             System.out.println("starto!");
             database data1=new database();
-            ArrayList<String> inst1=fillAl();
-            data1.makeUpdate(inst1);
             System.out.println("endo!");
         }
 	
@@ -98,20 +96,6 @@ public class database
         }
         
 	public Connection getConnection(){return this.connection;}
-        
-        
-        public static ArrayList<String> fillAl()
-        {
-            ArrayList<String> inst=new ArrayList();
-            inst.add("create table TRACKS('SONGID' INT(3),'SONG_NAME' STRING(16),'ARTIST' STRING(20),'GENRE' STRING(12),'ALBUM' STRING(15),'LENGTH' INT(6))");
-            inst.add("create table PLAYLIST('ID' INT(3),'PLAYLISTID' INT(3),'SONGIDS' INT(15),'PTYPE' STRING(10))");
-            inst.add("create table FRIENDLIST('ID' INT(3),FRIENDIDS INT(15))");
-            inst.add("create table PERSONAL('ID' INT(3), 'USERNAME' STRING(12),'PASSWORD' STRING(16), 'TITLE' STRING(4),'FORENAME' STRING(15), 'SURNAME' STRING(15))");
-            inst.add("create table ADDRESS('ID' INT(3), 'DOORNO' INT(3), 'STREET' STRING(18), 'CITY' STRING(16), 'COUNTY' STRING(16), 'POSTCODE' STRING(8))");
-            inst.add("create table ACCOUNT('ID' INT(3),'TYPE' STRING(10),'PAIDDATE' DATE,'DUEDATE' DATE,'SUBTYPE' INT(2))");
-            inst.add("create table DEVICES('ID' INT(3), 'DEVICE1' STRING(10),'DATE1' DATE, 'DEVICE2' STRING(10),'DATE2' DATE, 'DEVICE3' STRING(10),'DATE3' DATE, 'DEVICE4' STRING(10),'DATE4' DATE, 'DEVICE5' STRING(10),'DATE5' DATE)");
-            return inst;            
-        }
         
         public boolean dupcheck(String query)//checks if there is a match
         {
