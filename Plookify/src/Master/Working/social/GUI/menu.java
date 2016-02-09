@@ -40,24 +40,24 @@ public class menu extends Application {
         //Name Label - constrains use (child, column, row)
         Label nameLabel = new Label("Username:");
         nameLabel.setId("bold-label");
-        GridPane.setConstraints(nameLabel, 0, 0);
+        GridPane.setConstraints(nameLabel, 10, 10);
 
         //Name Input
         TextField nameInput = new TextField("Hamza");
-        GridPane.setConstraints(nameInput, 1, 0);
+        GridPane.setConstraints(nameInput, 11, 10);
 
         //Password Label
         Label passLabel = new Label("Password:");
-        GridPane.setConstraints(passLabel, 0, 1);
+        GridPane.setConstraints(passLabel, 10, 11);
 
         //Password Input
         TextField passInput = new TextField();
         passInput.setPromptText("password");
-        GridPane.setConstraints(passInput, 1, 1);
+        GridPane.setConstraints(passInput, 11, 11);
 
         //Login
         Button loginButton = new Button("Log In");
-        GridPane.setConstraints(loginButton, 1, 2);
+        GridPane.setConstraints(loginButton, 11, 2);
 
         //Sign up
         Button signUpButton = new Button("Sign Up");
