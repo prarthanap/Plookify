@@ -1,0 +1,201 @@
+SONGID,SONGNAME,ARTIST,TIME,GENRE,ALBUM
+1,Mad,Neyo,04:10,R&B, Year of the Gentleman
+2,Hotline Bling,Drake,04:27,R&B,Views from the 6
+3,You,Chris Brown,03:10,R&B,Exclusive
+4,With You,Chris Brown,04:07,R&B,Exclusive
+5,Stay,Jay Sean,03:12,R&B,All or Nothing
+6,Lights Off,Jay Sean,04:45,R&B,All or Nothing
+7,Do You Remember,Jay Sean,02:54,R&B,All or Nothing
+8,If I Ain't Got You,Jay Sean,03:23,R&B,All or Nothing
+9,Swim Good,Frank Ocean,03:34,R&B,Nostalgia Ultra
+10,We All Try,Frank Ocean,04:22,R&B,Nostalgia Ultra
+11,Love Crimes,Frank Ocean,03:46,R&B,Nostalgia Ultra
+12,Dust,Frank Ocean,04:07,R&B,Nostalgia Ultra
+13,Goldeneye,Frank Ocean,04:10,R&B,Nostalgia Ultra
+14,American Wedding,Frank Ocean,02:37,R&B,Nostalgia Ultra
+15,Closer,Neyo,00:31,R&B,Year of the Gentleman
+16,Single,Neyo,03:48,R&B,Year of the Gentleman
+17,Nobody,Neyo,03:11,R&B,Year of the Gentleman
+18,Miss Independent  ,Neyo,04:14,R&B,Year of the Gentleman
+19,Lie to Me  ,Neyo,05:08,R&B,Year of the Gentleman
+20,Stop This World  ,Neyo,04:22,R&B,Year of the Gentleman
+21,She Got Her Own,Neyo,02:58,R&B,Year of the Gentleman
+22,Part of the List,Neyo,03:47,R&B,Year of the Gentleman
+23,Fade into the Background  ,Neyo,03:45,R&B,Year of the Gentleman
+24,Why Does She Stay  ,Neyo,05:00,R&B,Year of the Gentleman
+25,Crazy In Love,Beyonce,03:58,R&B,Dangerously In Love
+26,Dangerously In Love 2,Beyonce,03:32,R&B,Dangerously In Love
+27,Say Aah,Trey Songz,03:56,R&B,Ready
+28,LOL,Trey Songz,03:26,R&B,Ready
+29,Jupiter Love,Trey Songz,04:47,R&B,Ready
+30,Be Where You Are,Trey Songz,03:54,R&B,Ready
+31,Black Roses,Trey Songz,03:36,R&B,Ready
+32,Love Lost,Trey Songz,03:36,R&B,Ready
+33,Successful,Trey Songz,05:10,R&B,Ready
+34,One Love,Trey Songz,05:21,R&B,Ready
+35,I Need a Girl,Trey Songz,04:24,R&B,Ready
+36,Hollalude,Trey Songz,04:26,R&B,Ready
+37,Neighbors Know My Name,Trey Songz,04:27,R&B,Ready
+38,Can't Help But Wait,Trey Songz,04:35,R&B,Can't Help But Wait
+39,Can't Help Instrumental,Trey Songz,04:36,R&B,Can't Help But Wait
+40,Classic,MKTO,04:37,POP,MKTO
+41,Thank You,MKTO,04:37,POP,MKTO
+42,Forever Until Tomorrow,MKTO,04:46,POP,MKTO
+43,Nowhere,MKTO,04:54,POP,MKTO
+44,No More Second Chances,MKTO,04:59,POP,MKTO
+45,Goodbye Song,MKTO,05:02,POP,MKTO
+46,Red,Taylor Swift,05:06,POP,Red
+47,State of Grace,Taylor Swift,05:09,POP,Red
+48,Stay Stay Stay,Taylor Swift,00:33,POP,Red
+49,I Knew You Were Trouble,Taylor Swift,00:58,POP,Red
+50,The Last Time,Taylor Swift,01:06,POP,Red
+51,Everything Has Changed,Taylor Swift,01:09,POP,Red
+52,Begin Again,Taylor Swift,01:17,POP,Red
+53,22,Taylor Swift,03:18,POP,Red
+54,All Too Well,Taylor Swift,03:53,POP,Red
+55,I Almost Do,Taylor Swift,01:23,POP,Red
+56,Holy Ground,Taylor Swift,01:30,POP,Red
+57,Wildest Dreams,Taylor Swift,02:00,POP,1989
+58,Shake It Off,Taylor Swift,02:01,POP,1989
+59,Bad Blood,Taylor Swift,02:08,POP,1989
+60,Blank Space,Taylor Swift,02:08,POP,1989
+61,Wide Awake,Katy Perry,02:01,POP,Teenage Dream
+62,Last Friday Night,Katy Perry,02:03,POP,Teenage Dream
+63,Firework,Katy Perry,02:03,POP,Teenage Dream
+64,Part Of Me,Katy Perry,02:05,POP,Teenage Dream
+65,Roar,Katy Perry,02:06,POP,Prism
+66,Unconditionally,Katy Perry,02:07,POP,Prism
+67,This Is How We Do,Katy Perry,02:46,POP,Prism
+68,The One That Got Away,Katy Perry,02:47,POP,Teenage Dream
+69,Hot N Cold,Katy Perry,02:47,POP,One Of The Boys
+70,Waking Up In Vegas,Katy Perry,02:47,POP,One Of The Boys
+71,One Of The Boys,Katy Perry,02:48,POP,One Of The Boys
+72,ET,Katy Perry,02:48,POP,Teenage Dream
+73,Birthday,Katy Perry,02:49,POP,Prism
+74,Ghost,Katy Perry,02:49,POP,Prism
+75,Freakshow,Britney Spears,02:49,POP,Blackout
+76,Piece of Me,Britney Spears,02:50,POP,Blackout
+77,Toy Soldier,Britney Spears,02:51,POP,Blackout
+78,Heaven on Earth,Britney Spears,03:06,POP,Blackout
+79,Break the Ice,Britney Spears,03:07,POP,Blackout
+80,Radar,Britney Spears,03:07,POP,Blackout
+81,Hot as Ice,Britney Spears,03:07,POP,Blackout
+82,Get Back,Britney Spears,03:07,POP,Blackout
+83,Everybody,Britney Spears,03:08,POP,Blackout
+84,White Dress,Parachute,03:08,ROCK,The Way It Was
+85,You and Me,Parachute,03:09,ROCK,The Way It Was
+86,Something to Believe In,Parachute,03:09,ROCK,The Way It Was
+87,Forever And Always,Parachute,03:10,ROCK,The Way It Was
+88,What I Know,Parachute,03:13,ROCK,The Way It Was
+89,American Secrets,Parachute,03:13,ROCK,The Way It Was
+90,Halfway,Parachute,03:14,ROCK,The Way It Was
+91,Philadelphia,Parachute,03:14,ROCK,The Way It Was
+92,Overnight,Parachute,03:14,ROCK,Overnight
+93,Hurrican,Parachute,03:14,ROCK,Overnight
+94,The Only One,Parachute,03:18,ROCK,Overnight
+95,Disappear,Parachute,04:37,ROCK,Overnight
+96,Higher,Parachute,04:46,ROCK,Overnight
+97,Can't Help,Parachute,04:54,ROCK,Overnight
+98,Back Again,Parachute,04:59,ROCK,Losing Sleep
+99,All That I Am,Parachute,05:02,ROCK,Losing Sleep
+100,The New Year,Parachute,05:06,ROCK,Losing Sleep
+101,Be Here,Parachute,05:09,ROCK,Losing Sleep
+102,She Is Love,Parachute,05:21,ROCK,Losing Sleep
+103,Stuck In The Middle,Parachute,05:47,ROCK,Losing Sleep
+104,Strange World,Parachute,06:10,ROCK,Losing Sleep
+105,Words Meet Heartbeats,Parachute,03:09,ROCK,Losing Sleep
+106,Under Control,Parachute,03:09,ROCK,Losing Sleep
+107,The Mess I Made,Parachute,03:10,ROCK,Losing Sleep
+108,She,Parachute,03:13,ROCK,Losing Sleep
+109,Losing Sleep,Parachute,03:13,ROCK,Losing Sleep
+110,Didn't See It Coming,Parachute,03:14,ROCK,Overnight
+111,The Other Side,Parachute,03:14,ROCK,Overnight
+112,Drive You Home,Parachute,03:14,ROCK,Overnight
+113,By The Way,Red Hot Chili Peppers,03:14,ROCK,By The Way
+114,The Zephyr Song,Red Hot Chili Peppers,03:18,ROCK,By The Way
+115,Can't Stop,Red Hot Chili Peppers,03:18,ROCK,By The Way
+116,Scar Tissue,Red Hot Chili Peppers,03:23,ROCK,Californication
+117,Californication,Red Hot Chili Peppers,03:24,ROCK,Californication
+118,Around The World,Red Hot Chili Peppers,03:24,ROCK,Californication
+119,Under The Bridge,Red Hot Chili Peppers,03:24,ROCK,By The Way
+120,Other Side,Red Hot Chili Peppers,02:26,ROCK,By The Way
+121,Danny California,Red Hot Chili Peppers,03:24,ROCK,Californication
+122,Spinning,Jacks Mannequin,02:24,ROCK,The Glass Passenger
+123,Swim,Jacks Mannequin,05:21,ROCK,The Glass Passenger
+124,Bruised,Jacks Mannequin,05:09,ROCK,Everything In Transit
+125,I'm Ready,Jacks Mannequin,02:54,ROCK,Everything In Transit
+126,Dark Blue,Jacks Mannequin,02:26,ROCK,Everything In Transit
+127,Kill The Messenger,Jacks Mannequin,03:24,ROCK,Everything In Transit
+128,Rescued,Jacks Mannequin,02:24,ROCK,Everything In Transit
+129,Holiday from Real,Jacks Mannequin,05:21,ROCK,Everything In Transit
+130,La La Lie,Jacks Mannequin,05:09,ROCK,Everything In Transit
+131,The Resolution,Jacks Mannequin,02:54,ROCK,The Glass Passenger
+132,Caves,Jacks Mannequin,02:47,ROCK,The Glass Passenger
+133,Orphans,Jacks Mannequin,02:49,ROCK,The Glass Passenger
+134,Viva La Vida,Cold Play,05:06,ROCK,Viva La Vida
+135,Yes,Cold Play,03:43,ROCK,Viva La Vida
+136,Violet Hill,Cold Play,02:54,ROCK,Viva La Vida
+137,Cruise,Florida George Line,02:20,COUNTRY, To The Good Times
+138,Round Here,Florida George Line,02:49,COUNTRY, To The Good Times
+139,House Party,Sam Hunt,03:04,COUNTRY,Montevallo
+140,Never Again,Justin Timberlake,03:40,POP,Justified
+141,Last Night,Justin Timberlake,02:20,POP,Justified
+142,Cry Me A River,Justin Timberlake,03:03,POP,Justified
+143,Nothin Else,Justin Timberlake,05:02,POP,Justified
+144,Take It From Here,Justin Timberlake,03:18,POP,Justified
+145,What You Got,Justin Timberlake,02:06,POP,Justified
+146,ROCK Your Body,Justin Timberlake,03:06,POP,Justified
+147,Like I Love You,Justin Timberlake,04:21,POP,Justified
+148,Still On My Brain,Justin Timberlake,03:36,POP,Justified
+149,Right For Me,Justin Timberlake,02:51,POP,Justified
+150,Take Now,Justin Timberlake,04:09,POP,Justified
+151,In The End,Linkin Park,03:24,ROCK,Hybrid Theory
+152,Crawling,Linkin Park,02:38,ROCK,Hybrid Theory
+153,Step Up,Linkin Park,03:03,ROCK,Hybrid Theory
+154,Papercut,Linkin Park,01:46,ROCK,Hybrid Theory
+155,High Voltage,Linkin Park,04:36,ROCK,Hybrid Theory
+156,Place For My Head,Linkin Park,01:06,ROCK,Hybrid Theory
+157,My December,Linkin Park,03:31,ROCK,Hybrid Theory
+158,Points of Authority,Linkin Park,02:14,ROCK,Hybrid Theory
+159,Yellow,Cold Play,02:00,ROCK,Parachutes
+160,Trouble,Cold Play,01:51,ROCK,Parachutes
+161,Parachutes,Cold Play,02:07,ROCK,Parachutes
+162,We Never Change,Cold Play,01:23,ROCK,Parachutes
+163,Spies,Cold Play,00:58,ROCK,Parachutes
+164,Sparks,Cold Play,02:55,ROCK,Parachutes
+165,Shiver,Cold Play,02:28,ROCK,Parachutes
+166,Panic,Cold Play,04:17,ROCK,Parachutes
+167,We Cry,The Script,04:37,POP,The Script
+168,Before The Worst,The Script,03:07,POP,The Script
+169,Man Who Can't Be Moved,The Script,02:26,POP,The Script
+170,If You See Kay,The Script,02:08,POP,The Script
+171,Breakeven,The Script,03:44,POP,The Script
+172,Talk You Down,The Script,02:03,POP,The Script
+173,The End Where I Begin,The Script,02:16,POP,The Script
+174,Rolling In The Deep,Adele,02:54,POP,21
+175,Someone Like You,Adele,03:04,POP,21
+176,Set Fire To The Rain,Adele,01:41,POP,21
+177,Hello,Adele,01:09,POP,25
+178,Skyfall,Adele,02:01,POP,James Bond Themes
+179,One and Only,Adele,03:31,POP,19
+180,Hometown Glory,Adele,02:45,POP,19
+181,Water Under the Bridge,Adele,03:04,POP,25
+182,Smells Like Teen Spirit,Nirvana,03:31,ROCK,Nevermind
+183,Come as You Are,Nirvana,03:48,ROCK,Nevermind
+184,Lithium,Nirvana,03:14,ROCK,Nevermind
+185,In Bloom,Nirvana,04:46,ROCK,Nevermind
+186,Something in the Way,Nirvana,03:45,ROCK,Nevermind
+187,Drain you,Nirvana,02:45,ROCK,Nevermind
+188,On a Plain,Nirvana,02:32,ROCK,Nevermind
+189,Mark My Words,Justin Bieber,03:43,POP,Purpose
+190,I'll Show You,Justin Bieber,03:31,POP,Purpose
+191,Sorry,Justin Bieber,03:45,POP,Purpose
+192,What Do You Mean,Justin Bieber,02:13,POP,Purpose
+193,Love Yourself,Justin Bieber,04:12,POP,Purpose
+194,Company,Justin Bieber,02:58,POP,Purpose
+195,No Pressure,Justin Bieber,03:24,POP,Purpose
+196,Life Is Worth Living,Justin Bieber,02:44,POP,Purpose
+197,Purpose,Justin Bieber,02:38,POP,Purpose
+198,Where Are You Now,Justin Bieber,03:03,POP,Purpose
+199,Children,Justin Bieber,01:46,POP,Purpose
+200,The Feeling,Justin Bieber,04:36,POP,Purpose
