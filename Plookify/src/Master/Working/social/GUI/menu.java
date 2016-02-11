@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -40,29 +41,31 @@ public class menu extends Application {
         //Name Label - constrains use (child, column, row)
         Label nameLabel = new Label("Username:");
         nameLabel.setId("bold-label");
-        GridPane.setConstraints(nameLabel, 10, 10);
+        GridPane.setConstraints(nameLabel, 20, 20);
 
         //Name Input
         TextField nameInput = new TextField("Hamza");
-        GridPane.setConstraints(nameInput, 11, 10);
+        nameInput.setPromptText("name");
+        GridPane.setConstraints(nameInput, 21, 20);
 
         //Password Label
         Label passLabel = new Label("Password:");
-        GridPane.setConstraints(passLabel, 10, 11);
+        GridPane.setConstraints(passLabel, 20, 21);
 
         //Password Input
         TextField passInput = new TextField();
         passInput.setPromptText("password");
-        GridPane.setConstraints(passInput, 11, 11);
+        GridPane.setConstraints(passInput, 21, 21);
 
         //Login
         Button loginButton = new Button("Log In");
-        GridPane.setConstraints(loginButton, 11, 12);
-
+        GridPane.setConstraints(loginButton, 21, 22);
+        
+        
         //Sign up
         Button signUpButton = new Button("Sign Up");
         signUpButton.getStyleClass().add("button-blue");
-        GridPane.setConstraints(signUpButton, 11, 13);
+        GridPane.setConstraints(signUpButton, 21, 23);
 
         //Add everything to grid
         grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, signUpButton);
