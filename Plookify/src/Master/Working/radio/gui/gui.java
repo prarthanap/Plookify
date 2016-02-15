@@ -20,57 +20,61 @@ import javafx.stage.Stage;
  * @author ec14082
  */
 public class gui extends Application {
+    Button ViewRadio, goBack, savePlaylist;
+    GridPane root, root2;
+    Scene scene, scene2;
+    Stage currentStage;
+    
     @Override
     public void start(Stage primaryStage) {  
+        currentStage = primaryStage;
         
         /////////////////////////Buttons/////////////////////////////////
         //Button to view Radio Playlist
-        Button ViewRadio = new Button();
+        ViewRadio = new Button();
         ViewRadio.setText("View Radio Playlist");
+        ViewRadio.setOnAction(e-> ButtonPressed(e));
         //Button to go back to Now Playing
-        Button goBack = new Button();
+        goBack = new Button();
         goBack.setText("<- Go Back");
+        goBack.setOnAction(e-> ButtonPressed(e));
         //Button to Save As Playlist
-        Button savePlaylist = new Button();
+        savePlaylist = new Button();
         savePlaylist.setText("Save Radio as Playlist");
+        savePlaylist.setOnAction(e-> ButtonPressed(e));
         
-        GridPane root = new GridPane();
+        root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
-        root.setPadding(new Insets(0, 10, 0, 10));
+        root.setPadding(new Insets(10, 10, 10, 10));
         root.add(ViewRadio, 50, 20);
-        GridPane root2 = new GridPane();
+        root2 = new GridPane();
         root2.setHgap(10);
         root2.setVgap(10);
-        root2.setPadding(new Insets(0, 10, 0, 10));
-        root2.add(goBack, 100, 2);
-        root2.add(savePlaylist, 80, 40);
+        root2.setPadding(new Insets(10, 10, 10, 10));
+        root2.add(goBack, 70, 2);
+        root2.add(savePlaylist, 40, 40);
         
-        Scene scene = new Scene(root, 1100, 600);
+        scene = new Scene(root, 1100, 600);
         scene.getStylesheets().add("test.css");
-        Scene scene2 = new Scene(root2, 1100, 600);
+        scene2 = new Scene(root2, 1100, 600);
         scene2.getStylesheets().add("test.css");
-        
-        ViewRadio.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                    primaryStage.setScene(scene2); 
-            }
-        });
-        
-        goBack.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                    primaryStage.setScene(scene); 
-            }
-        });
         
         primaryStage.setTitle("Plookify");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
-     
     }
     
+    public void ButtonPressed(ActionEvent e) {
+        if (e.getSource() == ViewRadio) {
+            currentStage.setScene(scene2); 
+        }
+        else if (e.getSource() == goBack) {
+            currentStage.setScene(scene); 
+        }
+        else {}
+    }
     
     public static void main (String[] args) {
         launch(args);
