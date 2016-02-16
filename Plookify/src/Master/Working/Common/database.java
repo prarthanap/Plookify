@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class database
 {
@@ -21,41 +22,39 @@ public class database
             System.out.println("starto!");
             database data1=new database();
             ResultSet result=data1.makeQuery("SELECT * FROM TRACKS");
-            
-            while(result.next()){
-            String name = result.getString(2);
-            String name2=result.getString(3);
-             System.out.println(name+" "+name2);}
+            while(result.next())
+            {
+                String name = result.getString(2);
+                System.out.println(name);
+            }
           
             //System.out.println();
         }
 	
 	public ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
         {
-		Statement statement;
-		try {
-                        Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-			statement = connection.createStatement();
-			statement.setQueryTimeout(10);
-                        ResultSet res=statement.executeQuery(query);
-                        System.out.println("stat");
-                        return res;
-                    }
-		catch (SQLException ex) {System.err.println(ex.getMessage());}
-		
-        ResultSet red=null;
+            Statement statement;
+            ResultSet red=null;
+            try {
+                    Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+                    statement = connection.createStatement();
+                    statement.setQueryTimeout(10);
+                    ResultSet res=statement.executeQuery(query);
+                    System.out.println("Query made");
+                    return res;
+                }
+            catch (SQLException ex) {System.err.println(ex.getMessage());}
+
+
             return red;
 	}
         
-        /*public void makeUpdate(ArrayList<String> list1)//method for running multiple statements from an arraylist
-        {
-            try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
-                catch (SQLException ex)
-                {throw new RuntimeException("Database connection failed!", ex);}
-                
+        public void makeUpdate(ArrayList<String> list1)//method for running multiple statements from an arraylist
+        {                
 		Statement statement;
 		try {
-			statement = connection.createStatement();
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+                        statement = connection.createStatement();
 			statement.setQueryTimeout(10);
                         for(int i=0;i<list1.size();i++)
                         {
@@ -63,34 +62,19 @@ public class database
                         }
                     }
 		catch (SQLException ex) {System.err.println(ex.getMessage());}
-		finally {
-			if (connection != null){
-				try{connection.close();}
-				catch(SQLException ex){System.err.println(ex.getMessage());}
-			}
-		}
             
         }
         
         public void makeUpdate(String query)//method running only one statement(not worth creating an arraylist for 1 update using the prev method
         {
-            try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
-                catch (SQLException ex)
-                {throw new RuntimeException("Database connection failed!", ex);}
-                
 		Statement statement;
 		try {
+                            Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
                             statement = connection.createStatement();
                             statement.setQueryTimeout(10);
                             statement.executeUpdate(query);
                     }
 		catch (SQLException ex) {System.err.println(ex.getMessage());}
-		finally {
-			if (connection != null){
-				try{connection.close();}
-				catch(SQLException ex){System.err.println(ex.getMessage());}
-			}
-		}
         }
         
         
@@ -105,8 +89,8 @@ public class database
                 }
                 return count != 0;
             } 
-        catch (SQLException ex) {Logger.getLogger(database.class.getName()).log(Level.SEVERE, null, ex);}
+        catch (SQLException ex) {System.out.println("dupcheck error!");}
         return false;
-        }*/
+        }
 
 }
