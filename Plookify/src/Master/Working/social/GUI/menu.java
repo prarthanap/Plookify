@@ -38,37 +38,29 @@ public class menu extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
 
-        //Name Label - constrains use (child, column, row)
-        Label nameLabel = new Label("Username:");
-        nameLabel.setId("bold-label");
-        GridPane.setConstraints(nameLabel, 20, 20);
+        //Search Label - constrains use (child, column, row)
+//        Label searchLabel = new Label("Search");
+//        searchLabel.setId("bold-label");
+//        GridPane.setConstraints(searchLabel, 20, 20);
 
-        //Name Input
-        TextField nameInput = new TextField("Hamza");
-        nameInput.setPromptText("name");
-        GridPane.setConstraints(nameInput, 21, 20);
+        //Search Input
+        TextField searchInput = new TextField();
+        searchInput.setPromptText("Search");
+        searchInput.getStyleClass().add("searchField");
+        GridPane.setConstraints(searchInput, 82, 2);
 
-        //Password Label
-        Label passLabel = new Label("Password:");
-        GridPane.setConstraints(passLabel, 20, 21);
-
-        //Password Input
-        TextField passInput = new TextField();
-        passInput.setPromptText("password");
-        GridPane.setConstraints(passInput, 21, 21);
-
-        //Login
-        Button loginButton = new Button("Log In");
-        GridPane.setConstraints(loginButton, 21, 22);
+        //Add Friend
+        Button addFriend = new Button("+");
+        addFriend.getStyleClass().add("addFriend");
+        GridPane.setConstraints(addFriend, 21, 22);
         
-        
-        //Sign up
-        Button signUpButton = new Button("Sign Up");
-        signUpButton.getStyleClass().add("button-blue");
-        GridPane.setConstraints(signUpButton, 21, 23);
+        //Upgrade
+        Button upgrade = new Button("  Premium  ");
+        upgrade.getStyleClass().add("premium");
+        GridPane.setConstraints(upgrade, 61, 2);
 
         //Add everything to grid
-        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, signUpButton);
+        grid.getChildren().addAll(/*searchLabel,*/ searchInput, addFriend, upgrade);
 
         Scene scene = new Scene(grid, 1100, 600);
         scene.getStylesheets().add("test.css");
