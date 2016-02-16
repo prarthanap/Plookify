@@ -5,6 +5,8 @@ package Master.Working.Common;
  * @author jlleow AKA ec14002
  * 
  * Code for making queries or updates to database
+ * 
+ * 16/02/2016
  */
 import Master.Working.Common.*;
 import java.sql.Connection;
@@ -81,9 +83,24 @@ public class database
         }
         
         
-        public static boolean dupcheck(String search,String column,String table)//checks if there is a match using what u searching for, the table and which column
+        public static boolean dupcheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
         {
             ResultSet check=makeQuery("SELECT "+column+" FROM "+table+" WHERE "+column+"='"+search+"'");
+        try {
+            int count=0;
+            while(check.next())
+                {
+                    count++;
+                }
+                return count != 0;
+            } 
+        catch (SQLException ex) {System.out.println("dupcheck error!");}
+        return false;
+        }
+        
+        public static boolean dupcheck(String query)//checks if there is a row match using custom query
+        {
+            ResultSet check=makeQuery(query);
         try {
             int count=0;
             while(check.next())
