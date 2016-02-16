@@ -1,4 +1,4 @@
-package Master.Working.Common;
+package Master.Working.account.logic;
 
 /**
  *
