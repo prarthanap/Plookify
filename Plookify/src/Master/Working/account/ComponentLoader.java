@@ -13,7 +13,7 @@ public class ComponentLoader
     {
         JOptionPane.showMessageDialog(null,"This application works correctly!");
         logic testing=new logic();
-        testing.addAccount("Prarthana", "", "");
+        testing.addAccount("bacon", "", "");
     }
     
 }

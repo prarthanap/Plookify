@@ -12,14 +12,15 @@ public class logic
     {
         
     }
-    public void addAccount(String fname,String sname,String uname)
+    public void addAccount(String uname,String fname,String lname)
     {
         if(data.dupcheck(fname,"FIRSTNAME", "ACCOUNT"))
         {System.out.println(false);}
         else
         {
             System.out.println(true);
-            //data.makeUpdate("INSERT INTO ACCOUNT VALUES('USERNAME,'PASSWRD','FIRSTNAME','LASTNAME','DOORNO','STREE','CITY','COUNTY','POSTCODE','CONTACTNO'))");
+            data.makeUpdate("INSERT INTO ACCOUNT (USERNAME,PASSWORD,FIRSTNAME,LASTNAME,DOORNO,STREET,CITY,COUNTY,POSTCODE,CONTACTNO) VALUES('USERNAME','pass1','bacon','LASTNAME','DOORNO','STREE','CITY','COUNTY','POSTCODE','CONTACTNO')");
+            System.out.println("added");
         }
     }
     
