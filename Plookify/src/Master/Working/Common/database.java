@@ -11,9 +11,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class database
 {
@@ -23,9 +20,13 @@ public class database
         {
             System.out.println("starto!");
             database data1=new database();
-            ResultSet result=data1.makeQuery("SELECT * FROM ACCOUNT");
-            String name = result.getString(3);
-           System.out.println(name);
+            ResultSet result=data1.makeQuery("SELECT * FROM TRACKS");
+            
+            while(result.next()){
+            String name = result.getString(2);
+            String name2=result.getString(3);
+             System.out.println(name+" "+name2);}
+          
             //System.out.println();
         }
 	
