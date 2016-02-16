@@ -1,27 +1,26 @@
 package Master.Working.account.logic;
 
 import Master.Working.Common.database;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author jlleow
  */
-public class logic extends database
+public class logic
 {
+    private database data=new database();
     public logic()
     {
-        database data=new database();
+        
     }
     public void addAccount(String fname,String sname,String uname)
     {
-        dupcheck(uname);
+        if(data.dupcheck(fname,"FIRSTNAME", "ACCOUNT"))
+        {System.out.println(false);}
+        else
+        {
+            System.out.println(true);
+            //data.makeUpdate("INSERT INTO ACCOUNT VALUES('USERNAME,'PASSWRD','FIRSTNAME','LASTNAME','DOORNO','STREE','CITY','COUNTY','POSTCODE','CONTACTNO'))");
+        }
     }
     
     public void deleteAccount()
