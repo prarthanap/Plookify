@@ -17,39 +17,36 @@ import java.util.logging.Logger;
 
 public class database
 {
-    private Connection connection = null;
  
     public void Database(){}
-    public static void main(String[] args)//just testing code (DO NOT RUN)
+    public static void main(String[] args) throws SQLException//just testing code (DO NOT RUN)
         {
             System.out.println("starto!");
             database data1=new database();
-            System.out.println("endo!");
+            ResultSet result=data1.makeQuery("SELECT * FROM ACCOUNT");
+            String name = result.getString(3);
+           System.out.println(name);
+            //System.out.println();
         }
 	
 	public ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
         {
-		try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
-                catch (SQLException ex)
-                {throw new RuntimeException("Database connection failed!", ex);}
-                
 		Statement statement;
 		try {
+                        Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
 			statement = connection.createStatement();
 			statement.setQueryTimeout(10);
-                        return statement.executeQuery(query);
+                        ResultSet res=statement.executeQuery(query);
+                        System.out.println("stat");
+                        return res;
                     }
 		catch (SQLException ex) {System.err.println(ex.getMessage());}
-		finally {
-			if (connection != null){
-				try{connection.close();}
-				catch(SQLException ex){System.err.println(ex.getMessage());}
-			}
-		}
-            return null;
+		
+        ResultSet red=null;
+            return red;
 	}
         
-        public void makeUpdate(ArrayList<String> list1)//method for running multiple statements from an arraylist
+        /*public void makeUpdate(ArrayList<String> list1)//method for running multiple statements from an arraylist
         {
             try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
                 catch (SQLException ex)
@@ -95,7 +92,6 @@ public class database
 		}
         }
         
-	public Connection getConnection(){return this.connection;}
         
         public boolean dupcheck(String query)//checks if there is a match
         {
@@ -110,7 +106,6 @@ public class database
             } 
         catch (SQLException ex) {Logger.getLogger(database.class.getName()).log(Level.SEVERE, null, ex);}
         return false;
-        }
+        }*/
 
-        
 }
