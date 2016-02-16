@@ -5,6 +5,11 @@
  */
 package Master.Working.social.GUI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -19,9 +24,10 @@ import javafx.stage.Stage;
  *
  * @author Hamza
  */
-public class menu extends Application {
+public class menu extends Application{
 
     Stage window;
+    private Connection connection = null;
 
     public static void main(String[] args) {
         launch(args);
@@ -47,7 +53,9 @@ public class menu extends Application {
         TextField searchInput = new TextField();
         searchInput.setPromptText("Search");
         searchInput.getStyleClass().add("searchField");
+        
         GridPane.setConstraints(searchInput, 82, 2);
+        
 
         //Add Friend
         Button addFriend = new Button("+");
@@ -68,5 +76,53 @@ public class menu extends Application {
         window.show();
     }
 
+    public void input(String search){
+    String query = "SELECT USERNAME from ACCOUNT";
+    database db = new database();
+    Connection conn = db.getConnection();
+    ResultSet rs =  db.makeQuery(query);    
+    }
+    
+    public ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
+        {
+		try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
+                catch (SQLException ex)
+                {throw new RuntimeException("Database connection failed!", ex);}
+                
+		Statement statement;
+		try {
+			statement = connection.createStatement();
+			statement.setQueryTimeout(10);
+                        return statement.executeQuery(query);
+                    }
+		catch (SQLException ex) {System.err.println(ex.getMessage());}
+		finally {
+			if (connection != null){
+				try{connection.close();}
+				catch(SQLException ex){System.err.println(ex.getMessage());}
+			}
+		}
+            return null;
+	}
 
+    public void makeUpdate(String query)//method running only one statement(not worth creating an arraylist for 1 update using the prev method
+        {
+            try {connection = DriverManager.getConnection("jdbc:sqlite:data.db");}
+                catch (SQLException ex)
+                {throw new RuntimeException("Database connection failed!", ex);}
+                
+		Statement statement;
+		try {
+                            statement = connection.createStatement();
+                            statement.setQueryTimeout(10);
+                            statement.executeUpdate(query);
+                    }
+		catch (SQLException ex) {System.err.println(ex.getMessage());}
+		finally {
+			if (connection != null){
+				try{connection.close();}
+				catch(SQLException ex){System.err.println(ex.getMessage());}
+			}
+		}
+        }
 }
