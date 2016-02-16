@@ -8,7 +8,6 @@ package Master.Working.Common;
  * 
  * 16/02/2016
  */
-import Master.Working.Common.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,14 +23,12 @@ public class database
         {
             System.out.println("starto!");
             database data1=new database();
-            ResultSet result=data1.makeQuery("SELECT * FROM TRACKS");
+            ResultSet result=data1.makeQuery("SELECT * FROM ACCOUNT");
             while(result.next())
             {
-                String name = result.getString(2);
+                String name = result.getString(4);
                 System.out.println(name);
             }
-            boolean check=dupcheck("Lithium","TRACKNAME","TRACKS");
-            System.out.println(check);
           
             //System.out.println();
         }
@@ -83,7 +80,7 @@ public class database
         }
         
         
-        public static boolean dupcheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
+        public boolean dupcheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
         {
             ResultSet check=makeQuery("SELECT "+column+" FROM "+table+" WHERE "+column+"='"+search+"'");
         try {
@@ -98,7 +95,7 @@ public class database
         return false;
         }
         
-        public static boolean dupcheck(String query)//checks if there is a row match using custom query
+        public boolean dupcheck(String query)//checks if there is a row match using custom query
         {
             ResultSet check=makeQuery(query);
         try {
