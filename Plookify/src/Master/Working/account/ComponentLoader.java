@@ -11,9 +11,9 @@ public class ComponentLoader
 {
     public static void main(String[] args)
     {
-        JOptionPane.showMessageDialog(null,"This application works!");
         logic testing=new logic();
-        System.out.println(testing.authCheck("jil30","password"));
+        System.out.println(testing.authCheck("ji30","password"));
+        JOptionPane.showMessageDialog(null,"This application works!");
     }
     
 }
