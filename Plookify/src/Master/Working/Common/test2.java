@@ -17,10 +17,10 @@ public class test2
 {
     public static void main(String[] args) throws SQLException{
     database test=new database();
-    ResultSet result=test.makeQuery("SELECT * FROM TRACKS");
+    ResultSet result=test.makeQuery("SELECT * FROM ACCOUNT");
     while(result.next()){
-            String name = result.getString(2);
-            String name2=result.getString(3);
+            String name = result.getString(4);
+            String name2=result.getString(5);
              System.out.println(name+" "+name2);}
     }
 }

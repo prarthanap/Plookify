@@ -82,8 +82,8 @@ public class database
         
         public boolean dupcheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
         {
-            ResultSet check=makeQuery("SELECT "+column+" FROM "+table+" WHERE "+column+"='"+search+"'");
         try {
+            ResultSet check=makeQuery("SELECT "+column+" FROM "+table+" WHERE "+column+"='"+search+"'");
             int count=0;
             while(check.next())
                 {

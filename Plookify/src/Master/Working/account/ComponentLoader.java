@@ -11,9 +11,10 @@ public class ComponentLoader
 {
     public static void main(String[] args)
     {
-        JOptionPane.showMessageDialog(null,"This application works correctly!");
+        JOptionPane.showMessageDialog(null,"This application works!");
         logic testing=new logic();
-        testing.addAccount("bacon", "", "");
+        String[] address1=new String[]{"22","street","city","county","postcode","number"};
+        testing.addAccount("test1", "a", "b","pass",address1);
     }
     
 }
