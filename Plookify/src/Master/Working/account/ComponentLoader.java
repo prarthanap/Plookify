@@ -13,8 +13,7 @@ public class ComponentLoader
     {
         JOptionPane.showMessageDialog(null,"This application works!");
         logic testing=new logic();
-        String[] address1=new String[]{"22","street","city","county","postcode","number"};
-        testing.addAccount("test1", "a", "b","pass",address1);
+        System.out.println(testing.authCheck("jil30","password"));
     }
     
 }
