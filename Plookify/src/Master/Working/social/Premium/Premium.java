@@ -7,6 +7,9 @@ import java.util.*;
  */
 public class Premium extends account{
     
+    public Premium()
+    {}
+        
     public void accType()
     {}
     
