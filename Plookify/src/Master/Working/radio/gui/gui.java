@@ -5,6 +5,7 @@
  */
 package Master.Working.radio.gui;
 
+import Master.Working.radio.logic.logic;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
@@ -80,16 +81,17 @@ public class gui extends Application {
         launch(args);
         
         // Generate Radio Channel
-       /* RadioChannel radioCH = new RadioChannel(Track);
+        logic radioCH = new logic();
         String searchArtist = "";
-        Track radioTrack = new Track()
-        for (int i = 0; i<=9; i++)
-        {
-            searchArtist = radioCH.randomArtist();
-            radioTrack = radioCH.randomTrack();
-            radioCH.addToRadio(track,i);
-        }
-        */
+        String radioTrack = "";
+       /* for (int i = 0; i<=9; i++)
+        {*/
+            System.out.println(radioCH.randomArtist());
+            //searchArtist = radioCH.randomArtist();
+            //radioTrack = radioCH.randomTrack();
+            //radioCH.addToRadio(track,i);
+        //}
+        
         //...
     }
 }
