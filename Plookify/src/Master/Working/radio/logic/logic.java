@@ -5,7 +5,7 @@
  */
 package Master.Working.radio.logic;
 
-import Master.Working.radio.database;
+import Master.Working.Common.database;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,32 +21,44 @@ public class logic {
     private String primaryArtist;
     private String primaryGenre;
     private String searchArtist;
-    private String randomTrack;
+    private String artTrack;
     private String[] radioChannel;
     
     public logic() {
         primaryGenre = "ROCK"; //Temporary
-        radioChannel = new String[9];
+        primaryArtist = "";//Temporary
+        radioChannel = new String[10];
     }
     
     public String randomArtist() {
         // use primaryGenre to randomly select artist
         String searchArt = "SELECT ARTIST FROM TRACKS WHERE GENRE='"+primaryGenre+"'";
         try {
-                return data.makeQuery(searchArt).getString(1);
+                searchArtist = data.makeQuery(searchArt).getString(1);
         }
         catch (SQLException ex) {
                 Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return primaryArtist;
+        return searchArtist;
     }
     
     public String randomTrack() {
         // use searchArtist to randomly select a track
-        return randomTrack;
+        String qryTrack = "SELECT TRACKNAME FROM TRACKS WHERE ARTIST='"+searchArtist+"' AND GENRE='"+primaryGenre+"' ORDER BY RANDOM() LIMIT 1";
+        try {
+                artTrack = data.makeQuery(qryTrack).getString(1);
+        }
+        catch (SQLException ex) {
+                Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return artTrack;
     } 
     
     public void addToRadio (String track, int position) {
         radioChannel[position] = track;
+    }
+    
+    public void printRadio() {
+        System.out.println(Arrays.toString(radioChannel));
     }
 }
