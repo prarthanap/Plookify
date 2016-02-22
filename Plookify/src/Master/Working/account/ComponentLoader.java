@@ -13,6 +13,7 @@ public class ComponentLoader
     public static void main(String[] args)
     {
         FirstScreen start=new FirstScreen();
+        start.setResizable(false); 
         start.setVisible(true);
     }
     
