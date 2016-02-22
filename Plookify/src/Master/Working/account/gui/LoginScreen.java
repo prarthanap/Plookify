@@ -11,12 +11,12 @@ import Master.Working.account.logic.logic;
  *
  * @author ec14002
  */
-public class LoginScreen1 extends javax.swing.JFrame {
+public class LoginScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginScreen
      */
-    public LoginScreen1() {
+    public LoginScreen() {
         initComponents();
     }
 
@@ -165,7 +165,7 @@ public class LoginScreen1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginScreen1().setVisible(true);
+                new LoginScreen().setVisible(true);
             }
         });
     }
