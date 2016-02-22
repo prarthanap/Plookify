@@ -19,7 +19,7 @@ public class database
 {
  
     public void Database(){}
-    public static void main(String[] args) throws SQLException//just testing code (DO NOT RUN)
+    /* public static void main(String[] args) throws SQLException//just testing code (DO NOT RUN)
         {
             System.out.println("starto!");
             database data1=new database();
@@ -31,7 +31,7 @@ public class database
             }
           
             //System.out.println();
-        }
+        }*/
 	
 	public static ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
         {
