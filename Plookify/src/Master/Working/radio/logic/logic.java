@@ -22,7 +22,7 @@ public class logic {
     private String primaryGenre;
     private String searchArtist;
     private String artTrack;
-    private String[] radioChannel;
+    public String[] radioChannel;
     
     public logic() {
         primaryGenre = "ROCK"; //Temporary
@@ -32,7 +32,7 @@ public class logic {
     
     public String randomArtist() {
         // use primaryGenre to randomly select artist
-        String searchArt = "SELECT ARTIST FROM TRACKS WHERE GENRE='"+primaryGenre+"'";
+        String searchArt = "SELECT ARTIST FROM TRACKS WHERE GENRE='"+primaryGenre+"'ORDER BY RANDOM() LIMIT 1";
         try {
                 searchArtist = data.makeQuery(searchArt).getString(1);
         }
@@ -55,10 +55,19 @@ public class logic {
     } 
     
     public void addToRadio (String track, int position) {
+
         radioChannel[position] = track;
     }
     
     public void printRadio() {
         System.out.println(Arrays.toString(radioChannel));
+    }
+    
+    public void saveAsPlaylist() {
+        
+    }
+    
+    public String[] getRadio() {
+        return radioChannel;
     }
 }
