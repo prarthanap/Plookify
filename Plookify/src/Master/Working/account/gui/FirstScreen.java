@@ -1,19 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Login screen
  */
 package Master.Working.account.gui;
 
 /**
  *
- * @author ninja_000
+ * @author ec14002
  */
 public class FirstScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FirstScreen
-     */
+ 
     public FirstScreen() {
         initComponents();
     }
@@ -91,6 +87,7 @@ public class FirstScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         LoginScreen login1=new LoginScreen();
+        login1.setResizable(false);
         login1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
