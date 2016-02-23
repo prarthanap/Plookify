@@ -28,21 +28,135 @@ public class RegisterScreen1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        TopLabel = new javax.swing.JLabel();
+        RegisterUsername = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        RegisterFirstname = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        RegisterLastname = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        RegisterDoorNo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        RegisterStreet = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        RegisterPassword = new javax.swing.JPasswordField();
+        RegisterCounty = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        RegisterCity = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        RegisterPostcode2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        RegisterPostcode1 = new javax.swing.JTextField();
+        RegisterSubmit = new javax.swing.JButton();
+        ResetButton = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 363));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel1.setText("Register Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 90, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Master/Working/account/gui/logo(small).png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+
+        TopLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TopLabel.setForeground(new java.awt.Color(0, 204, 204));
+        TopLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TopLabel.setText("Plookify");
+        jPanel1.add(TopLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        jPanel1.add(RegisterUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 100, -1));
+
+        jLabel2.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel2.setText("UserName");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel4.setText("Password");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
+        jPanel1.add(RegisterFirstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 100, -1));
+
+        jLabel5.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel5.setText("Firstname");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+        jPanel1.add(RegisterLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 100, -1));
+
+        jLabel6.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel6.setText("Lastname");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
+        jPanel1.add(RegisterDoorNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 40, 20));
+
+        jLabel7.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel7.setText("Door No.");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, 10));
+
+        RegisterStreet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegisterStreetActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RegisterStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 100, 20));
+
+        jLabel8.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel8.setText("Street");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, 10));
+        jPanel1.add(RegisterPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 100, -1));
+        jPanel1.add(RegisterCounty, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 100, 20));
+
+        jLabel9.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel9.setText("County");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, 10));
+        jPanel1.add(RegisterCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 100, 20));
+
+        jLabel10.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel10.setText("City");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+        jPanel1.add(RegisterPostcode2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 30, 20));
+
+        jLabel11.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel11.setText("Postcode");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
+
+        RegisterPostcode1.setAutoscrolls(false);
+        jPanel1.add(RegisterPostcode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 40, 20));
+
+        RegisterSubmit.setText("REGISTER");
+        jPanel1.add(RegisterSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, -1, -1));
+
+        ResetButton.setText("RESET");
+        jPanel1.add(ResetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, -1, -1));
+
+        BackButton.setText("BACK");
+        jPanel1.add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RegisterStreetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterStreetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegisterStreetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +194,31 @@ public class RegisterScreen1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
+    private javax.swing.JTextField RegisterCity;
+    private javax.swing.JTextField RegisterCounty;
+    private javax.swing.JTextField RegisterDoorNo;
+    private javax.swing.JTextField RegisterFirstname;
+    private javax.swing.JTextField RegisterLastname;
+    private javax.swing.JPasswordField RegisterPassword;
+    private javax.swing.JTextField RegisterPostcode1;
+    private javax.swing.JTextField RegisterPostcode2;
+    private javax.swing.JTextField RegisterStreet;
+    private javax.swing.JButton RegisterSubmit;
+    private javax.swing.JTextField RegisterUsername;
+    private javax.swing.JButton ResetButton;
+    private javax.swing.JLabel TopLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

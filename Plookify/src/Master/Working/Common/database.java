@@ -19,7 +19,7 @@ public class database
 {
  
     public void Database(){}
-    /* public static void main(String[] args) throws SQLException//just testing code (DO NOT RUN)
+     /*public static void main(String[] args) throws SQLException//just testing code (DO NOT RUN)
         {
             System.out.println("starto!");
             database data1=new database();
@@ -27,6 +27,8 @@ public class database
             while(result.next())
             {
                 String name = result.getString(4);
+                System.out.println(name);
+                name=result.getString(10);
                 System.out.println(name);
             }
           
