@@ -47,7 +47,7 @@ public class logic
                 Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
-        return 99999;
+        return 9999;
         
     }
     

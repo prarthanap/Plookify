@@ -6,6 +6,7 @@
 package Master.Working.radio;
 
 import javax.swing.JOptionPane;
+import Master.Working.radio.logic.logic;
 
 /**
  *

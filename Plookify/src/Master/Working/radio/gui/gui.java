@@ -5,6 +5,8 @@
  */
 package Master.Working.radio.gui;
 
+import Master.Working.radio.logic.logic;
+import static java.lang.Math.E;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Insets;
@@ -14,6 +16,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import java.util.*;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.util.Callback;
 
 /**
  *
@@ -24,6 +36,9 @@ public class gui extends Application {
     GridPane root, root2;
     Scene scene, scene2;
     Stage currentStage;
+    
+    static String[] radioCh;
+    static String[] artist = new String[10];
     
     @Override
     public void start(Stage primaryStage) {  
@@ -43,16 +58,35 @@ public class gui extends Application {
         savePlaylist.setText("Save Radio as Playlist");
         savePlaylist.setOnAction(e-> ButtonPressed(e));
         
+        //////////////////////TableForRadio////////////////////////////////
+        TableView<String> tv = new TableView(FXCollections.observableArrayList(
+                new ArrayList<>(Arrays.asList(radioCh))));
+        TableColumn<String, String> tc = new TableColumn<>("Track Name");
+        tc.setCellValueFactory((p) -> {
+            return new ReadOnlyStringWrapper(p.getValue());
+        });
+        TableView<String> tv2 = new TableView(FXCollections.observableArrayList(
+                new ArrayList<>(Arrays.asList(artist))));
+        TableColumn<String, String> tc2 = new TableColumn<>("Artist");
+        tc2.setCellValueFactory((p) -> {
+            return new ReadOnlyStringWrapper(p.getValue()); });
+        tv.getColumns().addAll(tc,tc2);
+        tv2.getColumns().add(tc2);
+        tv.setFixedCellSize(25);
+        tv.prefHeightProperty().bind(Bindings.size(tv.getItems()).multiply(tv.getFixedCellSize()).add(30));
+        ///////////////////////////////////////////////////////////////////
+        
         root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
-        root.setPadding(new Insets(10, 10, 10, 10));
+        root.setPadding(new Insets(10, 0, 10, 10));
         root.add(ViewRadio, 50, 20);
         root2 = new GridPane();
         root2.setHgap(10);
         root2.setVgap(10);
-        root2.setPadding(new Insets(10, 10, 10, 10));
+        root2.setPadding(new Insets(10, 0, 10, 10));
         root2.add(goBack, 70, 2);
+        root2.add(tv, 30, 10);
         root2.add(savePlaylist, 40, 40);
         
         scene = new Scene(root, 1100, 600);
@@ -77,19 +111,20 @@ public class gui extends Application {
     }
     
     public static void main (String[] args) {
-        launch(args);
-        
         // Generate Radio Channel
-       /* RadioChannel radioCH = new RadioChannel(Track);
+        logic test = new logic();
         String searchArtist = "";
-        Track radioTrack = new Track()
+        String radioTrack = "";
         for (int i = 0; i<=9; i++)
         {
-            searchArtist = radioCH.randomArtist();
-            radioTrack = radioCH.randomTrack();
-            radioCH.addToRadio(track,i);
+            searchArtist = test.randomArtist();
+            radioTrack = test.randomTrack();
+            artist[i] = searchArtist;
+            test.addToRadio(radioTrack,i);
         }
-        */
-        //...
+        radioCh = test.getRadio();
+        test.printRadio();
+        
+        launch(args);
     }
 }
