@@ -20,9 +20,9 @@
       <Hyperlink layoutX="27.0" layoutY="246.0" text="Hyperlink" />
       <Label layoutX="23.0" layoutY="537.0" text="New Playlist" />
       <Button layoutX="24.0" layoutY="281.0" mnemonicParsing="false" mouseTransparent="true" text="Playlist 1" />
-      <ImageView fitHeight="35.0" fitWidth="124.0" layoutX="653.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="124.0" layoutX="647.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Scratch/ICONS/upgrade.png" />
+            <Image url="@../../../../Scratch/ICONS/upgrade.png" />
          </image>
       </ImageView>
    </children>

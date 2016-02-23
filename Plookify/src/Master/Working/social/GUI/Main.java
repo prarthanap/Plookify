@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.social;
+package Master.Working.social.GUI;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -21,9 +21,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
         primaryStage.setTitle("Plookify");
-        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
