@@ -25,4 +25,28 @@ public class logic {
     {
         
     }
+    
+        public void accType()
+    {}
+    
+    public void findFriend()
+    {}
+    
+    public void discover()
+    {}
+    
+    public boolean friendRequest()
+    {
+     return false;
+    }
+    
+    public int friendList()
+    {
+     int followers = 0;
+     
+     return followers;
+    }
+    
+    public void friendPlaylist()
+    {}
 }
