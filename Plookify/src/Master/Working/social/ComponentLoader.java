@@ -1,11 +1,13 @@
 /* @author Hamza */
 package Master.Working.social;
 
+import Master.Working.social.GUI.Main;
 import javax.swing.JOptionPane;
-public class ComponentLoader
-{    
-    public static void main(String[] args)
-    {  
-      JOptionPane.showMessageDialog(null, "The application works");
+import Master.Working.social.logic.*;
+
+public class ComponentLoader {
+
+    public static void main(String[] args) {
+        
     }
 }
