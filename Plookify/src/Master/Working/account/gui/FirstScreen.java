@@ -90,7 +90,7 @@ public class FirstScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LoginScreen login1=new LoginScreen();
+        LoginScreen1 login1=new LoginScreen1();
         login1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
