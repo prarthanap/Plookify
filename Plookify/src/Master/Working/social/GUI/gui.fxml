@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -8,22 +11,32 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.GUI.TestController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.GUI.TestController">
    <children>
-      <Pane layoutX="743.0" layoutY="42.0">
-         <children>
-            <Button fx:id="premium" mnemonicParsing="false" opacity="0.0" prefHeight="39.0" prefWidth="136.0" text="Premium" />
-            <TextField layoutX="64.0" layoutY="-5.0" prefHeight="27.0" prefWidth="168.0" />
-         </children>
-      </Pane>
-      <Label layoutX="30.0" layoutY="219.0" prefHeight="27.0" prefWidth="82.0" text="Playlist 1" />
-      <Hyperlink layoutX="27.0" layoutY="246.0" text="Hyperlink" />
-      <Label layoutX="23.0" layoutY="537.0" text="New Playlist" />
-      <Button layoutX="24.0" layoutY="281.0" mnemonicParsing="false" mouseTransparent="true" text="Playlist 1" />
-      <ImageView fx:id="upgrade" fitHeight="35.0" fitWidth="124.0" layoutX="547.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+      <Pane layoutX="743.0" layoutY="42.0" />
+      <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Scratch/ICONS/upgrade.png" />
+            <Image url="@../../../../Scratch/ICONS/logo.png" />
          </image>
       </ImageView>
+      <TextField layoutX="799.0" layoutY="38.0" prefHeight="28.0" prefWidth="171.0" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Arial Nova Light" size="12.0" />
+         </font>
+      </TextField>
+      <Button blendMode="GREEN" layoutX="567.0" layoutY="28.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="74.0" style="-fx-background-color: #383838;">
+         <graphic>
+            <ImageView fx:id="upgrade" fitHeight="35.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Scratch/ICONS/upgrade.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text fill="WHITE" layoutX="69.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lookify">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
