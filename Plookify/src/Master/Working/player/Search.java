@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.player;
+
+/*package Master.Working.player;
 
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.util.function.Predicate;
@@ -14,7 +15,7 @@ import javafx.scene.input.KeyEvent;
 /**
  *
  * @author prarthana
- */
+ 
 public class Search {
     
     private void searchFunction(KeyEvent evt) {
@@ -58,3 +59,4 @@ public class Search {
     
     
 }
+*/
