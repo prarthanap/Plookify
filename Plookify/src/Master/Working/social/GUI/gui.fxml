@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.GUI.TestController">
    <children>
       <Pane layoutX="743.0" layoutY="42.0">
          <children>
@@ -20,7 +20,7 @@
       <Hyperlink layoutX="27.0" layoutY="246.0" text="Hyperlink" />
       <Label layoutX="23.0" layoutY="537.0" text="New Playlist" />
       <Button layoutX="24.0" layoutY="281.0" mnemonicParsing="false" mouseTransparent="true" text="Playlist 1" />
-      <ImageView fitHeight="35.0" fitWidth="124.0" layoutX="647.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="upgrade" fitHeight="35.0" fitWidth="124.0" layoutX="547.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Scratch/ICONS/upgrade.png" />
          </image>

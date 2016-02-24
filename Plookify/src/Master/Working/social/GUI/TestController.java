@@ -7,7 +7,13 @@ package Master.Working.social.GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import static javafx.application.ConditionalFeature.FXML;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+
+
+
 
 /**
  * FXML Controller class
@@ -15,13 +21,18 @@ import javafx.fxml.Initializable;
  * @author Hamza
  */
 public class TestController implements Initializable {
-
+@FXML
+private Button premium;
     /**
-     * Initializes the controller class.
+     * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        
     }    
+    
+    
     
 }
