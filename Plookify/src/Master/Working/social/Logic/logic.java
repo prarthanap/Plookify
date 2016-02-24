@@ -65,7 +65,7 @@ public class logic {
         
     }
     
-    public void friendRequest(String uname, String friendname)//checks if username exists then inserts record
+    public void friendRequest(String uname, String friendname)
     {
         if(data.dupcheck(uname,"USERNAME","ACCOUNT"))
         {System.out.println(true);}
