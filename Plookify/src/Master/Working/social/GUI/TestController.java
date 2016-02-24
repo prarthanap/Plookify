@@ -11,6 +11,7 @@ import static javafx.application.ConditionalFeature.FXML;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 
 
 
@@ -23,6 +24,9 @@ import javafx.scene.control.Button;
 public class TestController implements Initializable {
 @FXML
 private Button premium;
+@FXML
+private TableView Table;
+
     /**
      * Initialises the controller class.
      */

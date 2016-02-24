@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
@@ -38,5 +39,11 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
+      <TableView fx:id="Table" layoutX="209.0" layoutY="103.0" prefHeight="318.0" prefWidth="738.0" style="-fx-background-color: #383838;">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
    </children>
 </Pane>
