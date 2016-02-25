@@ -69,18 +69,18 @@ public class PlayerController implements Initializable {
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
         albumCol.setCellValueFactory(new PropertyValueFactory("album"));
 
-        IDCol.setMinWidth(100);
+    /*  IDCol.setMinWidth(100);
         trackNameCol.setMinWidth(200);
         artistCol.setMinWidth(200);
         timeCol.setMinWidth(100);
         genreCol.setMinWidth(100);
-        albumCol.setMinWidth(200);
+        albumCol.setMinWidth(200);*/
         
         
+        updateTable();
         
     }    
-    
-    
+   
         
     
 
@@ -100,7 +100,9 @@ public class PlayerController implements Initializable {
     private void searchFunction(KeyEvent event) {
     }
     
-    public void upDate(){
+    
+    
+    public void updateTable(){
      try {
 
             database db = new database();
