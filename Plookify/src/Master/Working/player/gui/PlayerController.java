@@ -34,6 +34,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -59,6 +60,8 @@ public class PlayerController implements Initializable {
     @FXML
     private Button play;
     @FXML
+    private Button pause;
+    @FXML
     private Slider slider;
     @FXML
     private TextField searchField;
@@ -70,6 +73,8 @@ public class PlayerController implements Initializable {
     private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
     private Iterator<String> itr;
+    
+    private Duration currentDuration;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
 
@@ -110,6 +115,22 @@ public class PlayerController implements Initializable {
 
     }
 
+    @FXML
+    private void onPause(ActionEvent event) {
+        player.pause();
+        currentDuration = player.getCurrentTime();
+    }
+    
+    
+     @FXML
+    private void onRestart(ActionEvent event) {
+       Duration startTime = player.getStartTime();
+       player.seek(startTime);
+       player.play();
+    }
+    
+    
+
     public void play(String mediaFile) {
         Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
         player = new MediaPlayer(media);
@@ -135,14 +156,6 @@ public class PlayerController implements Initializable {
         itr = list.iterator();
         return itr;
 
-    }
-
-    @FXML
-    private void onPause(ActionEvent event) {
-         player.pause();
-        
-        
-        
     }
 
     @FXML
