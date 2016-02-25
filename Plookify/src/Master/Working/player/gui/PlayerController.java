@@ -16,6 +16,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -26,19 +27,19 @@ import javafx.scene.input.MouseEvent;
  */
 public class PlayerController implements Initializable {
     @FXML
-    private TableView<?> table;
+    private TableView<Tracks> table;
     @FXML
-    private TableColumn<?, ?> IDCol;
+    private TableColumn IDCol;
     @FXML
-    private TableColumn<?, ?> trackNameCol;
+    private TableColumn trackNameCol;
     @FXML
-    private TableColumn<?, ?> artistCol;
+    private TableColumn artistCol;
     @FXML
-    private TableColumn<?, ?> timeCol;
+    private TableColumn timeCol;
     @FXML
-    private TableColumn<?, ?> genreCol;
+    private TableColumn genreCol;
     @FXML
-    private TableColumn<?, ?> albumCol;
+    private TableColumn albumCol;
     @FXML
     private Button play;
     @FXML
@@ -53,7 +54,23 @@ public class PlayerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
+        
+        IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
+        trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
+        artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
+        timeCol.setCellValueFactory(new PropertyValueFactory("time"));
+        genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
+        albumCol.setCellValueFactory(new PropertyValueFactory("album"));
+
+      /*  IDCol.setMinWidth(100);
+        trackNameCol.setMinWidth(200);
+        artistCol.setMinWidth(200);
+        timeCol.setMinWidth(100);
+        genreCol.setMinWidth(100);
+        albumCol.setMinWidth(200);*/
+        
+        
     }    
 
     @FXML
