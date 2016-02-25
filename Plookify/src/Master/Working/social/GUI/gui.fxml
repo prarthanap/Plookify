@@ -20,7 +20,7 @@
             <Image url="@../../../../Scratch/ICONS/logo.png" />
          </image>
       </ImageView>
-      <TextField layoutX="799.0" layoutY="38.0" prefHeight="28.0" prefWidth="171.0" style="-fx-background-radius: 20;">
+      <TextField fx:id="searchField" layoutX="783.0" layoutY="38.0" prefHeight="28.0" prefWidth="187.0" promptText="Search" style="-fx-background-radius: 20;">
          <font>
             <Font name="Arial Nova Light" size="12.0" />
          </font>
@@ -41,9 +41,10 @@
       </Text>
       <TableView fx:id="Table" layoutX="209.0" layoutY="103.0" prefHeight="318.0" prefWidth="738.0" style="-fx-background-color: #383838;">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn minWidth="0.0" prefWidth="196.0" text="C1" />
+          <TableColumn minWidth="0.0" prefWidth="151.0" text="C2" />
         </columns>
       </TableView>
+      <Button fx:id="addFriend" layoutX="936.0" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="41.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="+" textFill="WHITE" />
    </children>
 </Pane>
