@@ -73,7 +73,7 @@ public class PlayerController implements Initializable {
     private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
     private Iterator<String> itr;
-    
+
     private Duration currentDuration;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
@@ -96,22 +96,15 @@ public class PlayerController implements Initializable {
     }
 
     @FXML
-    private void playTrack(MouseEvent event) {
-
-    }
-
-    @FXML
     private void onPlay(ActionEvent event) {
         for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
 
             nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
             list.add(trackSelect.getTrackName() + ".mp3");
-
-            itr = list.iterator();
-
-            play(itr.next());
-
         }
+
+        itr = list.iterator();
+        play(itr.next());
 
     }
 
@@ -120,16 +113,13 @@ public class PlayerController implements Initializable {
         player.pause();
         currentDuration = player.getCurrentTime();
     }
-    
-    
-     @FXML
+
+    @FXML
     private void onRestart(ActionEvent event) {
-       Duration startTime = player.getStartTime();
-       player.seek(startTime);
-       player.play();
+        Duration startTime = player.getStartTime();
+        player.seek(startTime);
+        player.play();
     }
-    
-    
 
     public void play(String mediaFile) {
         Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
