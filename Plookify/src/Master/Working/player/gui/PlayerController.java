@@ -5,8 +5,12 @@
  */
 package Master.Working.player.gui;
 
+import Master.Working.Common.database;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +52,8 @@ public class PlayerController implements Initializable {
     private TextField searchField;
     @FXML
     private Label duration;
+    
+    private final ObservableList<Tracks> data  = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -63,15 +69,20 @@ public class PlayerController implements Initializable {
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
         albumCol.setCellValueFactory(new PropertyValueFactory("album"));
 
-      /*  IDCol.setMinWidth(100);
+        IDCol.setMinWidth(100);
         trackNameCol.setMinWidth(200);
         artistCol.setMinWidth(200);
         timeCol.setMinWidth(100);
         genreCol.setMinWidth(100);
-        albumCol.setMinWidth(200);*/
+        albumCol.setMinWidth(200);
+        
         
         
     }    
+    
+    
+        
+    
 
     @FXML
     private void playTrack(MouseEvent event) {
@@ -89,4 +100,31 @@ public class PlayerController implements Initializable {
     private void searchFunction(KeyEvent event) {
     }
     
+    public void upDate(){
+     try {
+
+            database db = new database();
+            ResultSet rs = db.makeQuery("SELECT * FROM TRACKS");
+
+            while (rs.next()) {
+                data.add(new Tracks(
+                        rs.getString("TRACKID"),
+                        rs.getString("TRACKNAME"),
+                        rs.getString("ARTIST"),
+                        rs.getString("DURATION"),
+                        rs.getString("GENRE"),
+                        rs.getString("ALBUM")
+                ));
+
+                table.setItems(this.data);
+
+            }
+
+        } catch (Exception e2) {
+            System.err.println(e2);
+
 }
+    }
+}
+    
+
