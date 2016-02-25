@@ -42,7 +42,10 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="searchField" layoutX="657.0" layoutY="19.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" />
+      <TextField fx:id="searchField" layoutX="657.0" layoutY="19.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="12.0" />
+         </font></TextField>
       <Label fx:id="duration" layoutX="237.0" layoutY="569.0" prefHeight="17.0" prefWidth="57.0" text="       " />
       <ComboBox fx:id="nowPlayingMenu" layoutX="129.0" layoutY="24.0" prefHeight="27.0" prefWidth="271.0" promptText="Now Playing:">
          <effect>
@@ -58,5 +61,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="427.0" layoutY="24.0" mnemonicParsing="false" onAction="#onRemove" text="Remove" />
    </children>
 </AnchorPane>

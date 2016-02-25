@@ -7,9 +7,10 @@ package Master.Working.player.gui;
 
 import Master.Working.Common.database;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import static java.util.Collections.list;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -31,6 +32,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * FXML Controller class
@@ -64,7 +67,9 @@ public class PlayerController implements Initializable {
     @FXML
     ComboBox nowPlayingMenu;
 
+    private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
+    private Iterator<String> itr;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
 
@@ -97,12 +102,55 @@ public class PlayerController implements Initializable {
             nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
             list.add(trackSelect.getTrackName() + ".mp3");
 
+            itr = list.iterator();
+
+            play(itr.next());
+
         }
+
+    }
+
+    public void play(String mediaFile) {
+        Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
+        player = new MediaPlayer(media);
+
+        player.play();
+        // getDuration();
+        player.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                player.stop();
+                itr = updateItr();
+                if (itr.hasNext()) {
+                    play(itr.next());
+                }
+                return;
+            }
+        });
+    }
+
+    public Iterator updateItr() {
+        list.remove(0);
+        nowPlayingMenu.getItems().remove(0);
+        itr = list.iterator();
+        return itr;
 
     }
 
     @FXML
     private void onPause(ActionEvent event) {
+         player.pause();
+        
+        
+        
+    }
+
+    @FXML
+    private void onRemove(ActionEvent event) {
+
+        Object o = nowPlayingMenu.getSelectionModel().getSelectedItem();
+        nowPlayingMenu.getItems().remove(o);
+        list.remove(o + ".mp3");
 
     }
 
