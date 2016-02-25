@@ -7,28 +7,27 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
    <children>
-      <TableView fx:id="table" layoutX="70.0" layoutY="86.0" onMouseClicked="#playTrack" prefHeight="224.0" prefWidth="452.0">
+      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" onMouseClicked="#playTrack" prefHeight="422.0" prefWidth="790.0">
          <columns>
-            <TableColumn fx:id="IDCol" prefWidth="45.0" text="ID" />
-            <TableColumn fx:id="trackNameCol" prefWidth="105.0" text="Track Name" />
-            <TableColumn fx:id="artistCol" prefWidth="79.0" text="Artist" />
-            <TableColumn fx:id="timeCol" prefWidth="71.0" text="Time" />
-            <TableColumn fx:id="genreCol" prefWidth="75.0" text="Genre" />
-            <TableColumn fx:id="albumCol" prefWidth="75.0" text="Album" />
+            <TableColumn fx:id="IDCol" prefWidth="42.0" text="ID" />
+            <TableColumn fx:id="trackNameCol" prefWidth="135.0" text="Track Name" />
+            <TableColumn fx:id="artistCol" prefWidth="93.0" text="Artist" />
+            <TableColumn fx:id="timeCol" prefWidth="93.0" text="Time" />
+            <TableColumn fx:id="genreCol" prefWidth="146.0" text="Genre" />
+            <TableColumn fx:id="albumCol" prefWidth="258.0" text="Album" />
          </columns>
       </TableView>
-      <Button fx:id="play" layoutX="32.0" layoutY="342.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="40.0" prefWidth="48.0" text="play" />
-      <Button layoutX="80.0" layoutY="342.0" mnemonicParsing="false" onAction="#onPause" prefHeight="40.0" prefWidth="48.0" text="Pause" />
-      <Slider fx:id="slider" layoutX="136.0" layoutY="354.0" prefHeight="16.0" prefWidth="439.0" />
-      <Text fill="#b9b4b4" layoutX="269.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
+      <Button fx:id="play" layoutX="89.0" layoutY="541.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="40.0" prefWidth="48.0" text="play" />
+      <Button layoutX="139.0" layoutY="541.0" mnemonicParsing="false" onAction="#onPause" prefHeight="40.0" prefWidth="48.0" text="Pause" />
+      <Slider fx:id="slider" layoutX="215.0" layoutY="553.0" prefHeight="16.0" prefWidth="690.0" />
+      <Text fill="#b9b4b4" layoutX="602.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="searchField" layoutX="324.0" layoutY="19.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" />
-      <Label fx:id="duration" layoutX="149.0" layoutY="374.0" prefHeight="17.0" prefWidth="57.0" text="       " />
+      <TextField fx:id="searchField" layoutX="657.0" layoutY="19.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" />
+      <Label fx:id="duration" layoutX="237.0" layoutY="569.0" prefHeight="17.0" prefWidth="57.0" text="       " />
    </children>
 </AnchorPane>

@@ -9,8 +9,11 @@ import Master.Working.Common.database;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +33,7 @@ import javafx.scene.input.MouseEvent;
  * @author prarthana
  */
 public class PlayerController implements Initializable {
+
     @FXML
     private TableView<Tracks> table;
     @FXML
@@ -52,16 +56,15 @@ public class PlayerController implements Initializable {
     private TextField searchField;
     @FXML
     private Label duration;
-    
-    private final ObservableList<Tracks> data  = FXCollections.observableArrayList();
+
+    private final ObservableList<Tracks> data = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        
+
         IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
@@ -69,41 +72,65 @@ public class PlayerController implements Initializable {
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
         albumCol.setCellValueFactory(new PropertyValueFactory("album"));
 
-    /*  IDCol.setMinWidth(100);
-        trackNameCol.setMinWidth(200);
-        artistCol.setMinWidth(200);
-        timeCol.setMinWidth(100);
-        genreCol.setMinWidth(100);
-        albumCol.setMinWidth(200);*/
-        
-        
         updateTable();
-        
-    }    
-   
-        
-    
+
+    }
 
     @FXML
     private void playTrack(MouseEvent event) {
+
     }
 
     @FXML
     private void onPlay(ActionEvent event) {
+
     }
 
     @FXML
     private void onPause(ActionEvent event) {
+
     }
 
     @FXML
     private void searchFunction(KeyEvent event) {
+
+        FilteredList<Tracks> filteredData = new FilteredList<>(data, e -> true);
+
+        searchField.setOnKeyReleased(e -> {
+
+            searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                filteredData.setPredicate((Predicate<? super Tracks>) tracks -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (tracks.getID().contains(newValue)) {
+                        return true;
+                    } else if (tracks.getTrackName().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+
+                    } else if (tracks.getArtist().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+
+                    } else if (tracks.getGenre().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+
+                    }
+
+                    return false;
+
+                });
+            });
+        });
+
+        SortedList<Tracks> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+
     }
-    
-    
-    
-    public void updateTable(){
-     try {
+
+    public void updateTable() {
+        try {
 
             database db = new database();
             ResultSet rs = db.makeQuery("SELECT * FROM TRACKS");
@@ -125,8 +152,6 @@ public class PlayerController implements Initializable {
         } catch (Exception e2) {
             System.err.println(e2);
 
-}
+        }
     }
 }
-    
-
