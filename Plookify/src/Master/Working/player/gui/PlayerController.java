@@ -8,6 +8,9 @@ package Master.Working.player.gui;
 import Master.Working.Common.database;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
@@ -18,7 +21,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -56,6 +61,10 @@ public class PlayerController implements Initializable {
     private TextField searchField;
     @FXML
     private Label duration;
+    @FXML
+    ComboBox nowPlayingMenu;
+
+    private List<String> list = new ArrayList<String>();
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
 
@@ -83,6 +92,12 @@ public class PlayerController implements Initializable {
 
     @FXML
     private void onPlay(ActionEvent event) {
+        for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+
+            nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
+            list.add(trackSelect.getTrackName() + ".mp3");
+
+        }
 
     }
 
@@ -146,6 +161,7 @@ public class PlayerController implements Initializable {
                 ));
 
                 table.setItems(this.data);
+                table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
             }
 
