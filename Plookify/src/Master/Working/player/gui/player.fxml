@@ -62,5 +62,6 @@
          </graphic>
       </Button>
       <Button layoutX="427.0" layoutY="24.0" mnemonicParsing="false" onAction="#onRemove" text="Remove" />
+      <Label fx:id="totalDuration" layoutX="849.0" layoutY="572.0" />
    </children>
 </AnchorPane>

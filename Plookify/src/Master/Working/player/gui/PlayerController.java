@@ -9,6 +9,7 @@ import Master.Working.Common.database;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +32,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -69,12 +69,18 @@ public class PlayerController implements Initializable {
     private Label duration;
     @FXML
     ComboBox nowPlayingMenu;
+    @FXML
+    private Label totalDuration;
+    
+    private static final double MIN_CHANGE = 0.01;
+
+    private final DecimalFormat formatter = new DecimalFormat("00.00");
 
     private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
     private Iterator<String> itr;
 
-    private String status="";
+    private String status = "";
 
     private Duration currentDuration;
 
@@ -129,14 +135,14 @@ public class PlayerController implements Initializable {
         if (status.equals("Paused")) {
             player.seek(currentDuration);
             player.play();
-            status ="Playing";
+            status = "Playing";
         } else {
 
             Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
             player = new MediaPlayer(media);
 
             player.play();
-            // getDuration();
+            getDuration();
             player.setOnEndOfMedia(new Runnable() {
                 @Override
                 public void run() {
@@ -166,6 +172,43 @@ public class PlayerController implements Initializable {
         nowPlayingMenu.getItems().remove(o);
         list.remove(o + ".mp3");
 
+    }
+
+    public void getDuration() {
+
+        player.totalDurationProperty().addListener((obs, oldDuration, newDuration) -> slider.setMax(newDuration.toSeconds()));
+        slider.valueChangingProperty().addListener((obs, wasChanging, isChanging) -> {
+            if (!isChanging) {
+                player.seek(Duration.seconds(slider.getValue()));
+            }
+        });
+
+        slider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (!slider.isValueChanging()) {
+                double currentTime = player.getCurrentTime().toSeconds();
+                if (Math.abs(currentTime - newValue.doubleValue()) > MIN_CHANGE) {
+                    player.seek(Duration.seconds(newValue.doubleValue()));
+                }
+            }
+        });
+
+        player.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+            if (!slider.isValueChanging()) {
+                slider.setValue(newTime.toSeconds());
+
+              //  duration.setText(String.valueOf(formatter.format(slider.getValue() / 60)));
+                // Double time = newTime.toSeconds();
+                //Double CTime = time /60;
+                //duration.setText(String.valueOf(CTime));
+                duration.setText(String.valueOf(formatter.format(newTime.toSeconds())));
+                
+            }
+        });
+
+        
+        Duration totalD = player.getTotalDuration();
+        totalDuration.setText(String.valueOf(totalD));
+        
     }
 
     @FXML

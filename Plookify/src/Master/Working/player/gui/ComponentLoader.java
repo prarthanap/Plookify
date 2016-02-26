@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.player;
+package Master.Working.player.gui;
 
 import javax.swing.JOptionPane;
 
