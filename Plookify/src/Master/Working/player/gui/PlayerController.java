@@ -71,7 +71,7 @@ public class PlayerController implements Initializable {
     ComboBox nowPlayingMenu;
     @FXML
     private Label totalDuration;
-    
+
     private static final double MIN_CHANGE = 0.01;
 
     private final DecimalFormat formatter = new DecimalFormat("00.00");
@@ -105,12 +105,16 @@ public class PlayerController implements Initializable {
 
     @FXML
     private void onPlay(ActionEvent event) {
-        for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+        if (!status.equals("Paused")) {
+            {
 
-            nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
-            list.add(trackSelect.getTrackName() + ".mp3");
+                for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+
+                    nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
+                    list.add(trackSelect.getTrackName() + ".mp3");
+                }
+            }
         }
-
         itr = list.iterator();
         play(itr.next());
 
@@ -196,19 +200,18 @@ public class PlayerController implements Initializable {
             if (!slider.isValueChanging()) {
                 slider.setValue(newTime.toSeconds());
 
-              //  duration.setText(String.valueOf(formatter.format(slider.getValue() / 60)));
+                //  duration.setText(String.valueOf(formatter.format(slider.getValue() / 60)));
                 // Double time = newTime.toSeconds();
                 //Double CTime = time /60;
                 //duration.setText(String.valueOf(CTime));
                 duration.setText(String.valueOf(formatter.format(newTime.toSeconds())));
-                
+
             }
         });
 
-        
         Duration totalD = player.getTotalDuration();
         totalDuration.setText(String.valueOf(totalD));
-        
+
     }
 
     @FXML
