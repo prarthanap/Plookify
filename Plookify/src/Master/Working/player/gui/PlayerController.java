@@ -135,12 +135,14 @@ public class PlayerController implements Initializable {
     }
 
     public void play(String mediaFile) {
-
+        //Resumes
         if (status.equals("Paused")) {
             player.seek(currentDuration);
             player.play();
             status = "Playing";
-        } else {
+            
+            
+        } else if(!(status.equals("Playing"))){
 
             Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
             player = new MediaPlayer(media);

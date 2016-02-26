@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
    <children>
-      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" prefHeight="422.0" prefWidth="790.0" style="-fx-border-color: transparent;">
+      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" prefHeight="422.0" prefWidth="790.0">
          <columns>
             <TableColumn fx:id="IDCol" prefWidth="42.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="135.0" text="Track Name" />
