@@ -74,6 +74,8 @@ public class PlayerController implements Initializable {
     private List<String> list = new ArrayList<String>();
     private Iterator<String> itr;
 
+    private String status="";
+
     private Duration currentDuration;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
@@ -111,6 +113,7 @@ public class PlayerController implements Initializable {
     @FXML
     private void onPause(ActionEvent event) {
         player.pause();
+        status = "Paused";
         currentDuration = player.getCurrentTime();
     }
 
@@ -122,22 +125,30 @@ public class PlayerController implements Initializable {
     }
 
     public void play(String mediaFile) {
-        Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
-        player = new MediaPlayer(media);
 
-        player.play();
-        // getDuration();
-        player.setOnEndOfMedia(new Runnable() {
-            @Override
-            public void run() {
-                player.stop();
-                itr = updateItr();
-                if (itr.hasNext()) {
-                    play(itr.next());
+        if (status.equals("Paused")) {
+            player.seek(currentDuration);
+            player.play();
+            status ="Playing";
+        } else {
+
+            Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
+            player = new MediaPlayer(media);
+
+            player.play();
+            // getDuration();
+            player.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    player.stop();
+                    itr = updateItr();
+                    if (itr.hasNext()) {
+                        play(itr.next());
+                    }
+                    return;
                 }
-                return;
-            }
-        });
+            });
+        }
     }
 
     public Iterator updateItr() {

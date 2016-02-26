@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
    <children>
-      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" onMouseClicked="#playTrack" prefHeight="422.0" prefWidth="790.0" style="-fx-border-color: transparent;">
+      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" prefHeight="422.0" prefWidth="790.0" style="-fx-border-color: transparent;">
          <columns>
             <TableColumn fx:id="IDCol" prefWidth="42.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="135.0" text="Track Name" />
@@ -20,7 +20,7 @@
             <TableColumn fx:id="albumCol" prefWidth="258.0" text="Album" />
          </columns>
       </TableView>
-      <Button fx:id="play" layoutX="80.0" layoutY="533.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="53.0" prefWidth="57.0">
+      <Button fx:id="play" layoutX="80.0" layoutY="533.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="53.0" prefWidth="57.0" style="-fx-background-color: #383838;">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -28,7 +28,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="pause" layoutX="139.0" layoutY="533.0" mnemonicParsing="false" onAction="#onPause" prefHeight="53.0" prefWidth="57.0">
+      <Button fx:id="pause" layoutX="139.0" layoutY="533.0" mnemonicParsing="false" onAction="#onPause" prefHeight="53.0" prefWidth="57.0" style="-fx-background-color: #383838;">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -52,7 +52,7 @@
             <ColorAdjust brightness="-0.28" contrast="0.95" hue="0.48" saturation="1.0" />
          </effect>
       </ComboBox>
-      <Button fx:id="restart" layoutX="921.0" layoutY="538.0" mnemonicParsing="false" onAction="#onRestart">
+      <Button fx:id="restart" layoutX="921.0" layoutY="538.0" mnemonicParsing="false" onAction="#onRestart" style="-fx-background-color: #383838;">
          <graphic>
             <ImageView fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
