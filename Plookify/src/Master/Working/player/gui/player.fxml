@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
    <children>
-      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" prefHeight="422.0" prefWidth="790.0">
+      <TableView fx:id="table" layoutX="130.0" layoutY="80.0" prefHeight="422.0" prefWidth="790.0" stylesheets="@bg.css">
          <columns>
             <TableColumn fx:id="IDCol" prefWidth="42.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="135.0" text="Track Name" />
@@ -37,21 +37,17 @@
             </ImageView>
          </graphic></Button>
       <Slider fx:id="slider" layoutX="215.0" layoutY="553.0" prefHeight="16.0" prefWidth="690.0" />
-      <Text fill="#b9b4b4" layoutX="602.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
+      <Text fill="#b9b4b4" layoutX="602.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="searchField" layoutX="657.0" layoutY="19.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;">
+      <TextField fx:id="searchField" layoutX="657.0" layoutY="23.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;">
          <font>
             <Font size="12.0" />
          </font></TextField>
       <Label fx:id="duration" layoutX="237.0" layoutY="569.0" prefHeight="17.0" prefWidth="57.0" text="       " />
-      <ComboBox fx:id="nowPlayingMenu" layoutX="129.0" layoutY="24.0" prefHeight="27.0" prefWidth="271.0" promptText="Now Playing:">
-         <effect>
-            <ColorAdjust brightness="-0.28" contrast="0.95" hue="0.48" saturation="1.0" />
-         </effect>
-      </ComboBox>
+      <ComboBox fx:id="nowPlayingMenu" layoutX="129.0" layoutY="24.0" prefHeight="27.0" prefWidth="271.0" promptText="Now Playing:" style="-fx-background-color: #9AFE2E; -fx-background-radius: 20;" />
       <Button fx:id="restart" layoutX="921.0" layoutY="538.0" mnemonicParsing="false" onAction="#onRestart" style="-fx-background-color: #383838;">
          <graphic>
             <ImageView fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">

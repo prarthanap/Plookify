@@ -140,15 +140,19 @@ public class PlayerController implements Initializable {
             player.seek(currentDuration);
             player.play();
             status = "Playing";
+        }
             
-            
-        } else if(!(status.equals("Playing"))){
-
+      //  } else if(!(status.equals("Playing"))){
+            else {
             Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
             player = new MediaPlayer(media);
 
             player.play();
             getDuration();
+            
+            Duration totalD = player.getTotalDuration();
+            totalDuration.setText(String.valueOf(totalD));
+            
             player.setOnEndOfMedia(new Runnable() {
                 @Override
                 public void run() {
@@ -211,8 +215,7 @@ public class PlayerController implements Initializable {
             }
         });
 
-        Duration totalD = player.getTotalDuration();
-        totalDuration.setText(String.valueOf(totalD));
+        
 
     }
 
