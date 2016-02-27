@@ -57,7 +57,10 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="427.0" layoutY="24.0" mnemonicParsing="false" onAction="#onRemove" text="Remove" />
+      <Button layoutX="427.0" layoutY="24.0" mnemonicParsing="false" onAction="#onRemove" style="-fx-background-radius: 10;" text="Remove">
+         <font>
+            <Font name="System Font Regular" size="13.0" />
+         </font></Button>
       <Label fx:id="totalDuration" layoutX="849.0" layoutY="572.0" />
    </children>
 </AnchorPane>

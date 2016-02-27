@@ -150,8 +150,10 @@ public class PlayerController implements Initializable {
             player.play();
             getDuration();
             
-            Duration totalD = player.getTotalDuration();
-            totalDuration.setText(String.valueOf(totalD));
+          //  Duration totalD = player.getTotalDuration();
+           
+            
+          // totalDuration.setText(String.valueOf(totalD));
             
             player.setOnEndOfMedia(new Runnable() {
                 @Override
@@ -210,7 +212,7 @@ public class PlayerController implements Initializable {
                 // Double time = newTime.toSeconds();
                 //Double CTime = time /60;
                 //duration.setText(String.valueOf(CTime));
-                duration.setText(String.valueOf(formatter.format(newTime.toSeconds())));
+                duration.setText(String.valueOf(formatter.format(newTime.toMinutes())));
 
             }
         });
