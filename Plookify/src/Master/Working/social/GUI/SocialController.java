@@ -33,7 +33,7 @@ import javafx.scene.input.KeyEvent;
  *
  * @author Hamza
  */
-public class TestController implements Initializable {
+public class SocialController implements Initializable {
 @FXML
 private Button premium;
 @FXML
