@@ -74,7 +74,7 @@ public class PlayerController implements Initializable {
 
     private static final double MIN_CHANGE = 0.0001;
 
-    private final DecimalFormat formatter = new DecimalFormat("00.00");
+   // private final DecimalFormat formatter = new DecimalFormat("00.00");
 
     private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
@@ -143,8 +143,7 @@ public class PlayerController implements Initializable {
             player.seek(currentDuration);
             player.play();
             status = "Playing";
-        } 
-        else {
+        } else {
             Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
             player = new MediaPlayer(media);
 
@@ -229,11 +228,24 @@ public class PlayerController implements Initializable {
                 // Double time = newTime.toSeconds();
                 //Double CTime = time /60;
                 //duration.setText(String.valueOf(CTime));
-                duration.setText(String.valueOf(formatter.format(newTime.toMinutes())));
-
+              //  duration.setText(String.valueOf(formatter.format(newTime.toMinutes())));
+                
+                duration.setText(formatDuration(newTime));
+                
             }
         });
 
+    }
+
+    public static String formatDuration(Duration d) {
+        long seconds = (long) d.toSeconds();
+        long absSeconds = Math.abs(seconds);
+        String positive = String.format(
+                "%d:%02d:%02d",
+                absSeconds / 3600,
+                (absSeconds % 3600) / 60,
+                absSeconds % 60);
+        return seconds < 0 ? "-" + positive : positive;
     }
 
     @FXML
