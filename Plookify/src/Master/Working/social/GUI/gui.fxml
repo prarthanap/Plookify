@@ -39,12 +39,12 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TableView fx:id="table" layoutX="209.0" layoutY="103.0" prefHeight="318.0" prefWidth="738.0">
+      <TableView fx:id="table" layoutX="209.0" layoutY="103.0" prefHeight="318.0" prefWidth="675.0">
         <columns>
           <TableColumn fx:id="User" minWidth="0.0" prefWidth="196.0" text="User" />
           <TableColumn fx:id="followers" minWidth="0.0" prefWidth="516.0" text="Followers" />
         </columns>
       </TableView>
-      <Button fx:id="addFriend" layoutX="936.0" layoutY="177.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="41.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="+" textFill="WHITE" />
+      <Button fx:id="addFriend" layoutX="890.0" layoutY="146.0" mnemonicParsing="false" prefHeight="14.0" prefWidth="41.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="+" textFill="WHITE" />
    </children>
 </Pane>
