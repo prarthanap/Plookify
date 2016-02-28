@@ -105,17 +105,18 @@ public class PlayerController implements Initializable {
 
     @FXML
     private void onPlay(ActionEvent event) {
-        if (!status.equals("Playing")) {
+
         if (!status.equals("Paused")) {
-                {
+            {
 
-                    for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+                for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
 
-                        nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
-                        list.add(trackSelect.getTrackName() + ".mp3");
-                    }
+                    nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
+                    list.add(trackSelect.getTrackName() + ".mp3");
                 }
             }
+        }
+        if (!status.equals("Playing")) {
             itr = list.iterator();
             play(itr.next());
 
@@ -142,7 +143,7 @@ public class PlayerController implements Initializable {
             player.seek(currentDuration);
             player.play();
             status = "Playing";
-        } //  } else if(!(status.equals("Playing"))){
+        } 
         else {
             Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
             player = new MediaPlayer(media);
@@ -150,9 +151,8 @@ public class PlayerController implements Initializable {
             player.play();
             status = "Playing";
             getDuration();
+            getTrackTime();
 
-          //  Duration totalD = player.getTotalDuration();   
-            // totalDuration.setText(String.valueOf(totalD));
             player.setOnEndOfMedia(new Runnable() {
                 @Override
                 public void run() {
@@ -174,6 +174,24 @@ public class PlayerController implements Initializable {
         itr = list.iterator();
         return itr;
 
+    }
+
+    public void getTrackTime() {
+
+        try {
+            String trackPlaying = list.get(0);
+            String firstWord = trackPlaying.substring(0, trackPlaying.indexOf("."));
+
+            database db = new database();
+            ResultSet rs = db.makeQuery("SELECT * from TRACKS where trackname = '" + firstWord + "'");
+            while (rs.next()) {
+                String length = rs.getString(4);
+                totalDuration.setText(length);
+            }
+        } catch (Exception e2) {
+            System.err.println(e2);
+
+        }
     }
 
     @FXML
