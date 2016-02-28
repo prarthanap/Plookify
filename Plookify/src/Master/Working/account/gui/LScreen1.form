@@ -129,6 +129,9 @@
               <Dimension value="[6, 20]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="LoginUsernameBoxKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="LoginPasswordBox">
           <Properties>

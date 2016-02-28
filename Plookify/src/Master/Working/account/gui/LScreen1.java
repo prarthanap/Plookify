@@ -11,12 +11,12 @@ import Master.Working.account.logic.logic;
  *
  * @author ninja_000
  */
-public class LoginScreen1 extends javax.swing.JFrame {
+public class LScreen1 extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginScreen
      */
-    public LoginScreen1() {
+    public LScreen1() {
         imageLib images1=new imageLib();
         initComponents();
     }
@@ -52,6 +52,11 @@ public class LoginScreen1 extends javax.swing.JFrame {
         TopLabel.setText("Plookify");
 
         LoginUsernameBox.setMaximumSize(new java.awt.Dimension(6, 20));
+        LoginUsernameBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                LoginUsernameBoxKeyTyped(evt);
+            }
+        });
 
         LoginPasswordBox.setMaximumSize(new java.awt.Dimension(6, 20));
 
@@ -154,6 +159,10 @@ public class LoginScreen1 extends javax.swing.JFrame {
         LoginPasswordBox.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void LoginUsernameBoxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LoginUsernameBoxKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LoginUsernameBoxKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -171,20 +180,21 @@ public class LoginScreen1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LScreen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginScreen1().setVisible(true);
+                new LScreen1().setVisible(true);
             }
         });
     }
