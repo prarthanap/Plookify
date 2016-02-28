@@ -1,0 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Master.Working.account.gui;
+
+import java.util.*;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author jll30
+ */
+public class imageLib       
+{
+    ImageIcon logo1=new ImageIcon("src/Master/Working/account/gui/logo(small).png");
+    Map<String,ImageIcon> imageMap;
+    
+    public imageLib()
+    {
+        imageMap=new HashMap<>();
+        imageMap.put("logo_small",logo1);
+    }
+    public ImageIcon getImage(String name)
+    {
+        return imageMap.get(name);
+    }
+}
