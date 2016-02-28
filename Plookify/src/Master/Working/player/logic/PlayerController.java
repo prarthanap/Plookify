@@ -72,7 +72,7 @@ public class PlayerController implements Initializable {
     @FXML
     private Label totalDuration;
 
-    private static final double MIN_CHANGE = 0.01;
+    private static final double MIN_CHANGE = 0.0001;
 
     private final DecimalFormat formatter = new DecimalFormat("00.00");
 
@@ -105,19 +105,21 @@ public class PlayerController implements Initializable {
 
     @FXML
     private void onPlay(ActionEvent event) {
+        if (!status.equals("Playing")) {
         if (!status.equals("Paused")) {
-            {
+                {
 
-                for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+                    for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
 
-                    nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
-                    list.add(trackSelect.getTrackName() + ".mp3");
+                        nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
+                        list.add(trackSelect.getTrackName() + ".mp3");
+                    }
                 }
             }
-        }
-        itr = list.iterator();
-        play(itr.next());
+            itr = list.iterator();
+            play(itr.next());
 
+        }
     }
 
     @FXML
@@ -140,25 +142,22 @@ public class PlayerController implements Initializable {
             player.seek(currentDuration);
             player.play();
             status = "Playing";
-        }
-            
-      //  } else if(!(status.equals("Playing"))){
-            else {
+        } //  } else if(!(status.equals("Playing"))){
+        else {
             Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
             player = new MediaPlayer(media);
 
             player.play();
+            status = "Playing";
             getDuration();
-            
-          //  Duration totalD = player.getTotalDuration();
-           
-            
-          // totalDuration.setText(String.valueOf(totalD));
-            
+
+          //  Duration totalD = player.getTotalDuration();   
+            // totalDuration.setText(String.valueOf(totalD));
             player.setOnEndOfMedia(new Runnable() {
                 @Override
                 public void run() {
                     player.stop();
+                    status = "Stopped";
                     itr = updateItr();
                     if (itr.hasNext()) {
                         play(itr.next());
@@ -216,8 +215,6 @@ public class PlayerController implements Initializable {
 
             }
         });
-
-        
 
     }
 

@@ -5,6 +5,10 @@
  */
 package Master.Working.player.gui;
 
+
+
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +30,7 @@ public class main extends Application {
         stage.show();
 
     }
-    
+  //  /Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/gui/player.fxml
 
     public static void main(String[] args) {
 
