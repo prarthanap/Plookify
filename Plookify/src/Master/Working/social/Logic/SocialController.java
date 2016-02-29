@@ -60,7 +60,7 @@ private final ObservableList<Account> data = FXCollections.observableArrayList()
         // TODO
         
         User.setCellValueFactory(new PropertyValueFactory("User"));
-        Followers.setCellValueFactory(new PropertyValueFactory("Followers"));
+//        Followers.setCellValueFactory(new PropertyValueFactory("Followers"));
         
         updateTable();
     }    

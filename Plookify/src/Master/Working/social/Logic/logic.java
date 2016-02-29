@@ -35,7 +35,7 @@ public class logic {
     public int authCheck(String uname, String pass1)
     {
         String authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
-        if(data.dupcheck(authtest))
+        if(data.dupCheck(authtest))
         {
             try {
                 authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
@@ -67,7 +67,7 @@ public class logic {
     
     public void friendRequest(String uname, String friendname)
     {
-        if(data.dupcheck(uname,"USERNAME","ACCOUNT"))
+        if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
         {System.out.println(true);}
         else
         {
