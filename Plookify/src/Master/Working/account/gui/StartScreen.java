@@ -31,13 +31,13 @@ public class StartScreen extends JPanel
         firstScreen.setSize(400, 200);
         firstScreen.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         firstScreen.getContentPane().add(startPanel);
-        firstScreen.setLocationRelativeTo(null);
         
     }
     public void startUI()
     {
         firstScreen.setResizable(false);
         firstScreen.pack();
+        firstScreen.setLocationRelativeTo(null);
         firstScreen.setVisible(true);
     }
     
@@ -62,7 +62,9 @@ public class StartScreen extends JPanel
             }
             private void pressRegister(ActionEvent evt)
             {
-                System.out.println("Pressed Registered");
+                RegisterScreen reg1=new RegisterScreen();
+                firstScreen.dispose();
+                reg1.startUI();
             }
         });
         

@@ -82,7 +82,7 @@ public class database
         }
         
         
-        public boolean dupcheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
+        public boolean dupCheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
         {
         try {
             ResultSet check=makeQuery("SELECT "+column+" FROM "+table+" WHERE "+column+"='"+search+"'");
@@ -97,7 +97,7 @@ public class database
         return false;
         }
         
-        public boolean dupcheck(String query)//checks if there is a row match using custom query
+        public boolean dupCheck(String query)//checks if there is a row match using custom query
         {
             ResultSet check=makeQuery(query);
         try {

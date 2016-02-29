@@ -17,7 +17,7 @@ public class logic
     }
     public void addAccount(String uname,String fname,String lname,String pass,String[] address)//checks if username exists then inserts record
     {
-        if(data.dupcheck(uname,"USERNAME","ACCOUNT"))
+        if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
         {System.out.println(true);}
         else
         {
@@ -37,7 +37,7 @@ public class logic
     public int authCheck(String uname,String pass1)
     {
         String authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
-        if(data.dupcheck(authtest))
+        if(data.dupCheck(authtest))
         {
             try {
                 authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
@@ -72,5 +72,9 @@ public class logic
     public void subscribe()
     {
         
+    }
+    public boolean duplicateCheck(String search,String column,String table)
+    {
+        return data.dupCheck( search, column, table);
     }
 }

@@ -17,28 +17,33 @@ import javax.swing.*;
  */
 public class RegisterScreen extends JPanel
 {
-    static Dimension size=new Dimension(500,600);
+    private Dimension size=new Dimension(500,600);
+    private JFrame regScreen;
+    private JPanel startPanel;
+    private int xMargin=80;//position points of reference
+    private int[] yValues={170,250,320};
     public RegisterScreen()
     {
-        //makeScreen();
+        makeScreenR();
     }
-    
-    public static void main(String[] args)
+    public void makeScreenR()
     {
+        startPanel=panel();
+        regScreen=new JFrame("Plookify - Register");
+        regScreen.setPreferredSize(size);
+        regScreen.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        regScreen.getContentPane().add(startPanel);       
         
-        JPanel startPanel=panel();
-        JFrame firstScreen=new JFrame("Plookify - Register");
-        firstScreen.setSize(size);
-        firstScreen.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        firstScreen.getContentPane().add(startPanel);
-        firstScreen.setLocationRelativeTo(null);
-        firstScreen.setResizable(false);
-        firstScreen.pack();
-        firstScreen.setVisible(true);
+    }
+    public void startUI()
+    {
+        regScreen.setResizable(false);
+        regScreen.pack();
+        regScreen.setLocationRelativeTo(null);
+        regScreen.setVisible(true);
     }
     
-    
-    public static JPanel panel()
+    public JPanel panel()
     {
         imageLib images=new imageLib();
         JPanel mainPanel = new JPanel();
@@ -47,12 +52,10 @@ public class RegisterScreen extends JPanel
         mainPanel.setBackground(Color.BLACK);
         
         JLabel logo1 = new JLabel(images.getImage("logo_small"));
-        mainPanel.add(logo1).setBounds(150,10,100,100);//add logo
-        JLabel registerTitle = new JLabel("Register Form");registerTitle.setForeground(Color.CYAN);
-        registerTitle.setFont(new java.awt.Font("Tahoma", 0, 14));
-        mainPanel.add(registerTitle).setBounds(160, 140, 90, 20);//add registerTitle
+        mainPanel.add(logo1).setBounds(200,10,100,100);//add logo
         JLabel title = new JLabel("Plookify");title.setForeground(Color.CYAN);
         title.setFont(new java.awt.Font("Tahoma", 0, 20));
+        mainPanel.add(title).setBounds(210, 120, 90, 20);//add title
         
         JLabel unameLabel = new JLabel("Username");unameLabel.setForeground(Color.WHITE);
         JLabel passLabel = new JLabel("Password");passLabel.setForeground(Color.WHITE);
@@ -63,16 +66,17 @@ public class RegisterScreen extends JPanel
         JLabel countyLabel = new JLabel("County");countyLabel.setForeground(Color.WHITE);
         JLabel cityLabel = new JLabel("City");cityLabel.setForeground(Color.WHITE);
         JLabel postcodeLabel = new JLabel("PostCode");postcodeLabel.setForeground(Color.WHITE);
-        mainPanel.add(unameLabel).setBounds(80, 190, 70, 20);//add username label
-        mainPanel.add(passLabel).setBounds(80, 220, 70, 20);//add password label
-        mainPanel.add(lnameLabel).setBounds(80, 300, 70, 20);//add lastname label
-        mainPanel.add(fnameLabel).setBounds(80, 270, 70, 20);//add firstname label
-        mainPanel.add(doorNoLabel).setBounds(50, 350, 70, 20);//add doorNo label
-        mainPanel.add(streetLabel).setBounds(180, 350, 70, 10);//add street label
-        mainPanel.add(countyLabel).setBounds(50, 380, 70, 20);//add county label
-        mainPanel.add(cityLabel).setBounds(50, 410, 70, 20);//add city label
-        mainPanel.add(postcodeLabel).setBounds(50, 440, 70, 20);//add postcode label
-        
+        JLabel contactLabel = new JLabel("Contact No.");contactLabel.setForeground(Color.WHITE);
+        mainPanel.add(unameLabel).setBounds(xMargin,yValues[0], 70, 20);//add username label
+        mainPanel.add(passLabel).setBounds(xMargin, yValues[0]+30, 70, 20);//add password label
+        mainPanel.add(fnameLabel).setBounds(xMargin, yValues[1], 70, 20);//add firstname label
+        mainPanel.add(lnameLabel).setBounds(xMargin, yValues[1]+30, 70, 20);//add lastname label
+        mainPanel.add(doorNoLabel).setBounds(xMargin, yValues[2], 70, 20);//add doorNo label
+        mainPanel.add(streetLabel).setBounds(xMargin, yValues[2]+30, 70, 20);//add street label
+        mainPanel.add(countyLabel).setBounds(xMargin, yValues[2]+60, 70, 20);//add county label
+        mainPanel.add(cityLabel).setBounds(xMargin, yValues[2]+90, 70, 20);//add city label
+        mainPanel.add(postcodeLabel).setBounds(xMargin, yValues[2]+120, 70, 20);//add postcode label
+         mainPanel.add(contactLabel).setBounds(xMargin, yValues[2]+150,70,20);//add contact no. label
         JTextField unameR = new JTextField();
         unameR.addKeyListener(new java.awt.event.KeyAdapter()
         {
@@ -163,7 +167,81 @@ public class RegisterScreen extends JPanel
                 e.consume(); 
             }  
         });
-        JButton RegisterSubmit = new JButton("REGISTER");
+        JTextField contactNo = new JTextField();
+        contactNo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(KeyEvent e)
+            { 
+                if (postcode1R.getText().length() >=11 ) // limit textfield to 11 characters
+                e.consume(); 
+            }  
+        });
+        contactNo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(KeyEvent e)
+            { 
+                if (e.getKeyCode()==KeyEvent.VK_ALPHANUMERIC) //consumes non numeric keys
+                e.consume(); 
+            }  
+        });
+        JButton RegisterSubmit = new JButton("SUBMIT");
+        RegisterSubmit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pressSubmit(evt);
+            }
+            private void pressSubmit(ActionEvent evt)
+            {
+               logic logicR=new logic();
+               if(logicR.duplicateCheck(unameR.getText().trim(),"username","account"))
+               {
+                    JOptionPane.showMessageDialog(null,"Username already exists");
+               }
+               else if(passR.getText().trim().trim().length()<6)
+               {
+                   JOptionPane.showMessageDialog(null,"Password is too short(minimum length is 8 characters");
+               }
+               else if(unameR.getText().trim().length()<4)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if(fnameR.getText().trim().length()<4)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if(lnameR.getText().trim().length()<4)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if(doorNoR.getText().trim().length()<1)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if(streetR.getText().trim().length()<6)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if(countyR.getText().trim().length()<4)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if(cityR.getText().trim().length()<4)
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else if((postcode1R.getText().trim().length()<3)||(postcode2R.getText().trim().length()<3))
+               {
+                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
+               else
+               {
+                   String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim()};
+                   logicR.addAccount(unameR.getText().trim(),fnameR.getText().trim(),lnameR.getText().trim(),passR.getText().trim(),address);
+               }
+               
+            }
+        });
         JButton ResetButton = new JButton("RESET");
         ResetButton.addActionListener(new java.awt.event.ActionListener()
         {
@@ -178,7 +256,6 @@ public class RegisterScreen extends JPanel
                 lnameR.setText("");
                 doorNoR.setText("");
                 streetR.setText("");
-                streetLabel.setText("");
                 passR.setText("");
                 countyR.setText("");
                 cityR.setText("");
@@ -188,31 +265,34 @@ public class RegisterScreen extends JPanel
         });
         
         JButton BackButton = new JButton("BACK");
+        BackButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pressBack(evt);
+            }
+            private void pressBack(ActionEvent evt)
+            {
+                StartScreen start1=new StartScreen();
+                regScreen.dispose();
+                start1.startUI();
+            }
+        });
         
-        mainPanel.add(unameR).setBounds(150, 190, 100, 10); 
-        mainPanel.add(fnameR).setBounds(150, 270, 200,10); 
-        mainPanel.add(lnameR).setBounds(150, 300, 100, 10);
-        mainPanel.add(doorNoR).setBounds(120, 350, 40, 20);
-        mainPanel.add(streetR).setBounds(230, 350, 100, 20);
-        mainPanel.add(countyR).setBounds(120, 380, 100, 20);
-        mainPanel.add(cityR).setBounds(120, 410, 100, 20);
-        mainPanel.add(postcode2R).setBounds(180, 440, 30, 20);
-        mainPanel.add(postcode1R).setBounds(120, 440, 40, 20);
-        mainPanel.add(passR).setBounds(150, 220, 100, -1);//add textfields and password fields
-        
-        mainPanel.add(RegisterSubmit).setBounds(80, 480, 70, 20);
-        mainPanel.add(ResetButton).setBounds(170, 480, 70, 20);
-        mainPanel.add(BackButton).setBounds(270, 480, 70, 20);//adds buttons
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        mainPanel.add(unameR).setBounds(xMargin+100,yValues[0], 100, 20); 
+        mainPanel.add(passR).setBounds(xMargin+100, yValues[0]+30, 100, 20);
+        mainPanel.add(fnameR).setBounds(xMargin+100, yValues[1], 120,20); 
+        mainPanel.add(lnameR).setBounds(xMargin+100, yValues[1]+30, 120, 20);
+        mainPanel.add(doorNoR).setBounds(xMargin+100, yValues[2], 30, 20);
+        mainPanel.add(streetR).setBounds(xMargin+100, yValues[2]+30, 150, 20);
+        mainPanel.add(countyR).setBounds(xMargin+100, yValues[2]+60, 100, 20);
+        mainPanel.add(cityR).setBounds(xMargin+100, yValues[2]+90, 100, 20);
+        mainPanel.add(postcode2R).setBounds(xMargin+100, yValues[2]+120, 40, 20);
+        mainPanel.add(postcode1R).setBounds(xMargin+160, yValues[2]+120, 40, 20);//add textfields and password fields
+        mainPanel.add(contactNo).setBounds(xMargin+100, yValues[2]+150, 100, 20);
+        mainPanel.add(RegisterSubmit).setBounds(80, yValues[2]+200, 100, 20);
+        mainPanel.add(ResetButton).setBounds(200, yValues[2]+200, 100, 20);
+        mainPanel.add(BackButton).setBounds(320, yValues[2]+200, 100, 20);//adds buttons
         
         
         

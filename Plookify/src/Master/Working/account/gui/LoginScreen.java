@@ -22,22 +22,22 @@ public class LoginScreen extends JPanel
     private JFrame firstScreen;
     public LoginScreen()
     {
-        makeScreen();
+        makeScreenL();
     }
     
-    public void makeScreen()
+    public void makeScreenL()
     {
         startPanel=panel();
         firstScreen=new JFrame("Plookify - Login");
         firstScreen.setSize(size);
         firstScreen.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         firstScreen.getContentPane().add(startPanel);
-        firstScreen.setLocationRelativeTo(null);
     }
     public void startUI()
     {
         firstScreen.setResizable(false);
         firstScreen.pack();
+        firstScreen.setLocationRelativeTo(null);
         firstScreen.setVisible(true);
     }
     
@@ -125,15 +125,27 @@ public class LoginScreen extends JPanel
             {
                 System.out.println("Pressed Reset");
             }
-        });     
+        });
+        JButton backButton=new JButton("BACK");
+        backButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pressBack(evt);
+            }
+            private void pressBack(ActionEvent evt)
+            {
+                StartScreen start1=new StartScreen();
+                firstScreen.dispose();
+                start1.startUI();
+            }
+        });
         panel1.add(Logo1).setBounds(150,20,100,100);
         panel1.add(plookify).setBounds(160,120,70,40);
-        panel1.add(resetButton).setBounds(200,260,90,20);
-        panel1.add(submitButton).setBounds(100,260,90,20);
-        
-        
-        
-        
+        panel1.add(resetButton).setBounds(150,260,90,20);
+        panel1.add(submitButton).setBounds(50,260,90,20);
+        panel1.add(backButton).setBounds(250,260,90,20);
+
         return panel1;
     }
 }
