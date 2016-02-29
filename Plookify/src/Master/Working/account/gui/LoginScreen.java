@@ -108,7 +108,7 @@ public class LoginScreen extends JPanel
                 else
                 {
                      System.out.println("Match");
-                     JOptionPane.showMessageDialog(null,"Welcome "+accLogic.getDetailString(accLogic.authCheck(uname,passwd),"Account","Firstname")+"!");//welcome message with users name.
+                     JOptionPane.showMessageDialog(null,"Welcome "+accLogic.getDetailString(accLogic.authCheck(uname,passwd),"ID","Account","Firstname")+"!");//welcome message with users name.
                      
                 }
              }
