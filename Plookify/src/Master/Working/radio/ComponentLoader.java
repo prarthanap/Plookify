@@ -5,8 +5,11 @@
  */
 package Master.Working.radio;
 
-import javax.swing.JOptionPane;
-import Master.Working.radio.logic.logic;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
@@ -14,7 +17,7 @@ import Master.Working.radio.logic.logic;
  */
 public class ComponentLoader {
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null, "The Application Works.");
+        //JOptionPane.showMessageDialog(null, "The Application Works.");
     }
-    
 }
+

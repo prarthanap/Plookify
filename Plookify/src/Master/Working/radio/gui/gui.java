@@ -21,6 +21,8 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -45,8 +47,16 @@ public class gui extends Application {
     static String[] artist = new String[10];
     
     @Override
-    public void start(Stage primaryStage) {  
-        currentStage = primaryStage;
+    public void start(Stage primaryStage) throws Exception {  
+        Parent root = FXMLLoader.load(getClass().getResource("testGUI.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        
+        
+
+       /* currentStage = primaryStage;
         
         /////////////////////////Buttons/////////////////////////////////
         //Button to view Radio Playlist
@@ -56,7 +66,7 @@ public class gui extends Application {
         //Button to go back to Now Playing
         /*goBack = new Button();
         goBack.setText("<- Go Back");
-        goBack.setOnAction(e-> ButtonPressed(e));*/
+        goBack.setOnAction(e-> ButtonPressed(e));
         //Button to Save As Playlist
         savePlaylist = new Button();
         savePlaylist.setText("Save Radio as Playlist");
@@ -88,7 +98,7 @@ public class gui extends Application {
         root.setVgap(10);
         root.setPadding(new Insets(10, 0, 10, 10));
         root.add(ViewRadio, 50, 20);*/
-        root2 = new GridPane();
+        //root2 = new GridPane();
         /*FlowPane flow = new FlowPane();
         flow.setVgap(18);
         flow.setHgap(14);
@@ -97,22 +107,22 @@ public class gui extends Application {
         bp.setPadding(new Insets(10, 837, 10, 20));
         bp.setTop(tv);
         bp.setRight(savePlaylist);*/
-        root2.setHgap(10);
+        /*root2.setHgap(10);
         root2.setVgap(10);
         //root2.setPadding(new Insets(10, 0, 10, 10));
         root2.add(tv, 10, 10);
         root2.add(savePlaylist, 12, 10);
-        root2.add(radioGenre, 10, 9);
+        root2.add(radioGenre, 10, 9);*/
         
         /*scene = new Scene(root, 1100, 600);
         scene.getStylesheets().add("test.css");*/
-        scene2 = new Scene(root2, 1100, 600);
+        /*scene2 = new Scene(root2, 1100, 600);
         scene2.getStylesheets().add("test.css");
         
         primaryStage.setTitle("Plookify");
         primaryStage.setScene(scene2);
         primaryStage.setResizable(false);
-        primaryStage.show();
+        primaryStage.show();*/
     }
     
     public void ButtonPressed(ActionEvent e) {
@@ -127,6 +137,7 @@ public class gui extends Application {
     
     public static void main (String[] args) {
         // Generate Radio Channel
+        /*
         logic test = new logic();
         String searchArtist = "";
         String radioTrack = "";
@@ -140,7 +151,7 @@ public class gui extends Application {
         System.out.println(test.getGenre());
         radioGenreText = test.getGenre();
         radioCh = test.getRadio();
-        test.printRadio();
+        test.printRadio();*/
         
         launch(args);
     }
