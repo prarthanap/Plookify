@@ -84,8 +84,8 @@ public class LoginScreen extends JPanel
         
         panel1.add(unameField).setBounds(170,180,110,20);
         panel1.add(passField).setBounds(170,210,110,20);
-        panel1.add(userLabel).setBounds(80,180,60,20);
-        panel1.add(passLabel).setBounds(80,210,60,20);
+        panel1.add(userLabel).setBounds(80,180,100,20);
+        panel1.add(passLabel).setBounds(80,210,100,20);
 /*==============================================================================================================================================*/
 /*===========================================Makes the Submit and Reset Buttons=================================================================*/
 /*==============================================================================================================================================*/
@@ -141,7 +141,7 @@ public class LoginScreen extends JPanel
             }
         });
         panel1.add(Logo1).setBounds(150,20,100,100);
-        panel1.add(plookify).setBounds(160,120,70,40);
+        panel1.add(plookify).setBounds(160,120,100,40);
         panel1.add(resetButton).setBounds(150,260,90,20);
         panel1.add(submitButton).setBounds(50,260,90,20);
         panel1.add(backButton).setBounds(250,260,90,20);

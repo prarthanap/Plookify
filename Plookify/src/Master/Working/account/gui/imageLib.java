@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
  */
 public class imageLib       
 {
+    ImageIcon logo=new ImageIcon("src/Master/Working/account/gui/logo.png");
     ImageIcon logo1=new ImageIcon("src/Master/Working/account/gui/logo(small).png");
     Map<String,ImageIcon> imageMap;
     
@@ -21,6 +22,7 @@ public class imageLib
     {
         imageMap=new HashMap<>();
         imageMap.put("logo_small",logo1);
+        imageMap.put("logo1",logo);
     }
     public ImageIcon getImage(String name)
     {

@@ -8,8 +8,6 @@ package Master.Working.account.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 import javax.swing.*;
 
 /**
@@ -21,10 +19,10 @@ public class StartScreen extends JPanel
     private JFrame firstScreen;
     public StartScreen()
     {
-        makeScreen();
+        makeScreenS();
     }
     
-    public void makeScreen()
+    private void makeScreenS()
     {
         JPanel startPanel=panel();
         firstScreen=new JFrame("Plookify");
@@ -82,9 +80,9 @@ public class StartScreen extends JPanel
                 login1.startUI();
             }
         });     
-        panel1.add(Logo1).setBounds(150,20,100,100);
-        panel1.add(plookify).setBounds(160,120,70,40);
-        panel1.add(registerButton).setBounds(200,160,90,20);
+        panel1.add(Logo1).setBounds(150,20,101,101);
+        panel1.add(plookify).setBounds(160,120,100,40);
+        panel1.add(registerButton).setBounds(200,160,100,20);
         panel1.add(loginButton).setBounds(100,160,90,20);
         return panel1;
     }

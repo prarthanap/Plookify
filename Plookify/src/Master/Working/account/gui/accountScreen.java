@@ -15,18 +15,18 @@ import javax.swing.*;
  *
  * @author jll30
  */
-public class RegisterScreen extends JPanel
+public class accountScreen extends JPanel
 {
     private Dimension size=new Dimension(500,600);
     private JFrame regScreen;
     private JPanel startPanel;
     private int xMargin=80;//position points of reference
     private int[] yValues={170,250,320};
-    public RegisterScreen()
+    public accountScreen()
     {
-        makeScreenR();
+        makeScreenA();
     }
-    public void makeScreenR()
+    public void makeScreenA()
     {
         startPanel=panel();
         regScreen=new JFrame("Plookify - Register");
@@ -67,16 +67,16 @@ public class RegisterScreen extends JPanel
         JLabel cityLabel = new JLabel("City");cityLabel.setForeground(Color.WHITE);
         JLabel postcodeLabel = new JLabel("PostCode");postcodeLabel.setForeground(Color.WHITE);
         JLabel contactLabel = new JLabel("Contact No.");contactLabel.setForeground(Color.WHITE);
-        mainPanel.add(unameLabel).setBounds(xMargin,yValues[0], 100,20);//add username label
-        mainPanel.add(passLabel).setBounds(xMargin, yValues[0]+30, 100,20);//add password label
-        mainPanel.add(fnameLabel).setBounds(xMargin, yValues[1], 100,20);//add firstname label
-        mainPanel.add(lnameLabel).setBounds(xMargin, yValues[1]+30, 100,20);//add lastname label
-        mainPanel.add(doorNoLabel).setBounds(xMargin, yValues[2], 100,20);//add doorNo label
-        mainPanel.add(streetLabel).setBounds(xMargin, yValues[2]+30, 100,20);//add street label
-        mainPanel.add(countyLabel).setBounds(xMargin, yValues[2]+60, 100,20);//add county label
-        mainPanel.add(cityLabel).setBounds(xMargin, yValues[2]+90, 100,20);//add city label
-        mainPanel.add(postcodeLabel).setBounds(xMargin, yValues[2]+120, 100,20);//add postcode label
-         mainPanel.add(contactLabel).setBounds(xMargin, yValues[2]+150,100,20);//add contact no. label
+        mainPanel.add(unameLabel).setBounds(xMargin,yValues[0], 70, 20);//add username label
+        mainPanel.add(passLabel).setBounds(xMargin, yValues[0]+30, 70, 20);//add password label
+        mainPanel.add(fnameLabel).setBounds(xMargin, yValues[1], 70, 20);//add firstname label
+        mainPanel.add(lnameLabel).setBounds(xMargin, yValues[1]+30, 70, 20);//add lastname label
+        mainPanel.add(doorNoLabel).setBounds(xMargin, yValues[2], 70, 20);//add doorNo label
+        mainPanel.add(streetLabel).setBounds(xMargin, yValues[2]+30, 70, 20);//add street label
+        mainPanel.add(countyLabel).setBounds(xMargin, yValues[2]+60, 70, 20);//add county label
+        mainPanel.add(cityLabel).setBounds(xMargin, yValues[2]+90, 70, 20);//add city label
+        mainPanel.add(postcodeLabel).setBounds(xMargin, yValues[2]+120, 70, 20);//add postcode label
+         mainPanel.add(contactLabel).setBounds(xMargin, yValues[2]+150,70,20);//add contact no. label
         JTextField unameR = new JTextField();
         unameR.addKeyListener(new java.awt.event.KeyAdapter()
         {
