@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.account.gui;
+package Master.Working.account.gui.old;
+
+import Master.Working.account.gui.old.RegisterScreen1;
+import Master.Working.account.gui.old.LScreen1;
 
 /**
  *

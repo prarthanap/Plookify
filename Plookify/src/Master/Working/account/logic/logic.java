@@ -50,7 +50,25 @@ public class logic
         return 9999;
         
     }
-    
+    public int getDetailInt(int identifier,String table,String search)
+    {
+        try {
+            return data.makeQuery("SELECT "+search+" from "+table+" where ID='"+identifier+"'").getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 9999;
+    }
+    public String getDetailString(int identifier,String table,String search)
+    {
+        try {
+            return data.makeQuery("SELECT "+search+" from "+table+" where ID='"+identifier+"'").getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "error";
+    }
+            
     public void subscribe()
     {
         

@@ -17,27 +17,32 @@ import javax.swing.*;
  */
 public class LoginScreen extends JPanel
 {
-    static Dimension size=new Dimension(400,300);
+    private Dimension size=new Dimension(400,300);
+    private JPanel startPanel;
+    private JFrame firstScreen;
     public LoginScreen()
     {
-        //makeScreen();
+        makeScreen();
     }
     
-    public static void main(String[] args)
+    public void makeScreen()
     {
-        JPanel startPanel=panel();
-        JFrame firstScreen=new JFrame("Plookify - Login");
+        startPanel=panel();
+        firstScreen=new JFrame("Plookify - Login");
         firstScreen.setSize(size);
         firstScreen.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         firstScreen.getContentPane().add(startPanel);
         firstScreen.setLocationRelativeTo(null);
+    }
+    public void startUI()
+    {
         firstScreen.setResizable(false);
         firstScreen.pack();
         firstScreen.setVisible(true);
     }
     
     
-    public static JPanel panel()
+    public JPanel panel()
     {
         JPanel panel1=new JPanel();
         imageLib images=new imageLib();
@@ -95,14 +100,16 @@ public class LoginScreen extends JPanel
             {
                 String uname = unameField.getText();
                 String passwd = passField.getText();
-                logic accountLogic=new logic();
-                if(accountLogic.authCheck(uname,passwd)==9999)//returns 9999(which no one will have for id) when incorrect
+                logic accLogic=new logic();
+                if(accLogic.authCheck(uname,passwd)==9999)//returns 9999(which no one will have for id) when incorrect
                 {
                     JOptionPane.showMessageDialog(null,"Incorrect Username and/or Password");
                 }
                 else
                 {
                      System.out.println("Match");
+                     JOptionPane.showMessageDialog(null,"Welcome "+accLogic.getDetailString(accLogic.authCheck(uname,passwd),"Account","Firstname")+"!");//welcome message with users name.
+                     
                 }
              }
         });

@@ -18,25 +18,30 @@ import javax.swing.*;
  */
 public class StartScreen extends JPanel
 {
+    private JFrame firstScreen;
     public StartScreen()
     {
-        //makeScreen();
+        makeScreen();
     }
     
-    public static void main(String[] args)
+    public void makeScreen()
     {
         JPanel startPanel=panel();
-        JFrame firstScreen=new JFrame("Plookify");
+        firstScreen=new JFrame("Plookify");
         firstScreen.setSize(400, 200);
         firstScreen.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         firstScreen.getContentPane().add(startPanel);
         firstScreen.setLocationRelativeTo(null);
+        
+    }
+    public void startUI()
+    {
         firstScreen.setResizable(false);
         firstScreen.pack();
         firstScreen.setVisible(true);
     }
     
-    public static JPanel panel()
+    public JPanel panel()
     {
         JPanel panel1=new JPanel();
         imageLib images=new imageLib();
@@ -70,7 +75,9 @@ public class StartScreen extends JPanel
             }
             private void pressLogin(ActionEvent evt)
             {
-                System.out.println("Pressed Login");
+                LoginScreen login1=new LoginScreen();
+                firstScreen.dispose();
+                login1.startUI();
             }
         });     
         panel1.add(Logo1).setBounds(150,20,100,100);
