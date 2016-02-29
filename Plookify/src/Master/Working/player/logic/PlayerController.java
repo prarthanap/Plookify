@@ -9,7 +9,6 @@ import Master.Working.Common.database;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -73,9 +72,6 @@ public class PlayerController implements Initializable {
     private Label totalDuration;
 
     private static final double MIN_CHANGE = 0.0001;
-
-   // private final DecimalFormat formatter = new DecimalFormat("00.00");
-
     private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
     private Iterator<String> itr;
@@ -85,6 +81,8 @@ public class PlayerController implements Initializable {
     private Duration currentDuration;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
+    @FXML
+    private Button restart;
 
     /**
      * Initializes the controller class.
@@ -224,14 +222,8 @@ public class PlayerController implements Initializable {
             if (!slider.isValueChanging()) {
                 slider.setValue(newTime.toSeconds());
 
-                //  duration.setText(String.valueOf(formatter.format(slider.getValue() / 60)));
-                // Double time = newTime.toSeconds();
-                //Double CTime = time /60;
-                //duration.setText(String.valueOf(CTime));
-              //  duration.setText(String.valueOf(formatter.format(newTime.toMinutes())));
-                
                 duration.setText(formatDuration(newTime));
-                
+
             }
         });
 
@@ -241,8 +233,9 @@ public class PlayerController implements Initializable {
         long seconds = (long) d.toSeconds();
         long absSeconds = Math.abs(seconds);
         String positive = String.format(
-                "%d:%02d:%02d",
-                absSeconds / 3600,
+                //"%d:%02d:%02d",
+                "%02d:%02d",
+                // absSeconds / 3600,
                 (absSeconds % 3600) / 60,
                 absSeconds % 60);
         return seconds < 0 ? "-" + positive : positive;
