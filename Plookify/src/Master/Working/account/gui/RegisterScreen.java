@@ -180,8 +180,8 @@ public class RegisterScreen extends JPanel
         {
             public void keyTyped(KeyEvent e)
             { 
-                if (e.getKeyCode()==KeyEvent.VK_ALPHANUMERIC) //consumes non numeric keys
-                e.consume(); 
+                if (contactNo.getText().length() >=11 ) // limit textfield to 11 characters
+                {e.consume();}
             }  
         });
         JButton RegisterSubmit = new JButton("SUBMIT");
@@ -234,10 +234,18 @@ public class RegisterScreen extends JPanel
                {
                    JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
                }
+               else if(contactNo.getText().replaceAll("[^\\d.]", "").trim().length()<11)//removes non numbers
+               {
+                    JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+               }
                else
                {
-                   String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim()};
+                   String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim(),contactNo.getText()};
                    logicR.addAccount(unameR.getText().trim(),fnameR.getText().trim(),lnameR.getText().trim(),passR.getText().trim(),address);
+                   JOptionPane.showMessageDialog(null,"Account created, you can now log in.");
+                   StartScreen start1=new StartScreen();
+                   regScreen.dispose();
+                   start1.startUI();
                }
                
             }
