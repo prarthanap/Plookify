@@ -8,7 +8,12 @@ package Master.Working.social.Logic;
 /**** @author Hamza */
 
 import Master.Working.Common.database;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,25 +37,39 @@ public class logic {
         return false;
     }
     
-    public int authCheck(String uname, String pass1)
+    public int premCheck(int iD)
     {
-        String authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
-        if(data.dupCheck(authtest))
-        {
-            try {
-                authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
-                return data.makeQuery(authtest).getInt(1);
+        ResultSet rs=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'");
+        try {
+            if(rs.getString(3).equals("1"))
+            {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();
+                try {
+                    String dateDue = rs.getString(4);
+                    Date dateB=dateFormat.parse(dateDue);
+                    //System.out.println(date.after(dateB));
+                    if(date.after(dateB))//if current date is past due date(so not paid)
+                    {
+                        return -1;//expired premium
+                    }
+                    else{return 2;}//premium
+                } catch (SQLException ex) {
+                    Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            catch (SQLException ex) {
-                Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
             }
-}
-        return 9999;
+            else{return 1;}//free
+        } catch (SQLException ex) {
+            Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;//if error in checking
     }
     
-    public void findFriend()
+    public void add()
     {
-    
+        
     
     }
     

@@ -31,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 
 
@@ -138,4 +139,26 @@ private final ObservableList<User> data = FXCollections.observableArrayList();
         }
     }
    
+    @FXML
+    public void onPrivate()
+    {
+        logic premium = new logic();
+        if(premium.premCheck(1)==2){
+            JOptionPane.showMessageDialog(null,"You are now switching to private mode");
+        }else{
+            JOptionPane.showMessageDialog(null,"This function cannot be used. You are not a premium member.");
+        }
+    
+    }
+    
+    @FXML
+    public void friendAdded()
+    {
+    
+    
+    
+    
+    }
+            
 }
+
