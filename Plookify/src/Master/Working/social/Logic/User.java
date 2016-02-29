@@ -11,12 +11,12 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author Hamza
  */
-public class Account {
+public class User {
 
     private final SimpleStringProperty User;
     private final SimpleStringProperty Followers;
     
-    public Account(String User, String Followers) {
+    public User(String User, String Followers) {
         this.User = new SimpleStringProperty(User);
         this.Followers = new SimpleStringProperty(Followers);
         

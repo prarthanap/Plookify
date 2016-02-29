@@ -37,7 +37,7 @@ public class SocialController implements Initializable {
 @FXML
 private Button premium;
 @FXML
-private TableView<Account> table;
+private TableView<User> table;
 @FXML
 private TableColumn User;
 @FXML
@@ -49,7 +49,7 @@ private TableColumn Followers;
 @FXML
 private TextField searchField;
 
-private final ObservableList<Account> data = FXCollections.observableArrayList();
+private final ObservableList<User> data = FXCollections.observableArrayList();
 
 
     /**
@@ -68,19 +68,17 @@ private final ObservableList<Account> data = FXCollections.observableArrayList()
      @FXML
     private void searchFunction(KeyEvent event) {
 
-        FilteredList<Account> filteredData = new FilteredList<>(data, e -> true);
+        FilteredList<User> filteredData = new FilteredList<>(data, e -> true);
 
         searchField.setOnKeyReleased(e -> {
 
             searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                filteredData.setPredicate((Predicate<? super Account>) tracks -> {
+                filteredData.setPredicate((Predicate<? super User>) user -> {
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
                     String lowerCaseFilter = newValue.toLowerCase();
-                    if (tracks.getUsername().contains(newValue)) {
-                        return true;
-                    } else if (tracks.getFollowers().toLowerCase().contains(lowerCaseFilter)) {
+                    if (user.getUsername().contains(newValue)) {
                         return true;
                     }
 
@@ -90,7 +88,7 @@ private final ObservableList<Account> data = FXCollections.observableArrayList()
             });
         });
 
-        SortedList<Account> sortedData = new SortedList<>(filteredData);
+        SortedList<User> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
 
@@ -101,12 +99,15 @@ private final ObservableList<Account> data = FXCollections.observableArrayList()
 
             Master.Working.Common.database db = new Master.Working.Common.database();
             ResultSet rs = db.makeQuery("SELECT USERNAME FROM ACCOUNT");
-            ResultSet frs = db.makeQuery("SELECT FRIENDID FROM FRIENDLIST");
+            ResultSet frs = db.makeQuery("SELECT * FROM FRIENDLIST");
 
             while (rs.next()) {
-                data.add(new Account(
-                        rs.getString("USERNAME"),
-                        frs.getString("FRIENDID")
+                data.add(new User(
+//                        rs.getString(1),
+//                        frs.getString(2)
+                        "Test",
+                        "Test1"
+                        
                 ));
 
                 table.setItems(this.data);
