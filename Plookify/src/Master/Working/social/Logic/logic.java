@@ -66,11 +66,19 @@ public class logic {
         }
         return 0;//if error in checking
     }
-    
-    public void add()
-    {
         
-    
+    public void add(String uname,String fname)//checks if username exists then inserts record
+    {
+        if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
+        {System.out.println(true);}
+        else
+        {
+            System.out.println(false);
+            String update="INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+uname+"','"+fname+"')";
+            //System.out.println(update);
+            data.makeUpdate(update);
+            System.out.println("added");
+        }
     }
     
     public void discover(String uname, String premium)

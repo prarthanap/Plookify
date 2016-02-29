@@ -152,12 +152,12 @@ private final ObservableList<User> data = FXCollections.observableArrayList();
     }
     
     @FXML
-    public void friendAdded()
+    public void friendAdded(String uname, String fname)
     {
-    
-    
-    
-    
+        logic add = new logic();
+        add.add(uname, fname);
+        JOptionPane.showMessageDialog(null, "Friend added");
+            
     }
             
 }
