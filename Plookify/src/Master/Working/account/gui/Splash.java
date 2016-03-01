@@ -5,6 +5,10 @@
  */
 package Master.Working.account.gui;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -13,7 +17,10 @@ import javax.swing.*;
  */
 public class Splash
 {
+    private Dimension size=new Dimension(400,400);
+    private JPanel panel1;
     private JFrame splash;
+    private JProgressBar prog1;
     public Splash()
     {
         makeSplash();
@@ -21,22 +28,48 @@ public class Splash
 
     private void makeSplash()
     {
+        panel1=panel();
         splash=new JFrame("Plookify");
-        splash.setSize(400, 400);
+        splash.setSize(size);
         splash.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        JPanel panel1=new JPanel();
-        imageLib images=new imageLib();
-        JLabel icon=new JLabel(images.getImage("logo"));
-        panel1.add(icon).setBounds(200,200,195,195);
-        JProgressBar bar1=new JProgressBar();
         splash.getContentPane().add(panel1);
-        splash.setResizable(false);
     }
-    private void starto()
+    
+    public JPanel panel()
     {
+        JPanel retPanel=new JPanel();
+        imageLib images=new imageLib();
+        retPanel.setLayout(null);
+        retPanel.setPreferredSize(size);
+        retPanel.setBackground(Color.WHITE);
+        
+        JLabel Logo1 =new JLabel(images.getImage("logo_small"));
+        retPanel.add(Logo1).setBounds(100,100,195,195);
+        prog1=new JProgressBar();
+        prog1.setMaximum(100);
+        prog1.setValue(0);
+        retPanel.add(prog1).setBounds(100,300,200,30);
+        return retPanel;
+    }
+    public void startUI()
+    {
+        splash.setResizable(false);
         splash.pack();
         splash.setLocationRelativeTo(null);
         splash.setVisible(true);
+        Timer time1=new Timer(2, new ActionListener()
+                {
+                   public void actionPerformed(ActionEvent e)//everything moves rightward(displays left side)
+                   {
+                       while(prog1.getValue()<100){
+                      prog1.setValue(prog1.getValue()+5);}
+                       if(prog1.getValue()==100)
+                       {System.out.println("end");
+                       time1.stop();}
+                   }
+                        });
     }
+
+    
     
 }
