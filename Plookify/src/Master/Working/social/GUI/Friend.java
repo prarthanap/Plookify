@@ -11,24 +11,19 @@ import javafx.beans.property.StringProperty;
 
 /**
  *
- * @author jerry
+ * @author Hamza
  */
-public class Person {
+public class Friend {
     private final StringProperty Fname;
     private final StringProperty Sname;
-    private final StringProperty Email;
-    //private final IntegerProperty postalCode;
-    //private final StringProperty city;
-    //private final ObjectProperty<LocalDate> birthday;
     
-    public Person() {
+    public Friend() {
         this(null, null);
     }
     
-    public Person(String Fname, String Sname) {
+    public Friend(String Fname, String Sname) {
         this.Fname = new SimpleStringProperty(Fname);
         this.Sname = new SimpleStringProperty(Sname);
-        this.Email = new SimpleStringProperty("email");
     }
 
     public String getFname() {
@@ -53,18 +48,5 @@ public class Person {
 
     public StringProperty SnameProperty() {
         return Sname;
-    }
-    
-    public String getEmail() {
-        return Email.get();
-    }
-
-    public void setEmail(String Email) {
-        this.Email.set(Email);
-    }
-
-    public StringProperty EmailProperty() {
-        return Email;
-    }
-        
+    }       
 }

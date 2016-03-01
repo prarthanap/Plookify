@@ -6,7 +6,7 @@
 package Master.Working.social.GUI;
 
 import Master.Working.Common.database.*;
-import Master.Working.social.GUI.Person;
+import Master.Working.social.GUI.Friend;
 //import static Database.Database.searchFriendbyEmail;
 
 import java.io.IOException;
@@ -47,7 +47,7 @@ import javafx.stage.Stage;
  */
 public class FriendListBuilderController implements Initializable {
     @FXML
-    private TableView<Person> friendTable;
+    private TableView<Friend> friendTable;
     
     @FXML
     private Label Fnamelabel;
