@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.radio.logic;
+package Master.Working.radio;
 import Master.Working.Common.database;
 import Master.Working.player.gui.Tracks;
 import java.net.URL;
@@ -33,11 +33,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 /**
  *
- * @author ec14082
+ * @author Samad
  */
 public class RadioController implements Initializable {
     @FXML
     private TableView<Tracks> table;
+    @FXML
+    private TableView<Tracks> radioTable;
     @FXML
     private TableColumn IDCol;
     @FXML
@@ -51,10 +53,22 @@ public class RadioController implements Initializable {
     @FXML
     private TableColumn albumCol;
     @FXML
+    private TableColumn radioIDCol;
+    @FXML
+    private TableColumn radioTrackNameCol;
+    @FXML
+    private TableColumn radioArtistCol;
+    @FXML
+    private Label currentGenre;
+    @FXML
     private TextField searchField;
     
+    private SortedList<Tracks> listForRadio;
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
+    private ObservableList<Tracks> radioData = FXCollections.observableArrayList();
    
+    database db = new database();
+    private String searchTerm;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,6 +81,36 @@ public class RadioController implements Initializable {
         albumCol.setCellValueFactory(new PropertyValueFactory("album"));
 
         updateTable();
+        
+        radioIDCol.setCellValueFactory(new PropertyValueFactory("ID"));
+        radioTrackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
+        radioArtistCol.setCellValueFactory(new PropertyValueFactory("artist"));
+        
+        createRadio();
+    }
+    
+    public void createRadio() {
+        String radioGenre = "ROCK";//Temporary
+        currentGenre.setText(radioGenre);
+        
+       try {
+            ResultSet rs = db.makeQuery("SELECT * FROM TRACKS WHERE GENRE = '"+radioGenre+"' ORDER BY RANDOM() LIMIT 10");
+            while (rs.next()) {
+                radioData.add(new Tracks(
+                        rs.getString("TRACKID"),
+                        rs.getString("TRACKNAME"),
+                        rs.getString("ARTIST"),
+                        rs.getString("DURATION"),
+                        rs.getString("GENRE"),
+                        rs.getString("ALBUM")
+                ));
+                radioTable.setItems(radioData);
+                radioTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            }
+
+        } catch (Exception e2) {
+            System.err.println(e2);
+        }
     }
     
     @FXML
@@ -104,15 +148,11 @@ public class RadioController implements Initializable {
         SortedList<Tracks> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
-
     }
 
     public void updateTable() {
         try {
-
-            database db = new database();
             ResultSet rs = db.makeQuery("SELECT * FROM TRACKS");
-
             while (rs.next()) {
                 data.add(new Tracks(
                         rs.getString("TRACKID"),

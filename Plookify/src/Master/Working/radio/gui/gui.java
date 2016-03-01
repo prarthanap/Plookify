@@ -48,7 +48,7 @@ public class gui extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {  
-        Parent root = FXMLLoader.load(getClass().getResource("testGUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("radio.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
