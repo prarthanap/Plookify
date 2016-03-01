@@ -52,14 +52,14 @@ private TableView<User> table;
 private TableColumn User;
 @FXML
 private TableColumn Followers;
-@FXML
-private Button addFriend;
-@FXML
-private Button removeFriend;
-@FXML
-private Button FriendList;
-@FXML
-private Button makePrivate;
+//@FXML
+//private Button addFriend;
+//@FXML
+//private Button removeFriend;
+//@FXML
+//private Button FriendList;
+//@FXML
+//private Button makePrivate;
 
 
 
@@ -141,26 +141,26 @@ private final ObservableList<User> data = FXCollections.observableArrayList();
         }
     }
    
-    @FXML
-    public void onPrivate()
-    {
-        logic premium = new logic();
-        if(premium.premCheck(1)==2){
-            JOptionPane.showMessageDialog(null,"You are now switching to private mode");
-        }else{
-            JOptionPane.showMessageDialog(null,"This function cannot be used. You are not a premium member.");
-        }
+//    @FXML
+//    public void onPrivate()
+//    {
+//        logic premium = new logic();
+//        if(premium.premCheck(1)==2){
+//            JOptionPane.showMessageDialog(null,"You are now switching to private mode");
+//        }else{
+//            JOptionPane.showMessageDialog(null,"This function cannot be used. You are not a premium member.");
+//        }
+//    
+//    }
     
-    }
-    
-    @FXML
-    public void friendAdded(String uname, String fname)
-    {
-        logic add = new logic();
-        add.add(uname, fname);
-        JOptionPane.showMessageDialog(null, "Friend added");
-            
-    }
+//    @FXML
+//    public void friendAdded(String uname, String fname)
+//    {
+//        logic add = new logic();
+//        add.add(uname, fname);
+//        JOptionPane.showMessageDialog(null, "Friend added");
+//            
+//    }
             
 }
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.FriendListBuilderController">
+   <children>
+      <SplitPane dividerPositions="0.5263157894736842" layoutX="144.0" prefHeight="600.0" prefWidth="857.0" style="-fx-background-color: #383838;">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="445.0">
+               <children>
+                  <TextField fx:id="searchbyEmail" layoutX="14.0" layoutY="11.0" onMouseClicked="#searchFieldClick" prefHeight="26.0" prefWidth="406.0" style="-fx-background-radius: 20;" />
+                  <TableView fx:id="friendTable" layoutX="20.0" layoutY="64.0" prefHeight="459.0" prefWidth="394.0" style="-fx-background-color: ;" stylesheets="@test.css">
+                    <columns>
+                      <TableColumn prefWidth="141.0" text="Username" />
+                      <TableColumn prefWidth="135.0" text="Surname" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="add_button" layoutX="20.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#addIconClick" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE" />
+                  <Button fx:id="delete_button" layoutX="375.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#removeIconClick" prefHeight="41.0" prefWidth="39.0" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="-" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="397.0" style="-fx-background-color: #383838;">
+               <children>
+                  <AnchorPane fx:id="addFriend_pane" prefHeight="599.0" prefWidth="349.0" visible="false">
+                     <children>
+                        <Label layoutX="65.0" layoutY="61.0" prefHeight="39.0" prefWidth="213.0" text="Friend Request" textFill="WHITE" />
+                        <Button fx:id="send_add" layoutX="210.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#sendClick" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Send" textFill="WHITE" />
+                        <Button fx:id="cancle_add" layoutX="85.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#cancleClick" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Cancle" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="deleteFriend_pane" prefHeight="599.0" prefWidth="349.0" visible="false">
+                     <children>
+                        <TextArea fx:id="deleteMsg" editable="false" layoutX="75.0" layoutY="200.0" prefHeight="200.0" prefWidth="200.0" text="Are you sure you want to delete this friend?" wrapText="true" />
+                        <Button fx:id="delete_remove" layoutX="207.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#deleteFriendClick" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Delete" textFill="WHITE" />
+                        <Button fx:id="cancle_delete" layoutX="85.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#cancleDeleteClick" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Cancle" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
