@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
 
 public class gui extends Application implements EventHandler<ActionEvent>{
     
@@ -22,17 +24,8 @@ public class gui extends Application implements EventHandler<ActionEvent>{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
-        primaryStage.setTitle("Playlist");
-        newPlaylist = new Button();
-        newPlaylist.setText("New Playlist");
-        
-        newPlaylist.setOnAction(this);
-    
-        StackPane layout = new StackPane();
-        layout.getChildren().add(newPlaylist);
-        
-        Scene scene = new Scene(layout,1100,600);
+        Parent root = FXMLLoader.load(getClass().getResource("playlist.fxml"));
+        Scene scene = new Scene(root,1100,600);
         primaryStage.setScene(scene);
         primaryStage.show();
        
@@ -40,7 +33,7 @@ public class gui extends Application implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent t) {
-        //
+        
     }
     
     
