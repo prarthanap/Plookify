@@ -12,7 +12,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.Logic.SocialController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.GUI.SocialController">
    <children>
       <Pane layoutX="743.0" layoutY="42.0" />
       <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -45,7 +45,7 @@
           <TableColumn fx:id="followers" minWidth="0.0" prefWidth="516.0" text="Followers" />
         </columns>
       </TableView>
-      <Button fx:id="addFriend" layoutX="872.0" layoutY="155.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="+" textFill="WHITE">
+      <Button fx:id="addFriend" layoutX="872.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#friendAdded" prefHeight="28.0" prefWidth="28.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="+" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -59,7 +59,7 @@
             <Font size="12.0" />
          </font>
       </Button>
-      <Button fx:id="removeFriend" layoutX="872.0" layoutY="194.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="-" textFill="WHITE">
+      <Button fx:id="removeFriend" layoutX="872.0" layoutY="194.0" mnemonicParsing="false" onMouseClicked="#friendDeleted" prefHeight="28.0" prefWidth="28.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #FFFFFF;" text="-" textFill="WHITE">
          <font>
             <Font size="12.0" />
          </font>

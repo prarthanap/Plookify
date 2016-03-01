@@ -6,6 +6,8 @@
 package Master.Working.social.Logic;
 
 import Master.Working.player.gui.Tracks;
+import Master.Working.social.Logic.User;
+import Master.Working.social.Logic.logic;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
