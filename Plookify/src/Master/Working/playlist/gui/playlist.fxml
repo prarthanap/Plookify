@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.working.playlist.gui.playlistController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.working.playlist.gui.playlistController.java">
    <children>
       <TableView fx:id="table" layoutX="221.0" layoutY="192.0" prefHeight="377.0" prefWidth="703.0">
         <columns>
@@ -19,20 +18,19 @@
       </TableView>
       <TextField fx:id="searchBar" layoutX="221.0" layoutY="47.0" prefHeight="31.0" prefWidth="356.0" promptText="Search by Song name, Artist or Album" style="-fx-background-radius: 15;" />
       <Button fx:id="search" layoutX="595.0" layoutY="47.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
-      <Label fx:id="playlistName" focusTraversable="false" layoutX="221.0" layoutY="123.0" prefHeight="42.0" prefWidth="140.0" text="Playlist">
+      <Label fx:id="playlistLabel" focusTraversable="false" layoutX="221.0" layoutY="123.0" prefHeight="42.0" prefWidth="140.0" text="Playlist">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
       <TextField fx:id="playlistSearchBar" layoutX="623.0" layoutY="149.0" prefHeight="31.0" prefWidth="203.0" promptText="Search Playlist" style="-fx-background-radius: 15;" />
       <Button fx:id="playlistSearch" layoutX="848.0" layoutY="149.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
-      <TableView fx:id="playlistsTable" layoutX="14.0" layoutY="192.0" prefHeight="345.0" prefWidth="154.0">
+      <TableView fx:id="playlistsTable" layoutX="14.0" layoutY="192.0" prefHeight="295.0" prefWidth="154.0">
         <columns>
           <TableColumn fx:id="tPlaylists" prefWidth="149.0" text="Playlists" />
         </columns>
       </TableView>
+      <Button fx:id="createPlaylist" layoutX="14.0" layoutY="538.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="31.0" prefWidth="154.0" style="-fx-background-radius: 15;" text="Create Playlist" />
+      <TextField fx:id="newPlaylistName" layoutX="14.0" layoutY="501.0" prefHeight="31.0" prefWidth="154.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
    </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
 </AnchorPane>
