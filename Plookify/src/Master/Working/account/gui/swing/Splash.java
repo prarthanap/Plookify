@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.account.gui;
+package Master.Working.account.gui.swing;
 
+import Master.Working.account.gui.imageLib;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -57,17 +58,22 @@ public class Splash
         splash.pack();
         splash.setLocationRelativeTo(null);
         splash.setVisible(true);
-        Timer time1=new Timer(2, new ActionListener()
+        Timer time=new Timer(250, new ActionListener()
                 {
                    public void actionPerformed(ActionEvent e)//everything moves rightward(displays left side)
                    {
-                       while(prog1.getValue()<100){
-                      prog1.setValue(prog1.getValue()+5);}
-                       if(prog1.getValue()==100)
-                       {System.out.println("end");
-                       time1.stop();}
+                      if(prog1.getValue()<100)
+                      {
+                          prog1.setValue(prog1.getValue()+10);
+                      }
+                      else if(prog1.getValue()==100){
+                      ((Timer) e.getSource()).stop();
+                      splash.dispose();
+                      StartScreen start=new StartScreen();
+                      start.startUI();}
                    }
                         });
+        time.start();
     }
 
     
