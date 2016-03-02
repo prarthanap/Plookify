@@ -32,27 +32,33 @@ public class splashScreen1 extends Application {
     private Pane paneSplash;
     private Pane paneStart;
     private Pane paneLogin;
-    private Scene loadingSplash;
+    private Pane paneAccount;
+    private Pane paneAccountD;
+    private Pane paneDevice;
+    private Scene splashScreen;
     private Scene startScreen;
     private Scene loginScreen;
-    private Stage screens;
+    private Scene accountScreen;
+    private Scene accountDScreen;
+    private Scene deviceScreen;
+    private Stage mainStage;
     private final imageLib2 images=new imageLib2();
     
     @Override
     public void start(Stage splashStage) {
-        screens=splashStage;
-        screens.setResizable(false);
+        mainStage=splashStage;
+        mainStage.setResizable(false);
         splashPane();
         startPane();
         loginPane();
-        loadingSplash = new Scene(paneSplash, 300, 350);
+        splashScreen = new Scene(paneSplash, 300, 350);
         startScreen = new Scene(paneStart,400,200);
         loginScreen=new Scene(paneLogin,400,300);
-        screens.setTitle("Plookify");
-        screens.setScene(loadingSplash);
-        screens.show();
+        mainStage.setTitle("Plookify");
+        mainStage.setScene(splashScreen);
+        mainStage.show();
         PauseTransition pause=new PauseTransition(Duration.millis(1000));
-        pause.setOnFinished(event->screens.setScene(startScreen));
+        pause.setOnFinished(event->mainStage.setScene(startScreen));
         pause.play();
     }
     /**
@@ -98,7 +104,7 @@ public class splashScreen1 extends Application {
             
             public void handle(ActionEvent event) {
                 System.out.println("Pressed Login");
-                screens.setScene(loginScreen);
+                mainStage.setScene(loginScreen);
             }
         }); 
         paneStart.getChildren().add(registerButton);registerButton.setLayoutX(200);registerButton.setLayoutY(160);
@@ -191,7 +197,7 @@ public class splashScreen1 extends Application {
             
             public void handle(ActionEvent event) {
                 System.out.println("Pressed back");
-                screens.setScene(startScreen);                
+                mainStage.setScene(startScreen);                
             }
         }); 
         
@@ -200,5 +206,10 @@ public class splashScreen1 extends Application {
         resetButton.relocate(150,260);
         backButton.relocate(250,260);
         
+    }
+    
+    public void accountPane()
+    {
+        paneAccount=new Pane();
     }
 }
