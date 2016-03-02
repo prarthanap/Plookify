@@ -40,6 +40,9 @@ private Button yesPrivate;
 @FXML
 private Button noPrivate;
 @FXML
+private Button upgradeClose;
+
+@FXML
 private TextField searchField;
 @FXML
 private TableView<Friends> friendList;
@@ -55,6 +58,8 @@ private AnchorPane confirmDialog;
 private AnchorPane privateDialog;
 @FXML
 private AnchorPane friendAddedDialog;
+@FXML
+private AnchorPane upgradeDialog;
 
 
 
@@ -70,6 +75,7 @@ private AnchorPane friendAddedDialog;
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
        friendAddedDialog.setVisible(false);
+       upgradeDialog.setVisible(false);
     }  
     
     @FXML  //delete friend dialog
@@ -94,7 +100,11 @@ private AnchorPane friendAddedDialog;
     @FXML
     private void launchPrivate(MouseEvent event)
     {
-        privateDialog.setVisible(true);
+        logic premium = new logic();
+        if(premium.premCheck(3)==2)
+        {
+            privateDialog.setVisible(true);
+        }
     }
     
     @FXML
@@ -119,12 +129,22 @@ private AnchorPane friendAddedDialog;
         {
             friendAddedDialog.setVisible(true);    
         }
+        else
+        {
+            upgradeDialog.setVisible(true);
+        }
     }
     
     @FXML
     private void acceptDialog(MouseEvent event)
     {
         friendAddedDialog.setVisible(false);
+    }
+    
+    @FXML
+    private void closeUpgrade(MouseEvent event)
+    {
+        upgradeDialog.setVisible(false);
     }
     
 }

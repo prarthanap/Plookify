@@ -103,7 +103,7 @@ public class logic {
     
     public void publicity(int id)
     {
-        String change = "UPDATE SUBSCRIPTION SET PUBLICITIY='PRIVATE' WHERE USERID='4';";
+        String change = "UPDATE SUBSCRIPTION SET PUBLICITY='PRIVATE' WHERE USERID='4';";
         data.makeUpdate(change);
         System.out.println("confirmed");
     }
