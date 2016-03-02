@@ -5,10 +5,27 @@
  */
 package Master.Working.social.pls;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Hamza
  */
-class Users {
+public class Users {
+    private final SimpleStringProperty user;
     
+    public Users(String user) {
+        this.user = new SimpleStringProperty(user);
+        
+    }
+
+    public String getUsername() {
+        return user.get();
+    }
+
+
+    public void setID(String Username) {
+        user.set(Username);
+    }
+
 }
