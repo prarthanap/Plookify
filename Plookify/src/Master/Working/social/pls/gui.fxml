@@ -34,7 +34,7 @@
                       <TableColumn fx:id="user" prefWidth="212.0" text="User" />
                     </columns>
                   </TableView>
-                  <AnchorPane fx:id="friendView" layoutX="231.0" layoutY="54.0" prefHeight="390.0" prefWidth="341.0" style="-fx-background-color: #ffffff;">
+                  <AnchorPane fx:id="friendView" layoutX="231.0" layoutY="54.0" prefHeight="384.0" prefWidth="280.0" style="-fx-background-color: #ffffff;">
                      <children>
                         <TableView fx:id="friendList" prefHeight="384.0" prefWidth="282.0" stylesheets="@../GUI/test.css">
                           <columns>
@@ -43,7 +43,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="addFriend" layoutX="595.0" layoutY="159.0" mnemonicParsing="false" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
+                  <Button fx:id="addFriend" layoutX="595.0" layoutY="159.0" mnemonicParsing="false" onMouseClicked="#launchAdded" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -90,6 +90,20 @@
                            </font>
                         </Button>
                         <Button fx:id="noPrivate" layoutX="122.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#stayPublic" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="No" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="friendAddedDialog" layoutX="262.0" layoutY="165.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #343434;">
+                     <children>
+                        <Label layoutX="51.0" layoutY="31.0" text="Friend Request sent" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="91.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#acceptDialog" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Ok" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>

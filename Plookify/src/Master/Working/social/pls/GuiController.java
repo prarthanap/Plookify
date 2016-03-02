@@ -48,6 +48,8 @@ private AnchorPane friendView;
 private AnchorPane confirmDialog;
 @FXML
 private AnchorPane privateDialog;
+@FXML
+private AnchorPane friendAddedDialog;
 
 
 
@@ -61,6 +63,7 @@ private AnchorPane privateDialog;
         // TODO
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
+       friendAddedDialog.setVisible(false);
     }  
     
     @FXML
@@ -96,6 +99,18 @@ private AnchorPane privateDialog;
     private void stayPublic(MouseEvent event)
     {
         privateDialog.setVisible(false);
+    }
+    
+    @FXML
+    private void launchAdded(MouseEvent event)
+    {
+        friendAddedDialog.setVisible(true);    
+    }
+    
+    @FXML
+    private void acceptDialog(MouseEvent event)
+    {
+        friendAddedDialog.setVisible(false);
     }
     
 }
