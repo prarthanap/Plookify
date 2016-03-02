@@ -10,13 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
  * @author jll30
  */
-public class PaneGen
+public class PaneGen extends splashScreen1
 {
     imageLib2 images=new imageLib2();
     public PaneGen()
@@ -67,5 +69,107 @@ public class PaneGen
         paneStart.getChildren().add(registerButton);registerButton.setLayoutX(200);registerButton.setLayoutY(160);
         paneStart.getChildren().add(loginButton);loginButton.setLayoutX(120);loginButton.setLayoutY(160);
         return paneStart;
+    }
+    
+    public Pane loginPane()
+    {
+        Pane paneLogin=new Pane();
+        paneLogin.setStyle("-fx-background-color: #000000;");
+        paneLogin.setPrefSize(400,300);
+        Label plookify=new Label("Plookify");
+        Label Logo1 =new Label("",new ImageView(images.getImage("logo_small")));
+        plookify.setStyle("-fx-text-fill: Cyan;");plookify.setScaleX(1.5);plookify.setScaleY(1.5);
+        
+        Label userLabel=new Label("Username");
+        userLabel.setStyle("-fx-text-fill: White;");
+        Label passLabel=new Label("Password");
+        passLabel.setStyle("-fx-text-fill: White;");
+        HBox credBox=new HBox();
+        TextField unameField=new TextField();
+        unameField.setPromptText("Enter Username");
+        unameField.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent ke)
+            { 
+                if (unameField.getText().length() >=12 )
+                ke.consume(); 
+            }  
+        });
+        PasswordField passField=new PasswordField();
+        passField.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent ke)
+            { 
+                if (unameField.getText().length() >=12 )
+                ke.consume(); 
+            }  
+        });
+        credBox.getChildren().addAll(userLabel,unameField);
+        credBox.setSpacing(10);
+        
+/*==============================================================================================================================================*/
+/*===========================================Makes the Submit and Reset Buttons=================================================================*/
+/*==============================================================================================================================================*/
+        /*JButton submitButton=new JButton("SUBMIT");
+        submitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pressSubmit(evt);
+            }
+            private void pressSubmit(ActionEvent evt)
+            {
+                String uname = unameField.getText();
+                String passwd = passField.getText();
+                logic accLogic=new logic();
+                if(accLogic.authCheck(uname,passwd)==9999)//returns 9999(which no one will have for id) when incorrect
+                {
+                    JOptionPane.showMessageDialog(null,"Incorrect Username and/or Password");
+                }
+                else
+                {
+                     System.out.println("Match");
+                     JOptionPane.showMessageDialog(null,"Welcome "+accLogic.getDetailString(accLogic.authCheck(uname,passwd),"ID","Account","Firstname")+"!");//welcome message with users name.
+                     
+                }
+             }
+        });
+        
+        JButton resetButton=new JButton("RESET");
+        resetButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pressReset(evt);
+            }
+            private void pressReset(ActionEvent evt)
+            {
+                System.out.println("Pressed Reset");
+            }
+        });
+        JButton backButton=new JButton("BACK");
+        backButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pressBack(evt);
+            }
+            private void pressBack(ActionEvent evt)
+            {
+                StartScreen start1=new StartScreen();
+                firstScreen.dispose();
+                start1.startUI();
+            }
+        });
+        panel1.add(Logo1).setBounds(150,20,100,100);
+        panel1.add(plookify).setBounds(160,120,100,40);
+        panel1.add(resetButton).setBounds(150,260,90,20);
+        panel1.add(submitButton).setBounds(50,260,90,20);
+        panel1.add(backButton).setBounds(250,260,90,20);*/
+        
+        paneLogin.getChildren().add(credBox);
+        
+        
+        return paneLogin;
     }
 }

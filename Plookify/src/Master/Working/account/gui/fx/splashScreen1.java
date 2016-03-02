@@ -25,13 +25,17 @@ public class splashScreen1 extends Application {
     
     private Pane pane1;
     private Pane pane2;
+    private Pane pane3;
+    public Scene loginScreen;
     private PaneGen pG1=new PaneGen();
     @Override
     public void start(Stage splashStage) {
         pane1=pG1.splashPane();
         pane2=pG1.startPane();
+        pane3=pG1.loginPane();
         Scene loadingSplash = new Scene(pane1, 300, 350);
         Scene startScreen = new Scene(pane2,400,200);
+        loginScreen=new Scene(pane3,400,300);
         splashStage.setTitle("Plookify");
         splashStage.setScene(loadingSplash);
         splashStage.show();
