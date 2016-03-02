@@ -33,6 +33,10 @@ private Button yesConfirm;
 @FXML
 private Button noConfirm;
 @FXML
+private Button yesPrivate;
+@FXML
+private Button noPrivate;
+@FXML
 private TextField searchField;
 @FXML
 private TableView<Friends> friendList;
@@ -42,6 +46,10 @@ private TableView<Users> users;
 private AnchorPane friendView;
 @FXML
 private AnchorPane confirmDialog;
+@FXML
+private AnchorPane privateDialog;
+
+
 
     
     
@@ -52,7 +60,7 @@ private AnchorPane confirmDialog;
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        confirmDialog.setVisible(false);
-        
+       privateDialog.setVisible(false);
     }  
     
     @FXML
@@ -72,5 +80,22 @@ private AnchorPane confirmDialog;
         confirmDialog.setVisible(false);
     }
     
+    @FXML
+    private void launchPrivate(MouseEvent event)
+    {
+        privateDialog.setVisible(true);
+    }
+    
+    @FXML
+    private void goPrivate(MouseEvent event)
+    {
+        privateDialog.setVisible(false);
+    }
+
+    @FXML
+    private void stayPublic(MouseEvent event)
+    {
+        privateDialog.setVisible(false);
+    }
     
 }
