@@ -18,7 +18,7 @@ import javafx.scene.input.KeyEvent;
  *
  * @author jll30
  */
-public class PaneGen extends splashScreen1
+/*public class PaneGen extends splashScreen1
 {
     imageLib2 images=new imageLib2();
     public PaneGen()
@@ -165,11 +165,11 @@ public class PaneGen extends splashScreen1
         panel1.add(plookify).setBounds(160,120,100,40);
         panel1.add(resetButton).setBounds(150,260,90,20);
         panel1.add(submitButton).setBounds(50,260,90,20);
-        panel1.add(backButton).setBounds(250,260,90,20);*/
+        panel1.add(backButton).setBounds(250,260,90,20);
         
         paneLogin.getChildren().add(credBox);
         
         
         return paneLogin;
     }
-}
+}*/
