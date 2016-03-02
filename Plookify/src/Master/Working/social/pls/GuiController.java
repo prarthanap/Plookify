@@ -101,7 +101,7 @@ private AnchorPane upgradeDialog;
     private void launchPrivate(MouseEvent event)
     {
         logic premium = new logic();
-        if(premium.premCheck(3)==2)
+        if(premium.premCheck(4)==2)
         {
             privateDialog.setVisible(true);
         }
