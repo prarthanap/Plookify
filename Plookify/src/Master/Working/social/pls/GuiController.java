@@ -5,6 +5,7 @@
  */
 package Master.Working.social.pls;
 
+import Master.Working.social.Logic.logic;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -66,7 +67,7 @@ private AnchorPane friendAddedDialog;
        friendAddedDialog.setVisible(false);
     }  
     
-    @FXML
+    @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
         confirmDialog.setVisible(true);
     }
@@ -74,6 +75,8 @@ private AnchorPane friendAddedDialog;
     @FXML
     private void yesDelete(MouseEvent event)
     {
+        logic delete = new logic();
+        delete.deleteFriend("hq300");
         confirmDialog.setVisible(false);
     }
     
@@ -92,6 +95,8 @@ private AnchorPane friendAddedDialog;
     @FXML
     private void goPrivate(MouseEvent event)
     {
+        logic becomePrivate = new logic();
+        becomePrivate.publicity(3);
         privateDialog.setVisible(false);
     }
 
@@ -104,7 +109,11 @@ private AnchorPane friendAddedDialog;
     @FXML
     private void launchAdded(MouseEvent event)
     {
-        friendAddedDialog.setVisible(true);    
+        logic premium = new logic();
+        if(premium.premCheck(4)==2)
+        {
+            friendAddedDialog.setVisible(true);    
+        }
     }
     
     @FXML

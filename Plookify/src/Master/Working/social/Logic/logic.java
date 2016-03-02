@@ -81,17 +81,6 @@ public class logic {
         }
     }
     
-    public void discover(String uname, String premium)
-    {
-        boolean check = accTypeCheck(uname, premium);
-        if(check==true)
-        {
-        
-        
-        }
-        
-    }
-    
     public void friendRequest(String uname, String friendname)
     {
         if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
@@ -106,12 +95,19 @@ public class logic {
         }
     }
     
-    public int friendList()
+    public void deleteFriend(String uname)
     {
-     int followers = 0;
-     
-     return followers;
+        String update = "DELETE FROM FRIENDLIST WHERE FRIENDID='"+uname+"';";
+        data.makeUpdate(update);
     }
+    
+    public void publicity(int id)
+    {
+        String change = "UPDATE SUBSCRIPTION SET PUBLICITIY='PRIVATE' WHERE USERID='4';";
+        data.makeUpdate(change);
+        System.out.println("confirmed");
+    }
+    
     
     public void friendPlaylist()
     {
