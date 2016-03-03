@@ -51,8 +51,8 @@ public class logic
             catch (SQLException ex) {
                 Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
             }
-}
-        return 9999;
+        }
+        return 9999;//no one should have this
         
     }
             
@@ -68,12 +68,12 @@ public class logic
     {
         ResultSet rsPremCheck=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'");
         try {
-            if(rsPremCheck.getString(2).equals("1"))
+            if(rsPremCheck.getInt(2)==1)
             {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
                 try {
-                    String dateDue = rsPremCheck.getString(3);
+                    String dateDue = rsPremCheck.getString(4);
                     System.out.println(dateDue);
                     Date dateB=dateFormat.parse(dateDue);
                     //System.out.println(date.after(dateB));

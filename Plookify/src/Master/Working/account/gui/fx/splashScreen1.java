@@ -557,8 +557,7 @@ public class splashScreen1 extends Application {
                 mainStage.setScene(startScreen);
                 
             }
-        });
-        
+        });       
         paneRegister.getChildren().addAll(RegisterSubmit,ResetButton,BackButton);
         RegisterSubmit.relocate(80, yValues[2]+200);
         ResetButton.relocate(200, yValues[2]+200);
@@ -582,7 +581,7 @@ public class splashScreen1 extends Application {
         if (check==2)
             {
                 prem.setText("Premium");
-                Label expiry=new Label("Next Due :"+accLogic.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE"));
+                Label expiry=new Label("Next Due : "+accLogic.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE"));
                 expiry.setStyle("-fx-text-fill: red;");
                 expiry.relocate(420,70);
                 paneAccount.getChildren().add(expiry);
@@ -593,7 +592,7 @@ public class splashScreen1 extends Application {
             }
         else
             {
-                prem.setText("Free");
+                prem.setText("Subscribe");
             }
         
         prem.relocate(450,40);

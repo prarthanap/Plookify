@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class database
 {
@@ -35,7 +37,7 @@ public class database
             //System.out.println();
         }*/
 	
-	public static ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
+	public ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
         {
             
             try {
@@ -114,6 +116,22 @@ public class database
             } 
         catch (SQLException ex) {System.out.println("dupcheck error!");}
         return false;
+        }
+        
+        public int authCheckD(String uname,String pass1)
+        {
+            String authtest="SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"' and PASSWORD='"+pass1+"'";
+            if(dupCheck(authtest))
+            {
+                try {
+                    return makeQuery(authtest).getInt(1);
+                    }
+                catch (SQLException ex) {
+                    Logger.getLogger(database.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return 9999;//no one should have this
+
         }
 
 }
