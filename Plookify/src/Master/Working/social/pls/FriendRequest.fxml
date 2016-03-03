@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="requestDialogue" prefHeight="105.0" prefWidth="191.0" style="-fx-background-color: #343434;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Master.Working.social.pls.FriendRequestController">
+   <children>
+      <Button layoutX="31.0" layoutY="53.0" mnemonicParsing="false" text="Accept">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="declineButton" layoutX="100.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#decline" text="Decline">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="31.0" layoutY="23.0" text="Friend request received" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

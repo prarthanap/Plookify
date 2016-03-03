@@ -80,7 +80,16 @@ private AnchorPane upgradeDialog;
     
     @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
-        confirmDialog.setVisible(true);
+        
+        int prem = 0;
+        if(prem==1)
+        {
+            confirmDialog.setVisible(true);
+        }
+        else
+        {
+            upgradeDialog.setVisible(true);
+        }
     }
     
     @FXML
@@ -101,9 +110,14 @@ private AnchorPane upgradeDialog;
     private void launchPrivate(MouseEvent event)
     {
         logic premium = new logic();
-        if(premium.premCheck(4)==2)
+        int prem = 0;
+        if(prem==2)
         {
             privateDialog.setVisible(true);
+        }
+        else
+        {
+            upgradeDialog.setVisible(true);
         }
     }
     
@@ -125,7 +139,9 @@ private AnchorPane upgradeDialog;
     private void launchAdded(MouseEvent event)
     {
         logic premium = new logic();
-        if(premium.premCheck(4)==2)
+        int prem = 0;
+        
+        if(prem==1)
         {
             friendAddedDialog.setVisible(true);    
         }
@@ -138,7 +154,15 @@ private AnchorPane upgradeDialog;
     @FXML
     private void acceptDialog(MouseEvent event)
     {
-        friendAddedDialog.setVisible(false);
+        int prem = 0;
+        if(prem==1)
+        {
+            friendAddedDialog.setVisible(false);
+        }
+        else
+        {
+            upgradeDialog.setVisible(true);
+        }
     }
     
     @FXML
