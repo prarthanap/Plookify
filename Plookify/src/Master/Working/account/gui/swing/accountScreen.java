@@ -16,7 +16,7 @@ import javax.swing.*;
 /**
  *
  * @author jll30
- */
+ *//*
 public class accountScreen extends JPanel
 {
     private static Dimension size=new Dimension(600,400);
@@ -103,3 +103,4 @@ public class accountScreen extends JPanel
         return mainPanel;
     }
 }
+*/

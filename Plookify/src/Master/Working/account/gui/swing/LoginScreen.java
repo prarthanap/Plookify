@@ -16,7 +16,7 @@ import javax.swing.*;
  *
  * @author jll30
  */
-public class LoginScreen extends JPanel
+/*public class LoginScreen extends JPanel
 {
     private Dimension size=new Dimension(400,300);
     private JPanel startPanel;
@@ -52,7 +52,7 @@ public class LoginScreen extends JPanel
         panel1.setBackground(Color.BLACK);
 /*==============================================================================================================================================*/
 /*======================================Makes the Logo,Title, username+password label and textfields============================================*/
-/*==============================================================================================================================================*/
+/*==============================================================================================================================================*
         JLabel plookify=new JLabel("Plookify");
         JLabel Logo1 =new JLabel(images.getImage("logo_small"));
         plookify.setForeground(Color.CYAN);
@@ -89,7 +89,7 @@ public class LoginScreen extends JPanel
         panel1.add(passLabel).setBounds(80,210,100,20);
 /*==============================================================================================================================================*/
 /*===========================================Makes the Submit and Reset Buttons=================================================================*/
-/*==============================================================================================================================================*/
+/*==============================================================================================================================================*
         JButton submitButton=new JButton("SUBMIT");
         submitButton.addActionListener(new java.awt.event.ActionListener()
         {
@@ -150,3 +150,4 @@ public class LoginScreen extends JPanel
         return panel1;
     }
 }
+*/
