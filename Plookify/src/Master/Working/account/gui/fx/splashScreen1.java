@@ -183,6 +183,7 @@ public class splashScreen1 extends Application {
                         public void handle(ActionEvent event) {
                             submitButton.setDisable(false);//re-enable button
                             incorrect.hide();
+                            passField.setText("");
                         }
                     }); 
                     incorrect.setScene(new Scene(incorrectDialog));
@@ -213,6 +214,8 @@ public class splashScreen1 extends Application {
                         public void handle(ActionEvent event) {
                             submitButton.setDisable(false);//re-enable button
                             success.hide();
+                            unameField.setText("");
+                            passField.setText("");
                             accountPane(ID);
                             accountScreen=new Scene(paneAccount);
                             mainStage.setScene(accountScreen);
@@ -242,6 +245,8 @@ public class splashScreen1 extends Application {
             
             public void handle(ActionEvent event) {
                 System.out.println("Pressed back");
+                unameField.setText("");
+                passField.setText("");
                 mainStage.setScene(startScreen);                
             }
         }); 
@@ -493,11 +498,22 @@ public class splashScreen1 extends Application {
                }
                else
                {
-                   String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim(),contactNo.getText()};
-                   logicR.addAccount(unameR.getText().trim(),fnameR.getText().trim(),lnameR.getText().trim(),passR.getText().trim(),address);
-                   msg3.setText("Account created, you can now log in.");
-                   message.show();
-                   mainStage.setScene(loginScreen);
+                    String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim(),contactNo.getText()};
+                    logicR.addAccount(unameR.getText().trim(),fnameR.getText().trim(),lnameR.getText().trim(),passR.getText().trim(),address);
+                    msg3.setText("Account created, you can now log in.");
+                    message.show();
+                    unameR.setText("");
+                    fnameR.setText(""); 
+                    lnameR.setText("");
+                    doorNoR.setText("");
+                    streetR.setText("");
+                    passR.setText("");
+                    countyR.setText("");
+                    cityR.setText("");
+                    postcode2R.setText("");
+                    postcode1R.setText("");
+                    contactNo.setText("");
+                    mainStage.setScene(loginScreen);
                }
                
             }
@@ -518,6 +534,7 @@ public class splashScreen1 extends Application {
                 cityR.setText("");
                 postcode2R.setText("");
                 postcode1R.setText("");
+                contactNo.setText("");
             }
         });
         
@@ -526,7 +543,19 @@ public class splashScreen1 extends Application {
         { 
             public void handle(ActionEvent event)
             {
+                unameR.setText("");
+                fnameR.setText(""); 
+                lnameR.setText("");
+                doorNoR.setText("");
+                streetR.setText("");
+                passR.setText("");
+                countyR.setText("");
+                cityR.setText("");
+                postcode2R.setText("");
+                postcode1R.setText("");
+                contactNo.setText("");
                 mainStage.setScene(startScreen);
+                
             }
         });
         
