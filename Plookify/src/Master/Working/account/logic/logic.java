@@ -55,24 +55,6 @@ public class logic
         return 9999;
         
     }
-    public int getDetailInt(int identifier,String column,String table,String search)
-    {
-        try {
-            return data.makeQuery("SELECT "+search+" from "+table+" where "+column+"'="+identifier+"'").getInt(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 9999;
-    }
-    public String getDetailString(int identifier,String column,String table,String search)
-    {
-        try {
-            return data.makeQuery("SELECT "+search+" from "+table+" where "+column+"='"+identifier+"'").getString(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "error";
-    }
             
     public void subscribe()
     {
@@ -84,14 +66,15 @@ public class logic
     }
     public int premCheck(int iD)
     {
-        ResultSet rs=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'");
+        ResultSet rsPremCheck=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'");
         try {
-            if(rs.getString(3).equals("1"))
+            if(rsPremCheck.getString(2).equals("1"))
             {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
                 try {
-                    String dateDue = rs.getString(4);
+                    String dateDue = rsPremCheck.getString(3);
+                    System.out.println(dateDue);
                     Date dateB=dateFormat.parse(dateDue);
                     //System.out.println(date.after(dateB));
                     if(date.after(dateB))//if current date is past due date(so not paid)
@@ -110,5 +93,18 @@ public class logic
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;//if error in checking
+    }
+    public String stringGet(int ident,String identColumn,String table,String column)
+    {
+        ResultSet result1=null;
+        String statementA="SELECT "+column+" from "+table+" where "+identColumn+"='"+ident+"'";
+        result1=data.makeQuery(statementA);
+        try {
+            return result1.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("null");
+        return null;
     }
 }

@@ -37,9 +37,10 @@ public class database
 	
 	public static ResultSet makeQuery(String query)//method to take a string as a query for database, returns resultset
         {
-            Statement statement;
-            ResultSet red=null;
+            
             try {
+                    Statement statement;
+                    ResultSet red=null;
                     Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
                     statement = connection.createStatement();
                     statement.setQueryTimeout(10);
@@ -50,13 +51,14 @@ public class database
             catch (SQLException ex) {System.err.println(ex.getMessage());}
 
 
-            return red;
+            return null;
 	}
         
         public void makeUpdate(ArrayList<String> list1)//method for running multiple statements from an arraylist
         {                
-		Statement statement;
+		
 		try {
+                        Statement statement;
 			Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
                         statement = connection.createStatement();
 			statement.setQueryTimeout(10);
@@ -71,12 +73,13 @@ public class database
         
         public void makeUpdate(String query)//method running only one statement(not worth creating an arraylist for 1 update using the prev method
         {
-		Statement statement;
+		
 		try {
-                            Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-                            statement = connection.createStatement();
-                            statement.setQueryTimeout(10);
-                            statement.executeUpdate(query);
+                        Statement statement;
+                        Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+                        statement = connection.createStatement();
+                        statement.setQueryTimeout(10);
+                        statement.executeUpdate(query);
                     }
 		catch (SQLException ex) {System.err.println(ex.getMessage());}
         }
@@ -99,8 +102,9 @@ public class database
         
         public boolean dupCheck(String query)//checks if there is a row match using custom query
         {
-            ResultSet check=makeQuery(query);
+            
         try {
+            ResultSet check=makeQuery(query);
             int count=0;
             while(check.next())
                 {
