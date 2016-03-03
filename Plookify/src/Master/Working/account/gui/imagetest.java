@@ -14,7 +14,9 @@ import javafx.scene.image.Image;
 public class imagetest {
     public static void main(String[] args)
     {
-         Image logo=new Image("src/Master/Working/account/resources/logo.png");
+        Image logo=new Image("Master/Working/account/resources/logo.png");
+        
+        System.out.println("");
     }
     
 }

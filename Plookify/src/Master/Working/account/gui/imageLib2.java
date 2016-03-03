@@ -14,8 +14,8 @@ import javafx.scene.image.*;
  */
 public class imageLib2       
 {
-    Image logo=new Image("/Master/Working/account/gui/logo.png");
-    Image logo1=new Image("/Master/Working/account/gui/logo(small).png");
+    Image logo=new Image("/Master/Working/account/gui/resources/logo.png");
+    Image logo1=new Image("/Master/Working/account/gui/resources/logo(small).png");
     
     Map<String,Image> imageMap;
     

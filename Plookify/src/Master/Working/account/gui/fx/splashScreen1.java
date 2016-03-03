@@ -278,7 +278,7 @@ public class splashScreen1 extends Application {
         Label cityLabel = new Label("City");cityLabel.setStyle("-fx-text-fill: White;");cityLabel.relocate(xMargin, yValues[2]+90);
         Label postcodeLabel = new Label("PostCode");postcodeLabel.setStyle("-fx-text-fill: White;");postcodeLabel.relocate(xMargin, yValues[2]+120);
         Label contactLabel = new Label("Contact No.");contactLabel.setStyle("-fx-text-fill: White;");contactLabel.relocate(xMargin, yValues[2]+150);
-        paneRegister.getChildren().addAll(unameLabel,passLabel,fnameLabel,lnameLabel,doorNoLabel,streetLabel,countyLabel,cityLabel,postcodeLabel);
+        paneRegister.getChildren().addAll(unameLabel,passLabel,fnameLabel,lnameLabel,doorNoLabel,streetLabel,countyLabel,cityLabel,postcodeLabel,contactLabel);
         registerScreen=new Scene(paneRegister);
         
         TextField unameR = new TextField();
@@ -386,13 +386,13 @@ public class splashScreen1 extends Application {
         {
             public void handle(KeyEvent ke)
             { 
-                if(postcode2R.getText().length()>=11)
+                if(contactNo.getText().length()>=11)
                 {ke.consume();
                 System.out.println("consumed");}
             }  
         });
         
-        paneRegister.getChildren().addAll(unameR,passR,fnameR,lnameR,doorNoR,streetR,countyR,cityR,postcode1R,postcode2R);
+        paneRegister.getChildren().addAll(unameR,passR,fnameR,lnameR,doorNoR,streetR,countyR,cityR,postcode1R,postcode2R,contactNo);
         unameR.relocate(xMargin+100,yValues[0]); 
         passR.relocate(xMargin+100, yValues[0]+30);
         fnameR.relocate(xMargin+100, yValues[1]); 
@@ -401,85 +401,112 @@ public class splashScreen1 extends Application {
         streetR.relocate(xMargin+100, yValues[2]+30);
         countyR.relocate(xMargin+100, yValues[2]+60);
         cityR.relocate(xMargin+100, yValues[2]+90);
-        postcode2R.relocate(xMargin+100, yValues[2]+120);
-        postcode1R.relocate(xMargin+160, yValues[2]+120);//add textfields and password fields
+        postcode1R.relocate(xMargin+100, yValues[2]+120);
+        postcode1R.setPrefSize(50,20);
+        postcode2R.setPrefSize(50,20);
+        postcode2R.relocate(xMargin+160, yValues[2]+120);//add textfields and password fields
         contactNo.relocate(xMargin+100, yValues[2]+150);
         
         
-        /*JButton RegisterSubmit = new JButton("SUBMIT");
-        RegisterSubmit.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+        Button RegisterSubmit = new Button("SUBMIT");
+        RegisterSubmit.setOnAction(new EventHandler<ActionEvent>() {
+            
+            public void handle(ActionEvent event)
             {
-                pressSubmit(evt);
-            }
-            private void pressSubmit(ActionEvent evt)
-            {
+               Stage message=new Stage();
+                message.initStyle(StageStyle.UNDECORATED);//removes window decorations
+                message.setTitle("Error");
+                Pane msgDialog=new Pane();
+                msgDialog.setPrefSize(200,70);
+                Button ok3=new Button("Ok");
+                Label msg3=new Label("");
+                msgDialog.getChildren().addAll(ok3,msg3);
+                msg3.relocate(10,10);
+                ok3.relocate(90, 40);
+                ok3.setOnAction(new EventHandler<ActionEvent>() { 
+                        public void handle(ActionEvent event) {
+                            message.hide();
+                        }
+                    });
+                message.setScene(new Scene(msgDialog));
+            
                logic logicR=new logic();
-               if(logicR.duplicateCheck(unameR.getText().trim(),"username","account"))
+               if(unameR.getText().trim().trim().length()<6)
                {
-                    JOptionPane.showMessageDialog(null,"Username already exists");
+                   msg3.setText("Username is too short");
+                   message.show();
                }
-               else if(passR.getText().trim().trim().length()<6)
+               else if(logicR.duplicateCheck(unameR.getText().trim(),"username","account"))
                {
-                   JOptionPane.showMessageDialog(null,"Password is too short(minimum length is 8 characters");
+                    msg3.setText("Username already exists");
+                    message.show();
+               }
+               else if(passR.getText().trim().trim().length()<8)
+               {
+                   msg3.setText("Password is too short");
+                   message.show();
                }
                else if(unameR.getText().trim().length()<4)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if(fnameR.getText().trim().length()<4)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if(lnameR.getText().trim().length()<4)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if(doorNoR.getText().trim().length()<1)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if(streetR.getText().trim().length()<6)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                  msg3.setText("One or more Fields are incorrectly filled");
+                  message.show();
                }
                else if(countyR.getText().trim().length()<4)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if(cityR.getText().trim().length()<4)
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if((postcode1R.getText().trim().length()<3)||(postcode2R.getText().trim().length()<3))
                {
-                   JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                   msg3.setText("One or more Fields are incorrectly filled");
+                   message.show();
                }
                else if(contactNo.getText().replaceAll("[^\\d.]", "").trim().length()<11)//removes non numbers
                {
-                    JOptionPane.showMessageDialog(null,"One or more Fields are incorrectly filled");
+                    msg3.setText("One or more Fields are incorrectly filled");
+                    message.show();
                }
                else
                {
                    String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim(),contactNo.getText()};
                    logicR.addAccount(unameR.getText().trim(),fnameR.getText().trim(),lnameR.getText().trim(),passR.getText().trim(),address);
-                   JOptionPane.showMessageDialog(null,"Account created, you can now log in.");
-                   StartScreen start1=new StartScreen();
-                   regScreen.dispose();
-                   start1.startUI();
+                   msg3.setText("Account created, you can now log in.");
+                   message.show();
+                   mainStage.setScene(loginScreen);
                }
                
             }
         });
-        JButton ResetButton = new JButton("RESET");
-        ResetButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                pressReset(evt);
-            }
-            private void pressReset(ActionEvent evt)
+        
+        Button ResetButton = new Button("RESET");
+        ResetButton.setOnAction(new EventHandler<ActionEvent>()
+        { 
+            public void handle(ActionEvent event)
             {
                 unameR.setText("");
                 fnameR.setText(""); 
@@ -494,25 +521,19 @@ public class splashScreen1 extends Application {
             }
         });
         
-        JButton BackButton = new JButton("BACK");
-        BackButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+        Button BackButton = new Button("BACK");
+        BackButton.setOnAction(new EventHandler<ActionEvent>()
+        { 
+            public void handle(ActionEvent event)
             {
-                pressBack(evt);
-            }
-            private void pressBack(ActionEvent evt)
-            {
-                StartScreen start1=new StartScreen();
-                regScreen.dispose();
-                start1.startUI();
+                mainStage.setScene(startScreen);
             }
         });
         
-       
-        mainPanel.add(RegisterSubmit).setBounds(80, yValues[2]+200, 100, 20);
-        mainPanel.add(ResetButton).setBounds(200, yValues[2]+200, 100, 20);
-        mainPanel.add(BackButton).setBounds(320, yValues[2]+200, 100, 20);//adds buttons*/
+        paneRegister.getChildren().addAll(RegisterSubmit,ResetButton,BackButton);
+        RegisterSubmit.relocate(80, yValues[2]+200);
+        ResetButton.relocate(200, yValues[2]+200);
+        BackButton.relocate(320, yValues[2]+200);
     }
     
     public void accountPane(int ID)
