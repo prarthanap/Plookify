@@ -5,10 +5,8 @@
  */
 package Master.Working.account.gui;
 
-import java.io.IOException;
 import java.util.*;
 import javafx.scene.image.*;
-import javax.imageio.*;
 
 /**
  *

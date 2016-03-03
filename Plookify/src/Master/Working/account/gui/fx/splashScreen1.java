@@ -17,7 +17,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -265,7 +264,7 @@ public class splashScreen1 extends Application {
         Label logo1 = new Label("",new ImageView(images.getImage("logo_small")));
         Label title=new Label("Plookify");
         title.setStyle("-fx-text-fill: Cyan;");title.setScaleX(1.5);title.setScaleY(1.5);
-        logo1.relocate(200, 10);
+        logo1.relocate(200,10);
         title.relocate(210,120);
         paneRegister.getChildren().addAll(logo1,title);
         
@@ -282,114 +281,132 @@ public class splashScreen1 extends Application {
         paneRegister.getChildren().addAll(unameLabel,passLabel,fnameLabel,lnameLabel,doorNoLabel,streetLabel,countyLabel,cityLabel,postcodeLabel);
         registerScreen=new Scene(paneRegister);
         
-        /*TextField unameR = new TextField();
-        unameR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField unameR = new TextField();
+        unameR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
-            { 
-                if (unameR.getText().length() >=12 ) // limit textfield to 12 characters
-                e.consume(); 
+            public void handle(KeyEvent ke)
+            {
+                if(unameR.getText().length()>=12)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField fnameR = new JTextField();
-        fnameR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField fnameR = new TextField();
+        fnameR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
-            { 
-                if (fnameR.getText().length() >=12 ) // limit textfield to 12 characters
-                e.consume(); 
+            public void handle(KeyEvent ke)
+            {
+                if(fnameR.getText().length()>=12)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField lnameR = new JTextField();
-        lnameR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField lnameR = new TextField();
+        lnameR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
-            { 
-                if (lnameR.getText().length() >=12 ) // limit textfield to 12 characters
-                e.consume(); 
+            public void handle(KeyEvent ke)
+            {
+                if(lnameR.getText().length()>=12)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField doorNoR = new JTextField();
-        doorNoR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField doorNoR = new TextField();
+        doorNoR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
-            { 
-                if (doorNoR.getText().length() >=5 ) // limit textfield to 5 characters
-                e.consume();
+            public void handle(KeyEvent ke)
+            {
+                if(doorNoR.getText().length()>5)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField streetR = new JTextField();
-        streetR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField streetR = new TextField();
+        streetR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (streetR.getText().length() >=16 ) // limit textfield to 16 characters
-                e.consume(); 
+                if(streetR.getText().length()>=16)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField passR = new JPasswordField();
-        passR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField passR = new PasswordField();
+        passR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (passR.getText().length() >=12 ) // limit textfield to 12 characters
-                e.consume(); 
+                if(passR.getText().length()>=12)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField countyR = new JTextField();
-        countyR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField countyR = new TextField();
+        countyR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (countyR.getText().length() >=12 ) // limit textfield to 12 characters
-                e.consume(); 
+                if(countyR.getText().length()>=12)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField cityR = new JTextField();
-        cityR.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField cityR = new TextField();
+        cityR.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (cityR.getText().length() >=16 ) // limit textfield to 16 characters
-                e.consume(); 
+                if(cityR.getText().length()>=12)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField postcode2R = new JTextField();
-        postcode2R.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField postcode1R = new TextField();
+        postcode1R.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (postcode2R.getText().length() >=4 ) // limit textfield to 4 characters
-                e.consume(); 
+                if(postcode1R.getText().length()>=4)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField postcode1R = new JTextField();
-        postcode1R.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField postcode2R = new TextField();
+        postcode2R.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (postcode1R.getText().length() >=4 ) // limit textfield to 4 characters
-                e.consume(); 
+                if(postcode2R.getText().length()>=4)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        JTextField contactNo = new JTextField();
-        contactNo.addKeyListener(new java.awt.event.KeyAdapter()
+        TextField contactNo = new TextField();
+        contactNo.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
         {
-            public void keyTyped(KeyEvent e)
+            public void handle(KeyEvent ke)
             { 
-                if (postcode1R.getText().length() >=11 ) // limit textfield to 11 characters
-                e.consume(); 
+                if(postcode2R.getText().length()>=11)
+                {ke.consume();
+                System.out.println("consumed");}
             }  
         });
-        contactNo.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(KeyEvent e)
-            { 
-                if (contactNo.getText().length() >=11 ) // limit textfield to 11 characters
-                {e.consume();}
-            }  
-        });
-        JButton RegisterSubmit = new JButton("SUBMIT");
+        
+        paneRegister.getChildren().addAll(unameR,passR,fnameR,lnameR,doorNoR,streetR,countyR,cityR,postcode1R,postcode2R);
+        unameR.relocate(xMargin+100,yValues[0]); 
+        passR.relocate(xMargin+100, yValues[0]+30);
+        fnameR.relocate(xMargin+100, yValues[1]); 
+        lnameR.relocate(xMargin+100, yValues[1]+30);
+        doorNoR.relocate(xMargin+100, yValues[2]);
+        streetR.relocate(xMargin+100, yValues[2]+30);
+        countyR.relocate(xMargin+100, yValues[2]+60);
+        cityR.relocate(xMargin+100, yValues[2]+90);
+        postcode2R.relocate(xMargin+100, yValues[2]+120);
+        postcode1R.relocate(xMargin+160, yValues[2]+120);//add textfields and password fields
+        contactNo.relocate(xMargin+100, yValues[2]+150);
+        
+        
+        /*JButton RegisterSubmit = new JButton("SUBMIT");
         RegisterSubmit.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -492,17 +509,7 @@ public class splashScreen1 extends Application {
             }
         });
         
-        mainPanel.add(unameR).setBounds(xMargin+100,yValues[0], 100, 20); 
-        mainPanel.add(passR).setBounds(xMargin+100, yValues[0]+30, 100, 20);
-        mainPanel.add(fnameR).setBounds(xMargin+100, yValues[1], 120,20); 
-        mainPanel.add(lnameR).setBounds(xMargin+100, yValues[1]+30, 120, 20);
-        mainPanel.add(doorNoR).setBounds(xMargin+100, yValues[2], 30, 20);
-        mainPanel.add(streetR).setBounds(xMargin+100, yValues[2]+30, 150, 20);
-        mainPanel.add(countyR).setBounds(xMargin+100, yValues[2]+60, 100, 20);
-        mainPanel.add(cityR).setBounds(xMargin+100, yValues[2]+90, 100, 20);
-        mainPanel.add(postcode2R).setBounds(xMargin+100, yValues[2]+120, 40, 20);
-        mainPanel.add(postcode1R).setBounds(xMargin+160, yValues[2]+120, 40, 20);//add textfields and password fields
-        mainPanel.add(contactNo).setBounds(xMargin+100, yValues[2]+150, 100, 20);
+       
         mainPanel.add(RegisterSubmit).setBounds(80, yValues[2]+200, 100, 20);
         mainPanel.add(ResetButton).setBounds(200, yValues[2]+200, 100, 20);
         mainPanel.add(BackButton).setBounds(320, yValues[2]+200, 100, 20);//adds buttons*/

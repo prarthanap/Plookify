@@ -14,8 +14,8 @@ import javax.swing.ImageIcon;
  */
 public class imageLib       
 {
-    ImageIcon logo= new javax.swing.ImageIcon(getClass().getResource("/Master/Working/account/gui/logo.png"));
-    ImageIcon logo1=new javax.swing.ImageIcon(getClass().getResource("/Master/Working/account/gui/logo(small).png"));
+    ImageIcon logo= new javax.swing.ImageIcon(getClass().getResource("/Master/Working/account/resources/logo.png"));
+    ImageIcon logo1=new javax.swing.ImageIcon(getClass().getResource("/Master/Working/account/resources/logo(small).png"));
     Map<String,ImageIcon> imageMap;
     
     public imageLib()
