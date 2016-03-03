@@ -13,14 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+//import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
@@ -51,9 +49,11 @@ public class splashScreen1 extends Application {
         splashPane();
         startPane();
         loginPane();
-        splashScreen = new Scene(paneSplash, 300, 350);
-        startScreen = new Scene(paneStart,400,200);
-        loginScreen=new Scene(paneLogin,400,300);
+        accountPane();
+        splashScreen = new Scene(paneSplash);
+        startScreen = new Scene(paneStart);
+        loginScreen=new Scene(paneLogin);
+        accountScreen=new Scene(paneAccount);
         mainStage.setTitle("Plookify");
         mainStage.setScene(splashScreen);
         mainStage.show();
@@ -164,20 +164,59 @@ public class splashScreen1 extends Application {
                 logic accLogic=new logic();
                 if(accLogic.authCheck(uname,passwd)==9999)//returns 9999(which no one will have for id) when incorrect
                 {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Authentication Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Incorrect Username and/or Password");
-                    alert.showAndWait();
+                    submitButton.setDisable(true);//prevents button being clicked untill popup is gone
+                    Stage incorrect=new Stage();
+                    incorrect.initStyle(StageStyle.UNDECORATED);//removes window decorations
+                    incorrect.setTitle("Error!");
+                    Pane incorrectDialog=new Pane();
+                    incorrectDialog.setPrefSize(200,70);
+                    Button ok=new Button("Ok");
+                    Label msg=new Label("Authentication Error");
+                    incorrectDialog.getChildren().addAll(ok,msg);
+                    msg.relocate(40,10);
+                    ok.relocate(90, 40);
+                    ok.setOnAction(new EventHandler<ActionEvent>() { 
+                        public void handle(ActionEvent event) {
+                            submitButton.setDisable(false);//re-enable button
+                            incorrect.hide();
+                        }
+                    }); 
+                    incorrect.setScene(new Scene(incorrectDialog));
+                    incorrect.show();
+                    //Alert alert = new Alert(AlertType.INFORMATION);       //Would have used Alert if the ITL machines used jdk newer than 1.8 u40, machines used 1.8 u25 instead
+                    //alert.setTitle("Authentication Error");
+                    //alert.setHeaderText(null);
+                    //alert.setContentText("Incorrect Username and/or Password");
+                    //alert.showAndWait();
                 }
                 else
                 {
-                    System.out.println("Match");
-                    Alert success = new Alert(AlertType.INFORMATION);
-                    success.setTitle("Authentication Success");
-                    success.setHeaderText(null);
-                    success.setContentText("Welcome "+accLogic.getDetailString(accLogic.authCheck(uname,passwd),"ID","Account","Firstname")+"!");
-                    success.showAndWait();
+                    System.out.println("success");
+                    submitButton.setDisable(true);//prevents button being clicked untill popup is gone
+                    Stage success=new Stage();
+                    success.initStyle(StageStyle.UNDECORATED);//removes window decorations
+                    success.setTitle("Success!");
+                    Pane successDialog=new Pane();
+                    successDialog.setPrefSize(200,70);
+                    Button ok=new Button("Ok");
+                    Label msg=new Label("Authentication Error");
+                    successDialog.getChildren().addAll(ok,msg);
+                    msg.relocate(40,10);
+                    ok.relocate(90, 40);
+                    success.show();
+                    ok.setOnAction(new EventHandler<ActionEvent>() { 
+                        public void handle(ActionEvent event) {
+                            submitButton.setDisable(false);//re-enable button
+                            success.hide();
+                            mainStage.setScene(accountScreen);
+                        }
+                    });
+                    //System.out.println("Match");
+                    //Alert success = new Alert(AlertType.INFORMATION);
+                    //success.setTitle("Authentication Success");
+                    //success.setHeaderText(null);
+                    //success.setContentText("Welcome "+accLogic.getDetailString(accLogic.authCheck(uname,passwd),"ID","Account","Firstname")+"!");
+                    //success.showAndWait();
                      
                 }
              }
@@ -211,5 +250,41 @@ public class splashScreen1 extends Application {
     public void accountPane()
     {
         paneAccount=new Pane();
+        paneAccount.setPrefSize(600,400);
+        paneAccount.setStyle("-fx-background-color: #000000;");
+        Label logoMini= new Label("",new ImageView(images.getImage("logo_small")));
+        logoMini.setScaleX(50);logoMini.setScaleY(50);
+        paneAccount.getChildren().add(logoMini);
+        logoMini.relocate(20, 20);
+        /*JButton prem=new JButton();
+        if(logicA.premCheck(4)==2)
+        {
+            prem.setText("Premium");
+            JLabel expiry=new JLabel("Next Due :"+logicA.getDetailString(4,"USERID","SUBSCRIPTION","DUEDATE"), SwingConstants.CENTER);
+            expiry.setForeground(Color.RED);
+            mainPanel.add(expiry).setBounds(420,70,150,20);
+        }
+        else if(logicA.premCheck(4)==0)
+        {
+            prem.setText("error");
+        }
+        else 
+        {
+            prem.setText("Free");
+        }
+        mainPanel.add(prem).setBounds(450,40,110,20);//prem status button
+
+        JLabel accountTitle=new JLabel(logicA.getDetailString(4,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.getDetailString(4,"ID","ACCOUNT", "LASTNAME"), SwingConstants.CENTER);accountTitle.setForeground(Color.WHITE);      
+        accountTitle.setFont(new java.awt.Font("Tahoma", 0, 22));
+        accountTitle.setOpaque(true);
+        accountTitle.setBackground(Color.GRAY);
+        mainPanel.add(accountTitle).setBounds(100,40,350,20);
+        
+        JButton logOutButton=new JButton("Log out");
+        mainPanel.add(logOutButton).setBounds(100,300,100,20);
+        JButton deviceButton=new JButton("Devices");
+        mainPanel.add(deviceButton).setBounds(225,300,100,20);
+        JButton changeDetailsButton=new JButton("<html><center>Change Account Details</center></html>");
+        mainPanel.add(changeDetailsButton).setBounds(350,300,150,30);*/
     }
 }
