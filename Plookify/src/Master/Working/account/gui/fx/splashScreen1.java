@@ -6,13 +6,20 @@
 package Master.Working.account.gui.fx;
 
 import Master.Working.account.gui.imageLib2;
+import Master.Working.account.logic.deviceInfo;
 import Master.Working.account.logic.logic;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 //import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
@@ -42,8 +49,9 @@ public class splashScreen1 extends Application {
     private Scene registerScreen;
     private Stage mainStage;
     private final imageLib2 images=new imageLib2();
-    private logic accLogic=new logic();
-    private int ID=9999;
+    private final logic accLogic=new logic();
+    private int ID=5;
+    private int premstat=0;
     
     @Override
     public void start(Stage splashStage) {
@@ -52,16 +60,15 @@ public class splashScreen1 extends Application {
         splashPane();
         startPane();
         loginPane();
-        registerPane();
-        splashScreen = new Scene(paneSplash);
-        startScreen = new Scene(paneStart);
-        loginScreen=new Scene(paneLogin);
+        registerPane();        
+        
+        devicePane();
         mainStage.setTitle("Plookify");
         mainStage.setScene(splashScreen);
         mainStage.show();
         System.out.println("Start");
         PauseTransition pause=new PauseTransition(Duration.millis(1000));
-        pause.setOnFinished(event->mainStage.setScene(startScreen));
+        pause.setOnFinished(event->mainStage.setScene(deviceScreen));
         pause.play();
     }
     /**
@@ -83,6 +90,7 @@ public class splashScreen1 extends Application {
         bar1.setPrefSize(300,20);
         paneSplash.getChildren().add(bar1);
         paneSplash.setPrefSize(400,350);
+        splashScreen = new Scene(paneSplash);
     }
     
     public void startPane()
@@ -113,6 +121,7 @@ public class splashScreen1 extends Application {
         }); 
         paneStart.getChildren().add(registerButton);registerButton.setLayoutX(200);registerButton.setLayoutY(160);
         paneStart.getChildren().add(loginButton);loginButton.setLayoutX(120);loginButton.setLayoutY(160);
+        startScreen = new Scene(paneStart);
     }
     public void loginPane()
     {
@@ -165,7 +174,13 @@ public class splashScreen1 extends Application {
                 System.out.println("Pressed submit");
                 String uname = unameField.getText();
                 String passwd = passField.getText();
-                ID=accLogic.authCheck(uname,passwd);
+                ID=accLogic.data.authCheckD(uname,passwd);
+                 try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                System.out.println(ID+" from login screen");
                 if(ID==9999)//returns 9999(which no one will have for id) when incorrect
                 {
                     submitButton.setDisable(true);//prevents button being clicked untill popup is gone
@@ -188,11 +203,17 @@ public class splashScreen1 extends Application {
                     }); 
                     incorrect.setScene(new Scene(incorrectDialog));
                     incorrect.show();
-                    //Alert alert = new Alert(AlertType.INFORMATION);       //Would have used Alert if the ITL machines used jdk newer than 1.8 u40, machines used 1.8 u25 instead
-                    //alert.setTitle("Authentication Error");
-                    //alert.setHeaderText(null);
-                    //alert.setContentText("Incorrect Username and/or Password");
-                    //alert.showAndWait();
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                        //Alert alert = new Alert(AlertType.INFORMATION);       //Would have used Alert if the ITL machines used jdk newer than 1.8 u40, machines used 1.8 u25 instead
+                        //alert.setTitle("Authentication Error");
+                        //alert.setHeaderText(null);
+                        //alert.setContentText("Incorrect Username and/or Password");
+                        //alert.showAndWait();
+                    
                 }
                 else
                 {
@@ -217,7 +238,6 @@ public class splashScreen1 extends Application {
                             unameField.setText("");
                             passField.setText("");
                             accountPane(ID);
-                            accountScreen=new Scene(paneAccount);
                             mainStage.setScene(accountScreen);
                         }
                     });
@@ -255,7 +275,7 @@ public class splashScreen1 extends Application {
         submitButton.relocate(80,260);
         resetButton.relocate(180,260);
         backButton.relocate(280,260);
-        
+       loginScreen=new Scene(paneLogin);
     }
     
     public void registerPane()
@@ -513,6 +533,11 @@ public class splashScreen1 extends Application {
                     postcode2R.setText("");
                     postcode1R.setText("");
                     contactNo.setText("");
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     mainStage.setScene(loginScreen);
                }
                
@@ -577,14 +602,25 @@ public class splashScreen1 extends Application {
         logoMini.relocate(20, 20);
         Button prem=new Button();
         int check=accLogic.premCheck(ID);
+        try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         System.out.println(check);
         if (check==2)
             {
                 prem.setText("Premium");
                 Label expiry=new Label("Next Due : "+accLogic.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE"));
+                try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 expiry.setStyle("-fx-text-fill: red;");
                 expiry.relocate(420,70);
                 paneAccount.getChildren().add(expiry);
+                premstat=1;
             }
         else if(check==0)
             {
@@ -601,13 +637,275 @@ public class splashScreen1 extends Application {
         accountTitle.setScaleX(1.5);accountTitle.setScaleY(1.5);
         accountTitle.relocate(140, 40);
         accountTitle.setStyle("-fx-text-fill: white;");
+        try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
         Button logOutButton=new Button("Log out");
         Button deviceButton=new Button("Devices");
         Button changeDetailsButton=new Button("Change Account Details");
-        deviceButton.relocate(100,300);
-        changeDetailsButton.relocate(200,300);
-        logOutButton.relocate(400,300);
+        deviceButton.relocate(100,350);
+        deviceButton.setOnAction(new EventHandler<ActionEvent>()
+        { 
+            public void handle(ActionEvent event)
+            {
+                devicePane();
+                mainStage.setScene(deviceScreen);
+            }
+        });
+        changeDetailsButton.relocate(200,350);
+        logOutButton.relocate(400,350);
+        logOutButton.setOnAction(new EventHandler<ActionEvent>()
+        { 
+            public void handle(ActionEvent event)
+            {
+                premstat=0;
+                mainStage.setScene(startScreen);
+            }
+        });
         paneAccount.getChildren().addAll(prem,logoMini,accountTitle,logOutButton,deviceButton,changeDetailsButton);
+        accountScreen=new Scene(paneAccount);
+    }
+    public void devicePane()
+    {
+        paneDevice=new Pane();
+        paneDevice.setPrefSize(600,400);
+        paneDevice.setStyle("-fx-background-color: #000000;");
+        ImageView logoM=new ImageView(images.getImage("logo_small"));
+        logoM.setPreserveRatio(true);
+        logoM.setFitHeight(50);
+        Label logoMini= new Label("",logoM);
+        logoMini.relocate(20, 20);
+        Button prem=new Button();
+        int check=accLogic.premCheck(ID);
+        System.out.println(check);
+        if (check==2)
+            {
+                prem.setText("Premium");
+                Label expiry=new Label("Next Due : "+accLogic.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE"));
+                try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                expiry.setStyle("-fx-text-fill: red;");
+                expiry.relocate(420,70);
+                paneDevice.getChildren().add(expiry);
+            }
+        else if(check==0)
+            {
+                prem.setText("error");
+            }
+        else
+            {
+                prem.setText("Subscribe");
+            }
+        
+        prem.relocate(450,40);
+        
+        Label accountTitle=new Label(accLogic.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+accLogic.stringGet(ID,"ID","ACCOUNT", "LASTNAME"));
+        try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        accountTitle.setScaleX(1.5);accountTitle.setScaleY(1.5);
+        accountTitle.relocate(140, 40);
+        accountTitle.setStyle("-fx-text-fill: white;");
+        Button logOutButton=new Button("Log out");
+        Button changeDetailsButton=new Button("Change Account Details");
+        changeDetailsButton.relocate(200,350);
+        logOutButton.relocate(400,350);
+        logOutButton.setOnAction(new EventHandler<ActionEvent>()
+        { 
+            @Override
+            public void handle(ActionEvent event)
+            {
+                ID=9999;
+                mainStage.setScene(startScreen);
+            }
+        });
+        paneDevice.getChildren().addAll(prem,logoMini,accountTitle,logOutButton,changeDetailsButton);
+        
+        ResultSet deviceList=accLogic.resultGet("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");    
+        TableView deviceTable = new TableView();
+        deviceTable.setEditable(false);
+        TableColumn col1 = new TableColumn("Device Name");
+        col1.setMinWidth(150);
+        col1.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
+        TableColumn col2 = new TableColumn("Device Type");
+        col2.setMinWidth(100);
+        col2.setCellValueFactory(new PropertyValueFactory<>("deviceType"));
+        TableColumn col3 = new TableColumn("Days since added");
+        col3.setMinWidth(130);
+        col3.setCellValueFactory(new PropertyValueFactory<>("deviceDate"));
+        deviceTable.getColumns().addAll(col1,col2,col3);
+        deviceTable.setPrefSize(385,200);
+        deviceTable.relocate(60,100);
+        ObservableList<deviceInfo> deviceData = accLogic.makeTableInfo(ID);
+        deviceTable.setItems(deviceData);
+        paneDevice.getChildren().add(deviceTable);
+        try {
+            deviceList.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Button[][] deviceButtons=new Button[5][2];
+        for(int i=0;i<5;i++)
+        {
+            deviceButtons[i][0]=new Button("Modify");
+            deviceButtons[i][1]=new Button("Delete");
+            deviceButtons[i][0].relocate(450,120+(i*25));
+            deviceButtons[i][1].relocate(520,120+(i*25));
+            if(deviceData.get(i).getDeviceDate()>=30)
+            {
+                paneDevice.getChildren().addAll(deviceButtons[i][0],deviceButtons[i][1]);
+            }
+            else
+            {
+                paneDevice.getChildren().add(deviceButtons[i][0]);
+            }
+            
+        }
+        deviceButtons[0][0].setOnAction(new EventHandler<ActionEvent>()
+            { 
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    int devID=deviceData.get(0).getDeviceID();
+                    deviceModify(devID);
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally
+                    {
+                        devicePane();
+                    }
+                }
+            });
+        deviceButtons[1][0].setOnAction(new EventHandler<ActionEvent>()
+            { 
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    int devID=deviceData.get(1).getDeviceID();
+                    deviceModify(devID);
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally
+                    {
+                        devicePane();
+                    }
+                }
+            });
+        deviceButtons[2][0].setOnAction(new EventHandler<ActionEvent>()
+            { 
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    int devID=deviceData.get(2).getDeviceID();
+                    deviceModify(devID);
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally
+                    {
+                        devicePane();
+                    }
+                }
+            });
+        deviceButtons[3][0].setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    int devID=deviceData.get(3).getDeviceID();
+                    deviceModify(devID);
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally
+                    {
+                        devicePane();
+                    }
+                }
+            });
+        deviceButtons[4][0].setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    int devID=deviceData.get(5).getDeviceID();
+                    deviceModify(devID);
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally
+                    {
+                        devicePane();
+                    }
+                }
+            });
+        
+        
+        
+        deviceScreen=new Scene(paneDevice);
+        
+    }
+    
+    public void deviceModify(int pos)
+    {
+        System.out.println(pos);
+        Stage modifyName=new Stage();
+        modifyName.setTitle("Input name you want to change name of device to");
+        Pane dMod=new Pane();
+        dMod.setPrefSize(250,150);
+        dMod.setStyle("-fx-background-color: #000000;");
+        TextField nameChange = new TextField();
+        nameChange.addEventFilter(KeyEvent.KEY_TYPED,new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent ke)
+            { 
+                if(nameChange.getText().length()>=16)
+                {ke.consume();
+                System.out.println("consumed");}
+            }  
+        });
+        Button confirm=new Button("Confirm");
+        confirm.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    String stat="UPDATE DEVICE SET DEVICENAME='"+nameChange.getText()+"' WHERE DEVICEID='"+pos+"'";
+                    accLogic.changeRecord(stat);
+                    try {
+                        accLogic.data.conn.close();
+                        } catch (SQLException ex) {
+                        Logger.getLogger(splashScreen1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    modifyName.close();
+                }
+            });
+        
+        dMod.getChildren().addAll(nameChange,confirm);
+        confirm.relocate(90, 40);
+        nameChange.relocate(90,10);
+        modifyName.setScene(new Scene(dMod));
+        modifyName.show();
     }
 }

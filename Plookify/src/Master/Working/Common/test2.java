@@ -5,15 +5,12 @@
  */
 package Master.Working.Common;
 
-import java.sql.Connection;
+import Master.Working.account.logic.logic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,22 +18,22 @@ import java.util.logging.Logger;
  */
 public class test2
 {
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, ParseException{
     database test=new database();
-    ResultSet result=test.makeQuery("SELECT * FROM ACCOUNT");
+    ResultSet result=test.makeQuery("SELECT DEVICEID FROM DEVICE");
     while(result.next()){
-            String name = result.getString(4);
-            String name2=result.getString(5);
+            String name = result.getString(1);
+            String name2=result.getString(1);
              System.out.println(name+" "+name2);}
-    ResultSet result2=test.makeQuery("SELECT USERID from SUBSCRIPTION where DUEDATE!=null or date(DUEDATE)> date('2016-02-29')");
-    while(result2.next())
-    {
-    System.out.println(result2.getInt(1));
-    }
+    //ResultSet result2=test.makeQuery("SELECT USERID from SUBSCRIPTION where DUEDATE!=null or date(DUEDATE)> date('2016-02-29')");
+    //while(result2.next())
+    //{
+    //System.out.println(result2.getInt(1));
+    //}
     
     
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    Date date = new Date();
+    /*Date date = new Date();
     System.out.println(dateFormat.format(date));
     
     String date2="2016-03-03";
@@ -62,10 +59,13 @@ public class test2
             System.out.println(date.after(dateC));
         } catch (ParseException ex) {
             Logger.getLogger(test2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
+        }*/
+        //logic log1=new logic();
+        //System.out.println(log1.daysBeforeNow("2016-02-03"));
+        test.makeUpdate("UPDATE DEVICE SET DEVICENAME='CHANGED' WHERE DEVICEID='4'");
         
-
+        
+        
     }
             
 }
