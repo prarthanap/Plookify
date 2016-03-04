@@ -47,6 +47,12 @@ private TextField searchField;
 @FXML
 private TableView<Friends> friendList;
 @FXML
+private TableColumn friends;
+@FXML
+private TableView<friendPlaylist> fPlaylist;
+@FXML
+private TableColumn playlist;
+@FXML
 private TableView<Users> users;
 @FXML
 private TableColumn user;
@@ -60,6 +66,8 @@ private AnchorPane privateDialog;
 private AnchorPane friendAddedDialog;
 @FXML
 private AnchorPane upgradeDialog;
+@FXML
+private AnchorPane friendPlaylist;
 
 
 
@@ -81,7 +89,7 @@ private AnchorPane upgradeDialog;
     @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
         
-        int prem = 0;
+        int prem = 1;
         if(prem==1)
         {
             confirmDialog.setVisible(true);
@@ -110,7 +118,7 @@ private AnchorPane upgradeDialog;
     private void launchPrivate(MouseEvent event)
     {
         logic premium = new logic();
-        int prem = 0;
+        int prem = 2;
         if(prem==2)
         {
             privateDialog.setVisible(true);
@@ -154,7 +162,7 @@ private AnchorPane upgradeDialog;
     @FXML
     private void acceptDialog(MouseEvent event)
     {
-        int prem = 0;
+        int prem = 1;
         if(prem==1)
         {
             friendAddedDialog.setVisible(false);

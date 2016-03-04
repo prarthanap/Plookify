@@ -39,7 +39,7 @@ public class FriendRequestController implements Initializable {
     @FXML
     public void decline(MouseEvent event)
     {
-
+        System.exit(0);
     }
     
 }
