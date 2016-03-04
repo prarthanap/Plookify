@@ -108,7 +108,6 @@ public class logic
     {
         ResultSet setResult=null;
         setResult=data.makeQuery(query);
-        
         return setResult;
                 
     }

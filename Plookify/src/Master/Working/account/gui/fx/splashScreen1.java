@@ -50,7 +50,7 @@ public class splashScreen1 extends Application {
     private Stage mainStage;
     private final imageLib2 images=new imageLib2();
     private final logic accLogic=new logic();
-    private int ID=5;
+    private int ID=9999;
     private int premstat=0;
     
     @Override
@@ -62,13 +62,12 @@ public class splashScreen1 extends Application {
         loginPane();
         registerPane();        
         
-        devicePane();
         mainStage.setTitle("Plookify");
         mainStage.setScene(splashScreen);
         mainStage.show();
         System.out.println("Start");
         PauseTransition pause=new PauseTransition(Duration.millis(1000));
-        pause.setOnFinished(event->mainStage.setScene(deviceScreen));
+        pause.setOnFinished(event->mainStage.setScene(startScreen));
         pause.play();
     }
     /**
