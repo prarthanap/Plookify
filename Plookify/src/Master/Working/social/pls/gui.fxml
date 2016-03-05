@@ -24,7 +24,7 @@
          <items>
             <AnchorPane prefHeight="507.0" prefWidth="803.0">
                <children>
-                  <TextField fx:id="searchField" layoutX="567.0" layoutY="14.0" promptText="Search" style="-fx-background-radius: 20;">
+                  <TextField fx:id="searchField" layoutX="567.0" layoutY="14.0" onKeyReleased="#userTyped" promptText="Search" style="-fx-background-radius: 20;">
                      <font>
                         <Font size="14.0" />
                      </font>

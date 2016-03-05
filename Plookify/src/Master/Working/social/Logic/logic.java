@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class logic {
     
-    private database data=new database();
+    public database data=new database();
     
     public logic()
     {
