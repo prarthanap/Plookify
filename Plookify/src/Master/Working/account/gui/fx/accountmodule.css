@@ -1,0 +1,13 @@
+/*
+ * CCS for Account GUI
+ */
+
+.screen
+{
+    -fx-background-color:#000000;
+}
+
+.dialog
+{
+    -fx-background-color:#777777;
+}
