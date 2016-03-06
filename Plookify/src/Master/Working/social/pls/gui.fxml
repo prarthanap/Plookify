@@ -24,16 +24,20 @@
          <items>
             <AnchorPane prefHeight="507.0" prefWidth="803.0">
                <children>
+                  <AnchorPane fx:id="displayFriendResults" layoutX="414.0" layoutY="74.0" prefHeight="387.0" prefWidth="216.0">
+                     <children>
+                        <TableView fx:id="results" layoutX="5.0" prefHeight="384.0" prefWidth="207.0" stylesheets="@../GUI/test.css">
+                          <columns>
+                            <TableColumn fx:id="user" prefWidth="212.0" text="User" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                   <TextField fx:id="searchField" layoutX="567.0" layoutY="14.0" onKeyReleased="#userTyped" promptText="Search" style="-fx-background-radius: 20;">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TableView fx:id="results" layoutX="448.0" layoutY="68.0" prefHeight="384.0" prefWidth="207.0" stylesheets="@../GUI/test.css">
-                    <columns>
-                      <TableColumn fx:id="user" prefWidth="212.0" text="User" />
-                    </columns>
-                  </TableView>
                   <AnchorPane fx:id="friendView" layoutX="676.0" layoutY="105.0" prefHeight="165.0" prefWidth="106.0" style="-fx-background-color: #ffffff;">
                      <children>
                         <TableView fx:id="friendList" prefHeight="165.0" prefWidth="131.0" stylesheets="@../GUI/test.css">

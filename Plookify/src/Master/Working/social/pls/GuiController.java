@@ -68,6 +68,8 @@ private TableColumn user;
 @FXML
 private AnchorPane friendView;
 @FXML
+private AnchorPane displayFriendResults;
+@FXML
 private AnchorPane confirmDialog;
 @FXML
 private AnchorPane privateDialog;
@@ -90,6 +92,7 @@ private final ObservableList<Users> data = FXCollections.observableArrayList();
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        user.setCellValueFactory(new PropertyValueFactory("User"));
+       displayFriendResults.setVisible(false);
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
        friendAddedDialog.setVisible(false);
@@ -195,6 +198,8 @@ private final ObservableList<Users> data = FXCollections.observableArrayList();
     @FXML
     private void userTyped(KeyEvent event)
     {
+        displayFriendResults.setVisible(true);
+        
         FilteredList<Users> filteredData = new FilteredList<>(data, e -> true); 
         searchField.setOnKeyReleased(e -> {
 
@@ -221,6 +226,7 @@ private final ObservableList<Users> data = FXCollections.observableArrayList();
         SortedList<Users> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(users.comparatorProperty());
         users.setItems(sortedData);
+        
     }
 
     
