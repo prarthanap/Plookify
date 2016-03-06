@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
 
 <Pane fx:id="registerPane" maxHeight="600.0" maxWidth="500.0" minHeight="600.0" minWidth="500.0" prefHeight="600.0" prefWidth="500.0" styleClass="pane" stylesheets="@accountmodule.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.account.gui.fx.AccountLoginController">
    <children>
@@ -95,13 +97,31 @@
             <Label layoutX="51.0" layoutY="78.0" prefHeight="38.0" prefWidth="199.0" styleClass="subDialog" text="You can choose a monthly, quartlerly, bi-yearly or yearly subscription." wrapText="true" />
             <Label layoutX="150.0" layoutY="153.0" prefHeight="17.0" prefWidth="50.0" text="Months" />
             <Button layoutX="119.0" layoutY="198.0" mnemonicParsing="false" onAction="#subConfirmPressed" text="Confirm" />
-            <ChoiceBox fx:id="subsMonth" layoutX="94.0" layoutY="149.0" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" />
+            <ComboBox fx:id="subMonths" layoutX="70.0" layoutY="150.0" prefHeight="25.0" prefWidth="73.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="1" />
+                        <String fx:value="3" />
+                        <String fx:value="6" />
+                        <String fx:value="12" />
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="0" />
+                </value>
+            </ComboBox>
          </children>
       </Pane>
       <Pane fx:id="dialogPaneReg" layoutX="-480.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" styleClass="dialog" stylesheets="@accountmodule.css">
          <children>
             <Button fx:id="regOkButton" layoutX="109.0" layoutY="100.0" mnemonicParsing="false" onAction="#regDialogOkButton" text="OK" />
             <Label fx:id="regDialogMsg" layoutX="22.0" layoutY="38.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="placeholder" />
+         </children>
+      </Pane>
+      <Pane fx:id="dialogPane" layoutX="-473.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" styleClass="dialog" stylesheets="@accountmodule.css">
+         <children>
+            <Button fx:id="loginOkButton" layoutX="109.0" layoutY="100.0" mnemonicParsing="false" onAction="#dialogOkButton" text="OK" />
+            <Label fx:id="loginDialogMessage" layoutX="22.0" layoutY="38.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="placeholder" />
          </children>
       </Pane>
    </children>

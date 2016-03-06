@@ -9,7 +9,6 @@ import Master.Working.account.logic.logic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -33,52 +31,31 @@ public class AccountLoginController implements Initializable {
     private final int[] dumpster2={-1000,500};
     private int userID=9999;
     
-    @FXML
-    private Pane startPane;//400,200
+    @FXML private Pane startPane;//400,200
 
-    @FXML
-    private Pane dialogPane;
-    @FXML
-    private Label loginDialogMessage;
+    @FXML private Pane dialogPane;
+    @FXML private Label loginDialogMessage;
     
-    @FXML
-    private Pane loginPane;//400,200
-    @FXML
-    private TextField loginUnameField;
-    @FXML
-    private PasswordField loginPassField;
-    @FXML
-    private Button regButton;
-    @FXML
-    private Button logButton;
+    @FXML private Pane loginPane;//400,200
+    @FXML private TextField loginUnameField;
+    @FXML private PasswordField loginPassField;
+    @FXML private Button regButton;
+    @FXML private Button logButton;
     
-    @FXML
-    private Pane registerPane;//size 500,600
-    @FXML
-    private TextField unameFieldR;
-    @FXML
-    private TextField passFieldR;
-    @FXML
-    private TextField fnameR;
-    @FXML
-    private TextField lnameR;
-    @FXML
-    private TextField doorNoR;
-    @FXML
-    private TextField streetR;
-    @FXML
-    private TextField countyR;
-    @FXML
-    private TextField cityR;
-    @FXML
-    private TextField postcode1R;
-    @FXML
-    private TextField postcode2R;
-    @FXML
-    private TextField contactNoR;
-    @FXML
-    private Button backButtonR;
-    @FXML private ChoiceBox subMonths;
+    @FXML private Pane registerPane;//size 500,600
+    @FXML private TextField unameFieldR;
+    @FXML private TextField passFieldR;
+    @FXML private TextField fnameR;
+    @FXML private TextField lnameR;
+    @FXML private TextField doorNoR;
+    @FXML private TextField streetR;
+    @FXML private TextField countyR;
+    @FXML private TextField cityR;
+    @FXML private TextField postcode1R;
+    @FXML private TextField postcode2R;
+    @FXML private TextField contactNoR;
+    @FXML private Button backButtonR;
+    @FXML private ComboBox subMonths;
     @FXML private Pane subDialogPane;
     @FXML private Pane dialogPaneReg;
     @FXML private Label regDialogMsg;
@@ -100,8 +77,6 @@ public class AccountLoginController implements Initializable {
     {
         Parent reg1 = FXMLLoader.load(getClass().getResource("screenRegister.fxml"));
         Scene regScene = new Scene(reg1);
-        subMonths=new ChoiceBox(FXCollections.observableArrayList(0,1,3,6,12));
-        subMonths.setValue(0);
         Stage regStage=new Stage();
         regStage.setScene(regScene);
         logButton.setDisable(true);
@@ -320,12 +295,10 @@ public class AccountLoginController implements Initializable {
                {
                     String[] address={doorNoR.getText().trim(),streetR.getText().trim(),countyR.getText().trim(),cityR.getText().trim(),postcode1R.getText().trim()+" "+postcode2R.getText().trim(),contactNoR.getText()};
                     logic1.addAccount(unameFieldR.getText().trim(),fnameR.getText().trim(),lnameR.getText().trim(),passFieldR.getText().trim(),address);
-                    unameFieldR.setText("");
                     fnameR.setText(""); 
                     lnameR.setText("");
                     doorNoR.setText("");
                     streetR.setText("");
-                    passFieldR.setText("");
                     countyR.setText("");
                     cityR.setText("");
                     postcode2R.setText("");
@@ -365,9 +338,12 @@ public class AccountLoginController implements Initializable {
      @FXML
      private void subConfirmPressed(ActionEvent event)
      {
-         int subVal=(int)subMonths.getValue();
-         logic1.newSubscribe(userID, subVal);
+         int idSub=logic1.data.authCheckD(unameFieldR.getText(), passFieldR.getText());
+         int subVal=Integer.parseInt((String)subMonths.getValue());
+         logic1.newSubscribe(idSub, subVal);
          subDialogPane.relocate(dumpster1[0],dumpster1[1]);
+         unameFieldR.setText("");
+         passFieldR.setText("");
          Stage stage2 = (Stage) backButtonR.getScene().getWindow();
          stage2.close();
      }
