@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@accountmodule.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane maxHeight="200.0" maxWidth="200.0" minHeight="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" styleClass="screen" stylesheets="@accountmodule.css">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/logo.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="96.0" layoutY="283.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loginPressed" prefHeight="30.0" prefWidth="100.0" text="LOGIN" />
+            <Button layoutX="205.0" layoutY="283.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#registerPressed" prefHeight="30.0" prefWidth="100.0" text="REGISTER" />
+            <Pane layoutX="80.0" layoutY="144.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" styleClass="dialog" stylesheets="@accountmodule.css">
+               <children>
+                  <Button layoutX="109.0" layoutY="100.0" mnemonicParsing="false" text="OK" />
+                  <Label fx:id="loginDialogMessage" layoutX="22.0" layoutY="38.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="placeholder" />
+               </children></Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,6 +1,9 @@
 package Master.Working.account.logic;
 
 import Master.Working.Common.database;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -19,6 +22,7 @@ import javafx.collections.ObservableList;
 public class logic
 {
     public database data=new database();
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     public logic()
     {
         
@@ -32,8 +36,14 @@ public class logic
             System.out.println(false);
             String update="INSERT INTO ACCOUNT (USERNAME,PASSWORD,FIRSTNAME,LASTNAME,DOORNO,STREET,CITY,COUNTY,POSTCODE,CONTACTNO) VALUES('"+uname+"','"+pass+"','"+fname+"','"+lname+"','"+address[0]+"','"+address[1]+"','"+address[2]+"','"+address[3]+"','"+address[4]+"','"+address[5]+"')";
             //System.out.println(update);
+            
             data.makeUpdate(update);
-            System.out.println("added");
+            System.out.println("added acc");
+            int newID=data.authCheckD(uname,pass);
+            String update2="INSERT INTO SUBSCRIPTION (USERID) VALUES('"+newID+"')";
+            data.makeUpdate(update2);
+            System.out.println("added blank sub");
+            
         }
     }
     
@@ -42,9 +52,31 @@ public class logic
         
     }
      
-    public void subscribe()
+    public void newSubscribe(int ID,int months)
     {
+        try {
+            String endDate=getDueDateString(months);
+            int premSet=0;
+            int monthSet=0;
+            if(daysBeforeNow(endDate)<-29)
+            {
+                premSet=1;
+                monthSet=months;
+            }
+            Connection conn2= DriverManager.getConnection("jdbc:sqlite:data.db");
+            PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, SUBSCRIPTIONTYPE=?, DUEDATE=? WHERE USERID=?");
+            pStat1.setInt(1,premSet);
+            pStat1.setInt(2,monthSet);
+            pStat1.setString(3,endDate);
+            pStat1.setInt(4,ID);
+            pStat1.execute();
+            System.out.println("update Made");
+            conn2.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+                
     }
     public boolean duplicateCheck(String search,String column,String table)
     {
@@ -114,7 +146,6 @@ public class logic
     
     public int daysBeforeNow(String date)
     {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date now = dateFormat.parse(dateFormat.format(new Date()));
             Date date2= dateFormat.parse(date);
@@ -178,5 +209,24 @@ public class logic
             System.out.println("deviceList RS closed");
         }
         return deviceData;
+    }
+    public String getDueDateString(int months)
+    {
+        try {
+            Date now = dateFormat.parse(dateFormat.format(new Date()));
+            long stamp=now.getTime();
+            long adding=2592000*months;
+            stamp=stamp/1000;
+            stamp=stamp+adding;
+            stamp=stamp*1000;
+            Date dueDate=dateFormat.parse(dateFormat.format(stamp));
+            System.out.println(dateFormat.format(dueDate));
+            return dateFormat.format(dueDate);
+            } catch (ParseException ex) 
+            {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        return null;
     }
 }

@@ -2,7 +2,7 @@
  * CCS for Account GUI
  */
 
-.screen
+.pane
 {
     -fx-background-color:#000000;
 }
@@ -10,4 +10,41 @@
 .dialog
 {
     -fx-background-color:#777777;
+}
+
+.label
+{
+    -fx-text-fill: Cyan;
+    -fx-font-size: 12px;
+}
+
+.button
+{
+    -fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #373837 100%);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.editmode
+{
+     -fx-text-fill: green;
+     -fx-background-color:papayawhip;
+}
+.bigLabel
+{
+    -fx-text-fill: Cyan;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.subTitles
+{
+    -fx-text-fill: blue;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.subDialog
+{
+    -fx-text-fill: red;
 }

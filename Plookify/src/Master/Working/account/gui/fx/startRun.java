@@ -11,10 +11,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -33,6 +29,7 @@ public class startRun extends Application
         Parent start1 = FXMLLoader.load(getClass().getResource("screenStart.fxml"));
         Scene scene2 = new Scene(start1);
         stage.setScene(scene1);
+        stage.setTitle("Plookify");
         stage.setResizable(false);
         stage.show();
         PauseTransition loading=new PauseTransition(Duration.millis(1000));

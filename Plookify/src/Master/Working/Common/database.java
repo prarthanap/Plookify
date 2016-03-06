@@ -10,6 +10,7 @@ package Master.Working.Common;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,10 +55,8 @@ public class database
             
             return null;
         }
-        
 
-
-        public void makeUpdate(String query)//method running only one statement(not worth creating an arraylist for 1 update using the prev method
+        public void makeUpdate(String query)//method running only one statement
         {
 		try {
                         Statement statementU;
@@ -75,7 +74,6 @@ public class database
                         {System.err.println(ex.getMessage());}
                 }    
         }
-        
         
         public boolean dupCheck(String search,String column,String table)//checks if there is a row match using what u searching for, the table and which column
         {
@@ -115,7 +113,6 @@ public class database
         
         public int resCount(String query)//returns number of records
         {
-            
         try {
             ResultSet check=makeQuery(query);
             int count=0;

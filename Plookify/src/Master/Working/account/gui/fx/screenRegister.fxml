@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="registerPane" maxHeight="600.0" maxWidth="500.0" minHeight="600.0" minWidth="500.0" prefHeight="600.0" prefWidth="500.0" styleClass="pane" stylesheets="@accountmodule.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.account.gui.fx.AccountLoginController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../resources/logo(small).png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="112.0" layoutY="216.0" maxHeight="300.0" maxWidth="300.0" minHeight="244.0" minWidth="266.0" prefHeight="244.0" prefWidth="266.0">
+         <children>
+            <HBox layoutY="22.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="PASSWORD" />
+                  <PasswordField fx:id="passFieldR" maxHeight="20.0" maxWidth="150.0" minHeight="20.0" minWidth="150.0" onKeyTyped="#passTrim" prefHeight="20.0" prefWidth="150.0" promptText="Password" />
+               </children>
+            </HBox>
+            <HBox layoutY="214.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="CONTACT NO." />
+                  <TextField fx:id="contactNoR" maxHeight="20.0" maxWidth="95.0" minHeight="20.0" minWidth="95.0" onKeyTyped="#contactNoTrim" prefHeight="20.0" prefWidth="95.0" />
+               </children>
+            </HBox>
+            <HBox layoutY="104.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="DOOR NO." />
+                  <TextField fx:id="doorNoR" maxHeight="20.0" maxWidth="50.0" minHeight="20.0" minWidth="50.0" onKeyTyped="#doorNoTrim" prefHeight="20.0" prefWidth="50.0" />
+               </children>
+            </HBox>
+            <HBox layoutY="126.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="STREET" />
+                  <TextField fx:id="streetR" maxHeight="20.0" maxWidth="150.0" minHeight="20.0" minWidth="150.0" onKeyTyped="#streetTrim" prefHeight="20.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox layoutY="148.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="COUNTY" />
+                  <TextField fx:id="countyR" maxHeight="20.0" maxWidth="125.0" minHeight="20.0" minWidth="125.0" onKeyTyped="#countyTrim" prefHeight="20.0" prefWidth="125.0" />
+               </children>
+            </HBox>
+            <HBox layoutY="72.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="LASTNAME" />
+                  <TextField fx:id="lnameR" maxHeight="20.0" maxWidth="150.0" minHeight="20.0" minWidth="150.0" onKeyTyped="#lnameTrim" prefHeight="20.0" prefWidth="150.0" promptText="Last Name" />
+               </children>
+            </HBox>
+            <HBox layoutY="50.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="FIRSTNAME" />
+                  <TextField fx:id="fnameR" maxHeight="20.0" maxWidth="150.0" minHeight="20.0" minWidth="150.0" onKeyTyped="#fnameTrim" prefHeight="20.0" prefWidth="150.0" promptText="First Name" />
+               </children>
+            </HBox>
+            <HBox layoutY="170.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="CITY" />
+                  <TextField fx:id="cityR" maxHeight="20.0" maxWidth="125.0" minHeight="20.0" minWidth="126.0" onKeyTyped="#cityTrim" prefHeight="20.0" prefWidth="125.0" />
+               </children>
+            </HBox>
+            <HBox layoutY="192.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="80.0" prefHeight="20.0" prefWidth="80.0" text="POSTCODE" />
+                  <TextField fx:id="postcode1R" maxHeight="20.0" maxWidth="50.0" minHeight="20.0" minWidth="50.0" onKeyTyped="#postcodeTrim1" prefHeight="20.0" prefWidth="50.0" />
+                  <TextField fx:id="postcode2R" maxHeight="20.0" maxWidth="50.0" minHeight="20.0" minWidth="50.0" onKeyTyped="#postcodeTrim2" prefHeight="20.0" prefWidth="50.0" />
+               </children>
+            </HBox>
+            <HBox maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
+               <children>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="80.0" text="USERNAME" />
+                  <TextField fx:id="unameFieldR" maxHeight="20.0" maxWidth="150.0" minHeight="20.0" minWidth="150.0" onKeyTyped="#unameTrim" prefHeight="20.0" prefWidth="150.0" promptText="Username" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Label layoutX="210.0" layoutY="178.0" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="80.0" styleClass="bigLabel" text="Plookify" />
+      <Button fx:id="submitButtonR" layoutX="95.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#submitButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="SUBMIT" />
+      <Button fx:id="resetButtonR" layoutX="195.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="RESET" />
+      <Button fx:id="backButtonR" layoutX="295.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#backButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="BACK" />
+      <Pane fx:id="subDialogPane" layoutX="-355.0" layoutY="586.0" maxHeight="250.0" maxWidth="300.0" minHeight="250.0" minWidth="300.0" prefHeight="250.0" prefWidth="300.0" styleClass="dialog">
+         <children>
+            <Label layoutX="5.0" layoutY="14.0" prefHeight="64.0" prefWidth="292.0" styleClass="subTitles" text="Would you like to subscribe to Plookify?" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="51.0" layoutY="78.0" prefHeight="38.0" prefWidth="199.0" styleClass="subDialog" text="You can choose a monthly, quartlerly, bi-yearly or yearly subscription." wrapText="true" />
+            <Label layoutX="150.0" layoutY="153.0" prefHeight="17.0" prefWidth="50.0" text="Months" />
+            <Button layoutX="119.0" layoutY="198.0" mnemonicParsing="false" onAction="#subConfirmPressed" text="Confirm" />
+            <ChoiceBox fx:id="subsMonth" layoutX="94.0" layoutY="149.0" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="dialogPaneReg" layoutX="-480.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" styleClass="dialog" stylesheets="@accountmodule.css">
+         <children>
+            <Button fx:id="regOkButton" layoutX="109.0" layoutY="100.0" mnemonicParsing="false" onAction="#regDialogOkButton" text="OK" />
+            <Label fx:id="regDialogMsg" layoutX="22.0" layoutY="38.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="placeholder" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

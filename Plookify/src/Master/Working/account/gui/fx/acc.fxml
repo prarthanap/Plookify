@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="200.0" maxWidth="200.0" minHeight="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" styleClass="screen" stylesheets="@accountmodule.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.account.gui.fx.AccountLoginController">
+<Pane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" styleClass="pane" stylesheets="@accountmodule.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.account.gui.fx.AccountLoginController">
    <children>
       <Label layoutX="142.0" layoutY="93.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
