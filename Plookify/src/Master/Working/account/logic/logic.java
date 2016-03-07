@@ -187,7 +187,7 @@ public class logic
             }
             while(count>0)
             {
-                deviceInfo blankInfo=new deviceInfo(999,"---","---",0);
+                deviceInfo blankInfo=new deviceInfo(999,"---","---",-1);
                 deviceData.add(blankInfo);
                 count=count-1;
             }

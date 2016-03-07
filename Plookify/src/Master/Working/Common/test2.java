@@ -6,6 +6,7 @@
 package Master.Working.Common;
 
 import Master.Working.account.logic.logic;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -17,7 +18,11 @@ public class test2
     private static logic test=new logic();
     public static void main(String[] args) throws SQLException
     {
-        test.newSubscribe(4,3);
+        ResultSet res=test.data.makeQuery("select devicename from device where deviceowner=5");
+        while(res.next())
+        {
+            System.out.println(res.getString(1));
+        }
     }
             
 }

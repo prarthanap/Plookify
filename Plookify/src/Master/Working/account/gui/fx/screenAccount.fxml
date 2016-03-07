@@ -21,10 +21,10 @@
       <Button fx:id="changeDetailsButton" layoutX="221.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedChangeDetails" text="Change Account Details" />
       <Button fx:id="logOutButton" layoutX="397.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedLogOut" text="Log Out" />
       <TableView fx:id="deviceTable" layoutX="55.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="180.0" minWidth="400.0" prefHeight="180.0" prefWidth="400.0" />
-      <Button fx:id="delete1" layoutX="490.0" layoutY="136.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete1" />
-      <Button fx:id="delete2" layoutX="490.0" layoutY="161.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete2" />
+      <Button fx:id="delete1" layoutX="490.0" layoutY="138.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete1" />
+      <Button fx:id="delete2" layoutX="490.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete2" />
       <Button fx:id="delete3" layoutX="490.0" layoutY="188.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete3" />
-      <Button fx:id="delete4" layoutX="490.0" layoutY="213.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete3" />
-      <Button fx:id="delete5" layoutX="490.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete3" />
+      <Button fx:id="delete4" layoutX="490.0" layoutY="213.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete4" />
+      <Button fx:id="delete5" layoutX="490.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete5" />
    </children>
 </Pane>

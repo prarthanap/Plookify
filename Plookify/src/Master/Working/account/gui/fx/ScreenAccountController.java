@@ -8,11 +8,8 @@ package Master.Working.account.gui.fx;
 import Master.Working.account.logic.deviceInfo;
 import Master.Working.account.logic.logic;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,7 +71,12 @@ public class ScreenAccountController implements Initializable {
         deviceTable.getColumns().addAll(col1,col2,col3);
         deviceTable.setPrefSize(385,180);
         deviceTable.setItems(tableInfo);
-
+        delete1.setVisible(false);
+        delete2.setVisible(false);
+        delete3.setVisible(false);
+        delete4.setVisible(false);
+        delete5.setVisible(false);
+        
     }
     
     public void setUser(int pass)
@@ -89,8 +91,14 @@ public class ScreenAccountController implements Initializable {
     @FXML
     public void pressedDevice(ActionEvent event)
     {
+        delete1.setVisible(true);
+        delete2.setVisible(true);
+        delete3.setVisible(true);
+        delete4.setVisible(true);
+        delete5.setVisible(true);
         deviceTable.setVisible(true);
         deviceButton.setVisible(false);
+        
     }
     @FXML
     public void pressedChangeDetails(ActionEvent event)
@@ -108,7 +116,15 @@ public class ScreenAccountController implements Initializable {
     {
        Button btn=(Button)event.getSource();
        String btnText=btn.getText().substring(btn.getText().length()-1);
-       System.out.println(btnText);
+       int deviceListNo=Integer.parseInt(btnText);
+       if(tableInfo.get(deviceListNo-1).getDeviceDate()>30)//if device is added more than 30 days ago
+       {
+           System.out.println("can delete");
+       }
+       else
+       {
+           System.out.println("cannot delete");
+       }
     }
     
     
