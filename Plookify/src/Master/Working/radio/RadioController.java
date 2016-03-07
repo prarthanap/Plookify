@@ -59,18 +59,19 @@ public class RadioController implements Initializable {
     @FXML
     private TableColumn radioArtistCol;
     @FXML
+    private Button saveAsPlaylist;
+    @FXML
     private Label currentGenre;
     @FXML
     private TextField searchField;
     
-    private SortedList<Tracks> listForRadio;
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
     private ObservableList<Tracks> radioData = FXCollections.observableArrayList();
    
     database db = new database();
-            private String radioGenre = "";
-        private String radioArtist = ""; 
-        private String radioTrack = ""; 
+    private String radioGenre = "";
+    private String radioArtist = ""; 
+    private String radioTrack = ""; 
  
     
     @Override
@@ -88,8 +89,11 @@ public class RadioController implements Initializable {
         radioIDCol.setCellValueFactory(new PropertyValueFactory("ID"));
         radioTrackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         radioArtistCol.setCellValueFactory(new PropertyValueFactory("artist"));
-        
-        //createRadio(searchGenre);
+    }
+    
+    @FXML
+    private void savePlaylist(ActionEvent event) {
+        System.out.println("TO DO...");
     }
     
     public void createRadio(String searchTermTrack, String searchTermArtist, String searchTermGenre) {
@@ -103,15 +107,16 @@ public class RadioController implements Initializable {
         else if (!searchTermArtist.equals("empty")) {
             String[] termSplit = searchTermArtist.split(" ");
             StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < termSplit.length-1; i++) {
+                termSplit[i] = termSplit[i] + " ";
+            }
             for (String word : termSplit) {
                 sb.append(word.substring(0, 1).toUpperCase() + word.substring(1));
-                if (termSplit.length > 1) {
-                    sb.append(" ");
-                }
             }  
-            System.out.println(sb.toString());
-            String some = sb.toString();
-            radioArtist = some;
+            
+            String fixedTerm = sb.toString();
+            radioArtist = fixedTerm;
+            System.out.println(radioArtist);
             try {
                 ResultSet rs2 = db.makeQuery("SELECT GENRE FROM TRACKS WHERE ARTIST = '"+radioArtist+"'");
                 radioGenre = rs2.getString("GENRE");
@@ -123,10 +128,15 @@ public class RadioController implements Initializable {
         else if (!searchTermTrack.equals("empty")) {
             String[] termSplit = searchTermTrack.split(" ");
             StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < termSplit.length-1; i++) {
+                termSplit[i] = termSplit[i] + " ";
+            }
             for (String word : termSplit) {
                 sb.append(word.substring(0, 1).toUpperCase() + word.substring(1));
             }  
-            radioTrack = sb.toString();
+            String fixedTerm = sb.toString();
+            radioTrack = fixedTerm;
+            System.out.println(radioTrack);
             try {
                 ResultSet rs2 = db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'");
                 radioArtist = rs2.getString("ARTIST");

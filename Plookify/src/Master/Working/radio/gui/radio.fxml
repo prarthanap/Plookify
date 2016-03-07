@@ -5,23 +5,23 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.RadioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.RadioController">
    <children>
-      <TableView fx:id="table" layoutX="23.0" layoutY="74.0" prefHeight="366.0" prefWidth="689.0" stylesheets="@../../player/gui/bg.css">
+      <TableView fx:id="table" layoutX="13.0" layoutY="74.0" prefHeight="366.0" prefWidth="697.0" stylesheets="@../../player/gui/bg.css">
         <columns>
           <TableColumn fx:id="IDCol" prefWidth="47.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="185.0" text="Track Name" />
             <TableColumn fx:id="artistCol" prefWidth="113.0" text="Artist" />
-            <TableColumn fx:id="timeCol" text="Time" />
-            <TableColumn fx:id="genreCol" prefWidth="114.0" text="Genre" />
-            <TableColumn fx:id="albumCol" prefWidth="136.0" text="Album" />
+            <TableColumn fx:id="timeCol" prefWidth="97.0" text="Time" />
+            <TableColumn fx:id="genreCol" prefWidth="109.0" text="Genre" />
+            <TableColumn fx:id="albumCol" prefWidth="130.0" text="Album" />
         </columns>
       </TableView>
       <TextField fx:id="searchField" layoutX="70.0" layoutY="30.0" onKeyReleased="#searchFunction" prefHeight="25.0" prefWidth="298.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;" />
-      <TableView fx:id="radioTable" layoutX="724.0" layoutY="74.0" prefHeight="366.0" prefWidth="262.0" stylesheets="@../../player/gui/bg.css">
+      <TableView fx:id="radioTable" layoutX="718.0" layoutY="74.0" prefHeight="366.0" prefWidth="273.0" stylesheets="@../../player/gui/bg.css">
         <columns>
           <TableColumn fx:id="radioIDCol" prefWidth="49.0" text="ID" />
-          <TableColumn fx:id="radioTrackNameCol" prefWidth="117.0" text="Track Name" />
+          <TableColumn fx:id="radioTrackNameCol" prefWidth="123.0" text="Track Name" />
             <TableColumn fx:id="radioArtistCol" prefWidth="91.0" text="Artist" />
         </columns>
       </TableView>
@@ -34,7 +34,7 @@
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Label>
-      <Button layoutX="889.0" layoutY="447.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Save As Playlist" />
+      <Button fx:id="saveAsPlaylist" layoutX="889.0" layoutY="447.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
       <Label layoutX="724.0" layoutY="55.0" text="Current Genre:">
          <font>
             <Font name="Century Gothic" size="14.0" />
