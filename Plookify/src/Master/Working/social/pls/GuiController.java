@@ -11,6 +11,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +20,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,18 +56,20 @@ private Button upgradeClose;
 
 @FXML
 private TextField searchField;
-@FXML
-private TableView<Friends> friendList;
-@FXML
-private TableColumn friends;
+
 @FXML
 private TableView<friendPlaylist> fPlaylist;
 @FXML
 private TableColumn playlist;
+
 @FXML
 private TableView<Users> users;
 @FXML
 private TableColumn user;
+
+@FXML
+private ListView listFriends;
+
 @FXML
 private AnchorPane friendView;
 @FXML
@@ -85,6 +90,8 @@ private final Master.Working.social.Logic.logic accLogic=new Master.Working.soci
     
 private final ObservableList<Users> data = FXCollections.observableArrayList();
     
+private final ObservableList options = FXCollections.observableArrayList();
+
     /**
      * Initialises the controller class.
      */
@@ -98,6 +105,16 @@ private final ObservableList<Users> data = FXCollections.observableArrayList();
        friendAddedDialog.setVisible(false);
        upgradeDialog.setVisible(false);
        updateTable();
+       
+       listFriends.getSelectionModel().selectedItemProperty().addListener(
+                         new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+                
+            }
+        });
+       
+       
     }  
     
     @FXML  //delete friend dialog
