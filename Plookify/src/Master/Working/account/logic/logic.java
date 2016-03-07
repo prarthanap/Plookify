@@ -51,7 +51,10 @@ public class logic
     {
         
     }
-     
+    public void deleteDevice()
+    {
+        
+    }     
     public void newSubscribe(int ID,int months)
     {
         try {
@@ -84,41 +87,35 @@ public class logic
     }
     public int premCheck(int iD)
     {
-        ResultSet rsPremCheck=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'");
+        ResultSet rsPremCheck;
         try {
-            if(rsPremCheck.getInt(2)==1)
+            int premValue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getInt(2);
+            String dateDue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getString(4);
+            if(premValue==1)
             {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
-                try {
-                    String dateDue = rsPremCheck.getString(4);
-                    //System.out.println(dateDue);
-                    Date dateB=dateFormat.parse(dateDue);
-                    //System.out.println(date.after(dateB));
-                    if(date.after(dateB))//if current date is past due date(so not paid)
-                    {
-                        data.conn.close();
-                        return -1;//expired premium
-                    }
-                    else{
-                        data.conn.close();
-                        return 2;}//premium
-                } catch (SQLException ex) {
-                    Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+                 //System.out.println(dateDue);
+                Date dateB=dFormat.parse(dateDue);
+                //System.out.println(date.after(dateB));
+                if(date.after(dateB))//if current date is past due date(so not paid)
+                {
+                    
+                    return -1;//expired premium
                 }
+                else{
+                    
+                    return 2;
+                    }//premium 
             }
-            else{data.conn.close();
-                return 1;}//free
-        } catch (SQLException ex) {
+            else{
+                
+                return 1;
+                }//free
+            } catch (SQLException | ParseException ex)
+            {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            data.conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
         return 0;//if error in checking
     }
     public String stringGet(int ident,String identColumn,String table,String column)
@@ -135,13 +132,6 @@ public class logic
         }
         System.out.println("null");
         return name;
-    }
-    public ResultSet resultGet(String query)
-    {
-        ResultSet setResult=null;
-        setResult=data.makeQuery(query);
-        return setResult;
-                
     }
     
     public int daysBeforeNow(String date)
@@ -175,7 +165,7 @@ public class logic
     public ObservableList<deviceInfo> makeTableInfo(int ID)
     {
         ArrayList<String[]> tableStuff=new ArrayList<>();
-        ResultSet deviceList=resultGet("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");
+        ResultSet deviceList=data.makeQuery("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");
         ObservableList<deviceInfo> deviceData = FXCollections.observableArrayList();
         int count=5;
         try {

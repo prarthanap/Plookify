@@ -9,6 +9,8 @@ import Master.Working.account.logic.logic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -105,9 +107,22 @@ public class AccountLoginController implements Initializable {
         }
         else
         {
-            loginDialogMessage.setText("Welcome "+logic1.stringGet(userID,"ID","Account","Firstname")+"!");
-            dialogPane.relocate(100,150);
-            dialogPane.toFront();
+            try {   int pass=userID;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("screenAccount.fxml"));     
+                    
+                    Parent root = (Parent)loader.load();    
+                    Scene sceneA = new Scene(root);
+                    
+                    Stage theStage = (Stage) loginPane.getScene().getWindow();
+                    theStage.setScene(sceneA);
+                    ScreenAccountController controller = loader.getController();
+                    controller.setUser(pass);
+                    controller.initVariables();
+                    theStage.show();
+                } catch (IOException ex)
+                {
+                Logger.getLogger(AccountLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
     }
     @FXML

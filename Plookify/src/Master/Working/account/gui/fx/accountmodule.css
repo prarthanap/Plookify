@@ -48,3 +48,14 @@
 {
     -fx-text-fill: red;
 }
+
+.accountNameTitle
+{
+    -fx-text-fill: Cyan;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+.column-header
+{
+    -fx-text-fill: blue;
+}

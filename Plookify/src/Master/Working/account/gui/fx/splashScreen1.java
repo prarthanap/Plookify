@@ -728,7 +728,7 @@ public class splashScreen1 extends Application {
         });
         paneDevice.getChildren().addAll(prem,logoMini,accountTitle,logOutButton,changeDetailsButton);
         
-        ResultSet deviceList=accLogic.resultGet("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");    
+        ResultSet deviceList=accLogic.data.makeQuery("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");    
         TableView deviceTable = new TableView();
         deviceTable.setEditable(false);
         TableColumn col1 = new TableColumn("Device Name");

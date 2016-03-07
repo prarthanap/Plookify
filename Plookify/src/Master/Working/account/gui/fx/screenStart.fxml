@@ -14,7 +14,7 @@
       <Pane fx:id="dialogPane" layoutX="-500.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" styleClass="dialog" stylesheets="@accountmodule.css">
          <children>
             <Button fx:id="loginOkButton" layoutX="109.0" layoutY="100.0" mnemonicParsing="false" onAction="#dialogOkButton" text="OK" />
-            <Label fx:id="loginDialogMessage" layoutX="22.0" layoutY="38.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" text="placeholder" />
+            <Label fx:id="loginDialogMessage" layoutX="22.0" layoutY="38.0" maxHeight="60.0" maxWidth="200.0" minHeight="60.0" minWidth="200.0" prefHeight="60.0" prefWidth="200.0" text="placeholder" wrapText="true" />
          </children>
       </Pane>
       <Pane fx:id="startPane" maxHeight="200.0" maxWidth="200.0" minHeight="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" styleClass="pane" stylesheets="@accountmodule.css">
