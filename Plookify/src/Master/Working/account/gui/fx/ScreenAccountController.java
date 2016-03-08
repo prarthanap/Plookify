@@ -7,6 +7,7 @@ package Master.Working.account.gui.fx;
 
 import Master.Working.account.logic.deviceInfo;
 import Master.Working.account.logic.logic;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -15,11 +16,15 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -126,9 +131,15 @@ public class ScreenAccountController implements Initializable {
         accDelDialog.relocate(0,80);
     }
     @FXML
-    public void pressedLogOut(ActionEvent event)
+    public void pressedLogOut(ActionEvent event) throws IOException
     {
-        
+        Stage backToStart=new Stage();
+        Parent start1 = FXMLLoader.load(getClass().getResource("screenStart.fxml"));
+        Scene scene2 = new Scene(start1);
+        backToStart.setScene(scene2);
+        backToStart.show();
+        Stage oldy=(Stage)accountPane.getScene().getWindow();
+        oldy.close();
     }
     
     @FXML
@@ -199,7 +210,7 @@ public class ScreenAccountController implements Initializable {
         deviceTable.setItems(tableInfo);
     }
     @FXML
-    public void delConfirm(ActionEvent event) throws SQLException
+    public void delConfirm(ActionEvent event) throws SQLException, IOException
     {
         String pCheck=accDelPassField.getText();
         System.out.println(pCheck);
@@ -209,6 +220,13 @@ public class ScreenAccountController implements Initializable {
                 {
                     logicA.deleteAccount(ID);
                     System.out.println("Account deleted");
+                    Stage backToStart=new Stage();
+                    Parent start1 = FXMLLoader.load(getClass().getResource("screenStart.fxml"));
+                    Scene scene2 = new Scene(start1);
+                    backToStart.setScene(scene2);
+                    backToStart.show();
+                    Stage oldy=(Stage)accountPane.getScene().getWindow();
+                    oldy.close();
                 }
         else{System.out.println("incorrect password");}
     }
