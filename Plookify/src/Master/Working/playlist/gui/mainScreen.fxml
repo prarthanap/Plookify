@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.playlist.gui.MainScreenController">
+<AnchorPane fx:id="playlistType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.playlist.gui.MainScreenController">
    <children>
       <TableView fx:id="table" layoutX="221.0" layoutY="192.0" prefHeight="377.0" prefWidth="703.0">
          <columns>
@@ -17,7 +17,7 @@
       </TableView>
       <TextField fx:id="searchBar" layoutX="221.0" layoutY="47.0" prefHeight="31.0" prefWidth="356.0" promptText="Search by Song name, Artist or Album" style="-fx-background-radius: 15;" />
       <Button fx:id="search" layoutX="595.0" layoutY="47.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
-      <Label fx:id="playlistLabel" focusTraversable="false" layoutX="221.0" layoutY="123.0" prefHeight="42.0" prefWidth="140.0" text="Playlist">
+      <Label fx:id="playlistLabel" focusTraversable="false" layoutX="221.0" layoutY="123.0" prefHeight="51.0" prefWidth="203.0" text="Playlist">
          <font>
             <Font size="35.0" />
          </font>
@@ -31,5 +31,11 @@
       </TableView>
       <Button layoutX="14.0" layoutY="538.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="31.0" prefWidth="154.0" style="-fx-background-radius: 15;" text="Create Playlist" />
       <TextField fx:id="newPlaylistName" layoutX="14.0" layoutY="501.0" prefHeight="31.0" prefWidth="154.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
+      <ComboBox fx:id="pType" layoutX="464.0" layoutY="151.0" prefHeight="23.0" prefWidth="118.0" style="-fx-background-radius: 15;" />
+      <Label fx:id="label" focusTraversable="false" layoutX="470.0" layoutY="118.0" prefHeight="42.0" prefWidth="140.0" text="Playlist Privacy">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
