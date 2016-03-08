@@ -51,28 +51,30 @@ public class logic
     public void deleteAccount(int ID) throws SQLException
     {
         String delAcc="DELETE FROM ACCOUNT WHERE ID='"+ID+"'";
-        Statement statement;
-        Connection conn= DriverManager.getConnection("jdbc:sqlite:data.db");
-        statement = conn.createStatement();
-        statement.setQueryTimeout(10);
-        statement.execute("PRAGMA foreign_keys = ON");
-        statement.execute(delAcc);
-        conn.close();
+        Statement statementD;
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+            statementD = conn.createStatement();
+            statementD.setQueryTimeout(10);
+            statementD.execute("PRAGMA foreign_keys = ON");
+            statementD.execute(delAcc);
+        }
     }
     public void addDevice(int iID,String dName,String dType)
     {
         Date now=new Date();
         try {
             String dDate=dateFormat.format(now);
-            Connection conn3= DriverManager.getConnection("jdbc:sqlite:data.db");
-            PreparedStatement pStat2=conn3.prepareStatement("INSERT INTO DEVICE (DEVICENAME,DEVICETYPE,DATE,DEVICEOWNER) VALUES(?,?,?,?)");
-            pStat2.setString(1,dName);
-            pStat2.setString(2,dType);
-            pStat2.setString(3,dDate);
-            pStat2.setInt(4,iID);
-            pStat2.execute();
-            System.out.println("update Made");
-            conn3.close();
+            try (Connection conn3 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+                PreparedStatement pStat2=conn3.prepareStatement("INSERT INTO DEVICE (DEVICENAME,DEVICETYPE,DATE,DEVICEOWNER) VALUES(?,?,?,?)");
+                pStat2.setString(1,dName);
+                pStat2.setString(2,dType);
+                pStat2.setString(3,dDate);
+                pStat2.setInt(4,iID);
+                pStat2.execute();
+                System.out.println("update Made");
+                pStat2.close();
+                conn3.close();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,12 +82,14 @@ public class logic
     public void deleteDevice(int dID)
     {
         try {
-            Connection conn3= DriverManager.getConnection("jdbc:sqlite:data.db");
-            PreparedStatement pStat2=conn3.prepareStatement("DELETE FROM DEVICE WHERE DEVICEID=?");
-            pStat2.setInt(1,dID);
-            pStat2.execute();
-            System.out.println("device deleted");
-            conn3.close();
+            try (Connection conn3 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+                PreparedStatement pStat2=conn3.prepareStatement("DELETE FROM DEVICE WHERE DEVICEID=?");
+                pStat2.setInt(1,dID);
+                pStat2.execute();
+                System.out.println("device deleted");
+                pStat2.close();
+                conn3.close();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,15 +105,15 @@ public class logic
                 premSet=1;
                 monthSet=months;
             }
-            Connection conn2= DriverManager.getConnection("jdbc:sqlite:data.db");
-            PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, SUBSCRIPTIONTYPE=?, DUEDATE=? WHERE USERID=?");
-            pStat1.setInt(1,premSet);
-            pStat1.setInt(2,monthSet);
-            pStat1.setString(3,endDate);
-            pStat1.setInt(4,ID);
-            pStat1.execute();
-            System.out.println("update Made");
-            conn2.close();
+            try (Connection conn2 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+                PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, SUBSCRIPTIONTYPE=?, DUEDATE=? WHERE USERID=?");
+                pStat1.setInt(1,premSet);
+                pStat1.setInt(2,monthSet);
+                pStat1.setString(3,endDate);
+                pStat1.setInt(4,ID);
+                pStat1.execute();
+                System.out.println("update Made");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }

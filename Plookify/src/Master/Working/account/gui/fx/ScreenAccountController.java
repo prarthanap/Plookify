@@ -215,8 +215,12 @@ public class ScreenAccountController implements Initializable {
         String pCheck=accDelPassField.getText();
         System.out.println(pCheck);
         String uname = logicA.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+ID+"'").getString(1);
+        logicA.data.conClose();
         System.out.println(uname);
-        if (pCheck.equals(logicA.data.makeQuery("SELECT PASSWORD FROM ACCOUNT WHERE USERNAME='"+uname+"'").getString(1)))
+        String pswd=logicA.data.makeQuery("SELECT PASSWORD FROM ACCOUNT WHERE USERNAME='"+uname+"'").getString(1);
+        logicA.data.conClose();
+        System.out.println(pswd);
+        if (pCheck.equals(pswd))
                 {
                     logicA.deleteAccount(ID);
                     System.out.println("Account deleted");
