@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,16 +48,16 @@ public class logic
         }
     }
     
-    public void deleteAccount(int ID)
+    public void deleteAccount(int ID) throws SQLException
     {
         String delAcc="DELETE FROM ACCOUNT WHERE ID='"+ID+"'";
-        String delAcc2="DELETE FROM SUBSCRIPTION WHERE ID='"+ID+"'";
-        String delAcc3="DELETE FROM DEVICE WHERE OWNERID='"+ID+"'";
-        String delAcc4="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"'";
-        String delAcc5="DELETE FROM PLAYLIST WHERE PLAYLISTOWNER='"+ID+"'";
-        String delAcc6="";
-        
-        
+        Statement statement;
+        Connection conn= DriverManager.getConnection("jdbc:sqlite:data.db");
+        statement = conn.createStatement();
+        statement.setQueryTimeout(10);
+        statement.execute("PRAGMA foreign_keys = ON");
+        statement.execute(delAcc);
+        conn.close();
     }
     public void addDevice(int iID,String dName,String dType)
     {

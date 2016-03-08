@@ -70,6 +70,7 @@ public class database
                         conn= DriverManager.getConnection("jdbc:sqlite:data.db");
                         statementU = conn.createStatement();
                         statementU.setQueryTimeout(10);
+                        statementU.execute("PRAGMA foreign_keys = ON");
                         statementU.executeUpdate(query);
                         System.out.println("Update made");
                     }
