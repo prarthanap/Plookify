@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 /**
@@ -26,6 +27,7 @@ import javafx.scene.layout.Pane;
 public class ScreenAccountController implements Initializable {
 
     private int ID=9999;
+    private final int[] dumpster1={-500,500};
     private final logic logicA=new logic();
     private ObservableList<deviceInfo> tableInfo;
     
@@ -41,6 +43,14 @@ public class ScreenAccountController implements Initializable {
     @FXML private Button delete3;      
     @FXML private Button delete4;
     @FXML private Button delete5;
+    @FXML private Button addDevice;
+    @FXML private Pane deviceDialog;
+    @FXML private Label deviceDialogMsg;
+    @FXML private Button deviceDialogOK;
+    @FXML private Pane addingDeviceDialog;
+    @FXML private Button addingDeviceDialogOK;
+    @FXML private TextField deviceNameField;
+    @FXML private ComboBox deviceTypeCombo;
     
 
     @Override
@@ -55,7 +65,8 @@ public class ScreenAccountController implements Initializable {
         if (check==2)
             {
                 premStatusButton.setText("Premium");
-                Label expiry=new Label("Next Due : "+logicA.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE"));
+                String exp="Next Due : "+logicA.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE");
+                Label expiry=new Label(exp);
                 expiry.setStyle("-fx-text-fill: red;");
                 expiry.relocate(440,75);
                 accountPane.getChildren().add(expiry);
@@ -63,7 +74,8 @@ public class ScreenAccountController implements Initializable {
         else if(check==0)
             {premStatusButton.setText("error");}
         else{premStatusButton.setText("Subscribe");}
-        titleName.setText(logicA.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.stringGet(ID,"ID","ACCOUNT", "LASTNAME"));
+        String fullname=logicA.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.stringGet(ID,"ID","ACCOUNT", "LASTNAME");
+        titleName.setText(fullname);
         tableInfo=logicA.makeTableInfo(ID);
         TableColumn col1 = new TableColumn("Device Name");col1.setMinWidth(150);col1.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
         TableColumn col2 = new TableColumn("Device Type");col2.setMinWidth(100);col2.setCellValueFactory(new PropertyValueFactory<>("deviceType"));
@@ -76,6 +88,7 @@ public class ScreenAccountController implements Initializable {
         delete3.setVisible(false);
         delete4.setVisible(false);
         delete5.setVisible(false);
+        addDevice.setVisible(false);
         
     }
     
@@ -98,6 +111,7 @@ public class ScreenAccountController implements Initializable {
         delete5.setVisible(true);
         deviceTable.setVisible(true);
         deviceButton.setVisible(false);
+        addDevice.setVisible(true);
         
     }
     @FXML
@@ -127,6 +141,50 @@ public class ScreenAccountController implements Initializable {
        }
     }
     
+    @FXML
+    public void deviceAddPressed(ActionEvent event)
+    {
+        int count=0;
+        for(int j=0;j<5;j++)
+        {
+            if(tableInfo.get(j).getDeviceDate()!=-1)
+            {
+                count=count+1;
+            }
+        }
+        if (count==5)
+        {
+            deviceDialogMsg.setText("Too many devices added. Please delete a device first.");
+            deviceDialog.relocate(150,100);
+        }
+        addingDeviceDialog.relocate(150,100);
+    }
+    @FXML
+    public void deviceDialogOkPressed(ActionEvent event)
+    {
+        deviceDialog.relocate(dumpster1[0],dumpster1[1]);
+    }
+    @FXML
+    public void addingDeviceSubmit(ActionEvent event)
+    {
+        logicA.addDevice(ID, deviceNameField.getText(), (String)deviceTypeCombo.getValue());
+        addingDeviceDialog.relocate(dumpster1[0],dumpster1[1]);
+        refreshTable();
+        
+    }
+    @FXML
+    public void deviceNameTrim(KeyEvent ke)
+    {
+        if(deviceNameField.getText().length()>=12)
+           {
+               ke.consume();
+               System.out.println("consumed");
+           }
+    }
     
-
+    public void refreshTable()
+    {
+        tableInfo=logicA.makeTableInfo(ID);
+        deviceTable.setItems(tableInfo);
+    }
 }

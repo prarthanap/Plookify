@@ -8,6 +8,9 @@ package Master.Working.Common;
 import Master.Working.account.logic.logic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -18,11 +21,9 @@ public class test2
     private static logic test=new logic();
     public static void main(String[] args) throws SQLException
     {
-        ResultSet res=test.data.makeQuery("select devicename from device where deviceowner=5");
-        while(res.next())
-        {
-            System.out.println(res.getString(1));
-        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date now=new Date();
+        System.out.println(dateFormat.format(now));
     }
             
 }

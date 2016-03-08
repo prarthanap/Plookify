@@ -51,9 +51,12 @@ public class logic
     {
         
     }
-    public void deleteDevice()
+    public void addDevice(int ID,String dName,String dType)
     {
-        
+        Date now=new Date();
+        String dDate=dateFormat.format(now);
+        String addD="INSERT INTO DEVICE (DEVICENAME,DEVICETYPE,DATE,DEVICEOWNER) VALUES('"+dName+"','"+dType+"','"+dDate+"','"+ID+"')";
+        data.makeUpdate(addD);
     }     
     public void newSubscribe(int ID,int months)
     {
@@ -91,6 +94,7 @@ public class logic
         try {
             int premValue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getInt(2);
             String dateDue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getString(4);
+            data.conn.close();
             if(premValue==1)
             {
                 DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -126,7 +130,7 @@ public class logic
         result1=data.makeQuery(statementA);
         try {
              name=result1.getString(1);
-             data.conn.close();
+             result1.close();
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }

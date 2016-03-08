@@ -4,8 +4,8 @@
  */
 package Master.Working.account;
 
-import Master.Working.account.gui.swing.Splash;
-import Master.Working.account.gui.swing.StartScreen;
+import Master.Working.account.gui.old.Splash;
+import Master.Working.account.gui.old.StartScreen;
 
 public class ComponentLoader
 {

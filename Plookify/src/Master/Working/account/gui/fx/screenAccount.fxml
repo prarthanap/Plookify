@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -7,6 +8,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
 
 <Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@accountmodule.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.account.gui.fx.ScreenAccountController">
    <children>
@@ -26,5 +28,33 @@
       <Button fx:id="delete3" layoutX="490.0" layoutY="188.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete3" />
       <Button fx:id="delete4" layoutX="490.0" layoutY="213.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete4" />
       <Button fx:id="delete5" layoutX="490.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete5" />
+      <Button fx:id="addDevice" layoutX="110.0" layoutY="328.0" mnemonicParsing="false" onAction="#deviceAddPressed" text="Add Device" />
+      <Pane fx:id="addingDeviceDialog" layoutX="-342.0" layoutY="51.0" prefHeight="164.0" prefWidth="262.0" styleClass="dialog">
+         <children>
+            <ComboBox fx:id="deviceTypeCombo" layoutX="97.0" layoutY="71.0" prefHeight="25.0" prefWidth="142.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Mobile Phone" />
+                        <String fx:value="Game Console" />
+                        <String fx:value="PC" />
+                        <String fx:value="Tablet" />
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="Mobile Phone" />
+                </value>
+             </ComboBox>
+            <Label layoutX="15.0" layoutY="74.0" prefHeight="19.0" prefWidth="70.0" text="Device Type" />
+            <Button fx:id="addingDeviceDialogOK" layoutX="115.0" layoutY="113.0" mnemonicParsing="false" onAction="#addingDeviceSubmit" text="OK" />
+            <TextField fx:id="deviceNameField" layoutX="94.0" layoutY="34.0" promptText="Device Name" />
+            <Label layoutX="15.0" layoutY="38.0" text="Device Name" />
+         </children>
+      </Pane>
+      <Pane fx:id="accountDialog" layoutX="-342.0" layoutY="-173.0" prefHeight="164.0" prefWidth="262.0" styleClass="dialog">
+         <children>
+            <Button fx:id="deviceDialogOK" layoutX="115.0" layoutY="112.0" mnemonicParsing="false" onAction="#deviceDialogOkPressed" text="OK" />
+            <Label fx:id="deviceDialogMsg" alignment="CENTER" layoutX="57.0" layoutY="34.0" prefHeight="55.0" prefWidth="149.0" text="Label" wrapText="true" />
+         </children>
+      </Pane>
    </children>
 </Pane>
