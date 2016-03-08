@@ -10,7 +10,6 @@ package Master.Working.Common;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +20,14 @@ public class database
     public void Database()
     {
         
+    }
+    public void conClose()
+    {
+        try {
+            this.conn.close();
+        } catch (SQLException ex) {
+            System.out.println("none to close");
+        }
     }
      /*public static void main(String[] args) throws SQLException//just testing code (DO NOT RUN)
         {

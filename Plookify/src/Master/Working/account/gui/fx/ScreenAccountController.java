@@ -8,8 +8,11 @@ package Master.Working.account.gui.fx;
 import Master.Working.account.logic.deviceInfo;
 import Master.Working.account.logic.logic;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,6 +92,7 @@ public class ScreenAccountController implements Initializable {
         delete4.setVisible(false);
         delete5.setVisible(false);
         addDevice.setVisible(false);
+        logicA.data.conClose();
         
     }
     
