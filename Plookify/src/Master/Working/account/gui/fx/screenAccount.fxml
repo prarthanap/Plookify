@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -20,7 +21,7 @@
       <Label fx:id="titleName" layoutX="144.0" layoutY="38.0" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="accountNameTitle" text="Full Name" />
       <Button fx:id="premStatusButton" layoutX="459.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Button" />
       <Button fx:id="deviceButton" layoutX="121.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedDevice" text="Devices" />
-      <Button fx:id="changeDetailsButton" layoutX="221.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedChangeDetails" text="Change Account Details" />
+      <Button fx:id="accDelButton" layoutX="236.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedDelAcc" text="Delete Account" />
       <Button fx:id="logOutButton" layoutX="397.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedLogOut" text="Log Out" />
       <TableView fx:id="deviceTable" layoutX="55.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="180.0" minWidth="400.0" prefHeight="180.0" prefWidth="400.0" />
       <Button fx:id="delete1" layoutX="490.0" layoutY="138.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete1" />
@@ -54,6 +55,20 @@
          <children>
             <Button fx:id="deviceDialogOK" layoutX="115.0" layoutY="112.0" mnemonicParsing="false" onAction="#deviceDialogOkPressed" text="OK" />
             <Label fx:id="deviceDialogMsg" alignment="CENTER" layoutX="57.0" layoutY="34.0" prefHeight="55.0" prefWidth="149.0" text="Label" wrapText="true" />
+         </children>
+      </Pane>
+      <Button layoutX="-252.0" layoutY="400.0" mnemonicParsing="false" text="Delete Account" />
+      <Pane fx:id="accDelDialog" layoutY="-319.0" prefHeight="293.0" prefWidth="600.0" styleClass="dialog">
+         <children>
+            <Label layoutX="65.0" layoutY="21.0" prefHeight="84.0" prefWidth="471.0" styleClass="warning-title" text="Are you sure that you want to delete your account?" textAlignment="CENTER" textFill="#fc0202" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="105.0" prefHeight="55.0" prefWidth="346.0" styleClass="warning-text" text="If so please enter your password in order to confirm your account deletion. Incorrect password results in nothing changing." wrapText="true" />
+            <PasswordField fx:id="accDelPassField" layoutX="226.0" layoutY="195.0" promptText="Password" />
+            <Button layoutX="174.0" layoutY="236.0" mnemonicParsing="false" onAction="#delConfirm" text="Confirm" />
+            <Button layoutX="353.0" layoutY="236.0" mnemonicParsing="false" onAction="#delBack" text="Back" />
          </children>
       </Pane>
    </children>

@@ -98,6 +98,7 @@ public class AccountLoginController implements Initializable {
     private void loginPressedSubmit(ActionEvent event)
     {
         userID=logic1.data.authCheckD(loginUnameField.getText(),loginPassField.getText());
+        logic1.data.conClose();
         if(userID==9999)
         {
             loginDialogMessage.setText("Error! Incorrect Username and/or Password");
@@ -112,12 +113,13 @@ public class AccountLoginController implements Initializable {
                     
                     Parent root = (Parent)loader.load();    
                     Scene sceneA = new Scene(root);
-                    
-                    Stage theStage = (Stage) loginPane.getScene().getWindow();
+                    Stage oldstage = (Stage) loginPane.getScene().getWindow();
+                    Stage theStage = new Stage();
                     theStage.setScene(sceneA);
                     ScreenAccountController controller = loader.getController();
                     controller.setUser(pass);
                     controller.initVariables();
+                    oldstage.close();
                     theStage.show();
                 } catch (IOException ex)
                 {

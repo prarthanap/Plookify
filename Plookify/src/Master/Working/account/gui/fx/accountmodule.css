@@ -59,3 +59,13 @@
 {
     -fx-text-fill: blue;
 }
+.warning-title
+{
+    -fx-text-fill: red;
+    -fx-font-size: 25px;
+}
+
+.warning-text
+{
+    -fx-text-fill: red;
+}

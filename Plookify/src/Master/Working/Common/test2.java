@@ -6,8 +6,10 @@
 package Master.Working.Common;
 
 import Master.Working.account.logic.logic;
-import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +26,13 @@ public class test2
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date now=new Date();
         System.out.println(dateFormat.format(now));
+                
+                Statement statement;
+                Connection conn= DriverManager.getConnection("jdbc:sqlite:data.db");
+                statement = conn.createStatement();
+                statement.setQueryTimeout(10);
+                statement.execute("PRAGMA foreign_keys = ON");
+                statement.execute("DELETE FROM ACCOUNT WHERE ID=5");
     }
             
 }

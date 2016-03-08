@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,21 +44,52 @@ public class logic
             String update2="INSERT INTO SUBSCRIPTION (USERID) VALUES('"+newID+"')";
             data.makeUpdate(update2);
             System.out.println("added blank sub");
-            
+            data.conClose();
         }
     }
     
-    public void deleteAccount()
+    public void deleteAccount(int ID) throws SQLException
     {
-        
+        String delAcc="DELETE FROM ACCOUNT WHERE ID='"+ID+"'";
+        Statement statement;
+        Connection conn= DriverManager.getConnection("jdbc:sqlite:data.db");
+        statement = conn.createStatement();
+        statement.setQueryTimeout(10);
+        statement.execute("PRAGMA foreign_keys = ON");
+        statement.execute(delAcc);
+        conn.close();
     }
-    public void addDevice(int ID,String dName,String dType)
+    public void addDevice(int iID,String dName,String dType)
     {
         Date now=new Date();
-        String dDate=dateFormat.format(now);
-        String addD="INSERT INTO DEVICE (DEVICENAME,DEVICETYPE,DATE,DEVICEOWNER) VALUES('"+dName+"','"+dType+"','"+dDate+"','"+ID+"')";
-        data.makeUpdate(addD);
-    }     
+        try {
+            String dDate=dateFormat.format(now);
+            Connection conn3= DriverManager.getConnection("jdbc:sqlite:data.db");
+            PreparedStatement pStat2=conn3.prepareStatement("INSERT INTO DEVICE (DEVICENAME,DEVICETYPE,DATE,DEVICEOWNER) VALUES(?,?,?,?)");
+            pStat2.setString(1,dName);
+            pStat2.setString(2,dType);
+            pStat2.setString(3,dDate);
+            pStat2.setInt(4,iID);
+            pStat2.execute();
+            System.out.println("update Made");
+            conn3.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void deleteDevice(int dID)
+    {
+        try {
+            Connection conn3= DriverManager.getConnection("jdbc:sqlite:data.db");
+            PreparedStatement pStat2=conn3.prepareStatement("DELETE FROM DEVICE WHERE DEVICEID=?");
+            pStat2.setInt(1,dID);
+            pStat2.execute();
+            System.out.println("device deleted");
+            conn3.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void newSubscribe(int ID,int months)
     {
         try {
@@ -90,11 +122,10 @@ public class logic
     }
     public int premCheck(int iD)
     {
-        ResultSet rsPremCheck;
         try {
             int premValue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getInt(2);
             String dateDue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getString(4);
-            data.conn.close();
+            data.conClose();
             if(premValue==1)
             {
                 DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -127,10 +158,9 @@ public class logic
         ResultSet result1;
         String statementA="SELECT "+column+" from "+table+" where "+identColumn+"='"+ident+"'";
         String name=null;
-        result1=data.makeQuery(statementA);
         try {
-             name=result1.getString(1);
-             result1.close();
+             name=data.makeQuery(statementA).getString(1);
+             data.conClose();
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -158,11 +188,7 @@ public class logic
     public void changeRecord(String stat)
     {
         data.makeUpdate(stat);
-        try {
-            data.conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        data.conClose();
         
     }
     
@@ -180,7 +206,7 @@ public class logic
                 tableStuff.add(dData);
                 count=count-1;
             }
-            data.conn.close();
+            data.conClose();
             deviceList.close();
             for(int i=0;i<tableStuff.size();i++)
             {
