@@ -9,7 +9,6 @@ import Master.Working.account.logic.deviceInfo;
 import Master.Working.account.logic.logic;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +36,7 @@ public class ScreenAccountController implements Initializable {
     @FXML private Button premStatusButton;
     @FXML private Label titleName;
     @FXML private Button deviceButton;
-    @FXML private Button changeDetailsButton;
+    @FXML private Button accDelButton;
     @FXML private Button logOutButton;
     @FXML private Pane accountPane;
     @FXML private TableView deviceTable;
@@ -47,13 +46,15 @@ public class ScreenAccountController implements Initializable {
     @FXML private Button delete4;
     @FXML private Button delete5;
     @FXML private Button addDevice;
-    @FXML private Pane deviceDialog;
+    @FXML private Pane accountDialog;
     @FXML private Label deviceDialogMsg;
     @FXML private Button deviceDialogOK;
     @FXML private Pane addingDeviceDialog;
     @FXML private Button addingDeviceDialogOK;
     @FXML private TextField deviceNameField;
     @FXML private ComboBox deviceTypeCombo;
+    @FXML private Pane accDelDialog;
+    @FXML private PasswordField accDelPassField;
     
 
     @Override
@@ -119,9 +120,10 @@ public class ScreenAccountController implements Initializable {
         
     }
     @FXML
-    public void pressedChangeDetails(ActionEvent event)
+    public void pressedDelAcc(ActionEvent event)
     {
-        
+        accDelDialog.toFront();
+        accDelDialog.relocate(0,80);
     }
     @FXML
     public void pressedLogOut(ActionEvent event)
@@ -137,7 +139,9 @@ public class ScreenAccountController implements Initializable {
        int deviceListNo=Integer.parseInt(btnText);
        if(tableInfo.get(deviceListNo-1).getDeviceDate()>30)//if device is added more than 30 days ago
        {
-           System.out.println("can delete");
+           int dId=tableInfo.get(deviceListNo-1).getDeviceID();
+           logicA.deleteDevice(dId);
+           refreshTable();
        }
        else
        {
@@ -159,21 +163,24 @@ public class ScreenAccountController implements Initializable {
         if (count==5)
         {
             deviceDialogMsg.setText("Too many devices added. Please delete a device first.");
-            deviceDialog.relocate(150,100);
+            accountDialog.relocate(150,100);
         }
-        addingDeviceDialog.relocate(150,100);
+        else{addingDeviceDialog.relocate(150,100);}
     }
     @FXML
     public void deviceDialogOkPressed(ActionEvent event)
     {
-        deviceDialog.relocate(dumpster1[0],dumpster1[1]);
+        accountDialog.relocate(dumpster1[0],dumpster1[1]);
     }
     @FXML
     public void addingDeviceSubmit(ActionEvent event)
     {
-        logicA.addDevice(ID, deviceNameField.getText(), (String)deviceTypeCombo.getValue());
-        addingDeviceDialog.relocate(dumpster1[0],dumpster1[1]);
-        refreshTable();
+        if(deviceNameField.getText().length()>4)
+        {
+            logicA.addDevice(ID, deviceNameField.getText(), (String)deviceTypeCombo.getValue());
+            addingDeviceDialog.relocate(dumpster1[0],dumpster1[1]);
+            refreshTable();
+        }
         
     }
     @FXML
@@ -190,5 +197,24 @@ public class ScreenAccountController implements Initializable {
     {
         tableInfo=logicA.makeTableInfo(ID);
         deviceTable.setItems(tableInfo);
+    }
+    @FXML
+    public void delConfirm(ActionEvent event) throws SQLException
+    {
+        String pCheck=accDelPassField.getText();
+        System.out.println(pCheck);
+        String uname = logicA.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+ID+"'").getString(1);
+        System.out.println(uname);
+        if (pCheck.equals(logicA.data.makeQuery("SELECT PASSWORD FROM ACCOUNT WHERE USERNAME='"+uname+"'").getString(1)))
+                {
+                    logicA.deleteAccount(ID);
+                    System.out.println("Account deleted");
+                }
+        else{System.out.println("incorrect password");}
+    }
+    @FXML
+    public void delBack(ActionEvent event)
+    {
+         accDelDialog.relocate(dumpster1[0],dumpster1[1]);
     }
 }

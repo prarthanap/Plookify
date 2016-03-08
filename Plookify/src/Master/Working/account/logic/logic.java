@@ -47,13 +47,19 @@ public class logic
         }
     }
     
-    public void deleteAccount()
+    public void deleteAccount(int ID)
     {
+        String delAcc="DELETE FROM ACCOUNT WHERE ID='"+ID+"'";
+        String delAcc2="DELETE FROM SUBSCRIPTION WHERE ID='"+ID+"'";
+        String delAcc3="DELETE FROM DEVICE WHERE OWNERID='"+ID+"'";
+        String delAcc4="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"'";
+        String delAcc5="DELETE FROM PLAYLIST WHERE PLAYLISTOWNER='"+ID+"'";
+        String delAcc6="";
+        
         
     }
     public void addDevice(int iID,String dName,String dType)
     {
-        data.conClose();
         Date now=new Date();
         try {
             String dDate=dateFormat.format(now);
@@ -69,7 +75,20 @@ public class logic
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }     
+    }
+    public void deleteDevice(int dID)
+    {
+        try {
+            Connection conn3= DriverManager.getConnection("jdbc:sqlite:data.db");
+            PreparedStatement pStat2=conn3.prepareStatement("DELETE FROM DEVICE WHERE DEVICEID=?");
+            pStat2.setInt(1,dID);
+            pStat2.execute();
+            System.out.println("device deleted");
+            conn3.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void newSubscribe(int ID,int months)
     {
         try {
