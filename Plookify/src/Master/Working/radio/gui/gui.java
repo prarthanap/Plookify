@@ -37,14 +37,14 @@ import javafx.util.Callback;
  * @author ec14082
  */
 public class gui extends Application {
-    Button ViewRadio, goBack, savePlaylist;
+    /*Button ViewRadio, goBack, savePlaylist;
     GridPane root, root2;
     Scene scene, scene2;
     Stage currentStage;
     
     static String[] radioCh;
     static String radioGenreText = "";
-    static String[] artist = new String[10];
+    static String[] artist = new String[10];*/
     
     @Override
     public void start(Stage primaryStage) throws Exception {  

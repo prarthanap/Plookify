@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
@@ -18,32 +20,45 @@
         </columns>
       </TableView>
       <TextField fx:id="searchField" layoutX="70.0" layoutY="30.0" onKeyReleased="#searchFunction" prefHeight="25.0" prefWidth="298.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;" />
-      <TableView fx:id="radioTable" layoutX="718.0" layoutY="74.0" prefHeight="366.0" prefWidth="273.0" stylesheets="@../../player/gui/bg.css">
-        <columns>
-          <TableColumn fx:id="radioIDCol" prefWidth="49.0" text="ID" />
-          <TableColumn fx:id="radioTrackNameCol" prefWidth="123.0" text="Track Name" />
-            <TableColumn fx:id="radioArtistCol" prefWidth="91.0" text="Artist" />
-        </columns>
-      </TableView>
-      <Label layoutX="724.0" layoutY="41.0" text="Radio Channel">
-         <font>
-            <Font name="Century Gothic" size="14.0" />
-         </font>
-      </Label>
       <Label layoutX="23.0" layoutY="34.0" text="Search:">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Label>
-      <Button fx:id="saveAsPlaylist" layoutX="889.0" layoutY="447.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
-      <Label layoutX="724.0" layoutY="55.0" text="Current Genre:">
-         <font>
-            <Font name="Century Gothic" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="currentGenre" layoutX="831.0" layoutY="56.0" text="(Genre)">
-         <font>
-            <Font name="Century Gothic" size="14.0" />
-         </font>
-      </Label>
+      <Button fx:id="viewRadioButton" layoutX="437.0" layoutY="30.0" mnemonicParsing="false" onAction="#viewRadioPane" text="View Radio Channel" />
+      <Pane fx:id="radioPane" layoutX="408.0" layoutY="75.0" prefHeight="451.0" prefWidth="306.0" stylesheets="@../../social/GUI/test.css" visible="false">
+         <children>
+            <AnchorPane layoutX="-5.0" prefHeight="431.0" prefWidth="286.0">
+               <children>
+                  <TableView fx:id="radioTable" layoutX="13.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0" stylesheets="@../../player/gui/bg.css">
+                    <columns>
+                      <TableColumn fx:id="radioIDCol" prefWidth="49.0" text="ID" />
+                      <TableColumn fx:id="radioTrackNameCol" prefWidth="123.0" text="Track Name" />
+                        <TableColumn fx:id="radioArtistCol" prefWidth="91.0" text="Artist" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="5.0" text="Radio Channel">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="24.0" text="Current Genre:">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="currentGenre" layoutX="123.0" layoutY="24.0" text="(Genre)">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="saveAsPlaylist" layoutX="191.0" layoutY="392.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
+                  <TextField layoutX="13.0" layoutY="359.0" prefHeight="25.0" prefWidth="273.0" promptText="Enter Playlist Name" />
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
    </children>
 </AnchorPane>

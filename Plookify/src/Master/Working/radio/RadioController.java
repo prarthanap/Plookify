@@ -31,11 +31,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 /**
  *
  * @author Samad
  */
 public class RadioController implements Initializable {
+    @FXML
+    private Pane radioPane;
     @FXML
     private TableView<Tracks> table;
     @FXML
@@ -61,6 +65,8 @@ public class RadioController implements Initializable {
     @FXML
     private Button saveAsPlaylist;
     @FXML
+    private Button viewRadioButton;
+    @FXML
     private Label currentGenre;
     @FXML
     private TextField searchField;
@@ -72,6 +78,7 @@ public class RadioController implements Initializable {
     private String radioGenre = "";
     private String radioArtist = ""; 
     private String radioTrack = ""; 
+    private boolean radioStatus = false;
  
     
     @Override
@@ -94,6 +101,19 @@ public class RadioController implements Initializable {
     @FXML
     private void savePlaylist(ActionEvent event) {
         System.out.println("TO DO...");
+    }
+    
+    @FXML
+    private void viewRadioPane(ActionEvent event2) {
+        radioPane.setStyle("-fx-background-color: #383838");
+        if (radioStatus == false) {
+            radioPane.setVisible(true);
+            radioStatus = true;
+        }
+        else {
+            radioPane.setVisible(false);
+            radioStatus = false;
+        }
     }
     
     public void createRadio(String searchTermTrack, String searchTermArtist, String searchTermGenre) {
@@ -186,15 +206,15 @@ public class RadioController implements Initializable {
                     if (tracks.getID().contains(newValue)) {
                         return true;
                     } else if (tracks.getTrackName().toLowerCase().contains(lowerCaseFilter)) {
-                        createRadio(lowerCaseFilter, "empty", "empty");
+                        createRadio(tracks.getTrackName(), "empty", "empty");
                         return true;
 
                     } else if (tracks.getArtist().toLowerCase().contains(lowerCaseFilter)) {
-                        createRadio("empty", lowerCaseFilter, "empty");
+                        createRadio("empty", tracks.getArtist(), "empty");
                         return true;
 
                     } else if (tracks.getGenre().toLowerCase().contains(lowerCaseFilter)) {
-                        createRadio("empty", "empty", lowerCaseFilter);
+                        createRadio("empty", "empty", tracks.getGenre());
                         return true;
                     }
                     return false;
