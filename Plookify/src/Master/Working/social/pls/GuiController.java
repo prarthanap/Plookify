@@ -86,6 +86,9 @@ private AnchorPane upgradeDialog;
 @FXML
 private AnchorPane friendPlaylist;
 
+//@FXML
+//private ListView test;
+
 private int ID = 9999;
 private final logic accLogic=new logic();
 
@@ -114,12 +117,11 @@ private final ObservableList options = FXCollections.observableArrayList();
        
        
        TableColumn col2 = new TableColumn("Your Friends");
-       col2.setMinWidth(115);
+       col2.setMinWidth(105);
        col2.setCellValueFactory(new PropertyValueFactory<>("Your Friends"));
-       listOfFriends.getColumns().add(col2);
-       
+       listOfFriends.getColumns().add(col2);    
     }  
-    
+      
     @FXML
     private void displayAllFriends(MouseEvent event) throws SQLException
     {
@@ -128,11 +130,11 @@ private final ObservableList options = FXCollections.observableArrayList();
         int i=0;
         while(fr.next())
         {
-                Friends f1 = new Friends(fr.getString(1));
-                friendData.add(f1);
-                System.out.println(friendData.get(i).getFriends());
-                i++;
-            }
+            Friends f1 = new Friends(fr.getString(1));
+            friendData.add(f1);
+            System.out.println(friendData.get(i).getFriends());
+            i++;
+        }
            listOfFriends.setItems(friendData);
     }
       
@@ -183,10 +185,19 @@ private final ObservableList options = FXCollections.observableArrayList();
     }
     
     @FXML
-    private void goPrivate(MouseEvent event)
+    private void goPrivate(MouseEvent event) throws SQLException
     {
+        int checkPublic = accLogic.data.makeQuery("SELECT * FROM SUBSCRIPTION").getInt(5);
+        if(checkPublic == 1)
+        {
+            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='3';");
+            System.out.println("confirmed");
+            accLogic.data.conClose();
+        }
+        else{        
         logic becomePrivate = new logic();
         becomePrivate.publicity(3);
+        }
         privateDialog.setVisible(false);
     }
 
@@ -200,7 +211,7 @@ private final ObservableList options = FXCollections.observableArrayList();
     private void launchAdded(MouseEvent event)
     {
         logic premium = new logic();
-        int prem = 0;
+        int prem = 1;
         
         if(prem==1)
         {
@@ -218,6 +229,12 @@ private final ObservableList options = FXCollections.observableArrayList();
         int prem = 1;
         if(prem==1)
         {
+//            accLogic.add();
+            int id = 3;
+            int temp = 1;
+            accLogic.data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+id+"','"+temp+"')");
+            accLogic.data.conClose();
+            
             friendAddedDialog.setVisible(false);
         }
         else
@@ -252,6 +269,7 @@ private final ObservableList options = FXCollections.observableArrayList();
             else{}
         }
         showUsers.setItems(userData);
+        
     }
     
     
