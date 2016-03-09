@@ -8,6 +8,8 @@ package Master.Working.social.Logic;
 /**** @author Hamza */
 
 import Master.Working.Common.database;
+import Master.Working.social.pls.Friends;
+import Master.Working.social.pls.GuiController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -16,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class logic {
     
@@ -88,7 +92,9 @@ public class logic {
     public void friendRequest(String uname, String friendname)
     {
         if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
-        {System.out.println(true);}
+        {
+            System.out.println(true);
+        }
         else
         {
             System.out.println(false);
@@ -107,7 +113,7 @@ public class logic {
     
     public void publicity(int id)
     {
-        String change = "UPDATE SUBSCRIPTION SET PUBLICITY='PRIVATE' WHERE USERID='4';";
+        String change = "UPDATE SUBSCRIPTION SET PUBLICITY='1' WHERE USERID='"+id+"';";
         data.makeUpdate(change);
         System.out.println("confirmed");
     }
@@ -118,5 +124,6 @@ public class logic {
     
     
     }
+    
 }
 

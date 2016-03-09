@@ -9,6 +9,23 @@ package Master.Working.social.pls;
  *
  * @author Hamza
  */
-class Friends {
+
+import javafx.beans.property.SimpleStringProperty;
+
+public class Friends {
+    private final SimpleStringProperty friends;
+    
+    public Friends(String friends)
+    {
+        this.friends = new SimpleStringProperty(friends);   
+    }
+    
+        public String getFriends() {
+        return friends.get();
+    }
+
+    public void setID(String Friends) {
+        friends.set(Friends);
+    }
     
 }
