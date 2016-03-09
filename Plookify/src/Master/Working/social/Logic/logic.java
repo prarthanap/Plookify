@@ -37,33 +37,37 @@ public class logic {
         return false;
     }
     
-    public int premCheck(int iD)
+     public int premCheck(int iD)
     {
-        ResultSet rs=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'");
         try {
-            if(rs.getString(3).equals("1"))
+            int premValue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getInt(2);
+            String dateDue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getString(4);
+            data.conClose();
+            if(premValue==1)
             {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
-                try {
-                    String dateDue = rs.getString(4);
-                    Date dateB=dateFormat.parse(dateDue);
-                    //System.out.println(date.after(dateB));
-                    if(date.after(dateB))//if current date is past due date(so not paid)
-                    {
-                        return -1;//expired premium
-                    }
-                    else{return 2;}//premium
-                } catch (SQLException ex) {
-                    Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
+                 //System.out.println(dateDue);
+                Date dateB=dFormat.parse(dateDue);
+                //System.out.println(date.after(dateB));
+                if(date.after(dateB))//if current date is past due date(so not paid)
+                {
+                    
+                    return -1;//expired premium
                 }
+                else{
+                    
+                    return 2;
+                    }//premium 
             }
-            else{return 1;}//free
-        } catch (SQLException ex) {
+            else{
+                
+                return 1;
+                }//free
+            } catch (SQLException | ParseException ex)
+            {
             Logger.getLogger(Master.Working.account.logic.logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
         return 0;//if error in checking
     }
         
@@ -77,7 +81,7 @@ public class logic {
             String update="INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+uname+"','"+fname+"')";
             //System.out.println(update);
             data.makeUpdate(update);
-            System.out.println("added");
+            System.out.println("added");            
         }
     }
     

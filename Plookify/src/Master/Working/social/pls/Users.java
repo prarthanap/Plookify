@@ -12,24 +12,18 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Hamza
  */
 public class Users {
-    private final SimpleStringProperty user;
+    private final SimpleStringProperty username;
     
     public Users(String user) {
-        this.user = new SimpleStringProperty(user);
-        
-    }
-
-    Users(String string, String string0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.username = new SimpleStringProperty(user);
     }
 
     public String getUsername() {
-        return user.get();
+        return username.get();
     }
 
-
-    public void setID(String Username) {
-        user.set(Username);
+    public void setUsername(String u) {
+        username.set(u);
     }
 
 }

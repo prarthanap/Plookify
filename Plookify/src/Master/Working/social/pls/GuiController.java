@@ -5,10 +5,11 @@
  */
 package Master.Working.social.pls;
 
-import Master.Working.social.Logic.User;
+import Master.Working.social.pls.Users;
 import Master.Working.social.Logic.logic;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.beans.value.ChangeListener;
@@ -63,9 +64,7 @@ private TableView<friendPlaylist> fPlaylist;
 private TableColumn playlist;
 
 @FXML
-private TableView<Users> users;
-@FXML
-private TableColumn user;
+private TableView showUsers;
 
 @FXML
 private ListView listFriends;
@@ -86,9 +85,9 @@ private AnchorPane upgradeDialog;
 private AnchorPane friendPlaylist;
 
 private int ID = 9999;
-private final Master.Working.social.Logic.logic accLogic=new Master.Working.social.Logic.logic();
+private final logic accLogic=new logic();
     
-private final ObservableList<Users> data = FXCollections.observableArrayList();
+private ObservableList<Users> userData = FXCollections.observableArrayList();
     
 private final ObservableList options = FXCollections.observableArrayList();
 
@@ -98,13 +97,18 @@ private final ObservableList options = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       user.setCellValueFactory(new PropertyValueFactory("User"));
        displayFriendResults.setVisible(false);
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
        friendAddedDialog.setVisible(false);
        upgradeDialog.setVisible(false);
-       updateTable();
+       
+       
+       TableColumn col1 = new TableColumn("username");
+       col1.setCellValueFactory(new PropertyValueFactory<>("username"));
+       showUsers.getColumns().add(col1);
+       
+       
        
        listFriends.getSelectionModel().selectedItemProperty().addListener(
                          new ChangeListener<String>() {
@@ -213,62 +217,28 @@ private final ObservableList options = FXCollections.observableArrayList();
     }
     
     @FXML
-    private void userTyped(KeyEvent event)
+    private void searching(KeyEvent event) throws SQLException
     {
-        displayFriendResults.setVisible(true);
         
-        FilteredList<Users> filteredData = new FilteredList<>(data, e -> true); 
-        searchField.setOnKeyReleased(e -> {
-
-            searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                filteredData.setPredicate((Predicate<? super Users>) user -> {
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-                    String lowerCaseFilter = newValue.toLowerCase();
-                    if (user.getUsername().contains(newValue)) {
-                        return true;
-                    }
-                    else if (user.getUsername().toLowerCase().contains(lowerCaseFilter))
-                    {
-                        return true;
-                    }
-
-                    return false;
-
-                });
-            });
-        });
-
-        SortedList<Users> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(users.comparatorProperty());
-        users.setItems(sortedData);
-        
-    }
-
-    
-    public void updateTable() {
-        try {
-
-            Master.Working.Common.database db = new Master.Working.Common.database();
-            ResultSet rs = db.makeQuery("SELECT USERNAME FROM ACCOUNT");
-
-            while (rs.next()) {              
-                
-                data.add(new Users(
-                        rs.getString(1)
-                        
-                ));
-
-                users.setItems(this.data);
-                users.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
+        userData = FXCollections.observableArrayList();
+        String searchF=searchField.getText();
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
+        int i=0;
+        while(rs.next())
+        {
+            if(rs.getString(1).startsWith(searchF))
+            {
+                Users u1 = new Users(rs.getString(1));
+                userData.add(u1);
+                System.out.println(userData.get(i).getUsername());
+                i++;
             }
-
-        } catch (Exception e2) {
-            System.err.println(e2);
-
+            else{}
+            
         }
+        showUsers.setItems(userData);
+        
     }
+    
     
 }
