@@ -15,8 +15,8 @@
             <TableColumn fx:id="tDuration" prefWidth="102.0" text="Duration" />
          </columns>
       </TableView>
-      <TextField fx:id="searchBar" layoutX="221.0" layoutY="47.0" prefHeight="31.0" prefWidth="356.0" promptText="Search by Song name, Artist or Album" style="-fx-background-radius: 15;" />
-      <Button fx:id="search" layoutX="595.0" layoutY="47.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
+      <TextField fx:id="searchBar" layoutX="523.0" layoutY="47.0" prefHeight="31.0" prefWidth="356.0" promptText="Search by Song name, Artist or Album" style="-fx-background-radius: 15;" />
+      <Button fx:id="search" layoutX="893.0" layoutY="47.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
       <Label fx:id="playlistLabel" focusTraversable="false" layoutX="221.0" layoutY="123.0" prefHeight="51.0" prefWidth="203.0" text="Playlist">
          <font>
             <Font size="35.0" />
