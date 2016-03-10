@@ -10,6 +10,7 @@ import Master.Working.social.Logic.logic;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -69,9 +70,6 @@ private TableColumn playlist;
 private TableView showUsers;
 
 @FXML
-private TableView listOfFriends;
-
-@FXML
 private AnchorPane friendView;
 @FXML
 private AnchorPane displayFriendResults;
@@ -86,16 +84,16 @@ private AnchorPane upgradeDialog;
 @FXML
 private AnchorPane friendPlaylist;
 
-//@FXML
-//private ListView test;
-
 private int ID = 9999;
 private final logic accLogic=new logic();
 
 private ObservableList<Users> userData = FXCollections.observableArrayList();
-private ObservableList<Friends> friendData = FXCollections.observableArrayList();
+//private ObservableList<Friends> friendData = FXCollections.observableArrayList();
 
-private final ObservableList options = FXCollections.observableArrayList();
+
+private ObservableList<String> lists = FXCollections.observableArrayList();
+@FXML
+private ListView<String> list;
 
     /**
      * Initialises the controller class.
@@ -104,6 +102,8 @@ private final ObservableList options = FXCollections.observableArrayList();
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 //       displayFriendResults.setVisible(false);
+
+       list.setItems(lists);
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
        friendAddedDialog.setVisible(false);
@@ -114,30 +114,8 @@ private final ObservableList options = FXCollections.observableArrayList();
        col1.setMinWidth(150);
        col1.setCellValueFactory(new PropertyValueFactory<>("Username"));
        showUsers.getColumns().add(col1);   
-       
-       
-       TableColumn col2 = new TableColumn("Your Friends");
-       col2.setMinWidth(105);
-       col2.setCellValueFactory(new PropertyValueFactory<>("Your Friends"));
-       listOfFriends.getColumns().add(col2);    
-    }  
-      
-    @FXML
-    private void displayAllFriends(MouseEvent event) throws SQLException
-    {
-        friendData = FXCollections.observableArrayList();
-        ResultSet fr = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
-        int i=0;
-        while(fr.next())
-        {
-            Friends f1 = new Friends(fr.getString(1));
-            friendData.add(f1);
-            System.out.println(friendData.get(i).getFriends());
-            i++;
-        }
-           listOfFriends.setItems(friendData);
-    }
-      
+           
+    }        
     
     @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
@@ -269,7 +247,6 @@ private final ObservableList options = FXCollections.observableArrayList();
             else{}
         }
         showUsers.setItems(userData);
-        
     }
     
     

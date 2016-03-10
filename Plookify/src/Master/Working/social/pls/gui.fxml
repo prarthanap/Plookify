@@ -95,9 +95,9 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="116.0" prefHeight="165.0" prefWidth="125.0" style="-fx-background-color: #ffffff;">
+                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="142.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <TableView fx:id="listOfFriends" onMouseReleased="#displayAllFriends" prefHeight="156.0" prefWidth="125.0" stylesheets="@../GUI/test.css" />
+                        <ListView fx:id="list" prefHeight="125.0" prefWidth="131.0" style="-fx-background-color: grey;" />
                      </children>
                   </AnchorPane>
                   <Button fx:id="addFriend" layoutX="741.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#launchAdded" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
