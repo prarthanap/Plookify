@@ -57,10 +57,17 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="427.0" layoutY="24.0" mnemonicParsing="false" onAction="#onRemove" style="-fx-background-radius: 10;" text="Remove">
+      <Button layoutX="406.0" layoutY="17.0" mnemonicParsing="false" onAction="#onRemove" style="-fx-background-radius: 10; -fx-background-color: transparent;">
          <font>
             <Font name="System Font Regular" size="13.0" />
-         </font></Button>
+         </font>
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Scratch/Images%20png/remove.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Label fx:id="totalDuration" layoutX="849.0" layoutY="572.0" />
    </children>
 </AnchorPane>

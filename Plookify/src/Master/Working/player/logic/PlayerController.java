@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Master.Working.player.gui;
 
 import Master.Working.Common.database;
@@ -71,7 +66,7 @@ public class PlayerController implements Initializable {
     @FXML
     private Label totalDuration;
 
-    private static final double MIN_CHANGE = 0.0001;
+    private static final double MIN_CHANGE = 0.5;
     private MediaPlayer player;
     private List<String> list = new ArrayList<String>();
     private Iterator<String> itr;
@@ -104,17 +99,15 @@ public class PlayerController implements Initializable {
     @FXML
     private void onPlay(ActionEvent event) {
 
-        if (!status.equals("Paused")) {
-            {
+        for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
 
-                for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+            nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
+            list.add(trackSelect.getTrackName() + ".mp3");
 
-                    nowPlayingMenu.getItems().addAll(trackSelect.getTrackName());
-                    list.add(trackSelect.getTrackName() + ".mp3");
-                }
-            }
         }
-        if (!status.equals("Playing")) {
+
+        if (!status.equals(
+                "Playing")) {
             itr = list.iterator();
             play(itr.next());
 
@@ -126,6 +119,8 @@ public class PlayerController implements Initializable {
         player.pause();
         status = "Paused";
         currentDuration = player.getCurrentTime();
+       // System.out.println(currentDuration);
+
     }
 
     @FXML
@@ -142,11 +137,20 @@ public class PlayerController implements Initializable {
             player.play();
             status = "Playing";
         } else {
-            Media media = new Media(Paths.get("/Users/prarthana/PlzWork/src/plzwork/Tracks/" + mediaFile).toUri().toString());
+            
+            
+           
+            
+            Media media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/" + mediaFile).toUri().toString());
+          
             player = new MediaPlayer(media);
 
             player.play();
             status = "Playing";
+
+          //  Duration cTime = player.getCurrentTime();
+            //int value = (int) cTime.toSeconds();
+            //System.out.println(value);
             getDuration();
             getTrackTime();
 
@@ -163,6 +167,7 @@ public class PlayerController implements Initializable {
                 }
             });
         }
+
     }
 
     public Iterator updateItr() {
@@ -184,6 +189,10 @@ public class PlayerController implements Initializable {
             while (rs.next()) {
                 String length = rs.getString(4);
                 totalDuration.setText(length);
+                
+                
+                  
+                
             }
         } catch (Exception e2) {
             System.err.println(e2);
@@ -223,9 +232,21 @@ public class PlayerController implements Initializable {
                 slider.setValue(newTime.toSeconds());
 
                 duration.setText(formatDuration(newTime));
+             
 
             }
         });
+
+    }
+
+    public void Stop() {
+
+        Duration cTime = player.getCurrentTime();
+        int value = (int) cTime.toSeconds();
+        System.out.println(value);
+        
+        
+        
 
     }
 
@@ -233,9 +254,7 @@ public class PlayerController implements Initializable {
         long seconds = (long) d.toSeconds();
         long absSeconds = Math.abs(seconds);
         String positive = String.format(
-                //"%d:%02d:%02d",
                 "%02d:%02d",
-                // absSeconds / 3600,
                 (absSeconds % 3600) / 60,
                 absSeconds % 60);
         return seconds < 0 ? "-" + positive : positive;
