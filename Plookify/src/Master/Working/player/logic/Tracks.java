@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Master.Working.player.gui;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -18,15 +13,15 @@ public class Tracks {
     private final SimpleStringProperty artist;
     private final SimpleStringProperty time;
     private final SimpleStringProperty genre;
-    private final SimpleStringProperty album;
 
-    public Tracks(String ID, String trackName, String artist, String time, String genre, String album) {
+
+    public Tracks(String ID, String trackName, String artist, String time, String genre) {
         this.ID = new SimpleStringProperty(ID);
         this.trackName = new SimpleStringProperty(trackName);
         this.artist = new SimpleStringProperty(artist);
         this.time = new SimpleStringProperty(time);
         this.genre = new SimpleStringProperty(genre);
-        this.album = new SimpleStringProperty(album);
+        
     }
 
     public String getID() {
@@ -49,10 +44,6 @@ public class Tracks {
         return genre.get();
     }
 
-    public String getAlbum() {
-        return album.get();
-    }
-
     public void setID(String TrackID) {
         ID.set(TrackID);
     }
@@ -71,10 +62,6 @@ public class Tracks {
 
     public void setGenre(String gen) {
         genre.set(gen);
-    }
-
-    public void setAlbum(String alb) {
-        album.set(alb);
     }
 
 }

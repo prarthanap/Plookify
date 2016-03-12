@@ -90,7 +90,6 @@ public class PlayerController implements Initializable {
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
         timeCol.setCellValueFactory(new PropertyValueFactory("time"));
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
-        albumCol.setCellValueFactory(new PropertyValueFactory("album"));
 
         updateTable();
 
@@ -312,8 +311,7 @@ public class PlayerController implements Initializable {
                         rs.getString("TRACKNAME"),
                         rs.getString("ARTIST"),
                         rs.getString("DURATION"),
-                        rs.getString("GENRE"),
-                        rs.getString("ALBUM")
+                        rs.getString("GENRE")
                 ));
 
                 table.setItems(this.data);
