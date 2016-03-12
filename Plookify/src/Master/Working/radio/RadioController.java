@@ -177,8 +177,8 @@ public class RadioController implements Initializable {
                         rs.getString("TRACKNAME"),
                         rs.getString("ARTIST"),
                         rs.getString("DURATION"),
-                        rs.getString("GENRE"),
-                        rs.getString("ALBUM")
+                        rs.getString("GENRE")
+                       
                 ));
                 radioTable.setItems(radioData);
                 radioTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -238,8 +238,8 @@ public class RadioController implements Initializable {
                         rs.getString("TRACKNAME"),
                         rs.getString("ARTIST"),
                         rs.getString("DURATION"),
-                        rs.getString("GENRE"),
-                        rs.getString("ALBUM")
+                        rs.getString("GENRE")
+                       
                 ));
 
                 table.setItems(this.data);
