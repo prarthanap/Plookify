@@ -119,7 +119,7 @@ public class PlayerController implements Initializable {
         player.pause();
         status = "Paused";
         currentDuration = player.getCurrentTime();
-       // System.out.println(currentDuration);
+        // System.out.println(currentDuration);
 
     }
 
@@ -137,18 +137,27 @@ public class PlayerController implements Initializable {
             player.play();
             status = "Playing";
         } else {
-            
-            
-           
-            
-            Media media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/" + mediaFile).toUri().toString());
-          
+
+            Media media;
+            try {
+
+                media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/" + mediaFile).toUri().toString());
+
+            } catch (Exception e) {
+
+                media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/empty.mp3").toUri().toString());
+            }
+
             player = new MediaPlayer(media);
 
             player.play();
+            
+            
+            
+            
             status = "Playing";
 
-          //  Duration cTime = player.getCurrentTime();
+            //  Duration cTime = player.getCurrentTime();
             //int value = (int) cTime.toSeconds();
             //System.out.println(value);
             getDuration();
@@ -189,10 +198,7 @@ public class PlayerController implements Initializable {
             while (rs.next()) {
                 String length = rs.getString(4);
                 totalDuration.setText(length);
-                
-                
-                  
-                
+
             }
         } catch (Exception e2) {
             System.err.println(e2);
@@ -232,7 +238,6 @@ public class PlayerController implements Initializable {
                 slider.setValue(newTime.toSeconds());
 
                 duration.setText(formatDuration(newTime));
-             
 
             }
         });
@@ -244,9 +249,6 @@ public class PlayerController implements Initializable {
         Duration cTime = player.getCurrentTime();
         int value = (int) cTime.toSeconds();
         System.out.println(value);
-        
-        
-        
 
     }
 
