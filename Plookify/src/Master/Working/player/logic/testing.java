@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.player.gui;
+/*package Master.Working.player.gui;
 
 import Master.Working.Common.database;
 import java.net.URL;
@@ -40,7 +40,7 @@ import javafx.util.Duration;
  *
  * @author prarthana
  */
-public class testing implements Initializable {
+/*public class testing implements Initializable {
 
     @FXML
     private TableView<Tracks> table;
@@ -87,6 +87,7 @@ public class testing implements Initializable {
     /**
      * Initializes the controller class.
      */
+/*
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -306,3 +307,4 @@ public class testing implements Initializable {
         }
     }
 }
+*/

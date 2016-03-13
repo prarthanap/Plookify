@@ -26,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -150,10 +151,7 @@ public class PlayerController implements Initializable {
             player = new MediaPlayer(media);
 
             player.play();
-            
-            
-            
-            
+
             status = "Playing";
 
             //  Duration cTime = player.getCurrentTime();
@@ -243,14 +241,6 @@ public class PlayerController implements Initializable {
 
     }
 
-    public void Stop() {
-
-        Duration cTime = player.getCurrentTime();
-        int value = (int) cTime.toSeconds();
-        System.out.println(value);
-
-    }
-
     public static String formatDuration(Duration d) {
         long seconds = (long) d.toSeconds();
         long absSeconds = Math.abs(seconds);
@@ -324,4 +314,12 @@ public class PlayerController implements Initializable {
 
         }
     }
+
+    
+    public void onDeselect(MouseEvent event){
+        
+        table.getSelectionModel().clearSelection();
+    }
+    
+    
 }

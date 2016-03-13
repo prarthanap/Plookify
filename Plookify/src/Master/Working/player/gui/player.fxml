@@ -8,15 +8,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;;" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
    <children>
-      <TableView fx:id="table" layoutX="249.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0" stylesheets="@bg.css">
+      <Pane layoutY="6.0" onMouseClicked="#onDeselect" prefHeight="600.0" prefWidth="1000.0" />
+      <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0">
          <columns>
-            <TableColumn fx:id="IDCol" prefWidth="42.0" text="ID" />
-            <TableColumn fx:id="trackNameCol" prefWidth="170.0" text="Track Name" />
-            <TableColumn fx:id="artistCol" prefWidth="153.0" text="Artist" />
-            <TableColumn fx:id="timeCol" prefWidth="93.0" text="Time" />
-            <TableColumn fx:id="genreCol" prefWidth="115.0" text="Genre" />
+            <TableColumn fx:id="IDCol" editable="false" prefWidth="42.0" sortable="false" text="ID" />
+            <TableColumn fx:id="trackNameCol" editable="false" prefWidth="170.0" sortable="false" text="Track Name" />
+            <TableColumn fx:id="artistCol" editable="false" prefWidth="153.0" sortable="false" text="Artist" />
+            <TableColumn fx:id="timeCol" editable="false" prefWidth="93.0" sortable="false" text="Time" />
+            <TableColumn fx:id="genreCol" editable="false" prefWidth="115.0" sortable="false" text="Genre" />
          </columns>
       </TableView>
       <Button fx:id="play" layoutX="80.0" layoutY="533.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="53.0" prefWidth="57.0" style="-fx-background-color: #383838;">
