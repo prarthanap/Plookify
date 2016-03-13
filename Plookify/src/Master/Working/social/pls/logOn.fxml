@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.pls.LogOnController">
+   <children>
+      <Pane fx:id="dialogPane" layoutX="-500.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: #383838; -fx-border-color: #ffffff;">
+         <children>
+            <Button fx:id="loginOkButton" layoutX="109.0" layoutY="100.0" mnemonicParsing="false" onAction="#dialogOkButton" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="OK" textFill="WHITE" />
+            <Label fx:id="loginDialogMessage" layoutX="22.0" layoutY="38.0" maxHeight="60.0" maxWidth="200.0" minHeight="60.0" minWidth="200.0" prefHeight="60.0" prefWidth="200.0" text="placeholder" textFill="WHITE" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane fx:id="startPane" maxHeight="200.0" maxWidth="200.0" minHeight="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #383838;" styleClass="pane">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Scratch/ICONS/logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="logButton" layoutX="150.0" layoutY="282.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#startLoginPressed" prefHeight="30.0" prefWidth="100.0" style="-fx-border-radius: 20; -fx-background-color: #383838; -fx-border-color: #ffffff;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="160.0" layoutY="228.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="87.0" prefHeight="30.0" prefWidth="87.0" styleClass="bigLabel" text="Plookify" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Pane fx:id="loginPane" layoutX="-500.0" layoutY="500.0" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #383838;" styleClass="pane">
+               <children>
+                  <Button fx:id="submitButton" layoutX="40.0" layoutY="333.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loginPressedSubmit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" styleClass="button1" text="SUBMIT" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="resetButton" layoutX="151.0" layoutY="333.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loginPressedReset" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="RESET" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="backButton" layoutX="260.0" layoutY="333.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loginPressedBack" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="BACK" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="107.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Scratch/ICONS/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="39.0" layoutY="241.0" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="80.0" prefHeight="25.0" prefWidth="100.0" text="USERNAME" textFill="WHITE" />
+                  <Label layoutX="39.0" layoutY="272.0" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="80.0" prefHeight="25.0" prefWidth="100.0" text="PASSWORD" textFill="WHITE" />
+                  <PasswordField fx:id="loginPassField" layoutX="141.0" layoutY="272.0" promptText="Password" style="-fx-background-radius: 20;">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="loginUnameField" layoutX="141.0" layoutY="241.0" promptText="Username" style="-fx-background-radius: 20;">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

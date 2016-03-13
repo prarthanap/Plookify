@@ -120,6 +120,15 @@ private ListView list;
            
     }        
     
+    public void setUser(int pass)
+    {
+        this.ID=pass;
+    }
+    public int getUser()
+    {
+        return this.ID;
+    }
+    
     
     public void table() throws SQLException
     {
