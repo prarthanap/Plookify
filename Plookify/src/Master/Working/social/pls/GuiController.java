@@ -133,7 +133,7 @@ private ListView list;
     public void table() throws SQLException
     {
        lists = FXCollections.observableArrayList();
-       ResultSet fl = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
+       ResultSet fl = accLogic.data.makeQuery("SELECT FRIENDID FROM FRIENDLIST");
        int i = 0;
        while(fl.next())
        {
@@ -197,8 +197,8 @@ private ListView list;
     {
         int checkPublic = accLogic.data.makeQuery("SELECT * FROM SUBSCRIPTION").getInt(5);
         if(checkPublic == 1)
-        {
-            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='3';");
+        {           
+            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='"+ID+"';");
             System.out.println("confirmed");
             accLogic.data.conClose();
         }
@@ -260,10 +260,9 @@ private ListView list;
     @FXML
     private void searching(KeyEvent event) throws SQLException
     {
-        
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0'");
         int i=0;
         while(rs.next())
         {

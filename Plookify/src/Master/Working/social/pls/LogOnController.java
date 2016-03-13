@@ -88,6 +88,7 @@ public class LogOnController implements Initializable {
                     Stage oldstage = (Stage) loginPane.getScene().getWindow();
                     Stage theStage = new Stage();
                     theStage.setScene(sceneA);
+                    theStage.setResizable(false);
                     GuiController controller = loader.getController();
                     controller.setUser(pass);
                     oldstage.close();
