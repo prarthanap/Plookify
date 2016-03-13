@@ -124,7 +124,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <Slider blockIncrement="1.0" layoutX="644.0" layoutY="451.0" majorTickUnit="100.0" max="1.0" minorTickCount="100" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" />
+                  <Slider blockIncrement="100.0" layoutX="644.0" layoutY="451.0" majorTickUnit="100.0" minorTickCount="0" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" snapToTicks="true" />
                   <TextField fx:id="searchField" layoutX="631.0" layoutY="30.0" onKeyReleased="#searching" prefHeight="29.0" prefWidth="169.0" promptText="Search" style="-fx-background-radius: 20;">
                      <font>
                         <Font size="13.0" />

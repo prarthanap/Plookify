@@ -20,7 +20,7 @@ public class Friends {
         this.friends = new SimpleStringProperty(friends);   
     }
     
-        public String getFriends() {
+    public String getFriends() {
         return friends.get();
     }
 

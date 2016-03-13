@@ -91,19 +91,22 @@ private ObservableList<Users> userData = FXCollections.observableArrayList();
 //private ObservableList<Friends> friendData = FXCollections.observableArrayList();
 
 
-private ObservableList<String> lists = FXCollections.observableArrayList();
+private ObservableList<Friends> lists = FXCollections.observableArrayList();
 @FXML
-private ListView<String> list;
+private ListView list;
 
     /**
      * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//       displayFriendResults.setVisible(false);
+    try {
 
-       list.setItems(lists);
+    table(); 
+    } catch (SQLException ex) {
+        Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+//       displayFriendResults.setVisible(false);
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
        friendAddedDialog.setVisible(false);
@@ -116,6 +119,24 @@ private ListView<String> list;
        showUsers.getColumns().add(col1);   
            
     }        
+    
+    
+    public void table() throws SQLException
+    {
+       lists = FXCollections.observableArrayList();
+       ResultSet fl = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
+       int i = 0;
+       while(fl.next())
+       {
+           Friends f1 = new Friends(fl.getString(1));
+           lists.add(f1);
+           System.out.println(lists.get(i).getFriends());
+           i++;
+       }
+       list.setItems(lists);
+    }
+    
+    
     
     @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
@@ -248,7 +269,4 @@ private ListView<String> list;
         }
         showUsers.setItems(userData);
     }
-    
-    
-    
 }
