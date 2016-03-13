@@ -143,11 +143,19 @@ public class PlayerController implements Initializable {
             Media media;
             try {
 
-                media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/" + mediaFile).toUri().toString());
+             //   media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/" + mediaFile).toUri().toString());
 
+                
+                    URL resource = getClass().getResource("./Tracks/" + mediaFile);
+                    media = new Media(resource.toString());
+                
             } catch (Exception e) {
 
-                media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/empty.mp3").toUri().toString());
+                
+                    URL resource = getClass().getResource("./Tracks/empty.mp3" );
+                    media = new Media(resource.toString());
+                
+               // media = new Media(Paths.get("/Users/prarthana/Documents/Software Project/NBProjects/SE23/Plookify/src/Master/Working/player/logic/Tracks/empty.mp3").toUri().toString());
             }
 
             player = new MediaPlayer(media);
@@ -156,9 +164,6 @@ public class PlayerController implements Initializable {
 
             status = "Playing";
 
-            //  Duration cTime = player.getCurrentTime();
-            //int value = (int) cTime.toSeconds();
-            //System.out.println(value);
             getDuration();
             getTrackTime();
 
