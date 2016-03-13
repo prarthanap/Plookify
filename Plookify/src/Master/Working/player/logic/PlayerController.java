@@ -117,6 +117,7 @@ public class PlayerController implements Initializable {
     @FXML
     private void onPause(ActionEvent event) {
         player.pause();
+        table.getSelectionModel().clearSelection();
         status = "Paused";
         currentDuration = player.getCurrentTime();
         // System.out.println(currentDuration);
@@ -128,6 +129,7 @@ public class PlayerController implements Initializable {
         Duration startTime = player.getStartTime();
         player.seek(startTime);
         player.play();
+        table.getSelectionModel().clearSelection();
     }
 
     public void play(String mediaFile) {
@@ -315,11 +317,9 @@ public class PlayerController implements Initializable {
         }
     }
 
-    
-    public void onDeselect(MouseEvent event){
-        
+    public void onDeselect(MouseEvent event) {
+
         table.getSelectionModel().clearSelection();
     }
-    
-    
+
 }
