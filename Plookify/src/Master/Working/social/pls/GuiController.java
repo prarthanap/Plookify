@@ -167,7 +167,7 @@ private ListView list;
     private void yesDelete(MouseEvent event)
     {
         logic delete = new logic();
-        delete.deleteFriend("hq300");
+        delete.deleteFriend(3);
         confirmDialog.setVisible(false);
     }
     
@@ -196,6 +196,7 @@ private ListView list;
     private void goPrivate(MouseEvent event) throws SQLException
     {
         int checkPublic = accLogic.data.makeQuery("SELECT * FROM SUBSCRIPTION").getInt(5);
+        String name = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+ID+"'").getString(1);
         if(checkPublic == 1)
         {           
             accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='"+ID+"';");

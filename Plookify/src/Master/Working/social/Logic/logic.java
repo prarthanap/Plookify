@@ -105,7 +105,7 @@ public class logic {
         }
     }
     
-    public void deleteFriend(String uname)
+    public void deleteFriend(int uname)
     {
         String update = "DELETE FROM FRIENDLIST WHERE FRIENDID='"+uname+"';";
         data.makeUpdate(update);
