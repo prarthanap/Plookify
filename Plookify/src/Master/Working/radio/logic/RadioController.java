@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.radio;
+package Master.Working.radio.logic;
 import Master.Working.Common.database;
 import Master.Working.player.logic.Tracks;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -48,8 +51,6 @@ public class RadioController implements Initializable {
     @FXML
     private TableColumn genreCol;
     @FXML
-    private TableColumn albumCol;
-    @FXML
     private TableColumn radioIDCol;
     @FXML
     private TableColumn radioTrackNameCol;
@@ -61,6 +62,8 @@ public class RadioController implements Initializable {
     private Button viewRadioButton;
     @FXML
     private Label currentGenre;
+    @FXML
+    private TextField playlistNameField;
     @FXML
     private TextField searchField;
     
@@ -82,7 +85,6 @@ public class RadioController implements Initializable {
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
         timeCol.setCellValueFactory(new PropertyValueFactory("time"));
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
-        albumCol.setCellValueFactory(new PropertyValueFactory("album"));
 
         updateTable();
         
@@ -93,7 +95,28 @@ public class RadioController implements Initializable {
     
     @FXML
     private void savePlaylist(ActionEvent event) {
-        System.out.println("TO DO...");
+        //System.out.println("TO DO...");
+        //String playlistName = playlistNameField.getText();
+        String playlistUser = getUsername();
+        try {
+            try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+                PreparedStatement pTest=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES(?)");
+                pTest.setString(1,playlistUser);
+                pTest.execute();
+                System.out.println("Update Made");
+                pTest.close();
+                conn1.close();
+                }
+            //db.makeUpdate("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES ('"+playlistUser+"')");
+        }
+        catch (Exception e2) {
+            System.err.println(e2);
+        }
+        System.out.println("Playlist has been saved");
+    }
+    
+    private String getUsername(){
+        return "mas36"; //Temporary
     }
     
     @FXML

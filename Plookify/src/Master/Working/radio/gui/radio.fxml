@@ -7,29 +7,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.RadioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.logic.RadioController">
    <children>
-      <TableView fx:id="table" layoutX="13.0" layoutY="74.0" prefHeight="366.0" prefWidth="697.0" stylesheets="@../../player/gui/bg.css">
+      <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0" stylesheets="@../../player/gui/bg.css">
         <columns>
           <TableColumn fx:id="IDCol" prefWidth="47.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="185.0" text="Track Name" />
             <TableColumn fx:id="artistCol" prefWidth="113.0" text="Artist" />
-            <TableColumn fx:id="timeCol" prefWidth="97.0" text="Time" />
-            <TableColumn fx:id="genreCol" prefWidth="109.0" text="Genre" />
-            <TableColumn fx:id="albumCol" prefWidth="130.0" text="Album" />
+            <TableColumn fx:id="timeCol" prefWidth="67.0" text="Time" />
+            <TableColumn fx:id="genreCol" prefWidth="280.0" text="Genre" />
         </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="70.0" layoutY="30.0" onKeyReleased="#searchFunction" prefHeight="25.0" prefWidth="298.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;" />
-      <Label layoutX="23.0" layoutY="34.0" text="Search:">
+      <TextField fx:id="searchField" layoutX="657.0" layoutY="24.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;" />
+      <Label layoutX="602.0" layoutY="30.0" text="Search:">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Label>
-      <Button fx:id="viewRadioButton" layoutX="437.0" layoutY="30.0" mnemonicParsing="false" onAction="#viewRadioPane" text="View Radio Channel" />
-      <Pane fx:id="radioPane" layoutX="408.0" layoutY="75.0" prefHeight="451.0" prefWidth="306.0" stylesheets="@../../social/GUI/test.css" visible="false">
+      <Button fx:id="viewRadioButton" layoutX="214.0" layoutY="39.0" mnemonicParsing="false" onAction="#viewRadioPane" text="View Radio Channel" />
+      <Pane fx:id="radioPane" layoutX="144.0" layoutY="66.0" prefHeight="451.0" prefWidth="306.0" stylesheets="@../../social/GUI/test.css" visible="false">
          <children>
             <AnchorPane layoutX="-5.0" prefHeight="431.0" prefWidth="286.0">
                <children>
-                  <TableView fx:id="radioTable" layoutX="13.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0" stylesheets="@../../player/gui/bg.css">
+                  <TableView fx:id="radioTable" layoutX="17.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0" stylesheets="@../../player/gui/bg.css">
                     <columns>
                       <TableColumn fx:id="radioIDCol" prefWidth="49.0" text="ID" />
                       <TableColumn fx:id="radioTrackNameCol" prefWidth="123.0" text="Track Name" />
@@ -51,8 +50,8 @@
                         <Font name="Century Gothic" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="saveAsPlaylist" layoutX="191.0" layoutY="392.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
-                  <TextField layoutX="13.0" layoutY="359.0" prefHeight="25.0" prefWidth="273.0" promptText="Enter Playlist Name" />
+                  <Button fx:id="saveAsPlaylist" layoutX="194.0" layoutY="392.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
+                  <TextField fx:id="playlistNameField" layoutX="16.0" layoutY="359.0" prefHeight="25.0" prefWidth="273.0" promptText="Enter Playlist Name" />
                </children>
             </AnchorPane>
          </children>
