@@ -11,8 +11,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -95,24 +99,22 @@ public class RadioController implements Initializable {
     
     @FXML
     private void savePlaylist(ActionEvent event) {
+        int idtest = 0;
         //System.out.println("TO DO...");
         //String playlistName = playlistNameField.getText();
         String playlistUser = getUsername();
-        try {
-            try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+
+        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
                 PreparedStatement pTest=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES(?)");
-                pTest.setString(1,playlistUser);
+                pTest.setString(1, playlistUser);
                 pTest.execute();
                 System.out.println("Update Made");
                 pTest.close();
                 conn1.close();
-                }
-            //db.makeUpdate("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES ('"+playlistUser+"')");
+        } catch (SQLException ex) {
+            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (Exception e2) {
-            System.err.println(e2);
-        }
-        System.out.println("Playlist has been saved");
+        System.out.println("Playlist has been saved " + idtest);
     }
     
     private String getUsername(){
