@@ -1,8 +1,7 @@
-package Master.Working.player.gui;
+package Master.Working.player.logic;
 
 import Master.Working.Common.database;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -120,7 +119,7 @@ public class PlayerController implements Initializable {
         table.getSelectionModel().clearSelection();
         status = "Paused";
         currentDuration = player.getCurrentTime();
-        // System.out.println(currentDuration);
+   
 
     }
 
@@ -150,7 +149,6 @@ public class PlayerController implements Initializable {
                     media = new Media(resource.toString());
                 
             } catch (Exception e) {
-
                 
                     URL resource = getClass().getResource("./Tracks/empty.mp3" );
                     media = new Media(resource.toString());

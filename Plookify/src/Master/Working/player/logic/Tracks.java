@@ -1,4 +1,4 @@
-package Master.Working.player.gui;
+package Master.Working.player.logic;
 
 import javafx.beans.property.SimpleStringProperty;
 
