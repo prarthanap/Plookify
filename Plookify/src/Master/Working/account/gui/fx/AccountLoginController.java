@@ -118,6 +118,14 @@ public class AccountLoginController implements Initializable {
                     System.out.println("not solo");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("accountButtonLink.fxml"));
                     Pane accLink=loader.load();
+                    AccountButtonLinkController control1=loader.getController();
+                    control1.setID(userID);
+                    Stage stage1=new Stage();
+                    Scene sceneA=new Scene(accLink);
+                    stage1.setScene(sceneA);
+                    stage1.show();
+                    Stage st1=(Stage)loginUnameField.getScene().getWindow();
+                    st1.close();
                 } catch (IOException ex) {
                     Logger.getLogger(AccountLoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
