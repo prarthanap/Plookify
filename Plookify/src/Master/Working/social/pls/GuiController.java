@@ -62,12 +62,15 @@ private Button upgradeClose;
 private TextField searchField;
 
 @FXML
-private TableView<friendPlaylist> fPlaylist;
+private TableView fPlaylist;
 @FXML
 private TableColumn playlist;
 
 @FXML
 private TableView showUsers;
+
+@FXML
+private TableView test;
 
 @FXML
 private AnchorPane friendView;
@@ -88,8 +91,8 @@ private int ID = 9999;
 private final logic accLogic=new logic();
 
 private ObservableList<Users> userData = FXCollections.observableArrayList();
-//private ObservableList<Friends> friendData = FXCollections.observableArrayList();
 
+private ObservableList<friendPlaylist> plData = FXCollections.observableArrayList();
 
 private ObservableList<Friends> lists = FXCollections.observableArrayList();
 @FXML
@@ -100,12 +103,12 @@ private ListView list;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    try {
-
-    table(); 
-    } catch (SQLException ex) {
-        Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+//    try {
+//        table(); 
+//    } catch (SQLException ex) {
+//        Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+    
 //       displayFriendResults.setVisible(false);
        confirmDialog.setVisible(false);
        privateDialog.setVisible(false);
@@ -117,8 +120,54 @@ private ListView list;
        col1.setMinWidth(150);
        col1.setCellValueFactory(new PropertyValueFactory<>("Username"));
        showUsers.getColumns().add(col1);   
+       
+       
+        try {
+            table();
+            testtable();
+            playlistNames();
+        } catch (SQLException ex) {
+            Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
            
     }        
+    
+    
+    public void playlistNames() throws SQLException
+    {
+        plData = FXCollections.observableArrayList();
+        ResultSet rs = accLogic.data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST");
+        while(rs.next())
+        {
+            friendPlaylist abc = new friendPlaylist(rs.getString(1));
+            plData.add(abc);        
+        }
+        fPlaylist.setItems(plData);
+    }
+    
+    
+    public void testtable() throws SQLException
+    {
+       TableColumn col1 = new TableColumn("Your Friends");
+       col1.setMinWidth(150);
+       col1.setCellValueFactory(new PropertyValueFactory<>(""
+               + "Your Friends"));
+       test.getColumns().add(col1);    
+       
+        lists = FXCollections.observableArrayList();
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
+        int i=0;
+        while(rs.next())
+        {
+            Friends f1 = new Friends(rs.getString(1));
+            lists.add(f1);
+            System.out.println(lists.get(i).getFriends());
+            i++;
+        }
+        test.setItems(lists);
+       
+       
+    }
     
     public void setUser(int pass)
     {
@@ -137,11 +186,12 @@ private ListView list;
        int i = 0;
        while(fl.next())
        {
-           Friends f1 = new Friends(fl.getString(1));
-           lists.add(f1);
+           Friends fr = new Friends(fl.getString(1));
+           lists.add(fr);
            System.out.println(lists.get(i).getFriends());
            i++;
-       }
+           
+        }
        list.setItems(lists);
     }
     
@@ -195,17 +245,18 @@ private ListView list;
     @FXML
     private void goPrivate(MouseEvent event) throws SQLException
     {
-        int checkPublic = accLogic.data.makeQuery("SELECT * FROM SUBSCRIPTION").getInt(5);
+        int checkPublic = accLogic.data.makeQuery("SELECT PUBLICITY FROM SUBSCRIPTION").getInt(5);
         String name = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+ID+"'").getString(1);
-        if(checkPublic == 1)
+        if(checkPublic != 1)
         {           
-            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='"+ID+"';");
+            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='1' WHERE USERID='"+ID+"';");
             System.out.println("confirmed");
             accLogic.data.conClose();
         }
         else{        
-        logic becomePrivate = new logic();
-        becomePrivate.publicity(3);
+            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='"+ID+"';");
+            System.out.println("confirmed");
+            accLogic.data.conClose();        
         }
         privateDialog.setVisible(false);
     }
@@ -217,11 +268,9 @@ private ListView list;
     }
     
     @FXML
-    private void launchAdded(MouseEvent event)
+    private void launchAdded(MouseEvent event) throws SQLException
     {
-        logic premium = new logic();
         int prem = 1;
-        
         if(prem==1)
         {
             friendAddedDialog.setVisible(true);    
@@ -233,23 +282,12 @@ private ListView list;
     }
     
     @FXML
-    private void acceptDialog(MouseEvent event)
+    private void acceptDialog(MouseEvent event) throws SQLException
     {
-        int prem = 1;
-        if(prem==1)
-        {
-//            accLogic.add();
-            int id = 3;
-            int temp = 1;
-            accLogic.data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+id+"','"+temp+"')");
-            accLogic.data.conClose();
-            
-            friendAddedDialog.setVisible(false);
-        }
-        else
-        {
-            upgradeDialog.setVisible(true);
-        }
+        int temp = 1;
+        accLogic.data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+ID+"','"+temp+"')");
+        accLogic.data.conClose();
+        friendAddedDialog.setVisible(false); 
     }
     
     @FXML
@@ -263,7 +301,9 @@ private ListView list;
     {
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0'");
+        int userID = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0'").getInt(1);
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+userID+"'");
+//        ResultSet rs = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0'");
         int i=0;
         while(rs.next())
         {

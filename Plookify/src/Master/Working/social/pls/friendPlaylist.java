@@ -5,10 +5,28 @@
  */
 package Master.Working.social.pls;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Hamza
  */
-class friendPlaylist {
+public class friendPlaylist {
+    private final SimpleStringProperty playlist;
+    
+    public friendPlaylist(String playlist) {
+        this.playlist = new SimpleStringProperty(playlist);
+        
+    }
+
+    public String getListname() {
+        return playlist.get();
+    }
+
+    public void setID(String Playlist) {
+        playlist.set(Playlist);
+    }
+    
+    
     
 }
