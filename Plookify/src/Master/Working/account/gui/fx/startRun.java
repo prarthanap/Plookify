@@ -5,7 +5,6 @@
  */
 package Master.Working.account.gui.fx;
 
-import Master.Working.account.gui.imageLib2;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,6 @@ import javafx.util.Duration;
  */
 public class startRun extends Application 
 {
-    imageLib2 images=new imageLib2();
     @Override
     public void start(Stage stage) throws Exception 
     {

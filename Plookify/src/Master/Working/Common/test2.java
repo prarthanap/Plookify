@@ -5,10 +5,7 @@
  */
 package Master.Working.Common;
 
-import Master.Working.account.logic.logic;
-import java.sql.SQLException;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.io.File;
 
 /**
  *
@@ -16,25 +13,11 @@ import java.util.TimerTask;
  */
 public class test2
 {
-    private static logic test=new logic();
-    private static int count=0;
-    public static void main(String[] args) throws SQLException
+    public static void main(String[] args)
     {
-        Timer timer1=new Timer();
-        timer1.schedule(new TimerTask()
-        {
-            @Override
-            public void run() 
-            {
-             if(count<5)
-             {
-                System.out.println("Rawr");
-                count++;
-             }
-             else{this.cancel();}
-            }
-        }, 1000,500);
-
+        File f;
+        f = new File("../account/resources/logo.png");
+        System.out.println(f.exists());
     }
             
 }
