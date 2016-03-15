@@ -113,9 +113,13 @@ public class AccountLoginController implements Initializable {
             if (soloTest==0)
             {
                 //normal code
+                System.out.println("not solo");
+            }
+            else
+            {
                 try {
-                    
-                    System.out.println("not solo");
+                    //code to bypass main screen to account screen if test only using account module
+                    System.out.println("solo");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("accountButtonLink.fxml"));
                     Pane accLink=loader.load();
                     AccountButtonLinkController control1=loader.getController();
@@ -129,13 +133,6 @@ public class AccountLoginController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(AccountLoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                
-            }
-            else
-            {
-                //code to bypass main screen to account screen if test only using account module
-                System.out.println("solo");
             }
         }
     }

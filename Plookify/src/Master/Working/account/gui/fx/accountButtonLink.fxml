@@ -11,5 +11,5 @@
     <stylesheets>
         <URL value="@accountmodule.css"/>
     </stylesheets>
-    <Button fx:id="accountLink" mnemonicParsing="false" onAction="#pressToAccount" text="OK" />
+    <Button fx:id="accountLink" mnemonicParsing="false" onAction="#pressToAccount" text="Account" />
 </AnchorPane>
