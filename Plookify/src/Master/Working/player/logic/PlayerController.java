@@ -1,6 +1,7 @@
 package Master.Working.player.logic;
 
 import Master.Working.Common.database;
+import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -140,9 +141,13 @@ public class PlayerController implements Initializable {
 
             Media media;
             try {
-
-                URL resource = getClass().getResource("./Tracks/" + mediaFile);
+                
+                System.out.println((new File("/src/Master/Working/player/logic/Tracks/" + mediaFile).exists()));
+                URL resource = getClass().getResource("/Tracks/" + mediaFile);
                 media = new Media(resource.toString());
+
+//                URL resource = getClass().getResource("./Tracks/" + mediaFile);
+//                media = new Media(resource.toString());
 
             } catch (Exception e) {
 
