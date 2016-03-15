@@ -142,9 +142,10 @@ public class PlayerController implements Initializable {
             Media media;
             try {
                 
-                System.out.println((new File("/src/Master/Working/player/logic/Tracks/" + mediaFile).exists()));
-                URL resource = getClass().getResource("/Tracks/" + mediaFile);
-                media = new Media(resource.toString());
+                String path=System.getProperty("user.dir")+"\\build\\classes\\Master\\Working\\player\\logic\\Tracks\\";
+                System.out.println((new File(path + mediaFile)).exists());
+                //URL resource = getClass().getResource(path + mediaFile);
+                media = new Media(path+mediaFile);
 
 //                URL resource = getClass().getResource("./Tracks/" + mediaFile);
 //                media = new Media(resource.toString());
