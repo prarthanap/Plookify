@@ -13,6 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -79,6 +82,7 @@ public class RadioController implements Initializable {
     private String radioArtist = ""; 
     private String radioTrack = ""; 
     private boolean radioStatus = false;
+    private int lastID = 0;
  
     
     @Override
@@ -99,23 +103,28 @@ public class RadioController implements Initializable {
     
     @FXML
     private void savePlaylist(ActionEvent event) {
-        int idtest = 0;
         //System.out.println("TO DO...");
         //String playlistName = playlistNameField.getText();
         String playlistUser = getUsername();
-
-        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
-                PreparedStatement pTest=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES(?)");
-                pTest.setString(1, playlistUser);
-                pTest.execute();
+       try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+                PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES(?)");
+                ps1.setString(1, playlistUser);
+                ps1.execute();
                 System.out.println("Update Made");
-                pTest.close();
+                ps1.close();
                 conn1.close();
+            lastID = db.makeQuery("SELECT MAX(PLAYLISTID) FROM PLAYLIST").getInt(1);
+            radioTable.getItems().stream().map((item) -> "INSERT into PLAYLISTTRACK (PLAYLIST,TRACK) VALUES('"+lastID+"','"+item.getID()+"')").forEach((updatePTRACK) -> {
+                db.makeUpdate(updatePTRACK);
+            });
+            db.conClose();
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Playlist has been saved " + idtest);
+        System.out.println("Playlist has been saved " + lastID);
+
     }
+    
     
     private String getUsername(){
         return "mas36"; //Temporary
@@ -244,6 +253,7 @@ public class RadioController implements Initializable {
         SortedList<Tracks> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
+        
         
     }
 
