@@ -6,13 +6,9 @@
 package Master.Working.Common;
 
 import Master.Working.account.logic.logic;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -21,18 +17,24 @@ import java.util.Date;
 public class test2
 {
     private static logic test=new logic();
+    private static int count=0;
     public static void main(String[] args) throws SQLException
     {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date now=new Date();
-        System.out.println(dateFormat.format(now));
-                
-                Statement statement;
-                Connection conn= DriverManager.getConnection("jdbc:sqlite:data.db");
-                statement = conn.createStatement();
-                statement.setQueryTimeout(10);
-                statement.execute("PRAGMA foreign_keys = ON");
-                statement.execute("DELETE FROM ACCOUNT WHERE ID=5");
+        Timer timer1=new Timer();
+        timer1.schedule(new TimerTask()
+        {
+            @Override
+            public void run() 
+            {
+             if(count<5)
+             {
+                System.out.println("Rawr");
+                count++;
+             }
+             else{this.cancel();}
+            }
+        }, 1000,500);
+
     }
             
 }

@@ -108,7 +108,7 @@ public class AccountLoginController implements Initializable {
         }
         else
         {
-            try {   int pass=userID;
+            try {   int pass=userID;//login destination code
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("screenAccount.fxml"));     
                     
                     Parent root = (Parent)loader.load();    
