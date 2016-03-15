@@ -32,6 +32,7 @@ public class AccountLoginController implements Initializable {
     private final int[] dumpster1={-500,500};
     private final int[] dumpster2={-1000,500};
     private int userID=9999;
+    private int soloTest=0;
     
     @FXML private Pane startPane;//400,200
 
@@ -108,23 +109,26 @@ public class AccountLoginController implements Initializable {
         }
         else
         {
-            try {   int pass=userID;//login destination code
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("screenAccount.fxml"));     
+            //code for plookify main window pls
+            if (soloTest==0)
+            {
+                //normal code
+                try {
                     
-                    Parent root = (Parent)loader.load();    
-                    Scene sceneA = new Scene(root);
-                    Stage oldstage = (Stage) loginPane.getScene().getWindow();
-                    Stage theStage = new Stage();
-                    theStage.setScene(sceneA);
-                    ScreenAccountController controller = loader.getController();
-                    controller.setUser(pass);
-                    controller.initVariables();
-                    oldstage.close();
-                    theStage.show();
-                } catch (IOException ex)
-                {
-                Logger.getLogger(AccountLoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("not solo");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("accountButtonLink.fxml"));
+                    Pane accLink=loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AccountLoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                
+            }
+            else
+            {
+                //code to bypass main screen to account screen if test only using account module
+                System.out.println("solo");
+            }
         }
     }
     @FXML
@@ -369,6 +373,11 @@ public class AccountLoginController implements Initializable {
      {
          dialogPaneReg.relocate(dumpster1[0],dumpster1[1]);
          subDialogPane.relocate(95,290);
+     }
+     
+     public void setSolo(int val)
+     {
+         this.soloTest=val;
      }
              
 }

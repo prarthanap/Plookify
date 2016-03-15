@@ -17,21 +17,29 @@ import javafx.util.Duration;
 /**
  *
  * @author jll30
+ * 
+ * 
  */
-public class startRunatAcc extends Application 
+public class soloModuleTestRun extends Application 
 {
     imageLib2 images=new imageLib2();
     @Override
     public void start(Stage stage) throws Exception 
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("screenAccount.fxml"));            
-        Parent root = (Parent)loader.load();    
-        Scene sceneA = new Scene(root);
-        stage.setScene(sceneA);
-        ScreenAccountController controller = loader.getController();
-        controller.setUser(5);
-        controller.initVariables();
+        FXMLLoader startLoader = new FXMLLoader(getClass().getResource("screenStart.fxml"));
+        Parent splash = FXMLLoader.load(getClass().getResource("acc.fxml"));
+        Scene scene1 = new Scene(splash);
+        Parent start1 = (Parent)startLoader.load();
+        AccountLoginController startController = startLoader.getController();
+        startController.setSolo(1);
+        Scene scene2 = new Scene(start1);
+        stage.setScene(scene1);
+        stage.setTitle("Plookify");
+        stage.setResizable(false);
         stage.show();
+        PauseTransition loading=new PauseTransition(Duration.millis(1000));
+        loading.setOnFinished(event->stage.setScene(scene2));
+        loading.play();
         
     }
 
