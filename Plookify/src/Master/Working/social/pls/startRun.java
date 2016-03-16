@@ -34,4 +34,3 @@ public class startRun extends Application {
         
     }
 }
-    

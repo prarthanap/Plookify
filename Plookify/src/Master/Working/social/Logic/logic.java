@@ -10,11 +10,13 @@ package Master.Working.social.Logic;
 import Master.Working.Common.database;
 import Master.Working.social.pls.Friends;
 import Master.Working.social.pls.GuiController;
+import Master.Working.social.pls.friendPlaylist;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,10 +121,14 @@ public class logic {
     }
     
     
-    public void friendPlaylist()
+    public ObservableList<friendPlaylist> friendPlaylist(int ID) throws SQLException
     {
-    
-    
+        ArrayList<String[]> tableStuff=new ArrayList<>();
+        int friendID = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST WHERE OWNERID = '"+ID+"'").getInt(1);
+        
+        ResultSet rs = data.makeQuery("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");
+        ObservableList<friendPlaylist> test = FXCollections.observableArrayList();
+        return test;
     }
     
 }
