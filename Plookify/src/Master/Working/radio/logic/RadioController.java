@@ -83,6 +83,8 @@ public class RadioController implements Initializable {
     private String radioTrack = ""; 
     private boolean radioStatus = false;
     private int lastID = 0;
+    private int trackID = 0;
+    private int ID = 9999;
  
     
     @Override
@@ -102,32 +104,52 @@ public class RadioController implements Initializable {
     }
     
     @FXML
-    private void savePlaylist(ActionEvent event) {
+    private void savePlaylist(ActionEvent event) throws SQLException {
         //System.out.println("TO DO...");
         //String playlistName = playlistNameField.getText();
-        String playlistUser = getUsername();
+       int playlistUser = getUserID();
        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
                 PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES(?)");
-                ps1.setString(1, playlistUser);
-                ps1.execute();
-                System.out.println("Update Made");
+                PreparedStatement ps2=conn1.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
+                ps1.setInt(1, playlistUser);
+                ps1.executeUpdate(); 
+                ResultSet rs = ps1.getGeneratedKeys();
+                while (rs.next()) {
+                        lastID = rs.getInt(1); 
+                }
                 ps1.close();
+                for (Tracks item : radioTable.getItems()) {
+                        trackID = Integer.parseInt(item.getID());
+                        System.out.println(lastID + ", " + trackID);
+                        ps2.setInt(1, lastID);
+                        ps2.setInt(2, trackID);
+                        ps2.addBatch();
+                    }
+                ps2.executeBatch(); 
+                ps2.close();
                 conn1.close();
-            lastID = db.makeQuery("SELECT MAX(PLAYLISTID) FROM PLAYLIST").getInt(1);
-            radioTable.getItems().stream().map((item) -> "INSERT into PLAYLISTTRACK (PLAYLIST,TRACK) VALUES('"+lastID+"','"+item.getID()+"')").forEach((updatePTRACK) -> {
-                db.makeUpdate(updatePTRACK);
-            });
-            db.conClose();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Playlist has been saved " + lastID);
-
     }
     
     
     private String getUsername(){
         return "mas36"; //Temporary
+    }
+    
+   /* public void setUser(int pass)
+    {
+        this.ID=pass;
+    }
+    public int getUser()
+    {
+        return this.ID;
+    }
+    */
+    private int getUserID(){
+        return 4; //Temporary
     }
     
     @FXML
