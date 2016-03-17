@@ -81,7 +81,7 @@ public class LogOnController implements Initializable {
         {
             System.out.println("pass");
             try {   int pass=userID;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("gui.fxml"));     
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newgui.fxml"));     
                     
                     Parent root = (Parent)loader.load();    
                     Scene sceneA = new Scene(root);
@@ -89,6 +89,7 @@ public class LogOnController implements Initializable {
                     Stage theStage = new Stage();
                     theStage.setScene(sceneA);
                     theStage.setResizable(false);
+                    theStage.setTitle("Plookify");
                     GuiController controller = loader.getController();
                     controller.setUser(pass);
                     oldstage.close();

@@ -22,8 +22,13 @@
       </ImageView>
       <SplitPane layoutX="179.0" layoutY="14.0" prefHeight="487.0" prefWidth="805.0" style="-fx-background-color: #383838;">
          <items>
-            <AnchorPane prefHeight="507.0" prefWidth="803.0">
+            <AnchorPane fx:id="mainPane" onMouseClicked="#deselect" prefHeight="507.0" prefWidth="803.0">
                <children>
+                  <AnchorPane fx:id="displayFriendResults" layoutX="431.0" layoutY="78.0" prefHeight="173.0" prefWidth="169.0">
+                     <children>
+                        <TableView fx:id="showUsers" layoutX="31.0" prefHeight="200.0" prefWidth="169.0" stylesheets="@../GUI/test.css" />
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="friendAddedDialog" layoutX="262.0" layoutY="165.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #343434;">
                      <children>
                         <Label layoutX="51.0" layoutY="31.0" text="Friend Request sent" textFill="WHITE">
@@ -71,33 +76,10 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="displayFriendResults" layoutX="431.0" layoutY="78.0" prefHeight="173.0" prefWidth="169.0">
+                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="124.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;" />
+                  <AnchorPane fx:id="friendPlaylist" layoutX="675.0" layoutY="267.0" prefHeight="165.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <TableView fx:id="showUsers" layoutX="31.0" prefHeight="200.0" prefWidth="169.0" stylesheets="@../GUI/test.css" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="privateDialog" layoutX="261.0" layoutY="165.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #343434;">
-                     <children>
-                        <Label layoutX="2.0" layoutY="32.0" text="Are you sure you want to go private?" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="yesPrivate" layoutX="57.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#goPrivate" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Yes" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="noPrivate" layoutX="122.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#stayPublic" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="No" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="142.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
-                     <children>
-                        <ListView fx:id="list" prefHeight="125.0" prefWidth="131.0" style="-fx-background-color: grey;" />
+                        <TableView fx:id="fPlaylist" prefHeight="173.0" prefWidth="131.0" stylesheets="@../GUI/test.css" />
                      </children>
                   </AnchorPane>
                   <Button fx:id="addFriend" layoutX="741.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#launchAdded" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
@@ -105,31 +87,16 @@
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="makePrivate" layoutX="728.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#launchPrivate" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Private" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="removeFriend" layoutX="778.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#launchDialog" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="--" textFill="WHITE">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <AnchorPane fx:id="friendPlaylist" layoutX="675.0" layoutY="267.0" prefHeight="165.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
-                     <children>
-                        <TableView fx:id="fPlaylist" prefHeight="173.0" prefWidth="131.0" stylesheets="@../GUI/test.css">
-                          <columns>
-                            <TableColumn fx:id="playlist" prefWidth="130.0" text="Playlist" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-                  <Slider blockIncrement="100.0" layoutX="644.0" layoutY="451.0" majorTickUnit="100.0" minorTickCount="0" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" snapToTicks="true" />
+                  <Slider fx:id="PublicOrPrivate" blockIncrement="100.0" layoutX="710.0" layoutY="461.0" majorTickUnit="100.0" minorTickCount="0" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" snapToTicks="true" />
                   <TextField fx:id="searchField" layoutX="631.0" layoutY="30.0" onKeyReleased="#searching" prefHeight="29.0" prefWidth="169.0" promptText="Search" style="-fx-background-radius: 20;">
                      <font>
                         <Font size="13.0" />
                      </font></TextField>
-                  <TableView fx:id="test" layoutX="30.0" layoutY="123.0" prefHeight="200.0" prefWidth="131.0" />
                </children>
             </AnchorPane>
          </items>

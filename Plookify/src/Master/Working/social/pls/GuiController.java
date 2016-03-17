@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Master.Working.social.pls;
 
 import Master.Working.social.pls.Users;
 import Master.Working.social.Logic.logic;
+import com.sun.corba.se.spi.orbutil.fsm.Guard;
 import java.net.URL;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -26,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,35 +43,19 @@ import javafx.scene.layout.AnchorPane;
 public class GuiController implements Initializable {
 
 @FXML
-private Button removeFriend;
+private Button removeFriend, addFriend, yesConfirm, noConfirm, upgradeClose;
+
 @FXML
-private Button addFriend;
-@FXML
-private Button makePrivate;
-@FXML
-private Button yesConfirm;
-@FXML
-private Button noConfirm;
-@FXML
-private Button yesPrivate;
-@FXML
-private Button noPrivate;
-@FXML
-private Button upgradeClose;
+private Slider PublicOrPrivate;
 
 @FXML
 private TextField searchField;
 
 @FXML
-private TableView fPlaylist;
-@FXML
-private TableColumn playlist;
+private TableView<friendPlaylist> fPlaylist;
 
 @FXML
-private TableView showUsers;
-
-@FXML
-private TableView test;
+private TableView<Users> showUsers;
 
 @FXML
 private AnchorPane friendView;
@@ -78,8 +63,6 @@ private AnchorPane friendView;
 private AnchorPane displayFriendResults;
 @FXML
 private AnchorPane confirmDialog;
-@FXML
-private AnchorPane privateDialog;
 @FXML
 private AnchorPane friendAddedDialog;
 @FXML
@@ -95,80 +78,56 @@ private ObservableList<Users> userData = FXCollections.observableArrayList();
 private ObservableList<friendPlaylist> plData = FXCollections.observableArrayList();
 
 private ObservableList<Friends> lists = FXCollections.observableArrayList();
-@FXML
-private ListView list;
+
+checkPublic checkPublicObj = new checkPublic(ID);
+private double sliderValue = checkPublicObj.checkPublicity();
 
     /**
      * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//    try {
-//        table(); 
-//    } catch (SQLException ex) {
-//        Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
-//    }
     
-//       displayFriendResults.setVisible(false);
        confirmDialog.setVisible(false);
-       privateDialog.setVisible(false);
        friendAddedDialog.setVisible(false);
        upgradeDialog.setVisible(false);
        
+       //Making user public or private (setting slider to position last placed in)
+       PublicOrPrivate.setValue(sliderValue);
        
        TableColumn col1 = new TableColumn("Username");
        col1.setMinWidth(150);
        col1.setCellValueFactory(new PropertyValueFactory<>("Username"));
-       showUsers.getColumns().add(col1);   
+       showUsers.getColumns().add(col1); 
        
-       
-        try {
-            table();
-            testtable();
-            playlistNames();
-        } catch (SQLException ex) {
-            Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
+       try {
+        playlistNames();
+       } catch (SQLException ex) {
+        Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }        
-    
-    
+        
     public void playlistNames() throws SQLException
     {
+       TableColumn PlaylistName = new TableColumn("Friends' Playlist");
+       PlaylistName.setMinWidth(115);
+       PlaylistName.setCellValueFactory(new PropertyValueFactory<>("Friends' Playlist"));
+       fPlaylist.getColumns().add(PlaylistName);
+        
         plData = FXCollections.observableArrayList();
         ResultSet rs = accLogic.data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST");
+        int i = 0;
         while(rs.next())
         {
             friendPlaylist abc = new friendPlaylist(rs.getString(1));
-            plData.add(abc);        
+            plData.add(abc);
+            System.out.println(plData.get(i).getListname());
+            i++;
+            
         }
         fPlaylist.setItems(plData);
     }
-    
-    
-    public void testtable() throws SQLException
-    {
-       TableColumn col1 = new TableColumn("Your Friends");
-       col1.setMinWidth(150);
-       col1.setCellValueFactory(new PropertyValueFactory<>(""
-               + "Your Friends"));
-       test.getColumns().add(col1);    
        
-        lists = FXCollections.observableArrayList();
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT");
-        int i=0;
-        while(rs.next())
-        {
-            Friends f1 = new Friends(rs.getString(1));
-            lists.add(f1);
-            System.out.println(lists.get(i).getFriends());
-            i++;
-        }
-        test.setItems(lists);
-       
-       
-    }
-    
     public void setUser(int pass)
     {
         this.ID=pass;
@@ -177,26 +136,7 @@ private ListView list;
     {
         return this.ID;
     }
-    
-    
-    public void table() throws SQLException
-    {
-       lists = FXCollections.observableArrayList();
-       ResultSet fl = accLogic.data.makeQuery("SELECT FRIENDID FROM FRIENDLIST");
-       int i = 0;
-       while(fl.next())
-       {
-           Friends fr = new Friends(fl.getString(1));
-           lists.add(fr);
-           System.out.println(lists.get(i).getFriends());
-           i++;
-           
-        }
-       list.setItems(lists);
-    }
-    
-    
-    
+        
     @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
         
@@ -228,44 +168,25 @@ private ListView list;
     }
     
     @FXML
-    private void launchPrivate(MouseEvent event)
+    private void launchPrivate()
     {
-        logic premium = new logic();
-        int prem = 2;
-        if(prem==2)
+        sliderValue = PublicOrPrivate.getValue();
+        if(sliderValue == 100)
         {
-            privateDialog.setVisible(true);
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = 100 where USERID="+ID+"";
+            accLogic.data.makeUpdate(privateUpdate);
+            accLogic.data.conClose();
+            System.out.println("Private");
         }
         else
         {
-            upgradeDialog.setVisible(true);
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = 0 where USERID="+ID+"";
+            accLogic.data.makeUpdate(privateUpdate);
+            accLogic.data.conClose();
+            System.out.println("Public");
         }
     }
     
-    @FXML
-    private void goPrivate(MouseEvent event) throws SQLException
-    {
-        int checkPublic = accLogic.data.makeQuery("SELECT PUBLICITY FROM SUBSCRIPTION").getInt(5);
-        String name = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+ID+"'").getString(1);
-        if(checkPublic != 1)
-        {           
-            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='1' WHERE USERID='"+ID+"';");
-            System.out.println("confirmed");
-            accLogic.data.conClose();
-        }
-        else{        
-            accLogic.data.makeUpdate("UPDATE SUBSCRIPTION SET PUBLICITY='0' WHERE USERID='"+ID+"';");
-            System.out.println("confirmed");
-            accLogic.data.conClose();        
-        }
-        privateDialog.setVisible(false);
-    }
-
-    @FXML
-    private void stayPublic(MouseEvent event)
-    {
-        privateDialog.setVisible(false);
-    }
     
     @FXML
     private void launchAdded(MouseEvent event) throws SQLException
@@ -285,7 +206,11 @@ private ListView list;
     private void acceptDialog(MouseEvent event) throws SQLException
     {
         int temp = 1;
-        accLogic.data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+ID+"','"+temp+"')");
+        int tempAdd = 1;
+        
+        showUsers.getSelectionModel().getSelectedItem();
+        
+        accLogic.data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('"+ID+"','"+temp+"','"+tempAdd+"')");
         accLogic.data.conClose();
         friendAddedDialog.setVisible(false); 
     }
@@ -301,9 +226,8 @@ private ListView list;
     {
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
-        int userID = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0'").getInt(1);
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+userID+"'");
-//        ResultSet rs = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0'");
+        ResultSet rs1 = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0.0'");
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+rs1.getInt(1)+"'");
         int i=0;
         while(rs.next())
         {
@@ -318,4 +242,13 @@ private ListView list;
         }
         showUsers.setItems(userData);
     }
+    
+    
+    public void deselect(MouseEvent event) {
+
+        showUsers.getSelectionModel().clearSelection();
+        fPlaylist.getSelectionModel().clearSelection();
+        
+    }
+    
 }
