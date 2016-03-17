@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * 
  * to store account screen loading code, not for running directly
  */
-public class accountscreenloadingcode
+public class accountscreenloadingcd
 {
     int ID=9999;//ignore this, the screen controller should have its own ID variable
     
