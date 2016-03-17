@@ -227,7 +227,8 @@ private double sliderValue = checkPublicObj.checkPublicity();
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
         ResultSet rs1 = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0.0'");
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+rs1.getInt(1)+"'");
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+rs1.getInt(1)+";");
+        
         int i=0;
         while(rs.next())
         {
