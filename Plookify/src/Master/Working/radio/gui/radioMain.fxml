@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.logic.RadioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.logic.RadioController">
    <children>
-      <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0" stylesheets="@../../player/gui/bg.css" visible="false">
+      <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/player/gui/bg.css">
         <columns>
           <TableColumn fx:id="IDCol" prefWidth="47.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="185.0" text="Track Name" />
@@ -18,17 +18,17 @@
             <TableColumn fx:id="genreCol" prefWidth="280.0" text="Genre" />
         </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="219.0" layoutY="74.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Enter Artist, Genre or Song Name" style="-fx-background-radius: 20;" />
-      <Label layoutX="164.0" layoutY="80.0" text="Search:" visible="false">
+      <TextField fx:id="searchField" layoutX="657.0" layoutY="24.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;" />
+      <Label layoutX="602.0" layoutY="30.0" text="Search:">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Label>
-      <Button fx:id="viewRadioButton" layoutX="479.0" layoutY="75.0" mnemonicParsing="false" onAction="#viewRadioPane" style="-fx-background-radius: 20;" text="Generate Radio Channel" />
-      <Pane fx:id="radioPane" layoutX="475.0" layoutY="113.0" prefHeight="451.0" prefWidth="306.0" stylesheets="@../../social/GUI/test.css" visible="false">
+      <Button fx:id="viewRadioButton" layoutX="214.0" layoutY="39.0" mnemonicParsing="false" onAction="#viewRadioPane" style="-fx-background-radius: 20;" text="View Radio Channel" />
+      <Pane fx:id="radioPane" layoutX="144.0" layoutY="66.0" prefHeight="451.0" prefWidth="306.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/social/GUI/test.css" visible="false">
          <children>
-            <AnchorPane layoutX="-4.0" prefHeight="431.0" prefWidth="286.0">
+            <AnchorPane layoutX="-5.0" prefHeight="431.0" prefWidth="286.0">
                <children>
-                  <TableView fx:id="radioTable" layoutX="17.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0" stylesheets="@../../player/gui/bg.css">
+                  <TableView fx:id="radioTable" layoutX="17.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/player/gui/bg.css">
                     <columns>
                       <TableColumn fx:id="radioIDCol" prefWidth="49.0" text="ID" />
                       <TableColumn fx:id="radioTrackNameCol" prefWidth="123.0" text="Track Name" />
@@ -52,8 +52,8 @@
                   </Label>
                   <Button fx:id="saveAsPlaylist" layoutX="194.0" layoutY="392.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
                   <TextField fx:id="playlistNameField" layoutX="16.0" layoutY="359.0" prefHeight="25.0" prefWidth="273.0" promptText="Enter Playlist Name" />
-                  <Label fx:id="playlistSavedLabel" layoutX="18.0" layoutY="396.0" text="Playlist Saved" visible="false" />
-                  <Label fx:id="noSongsLabel" layoutX="18.0" layoutY="396.0" text="No Songs in Radio Channel" visible="false" />
+                  <Label fx:id="playlistSavedLabel" layoutX="17.0" layoutY="396.0" text="Playlist Saved" visible="false" />
+                  <Label fx:id="noSongsLabel" layoutX="17.0" layoutY="395.0" text="No Songs in Radio Channel" visible="false" />
                </children>
             </AnchorPane>
          </children>

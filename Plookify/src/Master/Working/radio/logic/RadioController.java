@@ -70,6 +70,10 @@ public class RadioController implements Initializable {
     @FXML
     private Label currentGenre;
     @FXML
+    private Label playlistSavedLabel;
+    @FXML
+    private Label noSongsLabel;
+    @FXML
     private TextField playlistNameField;
     @FXML
     private TextField searchField;
@@ -104,8 +108,11 @@ public class RadioController implements Initializable {
     }
     
     @FXML
-    private void savePlaylist(ActionEvent event) throws SQLException {
-        //System.out.println("TO DO...");
+    private void savePlaylist(ActionEvent event) throws SQLException { 
+        if (radioData.isEmpty()) {
+            noSongsLabel.setVisible(true);
+        }
+        else {
         //String playlistName = playlistNameField.getText();
        int playlistUser = getUserID();
        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
@@ -131,7 +138,10 @@ public class RadioController implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Playlist has been saved " + lastID);
+        playlistSavedLabel.setText("Playlist " + lastID + " Saved.");
+        playlistSavedLabel.setVisible(true);
+        System.out.println("Playlist has been saved " + lastID); 
+        }
     }
     
     
@@ -154,14 +164,19 @@ public class RadioController implements Initializable {
     
     @FXML
     private void viewRadioPane(ActionEvent event2) {
+        noSongsLabel.setVisible(false);
+        playlistSavedLabel.setVisible(false);
         radioPane.setStyle("-fx-background-color: #383838");
         if (radioStatus == false) {
             radioPane.setVisible(true);
             radioStatus = true;
+            viewRadioButton.setText("Close Radio View");
         }
         else {
+            viewRadioButton.setText("View Radio Channel");
             radioPane.setVisible(false);
             radioStatus = false;
+            playlistSavedLabel.setVisible(false);
         }
     }
     
@@ -174,6 +189,7 @@ public class RadioController implements Initializable {
             radioGenre = searchTermGenre.toUpperCase();
         }
         else if (!searchTermArtist.equals("empty")) {
+            ////////////Fix Search Term for Query/////////////////////////////////
             String[] termSplit = searchTermArtist.split(" ");
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < termSplit.length-1; i++) {
@@ -182,7 +198,7 @@ public class RadioController implements Initializable {
             for (String word : termSplit) {
                 sb.append(word.substring(0, 1).toUpperCase() + word.substring(1));
             }  
-            
+            /////////////////////////////////////////////////////////////////////
             String fixedTerm = sb.toString();
             radioArtist = fixedTerm;
             System.out.println(radioArtist);
@@ -195,6 +211,7 @@ public class RadioController implements Initializable {
             }
         }
         else if (!searchTermTrack.equals("empty")) {
+            ////////////Fix Search Term for Query/////////////////////////////////
             String[] termSplit = searchTermTrack.split(" ");
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < termSplit.length-1; i++) {
@@ -203,6 +220,7 @@ public class RadioController implements Initializable {
             for (String word : termSplit) {
                 sb.append(word.substring(0, 1).toUpperCase() + word.substring(1));
             }  
+            ////////////////////////////////////////////////////////////////////
             String fixedTerm = sb.toString();
             radioTrack = fixedTerm;
             System.out.println(radioTrack);
