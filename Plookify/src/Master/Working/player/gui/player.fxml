@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;;" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.logic.PlayerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;;" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.PlayerController">
    <children>
       <Pane layoutY="6.0" onMouseClicked="#onDeselect" prefHeight="600.0" prefWidth="1000.0" />
       <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0">
@@ -46,7 +46,7 @@
          <font>
             <Font size="12.0" />
          </font></TextField>
-      <Label fx:id="duration" layoutX="237.0" layoutY="569.0" prefHeight="17.0" prefWidth="57.0" text="       " />
+      <Label fx:id="duration" layoutX="237.0" layoutY="569.0" prefHeight="17.0" prefWidth="57.0" text="       " textFill="WHITE" />
       <ComboBox fx:id="nowPlayingMenu" layoutX="129.0" layoutY="24.0" prefHeight="27.0" prefWidth="271.0" promptText="Now Playing:" style="-fx-background-color: #9AFE2E; -fx-background-radius: 20;" />
       <Button fx:id="restart" layoutX="918.0" layoutY="533.0" mnemonicParsing="false" onAction="#onRestart" prefHeight="53.0" prefWidth="57.0" style="-fx-background-color: #383838;">
          <graphic>
@@ -68,6 +68,6 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Label fx:id="totalDuration" layoutX="849.0" layoutY="572.0" />
+      <Label fx:id="totalDuration" layoutX="849.0" layoutY="572.0" textFill="WHITE" />
    </children>
 </AnchorPane>

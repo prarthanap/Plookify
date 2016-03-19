@@ -15,18 +15,9 @@ import javafx.stage.Stage;
  *
  * @author Samad
  */
-public class ComponentLoader extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception {  
-        Parent root = FXMLLoader.load(getClass().getResource("/Master/Working/radio/gui/radioMain.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
-    }
-    
-    public static void main (String[] args) {
-        launch(args);
+public class ComponentLoader {
+    public static void main(String[] args) {
+        //JOptionPane.showMessageDialog(null, "The Application Works.");
     }
 }
 
