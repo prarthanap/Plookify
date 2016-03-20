@@ -1,4 +1,4 @@
-package Master.Working.player.gui;
+package Master.Working.player.logic;
 
 import Master.Working.Common.database;
 import java.sql.ResultSet;
@@ -13,9 +13,7 @@ public class NowPlaying {
 
     private List<String> list = new ArrayList<String>();
 
-
     public NowPlaying() {
-
     }
 
     public List<String> getNowPlaying() {
@@ -33,16 +31,13 @@ public class NowPlaying {
         }
         return list;
     }
-    
-    
-    public List<String> removeNowPlaying(Object o){
-             
+
+    public List<String> removeNowPlaying(Object o) {
+
         database db = new database();
-        ResultSet rs = db.makeQuery("DELETE from NOWPLAYING where TRACKNAME = '"+ o +"'");
-        
-      //  ("SELECT * from TRACKS where trackname = '" + firstWord + "'");
-        
-         try {
+        ResultSet rs = db.makeQuery("DELETE from NOWPLAYING where TRACKNAME = '" + o + "'");
+
+        try {
             while (rs.next()) {
                 list.remove(rs.getString("TRACKNAME"));
             }
@@ -51,8 +46,7 @@ public class NowPlaying {
 
         }
         return list;
-        
+
     }
-    
 
 }

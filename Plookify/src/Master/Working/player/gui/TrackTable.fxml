@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="730.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.logic.TrackTableController">
+   <children>
+      <Pane onMouseClicked="#onDeselect" prefHeight="450.0" prefWidth="730.0" />
+      <TableView fx:id="table" layoutX="55.0" layoutY="61.0" prefHeight="326.0" prefWidth="530.0" stylesheets="@../../social/GUI/test.css">
+         <columns>
+            <TableColumn fx:id="IDCol" editable="false" prefWidth="42.0" sortable="false" text="ID" visible="false" />
+            <TableColumn fx:id="trackNameCol" editable="false" prefWidth="170.0" sortable="false" text="Track Name" />
+            <TableColumn fx:id="artistCol" editable="false" prefWidth="153.0" sortable="false" text="Artist" />
+            <TableColumn fx:id="timeCol" editable="false" prefWidth="93.0" sortable="false" text="Time" />
+            <TableColumn fx:id="genreCol" editable="false" prefWidth="115.0" sortable="false" text="Genre" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchField" layoutX="462.0" layoutY="24.0" onKeyReleased="#searchFunction" prefHeight="27.0" prefWidth="252.0" promptText="Search by Artist, Genre or Song Name" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </TextField>
+      <Button layoutX="576.0" layoutY="402.0" mnemonicParsing="false" onAction="#addToNowPlaying" text="Add To Now Playing" />
+   </children>
+</Pane>

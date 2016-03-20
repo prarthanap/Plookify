@@ -1,4 +1,4 @@
-package Master.Working.player.gui;
+package Master.Working.player.logic;
 
 import Master.Working.Common.database;
 import java.net.URL;
@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
@@ -24,7 +25,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author prarthana
  */
-public class TrackstableController implements Initializable {
+public class TrackTableController implements Initializable {
 
     @FXML
     private TableView<Tracks> table;
@@ -48,7 +49,6 @@ public class TrackstableController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
@@ -119,6 +119,20 @@ public class TrackstableController implements Initializable {
         SortedList<Tracks> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
+
+    }
+
+    @FXML
+    private void addToNowPlaying(ActionEvent event) {
+        database db = new database();
+
+        for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+
+            String nowPlaying = trackSelect.getTrackName();
+
+            db.makeUpdate("INSERT INTO NOWPLAYING(TRACKNAME) " + "VALUES  ('" + nowPlaying + "');");
+
+        }
 
     }
 
