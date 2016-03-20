@@ -1,5 +1,6 @@
 package Master.Working.social.pls;
 
+import Master.Working.Common.database;
 import Master.Working.social.pls.Users;
 import Master.Working.social.Logic.logic;
 import com.sun.corba.se.spi.orbutil.fsm.Guard;
@@ -58,6 +59,9 @@ private TableView<friendPlaylist> fPlaylist;
 private TableView<Users> showUsers;
 
 @FXML
+private TableView ViewFriends;
+
+@FXML
 private AnchorPane friendView;
 @FXML
 private AnchorPane displayFriendResults;
@@ -82,6 +86,9 @@ private ObservableList<Friends> lists = FXCollections.observableArrayList();
 checkPublic checkPublicObj = new checkPublic(ID);
 private double sliderValue = checkPublicObj.checkPublicity();
 
+
+public database data=new database();
+
     /**
      * Initialises the controller class.
      */
@@ -100,32 +107,63 @@ private double sliderValue = checkPublicObj.checkPublicity();
        col1.setCellValueFactory(new PropertyValueFactory<>("Username"));
        showUsers.getColumns().add(col1); 
        
-       try {
-        playlistNames();
-       } catch (SQLException ex) {
-        Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+       
+       TableColumn friendColumn = new TableColumn("Friends");
+       friendColumn.setMinWidth(150);
+       friendColumn.setCellValueFactory(new PropertyValueFactory<>("Friends"));
+       ViewFriends.getColumns().add(friendColumn); 
+       
+       
+       playlistNames();
+       
+       
+       addedFriendsList();
     }        
+    
+    
+    public void addedFriendsList()
+    {
+        try {
+            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST");
+
+            while (rs.next()) {
+                lists.add(new Friends(
+                        rs.getString("FRIENDID")
+                ));
+                
+                ViewFriends.setItems(this.lists);
+            }
+
+        } catch (Exception e2) {
+            System.err.println(e2);
+
+        }
+    }
         
-    public void playlistNames() throws SQLException
+    public void playlistNames()
     {
        TableColumn PlaylistName = new TableColumn("Friends' Playlist");
        PlaylistName.setMinWidth(115);
        PlaylistName.setCellValueFactory(new PropertyValueFactory<>("Friends' Playlist"));
        fPlaylist.getColumns().add(PlaylistName);
-        
+        try{
         plData = FXCollections.observableArrayList();
-        ResultSet rs = accLogic.data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST");
+        ResultSet rs = data.makeQuery("SELECT * FROM PLAYLIST");
         int i = 0;
         while(rs.next())
         {
-            friendPlaylist abc = new friendPlaylist(rs.getString(1));
+            friendPlaylist abc = new friendPlaylist(rs.getString("PLAYLISTID"));
             plData.add(abc);
             System.out.println(plData.get(i).getListname());
             i++;
             
         }
         fPlaylist.setItems(plData);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
        
     public void setUser(int pass)
@@ -174,16 +212,16 @@ private double sliderValue = checkPublicObj.checkPublicity();
         sliderValue = PublicOrPrivate.getValue();
         if(sliderValue == 100)
         {
-            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = 100 where USERID="+ID+"";
-            accLogic.data.makeUpdate(privateUpdate);
-            accLogic.data.conClose();
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '100' where USERID='"+ID+"'";
+            data.makeUpdate(privateUpdate);
+            data.conClose();
             System.out.println("Private");
         }
         else
         {
-            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = 0 where USERID="+ID+"";
-            accLogic.data.makeUpdate(privateUpdate);
-            accLogic.data.conClose();
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '0' where USERID='"+ID+"'";
+            data.makeUpdate(privateUpdate);
+            data.conClose();
             System.out.println("Public");
         }
     }
@@ -211,8 +249,8 @@ private double sliderValue = checkPublicObj.checkPublicity();
         
         showUsers.getSelectionModel().getSelectedItem();
         
-        accLogic.data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('"+ID+"','"+temp+"','"+tempAdd+"')");
-        accLogic.data.conClose();
+        data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('"+ID+"','"+temp+"','"+tempAdd+"')");
+        data.conClose();
         friendAddedDialog.setVisible(false); 
     }
     
@@ -227,7 +265,7 @@ private double sliderValue = checkPublicObj.checkPublicity();
     {
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE PUBLICITY='0.0'");
+        ResultSet rs = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PUBLICITY='100.0'");
 //        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+ID+";");
         
         int i=0;

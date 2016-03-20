@@ -76,7 +76,11 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="124.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;" />
+                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="124.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <TableView fx:id="ViewFriends" prefHeight="126.0" prefWidth="131.0" />
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="friendPlaylist" layoutX="675.0" layoutY="267.0" prefHeight="165.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
                      <children>
                         <TableView fx:id="fPlaylist" prefHeight="173.0" prefWidth="131.0" stylesheets="@../GUI/test.css" />
@@ -96,7 +100,8 @@
                   <TextField fx:id="searchField" layoutX="631.0" layoutY="30.0" onKeyReleased="#searching" prefHeight="29.0" prefWidth="169.0" promptText="Search" style="-fx-background-radius: 20;">
                      <font>
                         <Font size="13.0" />
-                     </font></TextField>
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
          </items>
