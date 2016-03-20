@@ -52,7 +52,7 @@ public class logic
     {
         String delAcc="DELETE FROM ACCOUNT WHERE ID='"+ID+"'";
         Statement statementD;
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
             statementD = conn.createStatement();
             statementD.setQueryTimeout(10);
             statementD.execute("PRAGMA foreign_keys = ON");
@@ -64,7 +64,7 @@ public class logic
         Date now=new Date();
         try {
             String dDate=dateFormat.format(now);
-            try (Connection conn3 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+            try (Connection conn3 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
                 PreparedStatement pStat2=conn3.prepareStatement("INSERT INTO DEVICE (DEVICENAME,DEVICETYPE,DATE,DEVICEOWNER) VALUES(?,?,?,?)");
                 pStat2.setString(1,dName);
                 pStat2.setString(2,dType);
@@ -82,7 +82,7 @@ public class logic
     public void deleteDevice(int dID)
     {
         try {
-            try (Connection conn3 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+            try (Connection conn3 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
                 PreparedStatement pStat2=conn3.prepareStatement("DELETE FROM DEVICE WHERE DEVICEID=?");
                 pStat2.setInt(1,dID);
                 pStat2.execute();
@@ -105,7 +105,7 @@ public class logic
                 premSet=1;
                 monthSet=months;
             }
-            try (Connection conn2 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+            try (Connection conn2 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
                 PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, SUBSCRIPTIONTYPE=?, DUEDATE=? WHERE USERID=?");
                 pStat1.setInt(1,premSet);
                 pStat1.setInt(2,monthSet);

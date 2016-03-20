@@ -51,7 +51,7 @@ public class database {
         try {
             Statement statement;
 
-            conn = DriverManager.getConnection("jdbc:sqlite::resource:Scratch/db/data.db");
+            conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db");
             
           //  conn = DriverManager.getConnection("jdbc:sqlite:data.db");
             statement = conn.createStatement();
@@ -72,7 +72,7 @@ public class database {
         try {
             Statement statementU;
             
-            conn = DriverManager.getConnection("jdbc:sqlite::resource:Scratch/db/data.db");
+            conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db");
             
             //conn = DriverManager.getConnection("jdbc:sqlite:data.db");
             statementU = conn.createStatement();
