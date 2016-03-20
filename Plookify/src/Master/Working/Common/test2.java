@@ -19,15 +19,10 @@ public class test2
     {//remember to use try catch block
         database data=new database();
         ResultSet pubID=data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
-        ArrayList<Integer> pID=new ArrayList<>();
+        ArrayList<String> namesList=new ArrayList<>();
         while (pubID.next())
         {
-            pID.add(pubID.getInt(1));
-        }
-        ArrayList<String> namesList=new ArrayList<>();
-        for(int i=0;i<pID.size();i++)
-        {
-            namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pID.get(i)+"'").getString(1));
+           namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
         }
         for (String a : namesList)
         {System.out.println(a);}
