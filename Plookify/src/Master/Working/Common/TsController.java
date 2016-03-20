@@ -5,12 +5,18 @@
  */
 package Master.Working.Common;
 
+import Master.Working.account.gui.fx.ScreenAccountController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -19,6 +25,7 @@ import javafx.scene.layout.Pane;
  */
 public class TsController implements Initializable {
 
+    private int UserID=4;
     @FXML
     private Pane Player;
     @FXML
@@ -33,10 +40,41 @@ public class TsController implements Initializable {
     private Pane rightSidePane;
     @FXML
     private Pane mainPane;
+    @FXML
+    private Pane radioPane;
+    @FXML
+    private TextField searchBar;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        try{
+            FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml")); 
+            Pane root = (Pane)radioLoader.load();
+            radioPane.getChildren().add(root);
+
+        }catch(Exception e){}
     }    
+
+    @FXML
+    private void pressAccount(ActionEvent event) throws IOException
+    {
+        Stage accManager = new Stage();
+        FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/Account/gui/fx/screenAccount.fxml"));
+        Pane root = (Pane)accLoader.load();
+        ScreenAccountController controllerA = accLoader.getController();
+        controllerA.setUser(UserID);
+        controllerA.initVariables();
+        Scene scene = new Scene(root);
+        accManager.setScene(scene);
+        accManager.setResizable(false);
+        accManager.show();
+    }
+
+    @FXML
+    private void pressRadio(ActionEvent event)
+    {
+        radioPane.relocate(150,85);
+    }
     
 }
