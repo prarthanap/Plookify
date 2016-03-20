@@ -17,7 +17,7 @@ import javafx.util.Duration;
  *
  * @author jll30
  * 
- * 
+ * Straight to account screen using login screen
  */
 public class soloModuleTestRun extends Application 
 {
