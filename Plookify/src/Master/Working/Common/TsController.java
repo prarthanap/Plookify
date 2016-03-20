@@ -5,7 +5,6 @@
  */
 package Master.Working.Common;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -16,11 +15,10 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class
  *
- * @author Hamza
+ * @author jll30
  */
-public class PlookifyController implements Initializable {
-    
-    private int UserID = 9999;
+public class TsController implements Initializable {
+
     @FXML
     private Pane Player;
     @FXML
@@ -35,13 +33,10 @@ public class PlookifyController implements Initializable {
     private Pane rightSidePane;
     @FXML
     private Pane mainPane;
-    
 
-    
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }    
-  
     
 }

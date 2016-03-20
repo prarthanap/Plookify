@@ -15,12 +15,13 @@ import javafx.stage.Stage;
 /**
  *
  * @author Hamza
+ * +JerLe
  */
 public class run extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ts.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("mainScreen.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
