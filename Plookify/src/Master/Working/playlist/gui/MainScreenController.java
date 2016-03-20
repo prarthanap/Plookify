@@ -76,7 +76,7 @@ public class MainScreenController implements Initializable {
         
         tSong.setCellValueFactory(new PropertyValueFactory("songName"));
         tArtist.setCellValueFactory(new PropertyValueFactory("artist"));
-        tAlbum.setCellValueFactory(new PropertyValueFactory("album"));
+      //  tAlbum.setCellValueFactory(new PropertyValueFactory("album"));
         tDuration.setCellValueFactory(new PropertyValueFactory("duration"));
         
         tPlaylists.setCellValueFactory(new PropertyValueFactory("playlists"));

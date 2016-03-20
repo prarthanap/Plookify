@@ -3,12 +3,15 @@ package Master.Working.player.gui;
 import Master.Working.Common.database;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
@@ -42,6 +45,7 @@ public class TrackstableController implements Initializable {
     private TextField searchField;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
+    private List<String> list = new ArrayList<String>();
 
     /**
      * Initializes the controller class.
@@ -126,6 +130,21 @@ public class TrackstableController implements Initializable {
     private void onDeselect(MouseEvent event) {
 
         table.getSelectionModel().clearSelection();
+
+    }
+
+    @FXML
+    private void addToNowPlaying(ActionEvent event) {
+
+        database db = new database();
+
+        for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
+
+            String nowPlaying = trackSelect.getTrackName();
+
+            db.makeUpdate("INSERT INTO NOWPLAYING(TRACKNAME) " + "VALUES  ('" + nowPlaying + "');");
+
+        }
 
     }
 
