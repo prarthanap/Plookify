@@ -47,7 +47,7 @@
              </ComboBox>
             <Label layoutX="15.0" layoutY="74.0" prefHeight="19.0" prefWidth="70.0" text="Device Type" />
             <Button fx:id="addingDeviceDialogOK" layoutX="115.0" layoutY="113.0" mnemonicParsing="false" onAction="#addingDeviceSubmit" text="OK" />
-            <TextField fx:id="deviceNameField" layoutX="94.0" layoutY="34.0" promptText="Device Name" />
+            <TextField fx:id="deviceNameField" layoutX="94.0" layoutY="34.0" promptText="Name length : 4-12" />
             <Label layoutX="15.0" layoutY="38.0" text="Device Name" />
          </children>
       </Pane>
