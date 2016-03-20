@@ -1,6 +1,7 @@
 package Master.Working.social.pls;
 
 import Master.Working.Common.database;
+import Master.Working.player.gui.Tracks;
 import Master.Working.social.pls.Users;
 import Master.Working.social.Logic.logic;
 import com.sun.corba.se.spi.orbutil.fsm.Guard;
@@ -54,12 +55,29 @@ private TextField searchField;
 
 @FXML
 private TableView<friendPlaylist> fPlaylist;
+@FXML
+private TableColumn friendPlaylistCol;
 
 @FXML
 private TableView<Users> showUsers;
 
 @FXML
-private TableView ViewFriends;
+private TableView<Friends> ViewFriends;
+@FXML
+private TableColumn friendCol;
+
+@FXML
+private TableView<Tracks> FriendPlaylistTable;
+@FXML
+private TableColumn IDCol;
+@FXML
+private TableColumn trackNameCol;
+@FXML
+private TableColumn artistCol;
+@FXML
+private TableColumn timeCol;
+@FXML
+private TableColumn genreCol;
 
 @FXML
 private AnchorPane friendView;
@@ -73,6 +91,9 @@ private AnchorPane friendAddedDialog;
 private AnchorPane upgradeDialog;
 @FXML
 private AnchorPane friendPlaylist;
+@FXML
+private AnchorPane FriendPlaylistDialog;
+
 
 private int ID = 9999;
 private final logic accLogic=new logic();
@@ -82,6 +103,8 @@ private ObservableList<Users> userData = FXCollections.observableArrayList();
 private ObservableList<friendPlaylist> plData = FXCollections.observableArrayList();
 
 private ObservableList<Friends> lists = FXCollections.observableArrayList();
+
+private ObservableList<Tracks> FriendsTracks = FXCollections.observableArrayList();
 
 checkPublic checkPublicObj = new checkPublic(ID);
 private double sliderValue = checkPublicObj.checkPublicity();
@@ -107,19 +130,41 @@ public database data=new database();
        col1.setCellValueFactory(new PropertyValueFactory<>("Username"));
        showUsers.getColumns().add(col1); 
        
+       friendCol.setCellFactory(new PropertyValueFactory("friends"));
+       friendPlaylistCol.setCellFactory(new PropertyValueFactory("playlist"));
        
-       TableColumn friendColumn = new TableColumn("Friends");
-       friendColumn.setMinWidth(150);
-       friendColumn.setCellValueFactory(new PropertyValueFactory<>("Friends"));
-       ViewFriends.getColumns().add(friendColumn); 
-       
-       
+       IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
+       trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
+       artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
+       timeCol.setCellValueFactory(new PropertyValueFactory("time"));
+       genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
+       updateTable();
        playlistNames();
-       
-       
        addedFriendsList();
     }        
     
+    
+    public void updateTable() {
+        try {
+
+            ResultSet rs = data.makeQuery("SELECT * FROM TRACKS");
+
+            while (rs.next()) {
+                FriendsTracks.add(new Tracks(
+                        rs.getString("TRACKID"),
+                        rs.getString("TRACKNAME"),
+                        rs.getString("ARTIST"),
+                        rs.getString("DURATION"),
+                        rs.getString("GENRE")
+                ));
+                FriendPlaylistTable.setItems(this.FriendsTracks);
+                FriendPlaylistTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            }
+        } catch (Exception e2) {
+            System.err.println(e2);
+
+        }
+    }
     
     public void addedFriendsList()
     {
@@ -132,6 +177,7 @@ public database data=new database();
                 ));
                 
                 ViewFriends.setItems(this.lists);
+                ViewFriends.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }
 
         } catch (Exception e2) {
@@ -142,27 +188,20 @@ public database data=new database();
         
     public void playlistNames()
     {
-       TableColumn PlaylistName = new TableColumn("Friends' Playlist");
-       PlaylistName.setMinWidth(115);
-       PlaylistName.setCellValueFactory(new PropertyValueFactory<>("Friends' Playlist"));
-       fPlaylist.getColumns().add(PlaylistName);
         try{
-        plData = FXCollections.observableArrayList();
         ResultSet rs = data.makeQuery("SELECT * FROM PLAYLIST");
-        int i = 0;
+
         while(rs.next())
         {
-            friendPlaylist abc = new friendPlaylist(rs.getString("PLAYLISTID"));
-            plData.add(abc);
-            System.out.println(plData.get(i).getListname());
-            i++;
-            
+           plData.add(new friendPlaylist(
+                   rs.getString("PLAYLISTID")
+            ));
         }
-        fPlaylist.setItems(plData);
+        fPlaylist.setItems(this.plData);
         }
-        catch(Exception ex)
+        catch(Exception e2)
         {
-            Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, ex);
+           System.err.println(e2);
         }
     }
        
@@ -265,7 +304,7 @@ public database data=new database();
     {
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
-        ResultSet rs = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PUBLICITY='100.0'");
+        ResultSet rs = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
 //        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+ID+";");
         
         int i=0;
@@ -304,6 +343,7 @@ public database data=new database();
 
         showUsers.getSelectionModel().clearSelection();
         fPlaylist.getSelectionModel().clearSelection();
+        FriendPlaylistTable.getSelectionModel().clearSelection();
         
     }
     
