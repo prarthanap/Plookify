@@ -13,6 +13,7 @@ public class NowPlaying {
 
     private List<String> list = new ArrayList<String>();
 
+
     public NowPlaying() {
 
     }
@@ -32,13 +33,16 @@ public class NowPlaying {
         }
         return list;
     }
-
-    public List<String> removeNowPlaying(Object o) {
-
+    
+    
+    public List<String> removeNowPlaying(Object o){
+             
         database db = new database();
-        ResultSet rs = db.makeQuery("DELETE from NOWPLAYING where TRACKNAME = '" + o + "'");
-
-        try {
+        ResultSet rs = db.makeQuery("DELETE from NOWPLAYING where TRACKNAME = '"+ o +"'");
+        
+      //  ("SELECT * from TRACKS where trackname = '" + firstWord + "'");
+        
+         try {
             while (rs.next()) {
                 list.remove(rs.getString("TRACKNAME"));
             }
@@ -47,7 +51,8 @@ public class NowPlaying {
 
         }
         return list;
-
+        
     }
+    
 
 }
