@@ -157,7 +157,8 @@ private double sliderValue = checkPublicObj.checkPublicity();
     private void yesDelete(MouseEvent event)
     {
         logic delete = new logic();
-        delete.deleteFriend(3);
+        
+        delete.deleteFriend(ID);
         confirmDialog.setVisible(false);
     }
     
@@ -226,7 +227,7 @@ private double sliderValue = checkPublicObj.checkPublicity();
     {
         userData = FXCollections.observableArrayList();
         String searchF=searchField.getText();
-        ResultSet rs = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' AND PUBLICITY='0.0'");
+        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE PUBLICITY='0.0'");
 //        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+ID+";");
         
         int i=0;
@@ -241,6 +242,23 @@ private double sliderValue = checkPublicObj.checkPublicity();
             }
         }
         showUsers.setItems(userData);
+        showUsers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+//        try {
+//            ResultSet ab = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY=0.0");
+//            ResultSet rs = accLogic.data.makeQuery("SELECT * from ACCOUNT WHERE ID ='"+ab+"'");
+//
+//            while (rs.next()) {
+//                userData.add(new Users(
+//                        rs.getString("USERNAME")
+//                ));
+//                showUsers.setItems(this.userData);
+//                showUsers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//            }
+//
+//        } catch (Exception e2) {
+//            System.err.println(e2);
+//        }
     }
     
     

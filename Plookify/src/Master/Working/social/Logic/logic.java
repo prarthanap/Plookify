@@ -76,21 +76,7 @@ public class logic {
             }
         return 0;//if error in checking
     }
-        
-    public void add(String uname,String fname)//checks if username exists then inserts record
-    {
-        if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
-        {System.out.println(true);}
-        else
-        {
-            System.out.println(false);
-            String update="INSERT INTO FRIENDLIST (OWNERID,FRIENDID)VALUES('"+uname+"','"+fname+"')";
-            //System.out.println(update);
-            data.makeUpdate(update);
-            System.out.println("added");            
-        }
-    }
-    
+           
     public void friendRequest(String uname, String friendname)
     {
         if(data.dupCheck(uname,"USERNAME","ACCOUNT"))
@@ -112,24 +98,4 @@ public class logic {
         String update = "DELETE FROM FRIENDLIST WHERE FRIENDID='"+uname+"';";
         data.makeUpdate(update);
     }
-    
-    public void publicity(int id)
-    {
-        String change = "UPDATE SUBSCRIPTION SET PUBLICITY='1' WHERE USERID='"+id+"';";
-        data.makeUpdate(change);
-        System.out.println("confirmed");
-    }
-    
-    
-    public ObservableList<friendPlaylist> friendPlaylist(int ID) throws SQLException
-    {
-        ArrayList<String[]> tableStuff=new ArrayList<>();
-        int friendID = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST WHERE OWNERID = '"+ID+"'").getInt(1);
-        
-        ResultSet rs = data.makeQuery("SELECT DEVICEID,DEVICENAME,DEVICETYPE,DATE FROM DEVICE WHERE DEVICEOWNER='"+ID+"'");
-        ObservableList<friendPlaylist> test = FXCollections.observableArrayList();
-        return test;
-    }
-    
 }
-
