@@ -19,7 +19,7 @@
          </image>
       </ImageView>
       <Label fx:id="titleName" layoutX="144.0" layoutY="38.0" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="accountNameTitle" text="Full Name" />
-      <Button fx:id="premStatusButton" layoutX="459.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Button" />
+      <Button fx:id="premStatusButton" layoutX="459.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressedPremButton" prefHeight="29.0" prefWidth="84.0" text="Button" />
       <Button fx:id="deviceButton" layoutX="121.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedDevice" text="Devices" />
       <Button fx:id="accDelButton" layoutX="236.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedDelAcc" text="Delete Account" />
       <Button fx:id="logOutButton" layoutX="397.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedLogOut" text="Log Out" />
@@ -57,7 +57,6 @@
             <Label fx:id="deviceDialogMsg" alignment="CENTER" layoutX="57.0" layoutY="34.0" prefHeight="55.0" prefWidth="149.0" text="Label" wrapText="true" />
          </children>
       </Pane>
-      <Button layoutX="-252.0" layoutY="400.0" mnemonicParsing="false" text="Delete Account" />
       <Pane fx:id="accDelDialog" layoutY="-319.0" prefHeight="293.0" prefWidth="600.0" styleClass="dialog">
          <children>
             <Label layoutX="65.0" layoutY="21.0" prefHeight="84.0" prefWidth="471.0" styleClass="warning-title" text="Are you sure that you want to delete your account?" textAlignment="CENTER" textFill="#fc0202" wrapText="true">

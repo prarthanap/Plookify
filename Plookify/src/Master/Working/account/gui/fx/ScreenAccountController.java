@@ -80,7 +80,11 @@ public class ScreenAccountController implements Initializable {
             }
         else if(check==0)
             {premStatusButton.setText("error");}
+        else if(check==-1)
+        {premStatusButton.setText("Subscribe");
+        deviceDialogMsg.setText("Your account has been downgraded due to subscription expiring. Subscribe to regain premium status.");}
         else{premStatusButton.setText("Subscribe");}
+        
         String fullname=logicA.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.stringGet(ID,"ID","ACCOUNT", "LASTNAME");
         titleName.setText(fullname);
         tableInfo=logicA.makeTableInfo(ID);
@@ -236,5 +240,10 @@ public class ScreenAccountController implements Initializable {
     public void delBack(ActionEvent event)
     {
          accDelDialog.relocate(dumpster1[0],dumpster1[1]);
+    }
+    @FXML
+    public void pressedPremButton(ActionEvent event)
+    {
+        
     }
 }

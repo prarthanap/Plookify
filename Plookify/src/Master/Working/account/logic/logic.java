@@ -23,7 +23,7 @@ import javafx.collections.ObservableList;
 public class logic
 {
     public database data=new database();
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     public logic()
     {
         
