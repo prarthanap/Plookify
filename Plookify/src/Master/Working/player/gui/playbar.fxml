@@ -35,8 +35,8 @@
          </graphic>
       </Button>
       <Slider fx:id="slider" layoutX="251.0" layoutY="25.0" prefHeight="15.0" prefWidth="441.0" />
-      <Label fx:id="duration" layoutX="254.0" layoutY="48.0" text="Label" textFill="WHITE" />
-      <Label fx:id="totalDuration" layoutX="656.0" layoutY="48.0" text="Label" textFill="WHITE" />
+      <Label fx:id="duration" layoutX="254.0" layoutY="48.0" textFill="WHITE" />
+      <Label fx:id="totalDuration" layoutX="656.0" layoutY="48.0" textFill="WHITE" />
       <ComboBox fx:id="nowPlayingMenu" layoutX="729.0" layoutY="25.0" prefHeight="27.0" prefWidth="193.0" promptText="Now Playing" style="-fx-background-color: white;" />
       <Button layoutX="927.0" layoutY="20.0" mnemonicParsing="false" onAction="#onRemove" style="-fx-background-color: transparent;">
          <graphic>
