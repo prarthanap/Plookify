@@ -32,7 +32,7 @@ public class checkPublic {
         Statement stmt = null;
         try{
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite::resource:Scratch/db/data.db");
+            c = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db");
             c.setAutoCommit(false);
             System.out.println("Opened database successfully");
             

@@ -7,6 +7,7 @@ import Master.Working.social.Logic.logic;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -288,40 +289,49 @@ public database data=new database();
     @FXML
     private void searching(KeyEvent event) throws SQLException
     {
-        userData = FXCollections.observableArrayList();
-        String searchF=searchField.getText();
-        ResultSet rs = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
-//        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+ID+";");
-        
-        int i=0;
-        while(rs.next())
-        {
-            if(rs.getString(1).startsWith(searchF))
-            {
-                Users u1 = new Users(rs.getString(1));
-                userData.add(u1);
-                System.out.println(userData.get(i).getUsername());
-                i++;
-            }
-        }
-        showUsers.setItems(userData);
-        showUsers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
-//        try {
-//            ResultSet ab = accLogic.data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY=0.0");
-//            ResultSet rs = accLogic.data.makeQuery("SELECT * from ACCOUNT WHERE ID ='"+ab+"'");
-//
-//            while (rs.next()) {
-//                userData.add(new Users(
-//                        rs.getString("USERNAME")
-//                ));
-//                showUsers.setItems(this.userData);
-//                showUsers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        userData = FXCollections.observableArrayList();
+//        String searchF=searchField.getText();
+//        ResultSet rs = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
+////        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+ID+";");
+//        
+//        int i=0;
+//        while(rs.next())
+//        {
+//            if(rs.getString(1).startsWith(searchF))
+//            {
+//                Users u1 = new Users(rs.getString(1));
+//                userData.add(u1);
+//                System.out.println(userData.get(i).getUsername());
+//                i++;
 //            }
-//
-//        } catch (Exception e2) {
-//            System.err.println(e2);
 //        }
+//        showUsers.setItems(userData);
+//        showUsers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        try {
+            ResultSet pubID=data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
+            String searchF = searchField.getText();
+            ArrayList<String> namesList=new ArrayList<>();
+            while (pubID.next())//for every matching record a username is gotten
+            {
+                
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
+                userData.add(new Users(
+                   pubID.getString("PLAYLISTID")
+                   
+                ));
+                
+            }
+            for (String a : namesList)
+            {   
+                System.out.println(a);
+                
+            }
+        fPlaylist.setItems(this.plData);
+        } catch (Exception e2) {
+            System.err.println(e2);
+        }
+        
     }
     
     
