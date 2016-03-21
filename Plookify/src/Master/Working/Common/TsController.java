@@ -58,9 +58,9 @@ public class TsController implements Initializable {
             Player.getChildren().add(pBar);
             Pane tTable=(Pane)FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/TrackTable.fxml"));
             mainPane.getChildren().add(tTable);
-            FXMLLoader playlistLoader = new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/mainScreen.fxml"));
-            Pane playList=(Pane)playlistLoader.load();
-            Playlist.getChildren().add(playList);
+            //FXMLLoader playlistLoader = new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/mainScreen.fxml"));
+            //Pane playList=(Pane)playlistLoader.load();
+            //Playlist.getChildren().add(playList);
             //FXMLLoader socialLoader = new FXMLLoader(getClass().getResource("/Master/Working/social/pls/newGui.fxml"));
             //Pane socialP=(Pane)socialLoader.load();
             //gController=socialLoader.getController();
@@ -74,12 +74,12 @@ public class TsController implements Initializable {
     private void pressAccount(ActionEvent event) throws IOException
     {
         Stage accManager = new Stage();
-        FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/Account/gui/fx/screenAccount.fxml"));
-        Pane root = (Pane)accLoader.load();
+        FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/screenAccount.fxml"));
+        Pane accPane = (Pane)accLoader.load();
         ScreenAccountController controllerA = accLoader.getController();
         controllerA.setUser(UserID);
         controllerA.initVariables();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(accPane);
         accManager.setScene(scene);
         accManager.setResizable(false);
         accManager.show();
