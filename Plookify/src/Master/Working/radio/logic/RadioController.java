@@ -115,7 +115,7 @@ public class RadioController implements Initializable {
         else {
        String playlistName = playlistNameField.getText();
        int playlistUser = getUserID();
-       try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
+       try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
                 PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER, PLAYLISTNAME, PRIVATE) VALUES(?,?,?)");
                 PreparedStatement ps2=conn1.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
                 ps1.setInt(1, playlistUser);
