@@ -89,6 +89,7 @@ public class TsController implements Initializable {
     private void pressRadio(ActionEvent event)
     {
         radioPane.relocate(150,85);
+        
     }
     
 }
