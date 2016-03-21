@@ -114,7 +114,7 @@ public class RadioController implements Initializable {
         }
         else {
        String playlistName = playlistNameField.getText();
-       int playlistUser = getUserID();
+       int playlistUser = getUser();
        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
                 PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER, PLAYLISTNAME, PRIVATE) VALUES(?,?,?)");
                 PreparedStatement ps2=conn1.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -147,9 +147,9 @@ public class RadioController implements Initializable {
     }
     
     
-    private String getUsername(){
-        return "mas36"; //Temporary
-    }
+//    private String getUsername(){
+//        return "mas36"; //Temporary
+//    }
     
    public void setUser(int pass)
     {
@@ -160,9 +160,9 @@ public class RadioController implements Initializable {
         return this.ID;
     }
     
-    private int getUserID(){
-        return 4; //Temporary
-    }
+//    private int getUserID(){
+//        return 4; //Temporary
+//    }
     
     @FXML
     private void viewRadioPane(ActionEvent event2) {

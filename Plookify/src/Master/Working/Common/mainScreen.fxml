@@ -10,27 +10,31 @@
 
 <Pane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.Common.TsController">
    <children>
-      <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="29.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Scratch/ICONS/logo.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="84.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lookify">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
-      <Pane fx:id="Player" layoutY="515.0" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #444444;" />
-      <Pane fx:id="Playlist" layoutY="85.0" prefHeight="430.0" prefWidth="150.0" style="-fx-background-color: #666666;" />
-      <Pane fx:id="NavigationPane" layoutX="193.0" prefHeight="85.0" prefWidth="808.0" style="-fx-background-color: #555555;">
+      <Pane fx:id="Player" layoutY="515.0" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #000000;" />
+      <Pane fx:id="Playlist" layoutY="85.0" prefHeight="430.0" prefWidth="150.0" style="-fx-background-color: #000000;" />
+      <Pane fx:id="NavigationPane" prefHeight="85.0" prefWidth="1000.0" style="-fx-background-color: #000000;">
          <children>
-            <Button fx:id="account" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#pressAccount" text="Account" />
-            <Button fx:id="radio" layoutX="125.0" layoutY="33.0" mnemonicParsing="false" onAction="#pressRadio" text="Radio" />
-            <TextField fx:id="searchBar" layoutX="645.0" layoutY="46.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" promptText="Search" />
+            <Button fx:id="account" layoutX="272.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressAccount" text="Account" />
+            <Button fx:id="radio" layoutX="353.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressRadio" text="Radio" />
+            <TextField fx:id="searchBar" layoutX="726.0" layoutY="42.0" maxHeight="30.0" maxWidth="235.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="235.0" promptText="Search" />
+            <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="28.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Scratch/ICONS/logo.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="83.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lookify">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="tracksButton" layoutX="417.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressTracks" text="Tracks" />
          </children>
       </Pane>
-      <Pane fx:id="rightSidePane" layoutX="880.0" layoutY="85.0" prefHeight="430.0" prefWidth="120.0" style="-fx-background-color: #777777;" />
-      <Pane fx:id="mainPane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="730.0" style="-fx-background-color: #888888;" />
-      <Pane fx:id="radioPane" layoutY="700.0" prefHeight="55.0" prefWidth="445.0" />
+      <Pane fx:id="rightSidePane" layoutX="850.0" layoutY="85.0" prefHeight="430.0" prefWidth="150.0" style="-fx-background-color: #000000;" />
+      <Pane fx:id="mainPane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="730.0" style="-fx-background-color: #000000;">
+         <children>
+            <Button fx:id="tracksAdd" layoutX="339.0" layoutY="404.0" mnemonicParsing="false" onAction="#addTracks" text="Add" />
+         </children></Pane>
+      <Pane fx:id="radioPane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="695.0" style="-fx-background-color: #000000;" />
    </children>
 </Pane>

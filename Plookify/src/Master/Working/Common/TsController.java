@@ -6,6 +6,9 @@
 package Master.Working.Common;
 
 import Master.Working.account.gui.fx.ScreenAccountController;
+import Master.Working.player.logic.PlaybarController;
+import Master.Working.player.logic.TrackTableController;
+import Master.Working.radio.logic.RadioController;
 import Master.Working.social.pls.GuiController;
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +29,12 @@ import javafx.stage.Stage;
  */
 public class TsController implements Initializable {
 
-    private int UserID=4;
-    private GuiController gController;        
+    private int UserID=4;   
+    
+    private TrackTableController table;
+    private PlaybarController bar2;
+    private RadioController rCon;
+    
     @FXML
     private Pane Player;
     @FXML
@@ -46,27 +53,29 @@ public class TsController implements Initializable {
     private Pane radioPane;
     @FXML
     private TextField searchBar;
+    @FXML
+    private Button tracksAdd;
+    @FXML Button tracksButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         try{
-            FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml")); 
+            FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml"));
             Pane root = (Pane)radioLoader.load();
-            root.relocate(-150, -50);
+            rCon=radioLoader.getController();
+            rCon.setUser(UserID);
+            root.relocate(-250, 50);
             radioPane.getChildren().add(root);
-            Pane pBar=(Pane)FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
+            FXMLLoader pBarLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
+            Pane pBar=pBarLoader.load();
             Player.getChildren().add(pBar);
-            Pane tTable=(Pane)FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/TrackTable.fxml"));
+            bar2 = pBarLoader.getController();
+            FXMLLoader tableLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/TrackTable.fxml"));
+            Pane tTable=tableLoader.load();
+            table = tableLoader.getController();
             mainPane.getChildren().add(tTable);
-            //FXMLLoader playlistLoader = new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/mainScreen.fxml"));
-            //Pane playList=(Pane)playlistLoader.load();
-            //Playlist.getChildren().add(playList);
-            //FXMLLoader socialLoader = new FXMLLoader(getClass().getResource("/Master/Working/social/pls/newGui.fxml"));
-            //Pane socialP=(Pane)socialLoader.load();
-            //gController=socialLoader.getController();
-            //gController.setUser(4);
-            //rightSidePane.getChildren().add(socialP);
+            tracksAdd.toFront();
 
         }catch(Exception e){}
     }    
@@ -89,12 +98,25 @@ public class TsController implements Initializable {
     @FXML
     private void pressRadio(ActionEvent event)
     {
-        radioPane.relocate(150,85);
+        
+        radioPane.toFront();
+        
+    }
+    @FXML
+    private void pressTracks(ActionEvent event)
+    {
+        
+        mainPane.toFront();
         
     }
     private void setID(int uID)
     {
         this.UserID=uID;
     }
-    
+    @FXML
+    private void addTracks(ActionEvent event)
+    {
+        table.addToNowPlaying();
+        bar2.initialize(null, null);
+    } 
 }
