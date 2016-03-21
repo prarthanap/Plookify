@@ -151,7 +151,7 @@ public class RadioController implements Initializable {
         return "mas36"; //Temporary
     }
     
-   /* public void setUser(int pass)
+   public void setUser(int pass)
     {
         this.ID=pass;
     }
@@ -159,7 +159,7 @@ public class RadioController implements Initializable {
     {
         return this.ID;
     }
-    */
+    
     private int getUserID(){
         return 4; //Temporary
     }
