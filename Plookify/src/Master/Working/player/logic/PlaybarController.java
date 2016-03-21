@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -45,14 +41,13 @@ public class PlaybarController implements Initializable {
     private Duration currentDuration;
     private static final double MIN_CHANGE = 0.5;
 
-    NowPlaying play = new NowPlaying();
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        NowPlaying play = new NowPlaying();
         nowPlayingMenu.getItems().clear();
         nowPlayingMenu.getItems().addAll(play.getNowPlaying());
 

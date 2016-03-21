@@ -3,6 +3,8 @@ package Master.Working.player.logic;
 import Master.Working.Common.database;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
@@ -123,7 +125,7 @@ public class TrackTableController implements Initializable {
     }
 
     @FXML
-    private void addToNowPlaying(ActionEvent event) {
+    public void addToNowPlaying() {
         database db = new database();
 
         for (Tracks trackSelect : table.getSelectionModel().getSelectedItems()) {
@@ -134,7 +136,9 @@ public class TrackTableController implements Initializable {
 
         }
         
-  
+        
+        
+
     }
 
     @FXML

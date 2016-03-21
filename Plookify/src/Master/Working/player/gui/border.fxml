@@ -4,13 +4,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.BorderController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.player.gui.BorderController">
    <bottom>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-       <fx:include source="playbar.fxml" />
+      <Pane fx:id="bar" prefHeight="99.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+     
    </bottom>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-       <fx:include source="TrackTable.fxml" />
+      <Pane fx:id="main" prefHeight="391.0" prefWidth="837.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="loadMenu" layoutX="427.0" layoutY="438.0" mnemonicParsing="false" onAction="#loadNowPlaying" prefHeight="28.0" prefWidth="172.0" style="-fx-background-color: white;" text="Add To Now Playing" />
+         </children></Pane>
+  
    </center>
 </BorderPane>
