@@ -6,6 +6,7 @@
 package Master.Working.Common;
 
 import Master.Working.account.gui.fx.ScreenAccountController;
+import Master.Working.social.pls.GuiController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
 public class TsController implements Initializable {
 
     private int UserID=4;
-            
+    private GuiController gController;        
     @FXML
     private Pane Player;
     @FXML
@@ -60,6 +61,11 @@ public class TsController implements Initializable {
             FXMLLoader playlistLoader = new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/mainScreen.fxml"));
             Pane playList=(Pane)playlistLoader.load();
             Playlist.getChildren().add(playList);
+            //FXMLLoader socialLoader = new FXMLLoader(getClass().getResource("/Master/Working/social/pls/newGui.fxml"));
+            //Pane socialP=(Pane)socialLoader.load();
+            //gController=socialLoader.getController();
+            //gController.setUser(4);
+            //rightSidePane.getChildren().add(socialP);
 
         }catch(Exception e){}
     }    
