@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 public class TsController implements Initializable {
 
     private int UserID=4;
+            
     @FXML
     private Pane Player;
     @FXML
@@ -52,6 +53,13 @@ public class TsController implements Initializable {
             FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml")); 
             Pane root = (Pane)radioLoader.load();
             radioPane.getChildren().add(root);
+            Pane pBar=(Pane)FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
+            Player.getChildren().add(pBar);
+            Pane tTable=(Pane)FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/TrackTable.fxml"));
+            mainPane.getChildren().add(tTable);
+            FXMLLoader playlistLoader = new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/mainScreen.fxml"));
+            Pane playList=(Pane)playlistLoader.load();
+            Playlist.getChildren().add(playList);
 
         }catch(Exception e){}
     }    
