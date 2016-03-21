@@ -113,12 +113,14 @@ public class RadioController implements Initializable {
             noSongsLabel.setVisible(true);
         }
         else {
-        //String playlistName = playlistNameField.getText();
+       String playlistName = playlistNameField.getText();
        int playlistUser = getUserID();
        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite:data.db")) {
-                PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER) VALUES(?)");
+                PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER, PLAYLISTNAME, PRIVATE) VALUES(?,?,?)");
                 PreparedStatement ps2=conn1.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
                 ps1.setInt(1, playlistUser);
+                ps1.setString(2, playlistName);
+                ps1.setString(3, "Y"); //Default
                 ps1.executeUpdate(); 
                 ResultSet rs = ps1.getGeneratedKeys();
                 while (rs.next()) {
@@ -135,9 +137,9 @@ public class RadioController implements Initializable {
                 ps2.executeBatch(); 
                 ps2.close();
                 conn1.close();
-        } catch (Exception ex) {
-            Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       } catch (Exception e2) {
+            System.err.println(e2);
+            }
         playlistSavedLabel.setText("Playlist " + lastID + " Saved.");
         playlistSavedLabel.setVisible(true);
         System.out.println("Playlist has been saved " + lastID); 
