@@ -241,7 +241,6 @@ public class AccountLoginController implements Initializable {
      @FXML
      private void contactNoTrim(KeyEvent ke)
      {
-        contactNoR.setText(contactNoR.getText().replaceAll("[^\\d.]", "").trim());
         if(contactNoR.getText().length()>=11)
            {
                ke.consume();

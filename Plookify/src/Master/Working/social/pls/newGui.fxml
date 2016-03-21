@@ -24,6 +24,19 @@
          <items>
             <AnchorPane fx:id="mainPane" onMouseClicked="#deselect" prefHeight="507.0" prefWidth="803.0">
                <children>
+                  <AnchorPane fx:id="FriendPlaylistDialog" layoutX="22.0" layoutY="101.0" prefHeight="333.0" prefWidth="609.0">
+                     <children>
+                        <TableView fx:id="FriendPlaylistTable" prefHeight="333.0" prefWidth="609.0">
+                          <columns>
+                            <TableColumn fx:id="IDCol" prefWidth="82.0" text="C1" />
+                            <TableColumn fx:id="trackNameCol" prefWidth="123.0" text="C2" />
+                              <TableColumn fx:id="artistCol" prefWidth="107.0" text="Column X" />
+                              <TableColumn fx:id="timeCol" prefWidth="106.0" text="Column X" />
+                              <TableColumn fx:id="genreCol" prefWidth="108.0" text="Column X" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="displayFriendResults" layoutX="431.0" layoutY="78.0" prefHeight="173.0" prefWidth="169.0">
                      <children>
                         <TableView fx:id="showUsers" layoutX="31.0" prefHeight="200.0" prefWidth="169.0" stylesheets="@../GUI/test.css" />
@@ -76,10 +89,22 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="124.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;" />
+                  <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="124.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <TableView fx:id="ViewFriends" prefHeight="126.0" prefWidth="131.0">
+                           <columns>
+                              <TableColumn fx:id="friendCol" prefWidth="104.0" text="Column X" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="friendPlaylist" layoutX="675.0" layoutY="267.0" prefHeight="165.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <TableView fx:id="fPlaylist" prefHeight="173.0" prefWidth="131.0" stylesheets="@../GUI/test.css" />
+                        <TableView fx:id="fPlaylist" prefHeight="173.0" prefWidth="131.0" stylesheets="@../GUI/test.css">
+                           <columns>
+                              <TableColumn fx:id="friendPlaylistCol" prefWidth="94.0" text="Column X" />
+                           </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
                   <Button fx:id="addFriend" layoutX="741.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#launchAdded" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
@@ -96,7 +121,8 @@
                   <TextField fx:id="searchField" layoutX="631.0" layoutY="30.0" onKeyReleased="#searching" prefHeight="29.0" prefWidth="169.0" promptText="Search" style="-fx-background-radius: 20;">
                      <font>
                         <Font size="13.0" />
-                     </font></TextField>
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
          </items>
