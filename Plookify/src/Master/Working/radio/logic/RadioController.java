@@ -5,7 +5,7 @@
  */
 package Master.Working.radio.logic;
 import Master.Working.Common.database;
-import Master.Working.player.gui.Tracks;
+import Master.Working.player.logic.Tracks;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;

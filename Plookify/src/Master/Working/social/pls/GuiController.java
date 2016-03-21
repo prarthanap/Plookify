@@ -1,7 +1,7 @@
 package Master.Working.social.pls;
 
 import Master.Working.Common.database;
-import Master.Working.player.gui.Tracks;
+import Master.Working.player.logic.Tracks;
 import Master.Working.social.pls.Users;
 import Master.Working.social.Logic.logic;
 import com.sun.corba.se.spi.orbutil.fsm.Guard;
