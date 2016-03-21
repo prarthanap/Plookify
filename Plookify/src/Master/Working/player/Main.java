@@ -12,12 +12,12 @@ import javafx.stage.Stage;
  * @author prarthana
  */
 
-public class mainn2 extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Master/Working/player/gui/border.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);

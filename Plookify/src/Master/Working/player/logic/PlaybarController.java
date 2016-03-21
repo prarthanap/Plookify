@@ -93,12 +93,12 @@ public class PlaybarController implements Initializable {
 
             Media media;
             try {
-                URL resource = getClass().getResource(mediaFile);
+                URL resource = getClass().getResource("/Master/Working/player/logic/Tracks/" +mediaFile);
                 media = new Media(resource.toString());
 
             } catch (Exception e) {
 
-                URL resource = getClass().getResource("empty.mp3");
+                URL resource = getClass().getResource("/Master/Working/player/logic/Tracks/empty.mp3");
                 media = new Media(resource.toString());
 
             }
