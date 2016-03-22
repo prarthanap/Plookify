@@ -262,11 +262,37 @@ public class GuiController implements Initializable {
     }
 
     //For combined work
-    public void searching(String x){
+//    public void searching(TextField bar){
+//        try {
+//            FriendPlaylistDialog.setVisible(false);
+//            ViewFriends.setVisible(true);
+//            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
+//            userData.clear();
+//            
+//            ArrayList<String> namesList=new ArrayList<>();
+//            while (pubID.next())//for every matching record a username is gotten
+//            {
+//                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
+//            }
+//            for (String a : namesList)
+//            {
+//                if(a.startsWith(bar.getText()))
+//                {
+//                    userData.add(a);
+//                    showUsers.setItems(userData);
+//                }
+//            }
+//        } catch (Exception e2) {
+//            System.err.println(e2);
+//        }
+//
+//    }
+    public void searchingC(TextField bar) {
         try {
             FriendPlaylistDialog.setVisible(false);
             ViewFriends.setVisible(true);
             ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
+            String searchF = bar.getText();
             userData.clear();
             
             ArrayList<String> namesList=new ArrayList<>();
@@ -276,16 +302,22 @@ public class GuiController implements Initializable {
             }
             for (String a : namesList)
             {
-                if(a.startsWith(x))
+                if(a.startsWith(searchF))
                 {
                     userData.add(a);
                     showUsers.setItems(userData);
                 }
             }
+//            while (pubID.next())//for every matching record a username is gotten
+//            {
+//                
+//                    showUsers.setItems(userData);
+//                    userData.add(pubID.getString("USERID"));
+//
+//            }
         } catch (Exception e2) {
             System.err.println(e2);
         }
-
     }
 
     @FXML

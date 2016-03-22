@@ -137,7 +137,7 @@ public class TsController implements Initializable {
     private void commonSearch(KeyEvent event)
     {
         tbc.searchFunctionCommon(searchBar);
-        socialController.searching(searchBar.getText());
+        socialController.searchingC(searchBar);
         
     }
 }

@@ -80,7 +80,7 @@ public class LogOnController implements Initializable {
         {
             System.out.println("pass");
             try {   int pass=userID;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Master/Working/social/GUI/newgui.fxml"));     
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Master/Working/social/GUI/newGui.fxml"));     
                     
                     Parent root = (Parent)loader.load();    
                     Scene sceneA = new Scene(root);
