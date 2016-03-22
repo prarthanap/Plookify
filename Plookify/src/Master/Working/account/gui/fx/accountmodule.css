@@ -9,21 +9,23 @@
 
 .dialog
 {
-    -fx-background-color:#777777;
+    -fx-background-color:#383838;
 }
 
 .label
 {
-    -fx-text-fill: Cyan;
+    -fx-text-fill: white;
     -fx-font-size: 12px;
 }
 
 .button
 {
-    -fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #373837 100%);
+    -fx-background-color: #383838;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 20;
 }
 
 .editmode
@@ -33,7 +35,7 @@
 }
 .bigLabel
 {
-    -fx-text-fill: Cyan;
+    -fx-text-fill: White;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
@@ -51,13 +53,13 @@
 
 .accountNameTitle
 {
-    -fx-text-fill: Cyan;
+    -fx-text-fill: White;
     -fx-font-size: 25px;
     -fx-font-weight: bold;
 }
 .column-header
 {
-    -fx-text-fill: blue;
+    -fx-text-fill: #ffffff;
 }
 .warning-title
 {
