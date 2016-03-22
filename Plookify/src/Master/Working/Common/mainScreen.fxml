@@ -31,7 +31,7 @@
          </children>
       </Pane>
       <Pane fx:id="rightSidePane" layoutX="850.0" layoutY="85.0" prefHeight="430.0" prefWidth="150.0" style="-fx-background-color: #000000;" />
-      <Pane fx:id="mainPane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="730.0" style="-fx-background-color: #000000;">
+      <Pane fx:id="mainPane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="695.0" style="-fx-background-color: #000000;">
          <children>
             <Button fx:id="tracksAdd" layoutX="339.0" layoutY="404.0" mnemonicParsing="false" onAction="#addTracks" text="Add" />
          </children></Pane>
