@@ -112,7 +112,7 @@ public class GuiController implements Initializable {
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
         upgradeDialog.setVisible(false);
-        
+        ViewFriends.setVisible(false);
         //Making user public or private (setting slider to position last placed in)
         PublicOrPrivate.setValue(sliderValue);
 
@@ -166,6 +166,7 @@ public class GuiController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 friendPlayList.clear();
                 try {
+                    FriendPlaylistDialog.setVisible(true);
                     ResultSet rs = data.makeQuery("SELECT PLAYLISTNAME FROM PLAYLIST WHERE PLAYLISTOWNER=" + ViewFriends.getSelectionModel().getSelectedItem() + "");
                     while (rs.next()) {
                         fPlaylist.setItems(friendPlayList);
@@ -264,6 +265,7 @@ public class GuiController implements Initializable {
     public void searching(String x){
         try {
             FriendPlaylistDialog.setVisible(false);
+            ViewFriends.setVisible(true);
             ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             userData.clear();
             
@@ -290,6 +292,7 @@ public class GuiController implements Initializable {
     public void searching(KeyEvent event) {
         try {
             FriendPlaylistDialog.setVisible(false);
+            ViewFriends.setVisible(true);
             ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             String searchF = searchField.getText();
             userData.clear();
@@ -301,8 +304,11 @@ public class GuiController implements Initializable {
             }
             for (String a : namesList)
             {
-                userData.add(a);
-                showUsers.setItems(userData);
+                if(a.startsWith(searchF))
+                {
+                    userData.add(a);
+                    showUsers.setItems(userData);
+                }
             }
 //            while (pubID.next())//for every matching record a username is gotten
 //            {
