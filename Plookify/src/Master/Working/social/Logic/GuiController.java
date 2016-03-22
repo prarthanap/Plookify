@@ -128,12 +128,28 @@ public class GuiController implements Initializable {
     @FXML
     public void friendss() {
         try {
-            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
-            while (rs.next()) {
-
-                ViewFriends.setItems(friendTest);
-                friendTest.add(rs.getString("FRIENDID"));
+            
+            ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
+            
+            ArrayList<String> namesList=new ArrayList<>();
+            while (rs.next())//for every matching record a username is gotten
+            {
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+rs.getInt(1)+"'").getString(1));
             }
+            System.out.println(namesList.size());
+            for (String a : namesList)
+            {
+                friendTest.add(a);
+                ViewFriends.setItems(friendTest);
+            }
+            rs.close();
+            data.conClose();
+
+//            while (rs.next()) {
+//
+//                ViewFriends.setItems(friendTest);
+//                friendTest.add(rs.getString("FRIENDID"));
+//            }
         } catch (Exception e2) {
             System.err.println(e2);
         }
@@ -166,7 +182,8 @@ public class GuiController implements Initializable {
                 friendPlayList.clear();
                 try {
                     FriendPlaylistDialog.setVisible(true);
-                    ResultSet rs = data.makeQuery("SELECT PLAYLISTNAME FROM PLAYLIST WHERE PLAYLISTOWNER=" + ViewFriends.getSelectionModel().getSelectedItem() + "");
+                    int rs1 = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
+                    ResultSet rs = data.makeQuery("SELECT * FROM PLAYLIST WHERE PLAYLISTOWNER='" + rs1 + "'");
                     while (rs.next()) {
                         fPlaylist.setItems(friendPlayList);
                         friendPlayList.add(rs.getString("PLAYLISTNAME"));
@@ -327,11 +344,9 @@ public class GuiController implements Initializable {
     }
 
     public void deselect(MouseEvent event) {
-
         showUsers.getSelectionModel().clearSelection();
         fPlaylist.getSelectionModel().clearSelection();
         FriendPlaylistTable.getSelectionModel().clearSelection();
-        ViewFriends.getSelectionModel().clearSelection();
+//        ViewFriends.getSelectionModel().clearSelection();
     }
-
 }
