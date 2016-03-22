@@ -262,7 +262,7 @@ public class GuiController implements Initializable {
         if (prem == 1) {
             int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt(1);
             int tempAdd = 1;
-            data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','" + tempAdd + "')");
+            data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','1')");
             data.conClose();
             
             friendAddedDialog.setVisible(true);
