@@ -82,9 +82,10 @@ public class TsController implements Initializable {
             socialController=socialPaneLoader.getController();
             
             socialController.setUser(UserID);
+            socialP.relocate(500,0);
             rightSidePane.getChildren().add(socialP);
 
-        }catch(Exception e){}
+        }catch(IOException e){}
     }    
 
     @FXML
