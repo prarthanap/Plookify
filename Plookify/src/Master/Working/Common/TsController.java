@@ -19,7 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -47,7 +47,7 @@ public class TsController implements Initializable {
     @FXML
     private Button radio;
     @FXML
-    private StackPane rightSidePane;
+    private Pane rightSidePane;
     @FXML
     private Pane mainPane;
     @FXML
