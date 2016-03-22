@@ -30,8 +30,8 @@
 
 .editmode
 {
-     -fx-text-fill: green;
-     -fx-background-color:papayawhip;
+     -fx-text-fill: #ffffff;
+     -fx-background-color: #383838;
 }
 .bigLabel
 {
