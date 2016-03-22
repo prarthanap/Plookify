@@ -92,6 +92,7 @@ public class LogOnController implements Initializable {
                     theStage.setTitle("Plookify");
                     GuiController controller = loader.getController();
                     controller.setUser(pass);
+                    controller.IDintialize();
                     oldstage.close();
                     theStage.show();
                 } catch (IOException ex)

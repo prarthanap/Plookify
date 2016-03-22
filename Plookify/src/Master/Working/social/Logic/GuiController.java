@@ -106,11 +106,15 @@ public class GuiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+    
+    }
+    
+    public void IDintialize()
+    {
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
         upgradeDialog.setVisible(false);
-
+        
         //Making user public or private (setting slider to position last placed in)
         PublicOrPrivate.setValue(sliderValue);
 
@@ -127,8 +131,7 @@ public class GuiController implements Initializable {
     @FXML
     public void friendss() {
         try {
-            int userID = ID;
-            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST where OWNERID=3 and ADDED=1");
+            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
             while (rs.next()) {
 
                 ViewFriends.setItems(friendTest);
@@ -283,18 +286,30 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    private void searching(KeyEvent event) {
+    public void searching(KeyEvent event) {
         try {
-            ResultSet pubID = data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE PREMIUM='1' and PUBLICITY='0.0'");
+            FriendPlaylistDialog.setVisible(false);
+            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             String searchF = searchField.getText();
             userData.clear();
+            
+            ArrayList<String> namesList=new ArrayList<>();
             while (pubID.next())//for every matching record a username is gotten
             {
-                
-                    showUsers.setItems(userData);
-                    userData.add(pubID.getString("Username"));
-
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
             }
+            for (String a : namesList)
+            {
+                userData.add(a);
+                showUsers.setItems(userData);
+            }
+//            while (pubID.next())//for every matching record a username is gotten
+//            {
+//                
+//                    showUsers.setItems(userData);
+//                    userData.add(pubID.getString("USERID"));
+//
+//            }
         } catch (Exception e2) {
             System.err.println(e2);
         }
