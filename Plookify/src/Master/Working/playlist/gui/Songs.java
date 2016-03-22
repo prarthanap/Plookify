@@ -10,11 +10,18 @@ package Master.Working.playlist.gui;
  * @author Edgar
  */
 public class Songs {
+    private String songID;
     private String songName;
     private String songArtist;
     private String songAlbum;
     private String songDur;
 
+    public Songs(String songID,String songName, String songArtist, String songDur) {
+        this.songID = songID;
+        this.songName = songName;
+        this.songArtist = songArtist;
+        this.songDur = songDur;
+    }
     
     public Songs(String songName, String songArtist, String songDur) {
         this.songName = songName;
@@ -51,6 +58,14 @@ public class Songs {
 
     public void setSongDur(String songDur) {
         this.songDur = songDur;
+    }
+
+    public String getSongID() {
+        return songID;
+    }
+
+    public void setSongID(String songID) {
+        this.songID = songID;
     }
     
     
