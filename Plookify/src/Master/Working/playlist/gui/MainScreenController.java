@@ -9,6 +9,7 @@ import Master.Working.Common.database;
 
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -89,7 +90,9 @@ public class MainScreenController implements Initializable {
     ObservableList<Playlist> playlistList = FXCollections.observableArrayList();
     ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
     ObservableList<Songs> songList = FXCollections.observableArrayList();
-    String user = getUsername();
+    //String user = getUsername();
+    int user=setID();
+    int playlistID=0;
     database db = new database();
     @FXML
     private Button addButton;
@@ -99,11 +102,10 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateList();
-        //updateSongList();
+        updatePlaylist();
         //getSavedSongs();
         tSong.setCellValueFactory(new PropertyValueFactory("songName"));
         tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
-        tAlbum.setCellValueFactory(new PropertyValueFactory("album"));
         tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
         
         stSong.setCellValueFactory(new PropertyValueFactory("songName"));
@@ -114,6 +116,7 @@ public class MainScreenController implements Initializable {
             
         pType.getItems().addAll("Private","Friend");
         pType.setValue("Private");
+        
             
         }
     
@@ -136,10 +139,11 @@ public class MainScreenController implements Initializable {
         @Override 
         public void handle(MouseEvent event) {
             Playlist playlist = playlistsTable.getSelectionModel().getSelectedItem();
+            String currentPlaylist = playlist.getId();
             String selected = playlist.getName();
             playlistLabel.setText(selected);
             searchTable.setVisible(false);
-        
+            
         }});
     }
     
@@ -155,7 +159,7 @@ public class MainScreenController implements Initializable {
         }    
         System.out.println("Type set to: " +newType);
         db.makeUpdate("UPDATE PLAYLIST WHERE PLAYLISTNAME='"+playlistName+"'SET TYPE='"+newType+"'"); 
- 
+        
     }
     
     public void updateList(){
@@ -163,62 +167,79 @@ public class MainScreenController implements Initializable {
             ResultSet rs = db.makeQuery("SELECT * FROM PLAYLIST WHERE PLAYLISTOWNER ='"+user+"'");
                 while (rs.next()){
                     playlistList.add(new Playlist(
+                       rs.getString("PLAYLISTID"),
                        rs.getString("PLAYLISTNAME")                    
                     ));
             System.out.println(playlistList);   
             playlistsTable.getSelectionModel().clearSelection();
             playlistsTable.setItems(this.playlistList);
             playlistsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            }   
+        }
+        catch(Exception e){
+        }
+    }
+    
+    public ArrayList<String> getSavedSongs(){
+        ArrayList<String> songIDs = new ArrayList<String>();
+       try{  
+        ResultSet rs = db.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =1");;
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+
+        while (rs.next()) {
+            for(int i=1; i<=columnsNumber; i++){
+                songIDs.add(rs.getString(i));
+            }   
+        }
+        }
+        catch(Exception e){
+        } 
+       return songIDs;
+    }
+    
+    public void printArraylist(){
+        ArrayList<String> songIDs = getSavedSongs();
+        for (int i = 0; i < songIDs.size(); i++) {
+            System.out.println("song ID " +songIDs.get(i));
+        }
+        
+        
+    }
+    
+    public void updatePlaylist(){
+        ArrayList<String> songIDs = getSavedSongs();
+        try{ 
+        for(int i = 0; i < songIDs.size(); i++) {  
+            String song =songIDs.get(i);
+        ResultSet rs = db.makeQuery("SELECT * FROM TRACKS WHERE TRACKID ='"+song+"'"); // TEMP
+            while (rs.next()){
+                    playlistSongs.add(new Songs(
+                        rs.getString("TRACKNAME"),
+                        rs.getString("ARTIST"),
+                        rs.getString("DURATION")
+                    ));
+            }
+            table.getSelectionModel().clearSelection();     
+            table.setItems(playlistSongs);
+            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }
         }
         catch(Exception e){
         }
     }
     
-//    public void getSavedSongs(){
-//       try{ 
-//        ResultSet pID=db.makeQuery("SELECT PLAYLIST FROM 'PLAYLIST-TRACK' WHERE PLAYLIST=1");
-//            ArrayList<String> songList=new ArrayList<>();
-//            while (pID.next())
-//            {
-//                songList.add(db.makeQuery("SELECT TRACK FROM 'PLAYLIST-TRACK' WHERE PLAYLIST=1='"+songID.getInt(1)+"'").getString(1));
-//            }
-//            for (String a : songList){
-//                System.out.println(a);
-//            }
-//        }
-//        catch(Exception e){
-//        } 
-//    }
-//    
-//    public void updateSongList(){
-//        String a;
-//        try{ 
-//        ResultSet rs = db.makeQuery("SELECT * FROM TRACKS"); // TEMP
-//            while (rs.next()){
-//                    playlistSongs.add(new Songs(
-//                        rs.getString("TRACKNAME"),
-//                        rs.getString("ARTIST"),
-//                        rs.getString("DURATION")
-//                    ));
-//            System.out.println(playlistSongs);      
-//            table.setItems(playlistSongs);
-//            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//            }
-//        }
-//        catch(Exception e){
-//        }
-//    }
-//    
     public void addToPlaylist(){
         searchTable.setOnMousePressed(new EventHandler<MouseEvent>() {
         @Override 
         public void handle(MouseEvent event) {
             Songs song = searchTable.getSelectionModel().getSelectedItem();
             String songID = song.getSongID(); 
-            String update="INSERT INTO PLAYLISTTRACK (TRACK) VALUES('"+songID+"')";
+            String update="INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(1,'"+songID+"')";
             db.makeUpdate(update);
             System.out.println("song added ot playlist " + songID);
+            System.out.println("user id is " + user);
+            table.getItems().add(song);
             }
         });
     }
@@ -231,6 +252,7 @@ public class MainScreenController implements Initializable {
 
             while (rs.next()) {
                 songList.add(new Songs(
+                        rs.getString("TRACKID"),
                         rs.getString("TRACKNAME"),
                         rs.getString("ARTIST"),
                         rs.getString("DURATION")
@@ -267,9 +289,12 @@ public class MainScreenController implements Initializable {
         searchTable.setItems(songs);
     }
     
-    public String getUsername(){ 
-        String temp = "2"; 
-        return temp;
+    public int setID(){
+        return 2;
+    }
+    
+    public int setID(int id){
+        return id;
     }
     
 }

@@ -13,7 +13,6 @@ public class Songs {
     private String songID;
     private String songName;
     private String songArtist;
-    private String songAlbum;
     private String songDur;
 
     public Songs(String songID,String songName, String songArtist, String songDur) {
@@ -42,14 +41,6 @@ public class Songs {
 
     public void setSongArtist(String songArtist) {
         this.songArtist = songArtist;
-    }
-
-    public String getSongAlbum() {
-        return songAlbum;
-    }
-
-    public void setSongAlbum(String songAlbum) {
-        this.songAlbum = songAlbum;
     }
 
     public String getSongDur() {
