@@ -128,7 +128,7 @@ public class GuiController implements Initializable {
     @FXML
     public void friendss() {
         try {
-            
+            ViewFriends=new ListView<String>();
             ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
             
             ArrayList<String> namesList=new ArrayList<>();
@@ -183,13 +183,15 @@ public class GuiController implements Initializable {
                 try {
                     FriendPlaylistDialog.setVisible(true);
                     int rs1 = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
+                    data.conClose();
                     ResultSet rs = data.makeQuery("SELECT * FROM PLAYLIST WHERE PLAYLISTOWNER='" + rs1 + "'");
                     while (rs.next()) {
                         fPlaylist.setItems(friendPlayList);
                         friendPlayList.add(rs.getString("PLAYLISTNAME"));
                     }
-                    data.conClose();
                     rs.close();
+                    data.conClose();
+                    
                 } catch (Exception e) {
                     System.err.println(e.getClass().getName() + ": " + e.getMessage());
                     System.exit(0);
@@ -223,19 +225,10 @@ public class GuiController implements Initializable {
     public void yesDelete(MouseEvent event) throws SQLException {
         
         int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
-        
-        
-//       int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
-//       String delFriend="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
-//        Statement statementD;
-//        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-//            statementD = conn.createStatement();
-//            statementD.setQueryTimeout(10);
-//            statementD.execute("PRAGMA foreign_keys = OFF");
-//            statementD.execute(delFriend);
-//            conn.close();
-//        }
-//        data.conClose();
+        data.conClose();
+        String delFriend="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
+        data.makeUpdate(delFriend);
+        data.conClose();
         confirmDialog.setVisible(false);
         friendss();
     }
@@ -264,9 +257,11 @@ public class GuiController implements Initializable {
     @FXML
     public void launchAdded(MouseEvent event) throws SQLException {
         int prem = 1;
+        String uname=showUsers.getSelectionModel().getSelectedItem();
         if (prem == 1) {
-            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt(1);
-            int tempAdd = 1;
+            int temp;
+            temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"'").getInt(1);
+            data.conClose();
             data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','1')");
             data.conClose();
             
@@ -294,9 +289,16 @@ public class GuiController implements Initializable {
             userData.clear();
             
             ArrayList<String> namesList=new ArrayList<>();
+            ArrayList<Integer> idList=new ArrayList<>();
             while (pubID2.next())//for every matching record a username is gotten
             {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID2.getInt(1)+"'").getString(1));
+                idList.add(pubID2.getInt(1));
+            }
+            pubID2.close();
+            for(Integer b: idList)
+            {
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+b+"'").getString(1));
+                data.conClose();
             }
             System.out.println(namesList.size());
             for (String a : namesList)
@@ -307,7 +309,6 @@ public class GuiController implements Initializable {
                     showUsers.setItems(userData);
                 }
             }
-            pubID2.close();
             data.conClose();
             
         } catch (Exception e2) {
