@@ -121,6 +121,7 @@ public class RadioController implements Initializable {
                 while (rs.next()) {
                         lastID = rs.getInt(1); 
                 }
+                rs.close();
                 ps1.close();
                 for (Tracks item : radioTable.getItems()) {
                         trackID = Integer.parseInt(item.getID());
@@ -132,8 +133,8 @@ public class RadioController implements Initializable {
                 ps2.executeBatch(); 
                 ps2.close();
                 conn1.close();
-       } catch (Exception e2) {
-            System.err.println(e2);
+       } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             }
         playlistSavedLabel.setText("Playlist " + lastID + " Saved.");
         playlistSavedLabel.setVisible(true);
@@ -201,6 +202,7 @@ public class RadioController implements Initializable {
             System.out.println(radioArtist);
             try {
                 radioGenre = db.makeQuery("SELECT GENRE FROM TRACKS WHERE ARTIST = '"+radioArtist+"'").getString("GENRE");
+                db.conClose();
             }
             catch (Exception e2) {
             System.err.println(e2);
@@ -310,6 +312,7 @@ public class RadioController implements Initializable {
                 rs.close();
                 table.setItems(this.data);
                 table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                db.conClose();
 
             }
 
