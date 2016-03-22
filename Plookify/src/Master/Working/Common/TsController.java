@@ -106,8 +106,8 @@ public class TsController implements Initializable {
             Scene scene = new Scene(accPane);
             accManager.setScene(scene);
             accManager.setResizable(false);
-            FXMLLoader plLoader = new FXMLLoader(getClass().getResource("/Master/Working/playList/gui/radio.fxml"));
-            Pane plPane =plLoader.load();
+            //FXMLLoader plLoader = new FXMLLoader(getClass().getResource("/Master/Working/playList/gui/radio.fxml"));
+            //Pane plPane =plLoader.load();
             //rCon=radioLoader.getController();
             //rCon.setUser(UserID);
             //rPane.relocate(-250, 50);
