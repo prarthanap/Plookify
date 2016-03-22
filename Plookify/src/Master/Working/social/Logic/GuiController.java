@@ -271,6 +271,7 @@ public class GuiController implements Initializable {
             for (int i = 0; i < namesList.size(); i++) {
                 userData.clear();
                 if (namesList.get(i).startsWith(x)) {
+                     Users u1 = new Users(namesList.get(i));
                     userData.add(namesList.get(i));
                 }
             }
@@ -294,6 +295,7 @@ public class GuiController implements Initializable {
             for (int i = 0; i < namesList.size(); i++) {
                 userData.clear();
                 if (namesList.get(i).startsWith(searchF)) {
+                    Users u1 = new Users(namesList.get(i));
                     userData.add(namesList.get(i));
                 }
             }
