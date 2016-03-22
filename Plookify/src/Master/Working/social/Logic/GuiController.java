@@ -1,6 +1,7 @@
 package Master.Working.social.Logic;
 
 import Master.Working.Common.database;
+import Master.Working.account.gui.fx.AccountLoginController;
 import Master.Working.player.logic.Tracks;
 import java.net.URL;
 import java.sql.Connection;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -127,6 +130,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void friendss() {
+        friendTest.removeAll();
         try {
             friendTest=FXCollections.observableArrayList();
             ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
@@ -192,8 +196,7 @@ public class GuiController implements Initializable {
                     data.conClose();
                     
                 } catch (Exception e) {
-                    System.err.println(e.getClass().getName() + ": " + e.getMessage());
-                    System.exit(0);
+                    Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, e);
                 }
             }
         });
@@ -264,6 +267,7 @@ public class GuiController implements Initializable {
             data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','1')");
             data.conClose();
             friendss();
+            displayFriendResults.setVisible(false);
             friendAddedDialog.setVisible(true);
         } else {
             upgradeDialog.setVisible(true);
