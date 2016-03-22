@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="155.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="155.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Slider fx:id="PublicOrPrivate" blockIncrement="100.0" layoutX="47.0" layoutY="397.0" majorTickUnit="100.0" minorTickCount="0" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" snapToTicks="true" />
       <Button fx:id="removeFriend" layoutX="115.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#launchDialog" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="--" textFill="WHITE">
@@ -21,22 +20,24 @@
             <Font size="12.0" />
          </font>
       </Button>
-      <AnchorPane fx:id="friendPlaylist" layoutX="12.0" layoutY="215.0" prefHeight="165.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
+      <Label layoutX="15.0" layoutY="222.0" prefHeight="27.0" prefWidth="131.0" text="Playlist                     " textFill="WHITE" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="57.0" prefHeight="27.0" prefWidth="131.0" text="Friends                     " textFill="WHITE" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="friendPlaylist" layoutX="12.0" layoutY="247.0" prefHeight="139.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="fPlaylist" prefHeight="173.0" prefWidth="131.0" stylesheets="@../GUI/test.css">
-               <columns>
-                  <TableColumn fx:id="friendPlaylistCol" prefWidth="123.0" text="Column X" />
-               </columns>
-            </TableView>
+            <ListView fx:id="fPlaylist" prefHeight="139.0" prefWidth="131.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="friendView" layoutX="12.0" layoutY="60.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane fx:id="friendView" layoutX="12.0" layoutY="84.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="ViewFriends" prefHeight="146.0" prefWidth="131.0" stylesheets="@../GUI/test.css">
-               <columns>
-                  <TableColumn fx:id="friendCol" prefWidth="130.0" text="Column X" />
-               </columns>
-            </TableView>
+            <ListView fx:id="ViewFriends" prefHeight="126.0" prefWidth="131.0" />
          </children>
       </AnchorPane>
    </children>
