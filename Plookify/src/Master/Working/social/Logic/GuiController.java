@@ -128,7 +128,7 @@ public class GuiController implements Initializable {
     @FXML
     public void friendss() {
         try {
-            ViewFriends=new ListView<String>();
+            friendTest=FXCollections.observableArrayList();
             ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
             
             ArrayList<String> namesList=new ArrayList<>();
@@ -136,7 +136,7 @@ public class GuiController implements Initializable {
             {
                 namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+rs.getInt(1)+"'").getString(1));
             }
-            System.out.println(namesList.size());
+            System.out.println(namesList.size()+" friends");
             for (String a : namesList)
             {
                 friendTest.add(a);
@@ -179,7 +179,6 @@ public class GuiController implements Initializable {
         ViewFriends.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                friendPlayList.clear();
                 try {
                     FriendPlaylistDialog.setVisible(true);
                     int rs1 = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
@@ -264,7 +263,7 @@ public class GuiController implements Initializable {
             data.conClose();
             data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','1')");
             data.conClose();
-            
+            friendss();
             friendAddedDialog.setVisible(true);
         } else {
             upgradeDialog.setVisible(true);
