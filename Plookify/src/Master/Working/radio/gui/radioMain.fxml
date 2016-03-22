@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.radio.logic.RadioController">
    <children>
-      <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/player/gui/bg.css">
+      <TableView fx:id="table" layoutX="214.0" layoutY="80.0" prefHeight="422.0" prefWidth="578.0">
         <columns>
           <TableColumn fx:id="IDCol" prefWidth="47.0" text="ID" />
             <TableColumn fx:id="trackNameCol" prefWidth="185.0" text="Track Name" />
@@ -28,7 +28,7 @@
          <children>
             <AnchorPane layoutX="-5.0" prefHeight="431.0" prefWidth="286.0">
                <children>
-                  <TableView fx:id="radioTable" layoutX="17.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0" stylesheets="@../../../../../../../SE23/Plookify/src/Master/Working/player/gui/bg.css">
+                  <TableView fx:id="radioTable" layoutX="17.0" layoutY="48.0" prefHeight="302.0" prefWidth="273.0">
                     <columns>
                       <TableColumn fx:id="radioIDCol" prefWidth="49.0" text="ID" />
                       <TableColumn fx:id="radioTrackNameCol" prefWidth="123.0" text="Track Name" />
