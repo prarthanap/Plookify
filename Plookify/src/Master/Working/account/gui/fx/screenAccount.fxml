@@ -24,15 +24,15 @@
       <Button fx:id="accDelButton" layoutX="236.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedDelAcc" text="Delete Account" />
       <Button fx:id="logOutButton" layoutX="397.0" layoutY="328.0" mnemonicParsing="false" onAction="#pressedLogOut" text="Log Out" />
       <TableView fx:id="deviceTable" layoutX="55.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="180.0" minWidth="400.0" prefHeight="180.0" prefWidth="400.0" />
-      <Button fx:id="delete1" layoutX="490.0" layoutY="138.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete1" />
-      <Button fx:id="delete2" layoutX="490.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete2" />
+      <Button fx:id="delete1" layoutX="490.0" layoutY="120.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete1" />
+      <Button fx:id="delete2" layoutX="490.0" layoutY="154.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete2" />
       <Button fx:id="delete3" layoutX="490.0" layoutY="188.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete3" />
-      <Button fx:id="delete4" layoutX="490.0" layoutY="213.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete4" />
-      <Button fx:id="delete5" layoutX="490.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete5" />
+      <Button fx:id="delete4" layoutX="490.0" layoutY="223.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete4" />
+      <Button fx:id="delete5" layoutX="490.0" layoutY="257.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete5" />
       <Button fx:id="addDevice" layoutX="110.0" layoutY="328.0" mnemonicParsing="false" onAction="#deviceAddPressed" text="Add Device" />
       <Pane fx:id="addingDeviceDialog" layoutX="-342.0" layoutY="51.0" prefHeight="164.0" prefWidth="280.0" styleClass="dialog">
          <children>
-            <ComboBox fx:id="deviceTypeCombo" layoutX="110.0" layoutY="71.0" prefHeight="25.0" prefWidth="142.0">
+            <ComboBox fx:id="deviceTypeCombo" layoutX="110.0" layoutY="71.0" prefHeight="25.0" prefWidth="142.0" style="-fx-background-radius: 20;">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Mobile Phone" />
@@ -47,7 +47,7 @@
              </ComboBox>
             <Label layoutX="15.0" layoutY="74.0" prefHeight="19.0" text="Device Type" />
             <Button fx:id="addingDeviceDialogOK" layoutX="115.0" layoutY="113.0" mnemonicParsing="false" onAction="#addingDeviceSubmit" text="OK" />
-            <TextField fx:id="deviceNameField" layoutX="110.0" layoutY="34.0" promptText="Name length : 4-12" prefWidth="142.0" />
+            <TextField fx:id="deviceNameField" layoutX="110.0" layoutY="34.0" prefWidth="142.0" promptText="Name length : 4-12" style="-fx-background-radius: 20;" />
             <Label layoutX="15.0" layoutY="38.0" text="Device Name" />
          </children>
       </Pane>
@@ -65,7 +65,7 @@
                </font>
             </Label>
             <Label layoutX="65.0" layoutY="105.0" prefHeight="55.0" prefWidth="346.0" styleClass="warning-text" text="If so please enter your password in order to confirm your account deletion. Incorrect password results in nothing changing." wrapText="true" />
-            <PasswordField fx:id="accDelPassField" layoutX="226.0" layoutY="195.0" promptText="Password" />
+            <PasswordField fx:id="accDelPassField" layoutX="189.0" layoutY="180.0" promptText="Password" style="-fx-background-radius: 20;" />
             <Button layoutX="174.0" layoutY="236.0" mnemonicParsing="false" onAction="#delConfirm" text="Confirm" />
             <Button layoutX="353.0" layoutY="236.0" mnemonicParsing="false" onAction="#delBack" text="Back" />
          </children>
