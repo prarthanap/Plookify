@@ -9,6 +9,7 @@ import Master.Working.account.gui.fx.ScreenAccountController;
 import Master.Working.player.logic.PlaybarController;
 import Master.Working.player.logic.TrackTableController;
 import Master.Working.radio.logic.RadioController;
+import Master.Working.social.Logic.GuiController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +34,7 @@ public class TsController implements Initializable {
     private TrackTableController table;
     private PlaybarController bar2;
     private RadioController rCon;
+    private GuiController socialController;
     
     @FXML
     private Pane Player;
@@ -61,11 +63,11 @@ public class TsController implements Initializable {
     {
         try{
             FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml"));
-            Pane root = (Pane)radioLoader.load();
+            Pane rPane =radioLoader.load();
             rCon=radioLoader.getController();
             rCon.setUser(UserID);
-            root.relocate(-250, 50);
-            radioPane.getChildren().add(root);
+            rPane.relocate(-250, 50);
+            radioPane.getChildren().add(rPane);
             FXMLLoader pBarLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
             Pane pBar=pBarLoader.load();
             Player.getChildren().add(pBar);
@@ -75,6 +77,12 @@ public class TsController implements Initializable {
             table = tableLoader.getController();
             mainPane.getChildren().add(tTable);
             tracksAdd.toFront();
+            FXMLLoader socialPaneLoader=new FXMLLoader(getClass().getResource("/Master/Working/social/GUI/socialPane.fxml"));
+            Pane socialP=(Pane)socialPaneLoader.load();
+            socialController=socialPaneLoader.getController();
+            
+            socialController.setUser(UserID);
+            rightSidePane.getChildren().add(socialP);
 
         }catch(Exception e){}
     }    
