@@ -37,6 +37,7 @@ public class TsController implements Initializable {
     private RadioController rCon;
     private GuiController socialController;
     private TrackTableController tbc;
+    private Stage accManager;
     
     @FXML
     private Pane Player;
@@ -59,6 +60,7 @@ public class TsController implements Initializable {
     @FXML
     private Button tracksAdd;
     @FXML Button tracksButton;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -91,6 +93,15 @@ public class TsController implements Initializable {
             rightSidePane.getChildren().add(socialP);
             radioPane.toBack();
             mainPane.toBack();
+            accManager = new Stage();
+            FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/screenAccount.fxml"));
+            Pane accPane = (Pane)accLoader.load();
+            ScreenAccountController controllerA = accLoader.getController();
+            controllerA.setUser(UserID);
+            controllerA.initVariables();
+            Scene scene = new Scene(accPane);
+            accManager.setScene(scene);
+            accManager.setResizable(false);
 
         }catch(IOException e){}
     }    
@@ -98,15 +109,6 @@ public class TsController implements Initializable {
     @FXML
     private void pressAccount(ActionEvent event) throws IOException
     {
-        Stage accManager = new Stage();
-        FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/screenAccount.fxml"));
-        Pane accPane = (Pane)accLoader.load();
-        ScreenAccountController controllerA = accLoader.getController();
-        controllerA.setUser(UserID);
-        controllerA.initVariables();
-        Scene scene = new Scene(accPane);
-        accManager.setScene(scene);
-        accManager.setResizable(false);
         accManager.show();
     }
 
