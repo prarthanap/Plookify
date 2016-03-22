@@ -200,8 +200,7 @@ public class RadioController implements Initializable {
             radioArtist = fixedTerm;
             System.out.println(radioArtist);
             try {
-                ResultSet rs2 = db.makeQuery("SELECT GENRE FROM TRACKS WHERE ARTIST = '"+radioArtist+"'");
-                radioGenre = rs2.getString("GENRE");
+                radioGenre = db.makeQuery("SELECT GENRE FROM TRACKS WHERE ARTIST = '"+radioArtist+"'").getString("GENRE");
             }
             catch (Exception e2) {
             System.err.println(e2);
@@ -222,9 +221,9 @@ public class RadioController implements Initializable {
             radioTrack = fixedTerm;
             System.out.println(radioTrack);
             try {
-                ResultSet rs2 = db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'");
-                radioArtist = rs2.getString("ARTIST");
-                radioGenre = rs2.getString("GENRE");
+                radioArtist =db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'").getString("ARTIST");
+                radioGenre =db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'").getString("GENRE");
+                db.conClose();
             }
             catch (Exception e2) {
             System.err.println(e2);
@@ -244,6 +243,8 @@ public class RadioController implements Initializable {
                         rs.getString("GENRE")
                        
                 ));
+                rs.close();
+                db.conClose();
                 radioTable.setItems(radioData);
                 radioTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }
@@ -306,7 +307,7 @@ public class RadioController implements Initializable {
                         rs.getString("GENRE")
                        
                 ));
-
+                rs.close();
                 table.setItems(this.data);
                 table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
