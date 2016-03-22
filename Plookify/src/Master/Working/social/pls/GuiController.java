@@ -5,15 +5,21 @@ import Master.Working.player.logic.Tracks;
 import Master.Working.social.pls.Users;
 import Master.Working.social.Logic.logic;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -31,111 +37,111 @@ import javafx.scene.layout.AnchorPane;
  */
 public class GuiController implements Initializable {
 
-@FXML
-private Button removeFriend, addFriend, yesConfirm, noConfirm, upgradeClose;
+    @FXML
+    private Button removeFriend, addFriend, yesConfirm, noConfirm, upgradeClose;
 
-@FXML
-private Slider PublicOrPrivate;
+    @FXML
+    private Slider PublicOrPrivate;
 
-@FXML
-private TextField searchField;
+    @FXML
+    private TextField searchField;
 
-@FXML
-private TableView<friendPlaylist> fPlaylist;
-@FXML
-private TableColumn friendPlaylistCol;
+    @FXML
+    private ListView<String> fPlaylist;
+    private ObservableList<String> friendPlayList = FXCollections.observableArrayList();
 
-@FXML
-private TableView<Users> showUsers;
+    @FXML
+    private ListView<String> showUsers;
+    private ObservableList<String> userData = FXCollections.observableArrayList();
 
-@FXML
-private TableView<Friends> ViewFriends;
-@FXML
-private TableColumn friendCol;
+    @FXML
+    private TableView<Tracks> FriendPlaylistTable;
+    @FXML
+    private TableColumn IDCol;
+    @FXML
+    private TableColumn trackNameCol;
+    @FXML
+    private TableColumn artistCol;
+    @FXML
+    private TableColumn timeCol;
+    @FXML
+    private TableColumn genreCol;
 
-@FXML
-private TableView<Tracks> FriendPlaylistTable;
-@FXML
-private TableColumn IDCol;
-@FXML
-private TableColumn trackNameCol;
-@FXML
-private TableColumn artistCol;
-@FXML
-private TableColumn timeCol;
-@FXML
-private TableColumn genreCol;
+    @FXML
+    private AnchorPane friendView;
+    @FXML
+    private AnchorPane displayFriendResults;
+    @FXML
+    private AnchorPane confirmDialog;
+    @FXML
+    private AnchorPane friendAddedDialog;
+    @FXML
+    private AnchorPane upgradeDialog;
+    @FXML
+    private AnchorPane friendPlaylist;
+    @FXML
+    private AnchorPane FriendPlaylistDialog;
 
-@FXML
-private AnchorPane friendView;
-@FXML
-private AnchorPane displayFriendResults;
-@FXML
-private AnchorPane confirmDialog;
-@FXML
-private AnchorPane friendAddedDialog;
-@FXML
-private AnchorPane upgradeDialog;
-@FXML
-private AnchorPane friendPlaylist;
-@FXML
-private AnchorPane FriendPlaylistDialog;
+    @FXML
+    private ListView<String> ViewFriends;
+    private ObservableList<String> friendTest = FXCollections.observableArrayList();
 
+    private int ID = 9999;
+    private final logic accLogic = new logic();
 
-private int ID = 9999;
-private final logic accLogic=new logic();
+//    private ObservableList<Users> userData = FXCollections.observableArrayList();
+    private ObservableList<friendPlaylist> plData = FXCollections.observableArrayList();
 
-private ObservableList<Users> userData = FXCollections.observableArrayList();
+    private ObservableList<Friends> lists = FXCollections.observableArrayList();
 
-private ObservableList<friendPlaylist> plData = FXCollections.observableArrayList();
+    private ObservableList<Tracks> FriendsTracks = FXCollections.observableArrayList();
 
-private ObservableList<Friends> lists = FXCollections.observableArrayList();
+    checkPublic checkPublicObj = new checkPublic(ID);
+    private double sliderValue = checkPublicObj.checkPublicity();
 
-private ObservableList<Tracks> FriendsTracks = FXCollections.observableArrayList();
-
-checkPublic checkPublicObj = new checkPublic(ID);
-private double sliderValue = checkPublicObj.checkPublicity();
-
-
-public database data=new database();
+    public database data = new database();
 
     /**
      * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
-       confirmDialog.setVisible(false);
-       friendAddedDialog.setVisible(false);
-       upgradeDialog.setVisible(false);
-       
-       //Making user public or private (setting slider to position last placed in)
-       PublicOrPrivate.setValue(sliderValue);
-       
-       TableColumn col1 = new TableColumn("Username");
-       col1.setMinWidth(150);
-       col1.setCellValueFactory(new PropertyValueFactory<>("Username"));
-       showUsers.getColumns().add(col1); 
-       
-       friendCol.setCellValueFactory(new PropertyValueFactory("friends"));
-       friendPlaylistCol.setCellValueFactory(new PropertyValueFactory("playlist"));
-       
-       IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
-       trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
-       artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
-       timeCol.setCellValueFactory(new PropertyValueFactory("time"));
-       genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
-       updateTable();
-       playlistNames();
-       addedFriendsList();
-    }        
-    
-    
+
+        confirmDialog.setVisible(false);
+        friendAddedDialog.setVisible(false);
+        upgradeDialog.setVisible(false);
+
+        //Making user public or private (setting slider to position last placed in)
+        PublicOrPrivate.setValue(sliderValue);
+
+        IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
+        trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
+        artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
+        timeCol.setCellValueFactory(new PropertyValueFactory("time"));
+        genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
+        updateTable();
+        playlistNames();
+        friendss();
+    }
+
+    @FXML
+    public void friendss() {
+        try {
+            int userID = ID;
+            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST where OWNERID='3' and ADDED=1");
+            while (rs.next()) {
+
+                ViewFriends.setItems(friendTest);
+                friendTest.add(rs.getString(2));
+            }
+        } catch (Exception e2) {
+            System.err.println(e2);
+        }
+    }
+
     public void updateTable() {
         try {
-
             ResultSet rs = data.makeQuery("SELECT * FROM TRACKS");
-
             while (rs.next()) {
                 FriendsTracks.add(new Tracks(
                         rs.getString("TRACKID"),
@@ -149,198 +155,159 @@ public database data=new database();
             }
         } catch (Exception e2) {
             System.err.println(e2);
-
         }
     }
-    
-    public void addedFriendsList()
-    {
-        try {
-            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST");
 
-            while (rs.next()) {
-                lists.add(new Friends(
-                        rs.getString("FRIENDID")
-                ));
-                
-                ViewFriends.setItems(this.lists);
-                ViewFriends.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    @FXML
+    public void playlistNames() {
+        ViewFriends.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                friendPlayList.clear();
+                try {
+                    ResultSet rs = data.makeQuery("SELECT PLAYLISTNAME FROM PLAYLIST WHERE PLAYLISTOWNER=" + ViewFriends.getSelectionModel().getSelectedItem() + "");
+                    while (rs.next()) {
+                        fPlaylist.setItems(friendPlayList);
+                        friendPlayList.add(rs.getString("PLAYLISTNAME"));
+                    }
+                } catch (Exception e) {
+                    System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                    System.exit(0);
+                }
             }
-
-        } catch (Exception e2) {
-            System.err.println(e2);
-
-        }
+        });
     }
-        
-    public void playlistNames()
-    {
-        try{
-        ResultSet rs = data.makeQuery("SELECT * FROM PLAYLIST");
 
-        while(rs.next())
-        {
-           plData.add(new friendPlaylist(
-                   rs.getString("PLAYLISTID")
-            ));
-        }
-        fPlaylist.setItems(this.plData);
-        }
-        catch(Exception e2)
-        {
-           System.err.println(e2);
-        }
+    public void setUser(int pass) {
+        this.ID = pass;
     }
-       
-    public void setUser(int pass)
-    {
-        this.ID=pass;
-    }
-    public int getUser()
-    {
+
+    public int getUser() {
         return this.ID;
     }
-        
+
     @FXML  //delete friend dialog
     private void launchDialog(MouseEvent event) {
-        
+
         int prem = 1;
 //        String uname = unameField.getText();
 //        ID=accLogic.data.authCheckD(uname);
-        if(prem==1)
-        {
+        if (prem == 1) {
             confirmDialog.setVisible(true);
-        }
-        else
-        {
+        } else {
             upgradeDialog.setVisible(true);
         }
     }
-    
+
     @FXML
-    private void yesDelete(MouseEvent event)
-    {
-        logic delete = new logic();
+    private void yesDelete(MouseEvent event) throws SQLException {
         
-        delete.deleteFriend(ID);
+       String delAcc="DELETE FROM FRIENDLIST WHERE FRIENDID='"+ViewFriends.getSelectionModel().getSelectedItem()+"'";
+        Statement statementD;
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+            statementD = conn.createStatement();
+            statementD.setQueryTimeout(10);
+            statementD.execute("PRAGMA foreign_keys = ON");
+            statementD.execute(delAcc);
+        }
         confirmDialog.setVisible(false);
     }
-    
+
     @FXML
-    private void noDelete(MouseEvent event)
-    {
+    private void noDelete(MouseEvent event) {
         confirmDialog.setVisible(false);
     }
-    
+
     @FXML
-    private void launchPrivate()
-    {
+    private void launchPrivate() {
         sliderValue = PublicOrPrivate.getValue();
-        if(sliderValue == 100)
-        {
-            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '100' where USERID='"+ID+"'";
+        if (sliderValue == 100) {
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '100.0' where USERID='" + ID + "'";
             data.makeUpdate(privateUpdate);
             data.conClose();
             System.out.println("Private");
-        }
-        else
-        {
-            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '0' where USERID='"+ID+"'";
+        } else {
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '0.0' where USERID='" + ID + "'";
             data.makeUpdate(privateUpdate);
             data.conClose();
             System.out.println("Public");
         }
     }
-    
-    
+
     @FXML
-    private void launchAdded(MouseEvent event) throws SQLException
-    {
+    private void launchAdded(MouseEvent event) throws SQLException {
         int prem = 1;
-        if(prem==1)
-        {
-            friendAddedDialog.setVisible(true);    
-        }
-        else
-        {
+        if (prem == 1) {
+            friendAddedDialog.setVisible(true);
+        } else {
             upgradeDialog.setVisible(true);
         }
     }
-    
+
     @FXML
-    private void acceptDialog(MouseEvent event) throws SQLException
-    {
-        int temp = 1;
+    private void acceptDialog(MouseEvent event) throws SQLException {
+        int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
         int tempAdd = 1;
-        
-        showUsers.getSelectionModel().getSelectedItem();
-        
-        data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('"+ID+"','"+temp+"','"+tempAdd+"')");
+        data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','" + tempAdd + "')");
         data.conClose();
-        friendAddedDialog.setVisible(false); 
+        friendAddedDialog.setVisible(false);
     }
-    
+
     @FXML
-    private void closeUpgrade(MouseEvent event)
-    {
+    private void closeUpgrade(MouseEvent event) {
         upgradeDialog.setVisible(false);
     }
-    
-    @FXML
-    private void searching(KeyEvent event) throws SQLException
-    {
-//        userData = FXCollections.observableArrayList();
-//        String searchF=searchField.getText();
-//        ResultSet rs = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
-////        ResultSet rs = accLogic.data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID="+ID+";");
-//        
-//        int i=0;
-//        while(rs.next())
-//        {
-//            if(rs.getString(1).startsWith(searchF))
-//            {
-//                Users u1 = new Users(rs.getString(1));
-//                userData.add(u1);
-//                System.out.println(userData.get(i).getUsername());
-//                i++;
-//            }
-//        }
-//        showUsers.setItems(userData);
-//        showUsers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
+
+    //For combined work
+    public void searching(String x) throws SQLException {
         try {
-            ResultSet pubID=data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
-            String searchF = searchField.getText();
-            ArrayList<String> namesList=new ArrayList<>();
+            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
+            ArrayList<String> namesList = new ArrayList<>();
             while (pubID.next())//for every matching record a username is gotten
             {
-                
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
-                userData.add(new Users(
-                   pubID.getString("PLAYLISTID")
-                   
-                ));
-                
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='" + pubID.getInt(1) + "'").getString(1));
             }
-            for (String a : namesList)
-            {   
-                System.out.println(a);
-                
+            for (int i = 0; i < namesList.size(); i++) {
+                userData.clear();
+                if (namesList.get(i).startsWith(x)) {
+                    userData.add(namesList.get(i));
+                }
             }
-        fPlaylist.setItems(this.plData);
+            showUsers.setItems(userData);
         } catch (Exception e2) {
             System.err.println(e2);
         }
-        
+
     }
-    
-    
+
+    @FXML
+    private void searching(KeyEvent event) {
+        try {
+            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
+            String searchF = searchField.getText();
+            ArrayList<String> namesList = new ArrayList<>();
+            while (pubID.next())//for every matching record a username is gotten
+            {
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='" + pubID.getInt(1) + "'").getString(1));
+            }
+            for (int i = 0; i < namesList.size(); i++) {
+                userData.clear();
+                if (namesList.get(i).startsWith(searchF)) {
+                    userData.add(namesList.get(i));
+                }
+            }
+            showUsers.setItems(userData);
+        } catch (Exception e2) {
+            System.err.println(e2);
+        }
+    }
+
     public void deselect(MouseEvent event) {
 
         showUsers.getSelectionModel().clearSelection();
         fPlaylist.getSelectionModel().clearSelection();
         FriendPlaylistTable.getSelectionModel().clearSelection();
-        
+        ViewFriends.getSelectionModel().clearSelection();
     }
-    
+
 }
