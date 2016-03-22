@@ -64,6 +64,9 @@ public class TsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
+    {}    
+    
+    public void init()
     {
         try{
             FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml"));
@@ -99,12 +102,13 @@ public class TsController implements Initializable {
             ScreenAccountController controllerA = accLoader.getController();
             controllerA.setUser(UserID);
             controllerA.initVariables();
+            controllerA.getWindowHandle(radio);
             Scene scene = new Scene(accPane);
             accManager.setScene(scene);
             accManager.setResizable(false);
 
         }catch(IOException e){}
-    }    
+    }
 
     @FXML
     private void pressAccount(ActionEvent event) throws IOException
@@ -127,7 +131,7 @@ public class TsController implements Initializable {
         tracksAdd.toFront();
         
     }
-    private void setID(int uID)
+    public void setID(int uID)
     {
         this.UserID=uID;
     }

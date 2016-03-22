@@ -35,6 +35,7 @@ public class ScreenAccountController implements Initializable {
     private final int[] dumpster1={-500,500};
     private final logic logicA=new logic();
     private ObservableList<deviceInfo> tableInfo;
+    private Button hand;
     
     @FXML private Button premStatusButton;
     @FXML private Label titleName;
@@ -136,11 +137,13 @@ public class ScreenAccountController implements Initializable {
     public void pressedLogOut(ActionEvent event) throws IOException
     {
         Stage backToStart=new Stage();
-        Parent start1 = FXMLLoader.load(getClass().getResource("screenStart.fxml"));
+        Parent start1 = FXMLLoader.load(getClass().getResource("/Master/Working/account/gui/fx/screenStart.fxml"));
         Scene scene2 = new Scene(start1);
         backToStart.setScene(scene2);
         backToStart.show();
         Stage oldy=(Stage)accountPane.getScene().getWindow();
+        oldy.close();
+        oldy=(Stage)hand.getScene().getWindow();
         oldy.close();
     }
     
@@ -166,7 +169,7 @@ public class ScreenAccountController implements Initializable {
     public void deviceAddPressed(ActionEvent event)
     {
         int count=0;
-        for(int j=0;j<5;j++)
+        for(int j=0;j<4;j++)
         {
             if(tableInfo.get(j).getDeviceDate()!=-1)
             {
@@ -193,6 +196,11 @@ public class ScreenAccountController implements Initializable {
             logicA.addDevice(ID, deviceNameField.getText(), (String)deviceTypeCombo.getValue());
             addingDeviceDialog.relocate(dumpster1[0],dumpster1[1]);
             refreshTable();
+        }
+        else
+        {
+            deviceDialogMsg.setText("Devicename needs to be at least 4 characters long");
+            accountDialog.relocate(150,100);
         }
         
     }
@@ -245,5 +253,9 @@ public class ScreenAccountController implements Initializable {
     public void pressedPremButton(ActionEvent event)
     {
         
+    }
+    public void getWindowHandle(Button p)
+    {
+        this.hand=p;
     }
 }

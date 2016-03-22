@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * java file to start it all!
  */
-package Master.Working.account.gui.fx;
+package Master.Release;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,21 +14,16 @@ import javafx.util.Duration;
 
 /**
  *
- * @author jll30
- * 
- * Straight to account screen using login screen
+ * @author Jer Le
  */
-public class soloModuleTestRun extends Application 
+public class startPlookifyFinal extends Application 
 {
     @Override
     public void start(Stage stage) throws Exception 
     {
-        FXMLLoader startLoader = new FXMLLoader(getClass().getResource("screenStart.fxml"));
-        Parent splash = FXMLLoader.load(getClass().getResource("acc.fxml"));
+        Parent splash = FXMLLoader.load(getClass().getResource("/Master/Working/account/gui/fx/acc.fxml"));
         Scene scene1 = new Scene(splash);
-        Parent start1 = (Parent)startLoader.load();
-        AccountLoginController startController = startLoader.getController();
-        startController.setSolo(1);
+        Parent start1 = FXMLLoader.load(getClass().getResource("/Master/Working/account/gui/fx/screenStart.fxml"));
         Scene scene2 = new Scene(start1);
         stage.setScene(scene1);
         stage.setTitle("Plookify");
@@ -38,7 +32,6 @@ public class soloModuleTestRun extends Application
         PauseTransition loading=new PauseTransition(Duration.millis(1000));
         loading.setOnFinished(event->stage.setScene(scene2));
         loading.play();
-        
     }
 
     public static void main(String[] args)

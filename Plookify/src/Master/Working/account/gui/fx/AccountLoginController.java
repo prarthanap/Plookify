@@ -5,6 +5,7 @@
  */
 package Master.Working.account.gui.fx;
 
+import Master.Working.Common.TsController;
 import Master.Working.account.logic.logic;
 import java.io.IOException;
 import java.net.URL;
@@ -78,7 +79,7 @@ public class AccountLoginController implements Initializable {
     @FXML
     private void startRegisterPressed(ActionEvent event) throws IOException
     {
-        Parent reg1 = FXMLLoader.load(getClass().getResource("screenRegister.fxml"));
+        Parent reg1 = FXMLLoader.load(getClass().getResource("/Master/Working/account/gui/fx/screenRegister.fxml"));
         Scene regScene = new Scene(reg1);
         Stage regStage=new Stage();
         regStage.setScene(regScene);
@@ -96,7 +97,7 @@ public class AccountLoginController implements Initializable {
     }
     
     @FXML
-    private void loginPressedSubmit(ActionEvent event)
+    private void loginPressedSubmit(ActionEvent event) throws IOException
     {
         userID=logic1.data.authCheckD(loginUnameField.getText(),loginPassField.getText());
         logic1.data.conClose();
@@ -112,15 +113,25 @@ public class AccountLoginController implements Initializable {
             //code for plookify main window pls
             if (soloTest==0)
             {
-                //normal code
                 System.out.println("not solo");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Master/Working/Common/mainScreen.fxml"));
+                Pane mScreen=loader.load();
+                TsController tS=loader.getController();
+                tS.setID(userID);
+                tS.init();
+                Stage mains=new Stage();
+                Scene mainScene=new Scene(mScreen);
+                mains.setScene(mainScene);
+                mains.show();
+                Stage st1=(Stage)loginUnameField.getScene().getWindow();
+                st1.close();
             }
             else
             {
                 try {
-                    //code to bypass main screen to account screen if test only using account module
+                    //code to bypass main screen to account screen if test only using account module *NOT in use*
                     System.out.println("solo");
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("accountButtonLink.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/accountButtonLink.fxml"));
                     Pane accLink=loader.load();
                     AccountButtonLinkController control1=loader.getController();
                     control1.setID(userID);
