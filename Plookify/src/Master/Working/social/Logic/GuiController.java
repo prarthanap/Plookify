@@ -188,6 +188,7 @@ public class GuiController implements Initializable {
                         fPlaylist.setItems(friendPlayList);
                         friendPlayList.add(rs.getString("PLAYLISTNAME"));
                     }
+                    data.conClose();
                     rs.close();
                 } catch (Exception e) {
                     System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -221,16 +222,20 @@ public class GuiController implements Initializable {
     @FXML
     public void yesDelete(MouseEvent event) throws SQLException {
         
-       String a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getString("ID");
-       String delAcc="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
-        Statement statementD;
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-            statementD = conn.createStatement();
-            statementD.setQueryTimeout(10);
-            statementD.execute("PRAGMA foreign_keys = ON");
-            statementD.execute(delAcc);
-            conn.close();
-        }
+        int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
+        
+        
+//       int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
+//       String delFriend="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
+//        Statement statementD;
+//        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+//            statementD = conn.createStatement();
+//            statementD.setQueryTimeout(10);
+//            statementD.execute("PRAGMA foreign_keys = OFF");
+//            statementD.execute(delFriend);
+//            conn.close();
+//        }
+//        data.conClose();
         confirmDialog.setVisible(false);
         friendss();
     }
