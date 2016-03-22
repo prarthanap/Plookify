@@ -16,7 +16,7 @@
          <children>
             <Button fx:id="account" layoutX="272.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressAccount" text="Account" />
             <Button fx:id="radio" layoutX="353.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressRadio" text="Radio" />
-            <TextField fx:id="searchBar" layoutX="726.0" layoutY="42.0" maxHeight="30.0" maxWidth="235.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="235.0" promptText="Search" onKeyReleased="#commonSearch"/>
+            <TextField fx:id="searchBar" layoutX="726.0" layoutY="42.0" maxHeight="30.0" maxWidth="235.0" minHeight="30.0" minWidth="150.0" onKeyReleased="#commonSearch" prefHeight="30.0" prefWidth="235.0" promptText="Search" style="-fx-background-radius: 70;" />
             <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="28.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Scratch/ICONS/logo.png" />
@@ -30,7 +30,7 @@
             <Button fx:id="tracksButton" layoutX="417.0" layoutY="44.0" mnemonicParsing="false" onAction="#pressTracks" text="Tracks" />
          </children>
       </Pane>
-      <Pane fx:id="rightSidePane" layoutX="850.0" layoutY="85.0" prefHeight="430.0" prefWidth="150.0" style="-fx-background-color: #383838;" />
+      <Pane fx:id="rightSidePane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="850.0" style="-fx-background-color: #383838;" />
       <Pane fx:id="mainPane" layoutX="150.0" layoutY="85.0" prefHeight="430.0" prefWidth="695.0" style="-fx-background-color: #383838;">
          <children>
             <Button fx:id="tracksAdd" layoutX="339.0" layoutY="380.0" mnemonicParsing="false" onAction="#addTracks" text="Add" />
