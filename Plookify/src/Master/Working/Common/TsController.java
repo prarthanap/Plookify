@@ -85,7 +85,6 @@ public class TsController implements Initializable {
             FXMLLoader socialPaneLoader=new FXMLLoader(getClass().getResource("/Master/Working/social/GUI/socialPane.fxml"));
             Pane socialP=(Pane)socialPaneLoader.load();
             socialController=socialPaneLoader.getController();
-            
             socialController.setUser(UserID);
             rightSidePane.getChildren().add(socialP);
 
