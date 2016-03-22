@@ -221,7 +221,8 @@ public class GuiController implements Initializable {
     @FXML
     public void yesDelete(MouseEvent event) throws SQLException {
         
-       String delAcc="DELETE FROM FRIENDLIST WHERE FRIENDID='"+ViewFriends.getSelectionModel().getSelectedItem()+"'";
+       String a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getString("ID");
+       String delAcc="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
         Statement statementD;
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
             statementD = conn.createStatement();
@@ -231,6 +232,7 @@ public class GuiController implements Initializable {
             conn.close();
         }
         confirmDialog.setVisible(false);
+        friendss();
     }
 
     @FXML
