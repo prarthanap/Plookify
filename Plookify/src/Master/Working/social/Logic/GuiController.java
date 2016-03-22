@@ -2,8 +2,6 @@ package Master.Working.social.Logic;
 
 import Master.Working.Common.database;
 import Master.Working.player.logic.Tracks;
-import Master.Working.social.Logic.Users;
-import Master.Working.social.Logic.logic;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -225,12 +223,12 @@ public class GuiController implements Initializable {
     public void launchPrivate() {
         sliderValue = PublicOrPrivate.getValue();
         if (sliderValue == 100) {
-            String privateUpdate = "UPDATE ACCOUNT set PUBLICITY = '100.0' where ID='" + ID + "'";
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '100.0' where USERID='" + ID + "'";
             data.makeUpdate(privateUpdate);
             data.conClose();
             System.out.println("Private");
         } else {
-            String privateUpdate = "UPDATE ACCOUNT set PUBLICITY = '0.0' where ID='" + ID + "'";
+            String privateUpdate = "UPDATE SUBSCRIPTION set PUBLICITY = '0.0' where USERID='" + ID + "'";
             data.makeUpdate(privateUpdate);
             data.conClose();
             System.out.println("Public");
@@ -263,22 +261,25 @@ public class GuiController implements Initializable {
     }
 
     //For combined work
-    public void searching(String x) throws SQLException {
+    public void searching(String x){
         try {
-            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
-            ArrayList<String> namesList = new ArrayList<>();
+            FriendPlaylistDialog.setVisible(false);
+            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
+            userData.clear();
+            
+            ArrayList<String> namesList=new ArrayList<>();
             while (pubID.next())//for every matching record a username is gotten
             {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='" + pubID.getInt(1) + "'").getString(1));
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
             }
-            for (int i = 0; i < namesList.size(); i++) {
-                userData.clear();
-                if (namesList.get(i).startsWith(x)) {
-                     Users u1 = new Users(namesList.get(i));
-                    userData.add(namesList.get(i));
+            for (String a : namesList)
+            {
+                if(a.startsWith(x))
+                {
+                    userData.add(a);
+                    showUsers.setItems(userData);
                 }
             }
-            showUsers.setItems(userData);
         } catch (Exception e2) {
             System.err.println(e2);
         }

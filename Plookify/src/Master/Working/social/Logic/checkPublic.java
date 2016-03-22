@@ -31,7 +31,7 @@ public class checkPublic {
         double stat = 0;
         try{
             
-            ResultSet rs = data.makeQuery("SELECT PUBLICITY FROM ACCOUNT where ID='"+accountID+"';");
+            ResultSet rs = data.makeQuery("SELECT PUBLICITY FROM SUBSCRIPTION where USERID='"+accountID+"';");
             while(rs.next())
             {
                 stat = rs.getDouble("PUBLICITY");

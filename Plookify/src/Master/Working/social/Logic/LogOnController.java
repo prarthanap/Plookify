@@ -5,7 +5,6 @@
  */
 package Master.Working.social.Logic;
 
-import Master.Working.social.Logic.logic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
