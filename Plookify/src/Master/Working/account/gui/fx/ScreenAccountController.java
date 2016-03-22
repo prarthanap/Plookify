@@ -162,7 +162,8 @@ public class ScreenAccountController implements Initializable {
        }
        else
        {
-           System.out.println("cannot delete");
+          deviceDialogMsg.setText("Can not delete Device. Less than 30days old");
+            accountDialog.relocate(150,100);
        }
     }
     
