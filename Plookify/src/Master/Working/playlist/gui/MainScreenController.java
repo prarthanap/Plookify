@@ -216,7 +216,7 @@ public class MainScreenController implements Initializable {
         public void handle(MouseEvent event) {
             Songs song = searchTable.getSelectionModel().getSelectedItem();
             String songID = song.getSongID(); 
-            String update="INSERT INTO 'PLAYLIST-TRACK' (TRACK) VALUES('"+songID+"')";
+            String update="INSERT INTO PLAYLISTTRACK (TRACK) VALUES('"+songID+"')";
             db.makeUpdate(update);
             System.out.println("song added ot playlist " + songID);
             }
