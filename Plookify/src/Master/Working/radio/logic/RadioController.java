@@ -13,8 +13,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -80,6 +85,9 @@ public class RadioController implements Initializable {
     private String radioGenre = "";
     private String radioArtist = ""; 
     private String radioTrack = ""; 
+    private String radioGenre2 = "empty";
+    private String radioArtist2 = "empty"; 
+    private String radioTrack2 = "empty"; 
     private boolean radioStatus = false;
     private int lastID = 0;
     private int trackID = 0;
@@ -88,6 +96,8 @@ public class RadioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        this.ID = 4;//temporary for individual use.
 
         IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
@@ -95,6 +105,7 @@ public class RadioController implements Initializable {
         timeCol.setCellValueFactory(new PropertyValueFactory("time"));
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
 
+        
         updateTable();
         
         radioIDCol.setCellValueFactory(new PropertyValueFactory("ID"));
@@ -121,7 +132,6 @@ public class RadioController implements Initializable {
                 while (rs.next()) {
                         lastID = rs.getInt(1); 
                 }
-                rs.close();
                 ps1.close();
                 for (Tracks item : radioTable.getItems()) {
                         trackID = Integer.parseInt(item.getID());
@@ -133,8 +143,8 @@ public class RadioController implements Initializable {
                 ps2.executeBatch(); 
                 ps2.close();
                 conn1.close();
-       } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+       } catch (Exception e2) {
+            System.err.println(e2);
             }
         playlistSavedLabel.setText("Playlist " + lastID + " Saved.");
         playlistSavedLabel.setVisible(true);
@@ -143,9 +153,9 @@ public class RadioController implements Initializable {
     }
     
     
-//    private String getUsername(){
-//        return "mas36"; //Temporary
-//    }
+    //private String getUsername(){
+    //    return "mas36"; //Temporary
+    //}
     
    public void setUser(int pass)
     {
@@ -156,9 +166,9 @@ public class RadioController implements Initializable {
         return this.ID;
     }
     
-//    private int getUserID(){
-//        return 4; //Temporary
-//    }
+    //private int getUserID(){
+    //    return 4; //Temporary
+    //}
     
     @FXML
     private void viewRadioPane(ActionEvent event2) {
@@ -199,10 +209,11 @@ public class RadioController implements Initializable {
             /////////////////////////////////////////////////////////////////////
             String fixedTerm = sb.toString();
             radioArtist = fixedTerm;
-            System.out.println(radioArtist);
+            //System.out.println(radioArtist);
             try {
-                radioGenre = db.makeQuery("SELECT GENRE FROM TRACKS WHERE ARTIST = '"+radioArtist+"'").getString("GENRE");
-                db.conClose();
+                ResultSet rs2 = db.makeQuery("SELECT GENRE FROM TRACKS WHERE ARTIST = '"+radioArtist+"'");
+                radioGenre = rs2.getString("GENRE");
+                rs2.close();
             }
             catch (Exception e2) {
             System.err.println(e2);
@@ -221,11 +232,12 @@ public class RadioController implements Initializable {
             ////////////////////////////////////////////////////////////////////
             String fixedTerm = sb.toString();
             radioTrack = fixedTerm;
-            System.out.println(radioTrack);
+            //System.out.println(radioTrack);
             try {
-                radioArtist =db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'").getString("ARTIST");
-                radioGenre =db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'").getString("GENRE");
-                db.conClose();
+                ResultSet rs2 = db.makeQuery("SELECT GENRE,ARTIST FROM TRACKS WHERE TRACKNAME = '"+radioTrack+"'");
+                radioArtist = rs2.getString("ARTIST");
+                radioGenre = rs2.getString("GENRE");
+                rs2.close();
             }
             catch (Exception e2) {
             System.err.println(e2);
@@ -245,8 +257,6 @@ public class RadioController implements Initializable {
                         rs.getString("GENRE")
                        
                 ));
-                rs.close();
-                db.conClose();
                 radioTable.setItems(radioData);
                 radioTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }
@@ -273,20 +283,21 @@ public class RadioController implements Initializable {
                     if (tracks.getID().contains(newValue)) {
                         return true;
                     } else if (tracks.getTrackName().toLowerCase().contains(lowerCaseFilter)) {
-                        createRadio(tracks.getTrackName(), "empty", "empty");
+                        radioTrack2 = tracks.getTrackName();
                         return true;
 
                     } else if (tracks.getArtist().toLowerCase().contains(lowerCaseFilter)) {
-                        createRadio("empty", tracks.getArtist(), "empty");
+                        radioArtist2 = tracks.getArtist();
                         return true;
 
                     } else if (tracks.getGenre().toLowerCase().contains(lowerCaseFilter)) {
-                        createRadio("empty", "empty", tracks.getGenre());
+                        radioGenre2 = tracks.getGenre();
                         return true;
                     }
                     return false;
                     
                 });
+                createRadio(radioTrack2,radioArtist2,radioGenre2);
             });
         });
 
@@ -299,6 +310,7 @@ public class RadioController implements Initializable {
 
     public void updateTable() {
         try {
+            database db = new database();
             ResultSet rs = db.makeQuery("SELECT * FROM TRACKS");
             while (rs.next()) {
                 data.add(new Tracks(
@@ -309,10 +321,9 @@ public class RadioController implements Initializable {
                         rs.getString("GENRE")
                        
                 ));
-                rs.close();
+
                 table.setItems(this.data);
                 table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-                db.conClose();
 
             }
 
