@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.social.pls;
+package Master.Working.social.Logic;
 
 import Master.Working.social.Logic.logic;
 import java.io.IOException;

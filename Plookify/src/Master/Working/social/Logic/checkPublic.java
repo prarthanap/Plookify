@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.social.pls;
+package Master.Working.social.Logic;
 
+import Master.Working.Common.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class checkPublic {
     
     private double status; 
     private int accountID;
-    
+    public database data = new database();
     
     public checkPublic(int ID)
     {
@@ -28,24 +29,14 @@ public class checkPublic {
     public double checkPublicity()
     {
         double stat = 0;
-        Connection c = null;
-        Statement stmt = null;
         try{
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
             
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT PUBLICITY FROM SUBSCRIPTION where USERID='"+accountID+"';");
+            ResultSet rs = data.makeQuery("SELECT PUBLICITY FROM SUBSCRIPTION where USERID='"+accountID+"';");
             while(rs.next())
             {
                 stat = rs.getDouble("PUBLICITY");
             }
             status = stat;
-            rs.close();
-            stmt.close();
-            c.close();
         }catch(Exception e){
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);

@@ -8,9 +8,6 @@ package Master.Working.social.Logic;
 /**** @author Hamza */
 
 import Master.Working.Common.database;
-import Master.Working.social.pls.Friends;
-import Master.Working.social.pls.GuiController;
-import Master.Working.social.pls.friendPlaylist;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;

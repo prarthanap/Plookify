@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="155.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="155.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.Logic.GuiController">
    <children>
       <Slider fx:id="PublicOrPrivate" blockIncrement="100.0" layoutX="47.0" layoutY="397.0" majorTickUnit="100.0" minorTickCount="0" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" snapToTicks="true" />
       <Button fx:id="removeFriend" layoutX="115.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#launchDialog" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="--" textFill="WHITE">

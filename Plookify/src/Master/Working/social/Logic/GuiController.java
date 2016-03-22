@@ -1,8 +1,8 @@
-package Master.Working.social.pls;
+package Master.Working.social.Logic;
 
 import Master.Working.Common.database;
 import Master.Working.player.logic.Tracks;
-import Master.Working.social.pls.Users;
+import Master.Working.social.Logic.Users;
 import Master.Working.social.Logic.logic;
 import java.net.URL;
 import java.sql.Connection;
@@ -238,6 +238,11 @@ public class GuiController implements Initializable {
     private void launchAdded(MouseEvent event) throws SQLException {
         int prem = 1;
         if (prem == 1) {
+            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt(1);
+            int tempAdd = 1;
+            data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','" + tempAdd + "')");
+            data.conClose();
+            
             friendAddedDialog.setVisible(true);
         } else {
             upgradeDialog.setVisible(true);
@@ -246,10 +251,6 @@ public class GuiController implements Initializable {
 
     @FXML
     private void acceptDialog(MouseEvent event) throws SQLException {
-        int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
-        int tempAdd = 1;
-        data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','" + tempAdd + "')");
-        data.conClose();
         friendAddedDialog.setVisible(false);
     }
 
