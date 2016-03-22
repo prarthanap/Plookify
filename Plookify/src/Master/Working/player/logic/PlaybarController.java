@@ -49,7 +49,10 @@ public class PlaybarController implements Initializable {
 
         NowPlaying play = new NowPlaying();
         nowPlayingMenu.getItems().clear();
+        tracksList.removeAll(tracksList);
         nowPlayingMenu.getItems().addAll(play.getNowPlaying());
+        
+          nowPlayingMenu.getSelectionModel().selectFirst();
 
         ObservableList<String> items = nowPlayingMenu.getItems();
         for (String item : items) {
@@ -83,6 +86,8 @@ public class PlaybarController implements Initializable {
     }
 
     private void play(String mediaFile) {
+        
+       nowPlayingMenu.getSelectionModel().selectFirst();
 
         //Resumes
         if (status.equals("Paused")) {

@@ -48,5 +48,15 @@ public class NowPlaying {
         return list;
 
     }
+    
+    
+    public void removeAll(){
+        
+        database db = new database();
+        ResultSet rs =  db.makeQuery("DELETE * from NOWPLAYING");
+        
+                
+        
+    }
 
 }
