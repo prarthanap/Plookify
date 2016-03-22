@@ -128,11 +128,11 @@ public class GuiController implements Initializable {
     public void friendss() {
         try {
             int userID = ID;
-            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST where OWNERID='3' and ADDED=1");
+            ResultSet rs = data.makeQuery("SELECT * FROM FRIENDLIST where OWNERID="+ID+" and ADDED=1");
             while (rs.next()) {
 
                 ViewFriends.setItems(friendTest);
-                friendTest.add(rs.getString(2));
+                friendTest.add(rs.getString("Username"));
             }
         } catch (Exception e2) {
             System.err.println(e2);

@@ -21,7 +21,7 @@ public class startRun extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("logOn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Master/Working/social/GUI/logOn.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
