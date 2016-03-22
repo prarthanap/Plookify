@@ -261,60 +261,27 @@ public class GuiController implements Initializable {
         upgradeDialog.setVisible(false);
     }
 
-    //For combined work
-//    public void searching(TextField bar){
-//        try {
-//            FriendPlaylistDialog.setVisible(false);
-//            ViewFriends.setVisible(true);
-//            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
-//            userData.clear();
-//            
-//            ArrayList<String> namesList=new ArrayList<>();
-//            while (pubID.next())//for every matching record a username is gotten
-//            {
-//                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
-//            }
-//            for (String a : namesList)
-//            {
-//                if(a.startsWith(bar.getText()))
-//                {
-//                    userData.add(a);
-//                    showUsers.setItems(userData);
-//                }
-//            }
-//        } catch (Exception e2) {
-//            System.err.println(e2);
-//        }
-//
-//    }
-    public void searchingC(TextField bar) {
+    public void searchingC(String bar) {
         try {
-            FriendPlaylistDialog.setVisible(false);
-            ViewFriends.setVisible(true);
-            ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
-            String searchF = bar.getText();
+            System.out.println("runs2");
+            ResultSet pubID2 = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             userData.clear();
             
             ArrayList<String> namesList=new ArrayList<>();
-            while (pubID.next())//for every matching record a username is gotten
+            while (pubID2.next())//for every matching record a username is gotten
             {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID2.getInt(1)+"'").getString(1));
             }
+            System.out.println(namesList.size());
             for (String a : namesList)
             {
-                if(a.startsWith(searchF))
+                if(a.startsWith(bar))
                 {
                     userData.add(a);
                     showUsers.setItems(userData);
                 }
             }
-//            while (pubID.next())//for every matching record a username is gotten
-//            {
-//                
-//                    showUsers.setItems(userData);
-//                    userData.add(pubID.getString("USERID"));
-//
-//            }
+            
         } catch (Exception e2) {
             System.err.println(e2);
         }

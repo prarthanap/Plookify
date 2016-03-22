@@ -27,7 +27,7 @@ import javafx.scene.input.MouseEvent;
 public class TrackTableController implements Initializable {
 
     @FXML
-    private TableView<Tracks> table;
+    public TableView<Tracks> table;
     @FXML
     private TableColumn IDCol;
     @FXML
@@ -39,7 +39,7 @@ public class TrackTableController implements Initializable {
     @FXML
     private TableColumn genreCol;
     @FXML
-    private TextField searchField;
+    public TextField searchField;
 
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
 
@@ -141,49 +141,6 @@ public class TrackTableController implements Initializable {
     private void onDeselect(MouseEvent event) {
 
         table.getSelectionModel().clearSelection();
-
-    }
-    
-    public void redoVis()//prep for mainscreen only
-    {
-        searchField.setVisible(false);
-        table.setLayoutY(0);
-    }
-    
-    public void searchFunctionCommon(TextField sfc)//common searchbar function
-    {
-
-        FilteredList<Tracks> filteredData = new FilteredList<>(data, e -> true);
-
-        sfc.setOnKeyReleased(e -> {
-
-            sfc.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                filteredData.setPredicate((Predicate<? super Tracks>) tracks -> {
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-                    String lowerCaseFilter = newValue.toLowerCase();
-                    if (tracks.getID().contains(newValue)) {
-                        return true;
-                    } else if (tracks.getTrackName().toLowerCase().contains(lowerCaseFilter)) {
-                        return true;
-
-                    } else if (tracks.getArtist().toLowerCase().contains(lowerCaseFilter)) {
-                        return true;
-
-                    } else if (tracks.getGenre().toLowerCase().contains(lowerCaseFilter)) {
-                        return true;
-
-                    }
-
-                    return false;
-
-                });
-            });
-        });
-        SortedList<Tracks> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(table.comparatorProperty());
-        table.setItems(sortedData);
 
     }
 

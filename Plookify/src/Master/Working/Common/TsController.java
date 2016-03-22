@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  */
 public class TsController implements Initializable {
 
-    private int UserID=4;   
+    private int UserID=3;   
     
     private TrackTableController table;
     private PlaybarController bar2;
@@ -77,9 +77,10 @@ public class TsController implements Initializable {
             FXMLLoader tableLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/TrackTable.fxml"));
             Pane tTable=tableLoader.load();
             tbc=tableLoader.getController();
-            tbc.redoVis();
             tTable.setPrefSize(695, 430);
             table = tableLoader.getController();
+            table.table.relocate(50,50);
+            table.searchField.relocate(150,20);
             mainPane.getChildren().add(tTable);
             tracksAdd.toFront();
             FXMLLoader socialPaneLoader=new FXMLLoader(getClass().getResource("/Master/Working/social/GUI/mainSocialPane.fxml"));
@@ -121,6 +122,7 @@ public class TsController implements Initializable {
     {
         
         mainPane.toFront();
+        tracksAdd.toFront();
         
     }
     private void setID(int uID)
@@ -136,8 +138,7 @@ public class TsController implements Initializable {
     @FXML
     private void commonSearch(KeyEvent event)
     {
-        tbc.searchFunctionCommon(searchBar);
-        socialController.searchingC(searchBar);
+        socialController.searchingC(searchBar.getText());
         
     }
 }
