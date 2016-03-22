@@ -64,12 +64,12 @@ public class TsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb)
     {
         try{
-            FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml"));
-            Pane rPane =radioLoader.load();
-            rCon=radioLoader.getController();
-            rCon.setUser(UserID);
-            rPane.relocate(-250, 50);
-            radioPane.getChildren().add(rPane);
+            //FXMLLoader radioLoader = new FXMLLoader(getClass().getResource("/Master/Working/radio/gui/radio.fxml"));
+            //Pane rPane =radioLoader.load();
+            //rCon=radioLoader.getController();
+            //rCon.setUser(UserID);
+            //rPane.relocate(-250, 50);
+            //radioPane.getChildren().add(rPane);
             FXMLLoader pBarLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
             Pane pBar=pBarLoader.load();
             Player.getChildren().add(pBar);
@@ -113,14 +113,14 @@ public class TsController implements Initializable {
     @FXML
     private void pressRadio(ActionEvent event)
     {
-        
+        socialController.displayFriendResults.setVisible(false);
         radioPane.toFront();
         
     }
     @FXML
     private void pressTracks(ActionEvent event)
     {
-        
+        socialController.displayFriendResults.setVisible(false);
         mainPane.toFront();
         tracksAdd.toFront();
         
@@ -140,5 +140,10 @@ public class TsController implements Initializable {
     {
         socialController.searchingC(searchBar.getText());
         
+    }
+    @FXML
+    private void pressSocial(ActionEvent event)
+    {
+        rightSidePane.toFront();
     }
 }

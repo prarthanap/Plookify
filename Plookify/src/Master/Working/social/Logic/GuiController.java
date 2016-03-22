@@ -112,10 +112,9 @@ public class GuiController implements Initializable {
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
         upgradeDialog.setVisible(false);
-        ViewFriends.setVisible(false);
         //Making user public or private (setting slider to position last placed in)
         PublicOrPrivate.setValue(sliderValue);
-
+        displayFriendResults.setVisible(false);
         IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
@@ -172,6 +171,7 @@ public class GuiController implements Initializable {
                         fPlaylist.setItems(friendPlayList);
                         friendPlayList.add(rs.getString("PLAYLISTNAME"));
                     }
+                    rs.close();
                 } catch (Exception e) {
                     System.err.println(e.getClass().getName() + ": " + e.getMessage());
                     System.exit(0);
@@ -211,6 +211,7 @@ public class GuiController implements Initializable {
             statementD.setQueryTimeout(10);
             statementD.execute("PRAGMA foreign_keys = ON");
             statementD.execute(delAcc);
+            conn.close();
         }
         confirmDialog.setVisible(false);
     }
@@ -263,6 +264,7 @@ public class GuiController implements Initializable {
 
     public void searchingC(String bar) {
         try {
+            displayFriendResults.setVisible(true);
             System.out.println("runs2");
             ResultSet pubID2 = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             userData.clear();
@@ -281,6 +283,8 @@ public class GuiController implements Initializable {
                     showUsers.setItems(userData);
                 }
             }
+            pubID2.close();
+            data.conClose();
             
         } catch (Exception e2) {
             System.err.println(e2);
@@ -301,6 +305,7 @@ public class GuiController implements Initializable {
             {
                 namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
             }
+            data.conClose();
             for (String a : namesList)
             {
                 if(a.startsWith(searchF))

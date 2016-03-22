@@ -37,6 +37,7 @@ public class checkPublic {
                 stat = rs.getDouble("PUBLICITY");
             }
             status = stat;
+            data.conClose();
         }catch(Exception e){
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
