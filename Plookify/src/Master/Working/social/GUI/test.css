@@ -76,3 +76,31 @@ and open the template in the editor.
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
+
+.mainList{
+    -fx-background-color: #383838;    
+}
+
+.list-cell{
+    -fx-background-color: #383838;
+    -fx-text-fill: #adafb2;
+    -fx-cell-size: 33;
+    -fx-padding: 10px 10px 0px 14px;
+    
+}
+
+.list-cell:filled:selected, .list-cell:filled:selected {
+    -fx-background-color: #383838;
+    -fx-text-fill: white;
+    -fx-border-color: blueviolet;
+    -fx-border-width:  0px 0px 0px 4px;	
+}
+
+.list-cell:even { 
+    -fx-background-color: #383838;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #282828;
+    -fx-text-fill: white;
+}

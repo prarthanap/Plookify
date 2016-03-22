@@ -26,20 +26,20 @@
                <children>
                   <AnchorPane fx:id="FriendPlaylistDialog" layoutX="22.0" layoutY="126.0" prefHeight="333.0" prefWidth="609.0">
                      <children>
-                        <TableView fx:id="FriendPlaylistTable" layoutY="-1.0" prefHeight="333.0" prefWidth="609.0">
+                        <TableView fx:id="FriendPlaylistTable" layoutY="-1.0" prefHeight="333.0" prefWidth="609.0" stylesheets="@test.css">
                           <columns>
-                            <TableColumn fx:id="IDCol" prefWidth="82.0" text="C1" />
-                            <TableColumn fx:id="trackNameCol" prefWidth="123.0" text="C2" />
-                              <TableColumn fx:id="artistCol" prefWidth="107.0" text="Column X" />
-                              <TableColumn fx:id="timeCol" prefWidth="106.0" text="Column X" />
-                              <TableColumn fx:id="genreCol" prefWidth="108.0" text="Column X" />
+                            <TableColumn fx:id="IDCol" prefWidth="100.0" text="Song No." />
+                            <TableColumn fx:id="trackNameCol" prefWidth="125.0" text="Song Name" />
+                              <TableColumn fx:id="artistCol" prefWidth="112.0" text="Artist" />
+                              <TableColumn fx:id="timeCol" prefWidth="90.0" text="Duration" />
+                              <TableColumn fx:id="genreCol" prefWidth="99.0" text="Genre" />
                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="displayFriendResults" layoutX="432.0" layoutY="80.0" prefHeight="173.0" prefWidth="169.0">
+                  <AnchorPane fx:id="displayFriendResults" layoutX="462.0" layoutY="92.0" prefHeight="173.0" prefWidth="169.0">
                      <children>
-                        <ListView fx:id="showUsers" prefHeight="178.0" prefWidth="169.0" />
+                        <ListView fx:id="showUsers" prefHeight="178.0" prefWidth="169.0" stylesheets="@test.css" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="friendAddedDialog" layoutX="262.0" layoutY="165.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #343434;">
@@ -91,12 +91,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="friendView" layoutX="675.0" layoutY="141.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <ListView fx:id="ViewFriends" prefHeight="126.0" prefWidth="131.0" />
+                        <ListView fx:id="ViewFriends" prefHeight="126.0" prefWidth="131.0" stylesheets="@test.css" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="friendPlaylist" layoutX="675.0" layoutY="304.0" prefHeight="139.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <ListView fx:id="fPlaylist" prefHeight="139.0" prefWidth="131.0" />
+                        <ListView fx:id="fPlaylist" prefHeight="139.0" prefWidth="131.0" stylesheets="@test.css" />
                      </children>
                   </AnchorPane>
                   <Button fx:id="addFriend" layoutX="741.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#launchAdded" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
