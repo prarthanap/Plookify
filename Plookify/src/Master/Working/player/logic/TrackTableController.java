@@ -3,15 +3,12 @@ package Master.Working.player.logic;
 import Master.Working.Common.database;
 import java.net.URL;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
@@ -133,7 +130,6 @@ public class TrackTableController implements Initializable {
             String nowPlaying = trackSelect.getTrackName();
 
             db.makeUpdate("INSERT INTO NOWPLAYING(TRACKNAME) " + "VALUES  ('" + nowPlaying + "');");
-
         }
         
         
@@ -145,6 +141,49 @@ public class TrackTableController implements Initializable {
     private void onDeselect(MouseEvent event) {
 
         table.getSelectionModel().clearSelection();
+
+    }
+    
+    public void redoVis()//prep for mainscreen only
+    {
+        searchField.setVisible(false);
+        table.setLayoutY(0);
+    }
+    
+    public void searchFunctionCommon(TextField sfc)//common searchbar function
+    {
+
+        FilteredList<Tracks> filteredData = new FilteredList<>(data, e -> true);
+
+        sfc.setOnKeyReleased(e -> {
+
+            sfc.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                filteredData.setPredicate((Predicate<? super Tracks>) tracks -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (tracks.getID().contains(newValue)) {
+                        return true;
+                    } else if (tracks.getTrackName().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+
+                    } else if (tracks.getArtist().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+
+                    } else if (tracks.getGenre().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+
+                    }
+
+                    return false;
+
+                });
+            });
+        });
+        SortedList<Tracks> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
 
     }
 

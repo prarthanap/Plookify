@@ -30,9 +30,9 @@
       <Button fx:id="delete4" layoutX="490.0" layoutY="213.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete4" />
       <Button fx:id="delete5" layoutX="490.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteDevice" text="Delete5" />
       <Button fx:id="addDevice" layoutX="110.0" layoutY="328.0" mnemonicParsing="false" onAction="#deviceAddPressed" text="Add Device" />
-      <Pane fx:id="addingDeviceDialog" layoutX="-342.0" layoutY="51.0" prefHeight="164.0" prefWidth="262.0" styleClass="dialog">
+      <Pane fx:id="addingDeviceDialog" layoutX="-342.0" layoutY="51.0" prefHeight="164.0" prefWidth="280.0" styleClass="dialog">
          <children>
-            <ComboBox fx:id="deviceTypeCombo" layoutX="97.0" layoutY="71.0" prefHeight="25.0" prefWidth="142.0">
+            <ComboBox fx:id="deviceTypeCombo" layoutX="110.0" layoutY="71.0" prefHeight="25.0" prefWidth="142.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Mobile Phone" />
@@ -45,9 +45,9 @@
                     <String fx:value="Mobile Phone" />
                 </value>
              </ComboBox>
-            <Label layoutX="15.0" layoutY="74.0" prefHeight="19.0" prefWidth="70.0" text="Device Type" />
+            <Label layoutX="15.0" layoutY="74.0" prefHeight="19.0" text="Device Type" />
             <Button fx:id="addingDeviceDialogOK" layoutX="115.0" layoutY="113.0" mnemonicParsing="false" onAction="#addingDeviceSubmit" text="OK" />
-            <TextField fx:id="deviceNameField" layoutX="94.0" layoutY="34.0" promptText="Name length : 4-12" />
+            <TextField fx:id="deviceNameField" layoutX="110.0" layoutY="34.0" promptText="Name length : 4-12" prefWidth="142.0" />
             <Label layoutX="15.0" layoutY="38.0" text="Device Name" />
          </children>
       </Pane>

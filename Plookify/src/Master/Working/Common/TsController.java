@@ -19,7 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +36,7 @@ public class TsController implements Initializable {
     private PlaybarController bar2;
     private RadioController rCon;
     private GuiController socialController;
+    private TrackTableController tbc;
     
     @FXML
     private Pane Player;
@@ -74,6 +76,9 @@ public class TsController implements Initializable {
             bar2 = pBarLoader.getController();
             FXMLLoader tableLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/TrackTable.fxml"));
             Pane tTable=tableLoader.load();
+            tbc=tableLoader.getController();
+            tbc.redoVis();
+            tTable.setPrefSize(695, 430);
             table = tableLoader.getController();
             mainPane.getChildren().add(tTable);
             tracksAdd.toFront();
@@ -82,7 +87,6 @@ public class TsController implements Initializable {
             socialController=socialPaneLoader.getController();
             
             socialController.setUser(UserID);
-            socialP.relocate(500,0);
             rightSidePane.getChildren().add(socialP);
 
         }catch(IOException e){}
@@ -126,5 +130,10 @@ public class TsController implements Initializable {
     {
         table.addToNowPlaying();
         bar2.initialize(null, null);
-    } 
+    }
+    @FXML
+    private void commonSearch(KeyEvent event)
+    {
+        tbc.searchFunctionCommon(searchBar);
+    }
 }
