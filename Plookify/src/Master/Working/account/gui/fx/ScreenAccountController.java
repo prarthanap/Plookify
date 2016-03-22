@@ -141,6 +141,7 @@ public class ScreenAccountController implements Initializable {
         Scene scene2 = new Scene(start1);
         backToStart.setScene(scene2);
         backToStart.show();
+        logicA.data.makeUpdate("DELETE FROM NOWPLAYING");
         Stage oldy=(Stage)accountPane.getScene().getWindow();
         oldy.close();
         oldy=(Stage)hand.getScene().getWindow();
@@ -235,11 +236,13 @@ public class ScreenAccountController implements Initializable {
                     logicA.deleteAccount(ID);
                     System.out.println("Account deleted");
                     Stage backToStart=new Stage();
-                    Parent start1 = FXMLLoader.load(getClass().getResource("screenStart.fxml"));
+                    Parent start1 = FXMLLoader.load(getClass().getResource("/Master/Working/account/gui/fx/screenStart.fxml"));
                     Scene scene2 = new Scene(start1);
                     backToStart.setScene(scene2);
                     backToStart.show();
                     Stage oldy=(Stage)accountPane.getScene().getWindow();
+                    oldy.close();
+                    oldy=(Stage)hand.getScene().getWindow();
                     oldy.close();
                 }
         else{System.out.println("incorrect password");}
