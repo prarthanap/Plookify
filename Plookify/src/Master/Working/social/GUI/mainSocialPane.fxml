@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="850.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="FriendPlaylistDialog" layoutX="49.0" layoutY="61.0" prefHeight="333.0" prefWidth="609.0">
+         <children>
+            <TableView fx:id="FriendPlaylistTable" layoutY="-1.0" prefHeight="333.0" prefWidth="609.0" stylesheets="@test.css">
+               <columns>
+                  <TableColumn fx:id="IDCol" prefWidth="100.0" text="Song No." />
+                  <TableColumn fx:id="trackNameCol" prefWidth="125.0" text="Song Name" />
+                  <TableColumn fx:id="artistCol" prefWidth="112.0" text="Artist" />
+                  <TableColumn fx:id="timeCol" prefWidth="90.0" text="Duration" />
+                  <TableColumn fx:id="genreCol" prefWidth="99.0" text="Genre" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="displayFriendResults" layoutX="489.0" layoutY="27.0" prefHeight="173.0" prefWidth="169.0">
+         <children>
+            <ListView fx:id="showUsers" prefHeight="178.0" prefWidth="169.0" stylesheets="@test.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="friendAddedDialog" layoutX="289.0" layoutY="100.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #343434;">
+         <children>
+            <Label layoutX="51.0" layoutY="31.0" text="Friend Request sent" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="91.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#acceptDialog" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Ok" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="upgradeDialog" layoutX="296.0" layoutY="100.0" prefHeight="139.0" prefWidth="200.0" style="-fx-background-color: #343434;">
+         <children>
+            <Button fx:id="upgradeClose" layoutX="75.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#closeUpgrade" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Close" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="16.0" layoutY="27.0" text="You must upgrade to use this" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="confirmDialog" layoutX="291.0" layoutY="101.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #323232;">
+         <children>
+            <Label layoutX="14.0" layoutY="29.0" text="Are you sure you want to delete?" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="confirmYes" layoutX="57.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#yesDelete" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Yes" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="confirmNo" layoutX="122.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#noDelete" style="-fx-background-color: #343434; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="No" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="friendView" layoutX="702.0" layoutY="76.0" prefHeight="126.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ListView fx:id="ViewFriends" prefHeight="126.0" prefWidth="131.0" stylesheets="@test.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="friendPlaylist" layoutX="702.0" layoutY="239.0" prefHeight="139.0" prefWidth="131.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ListView fx:id="fPlaylist" prefHeight="139.0" prefWidth="131.0" stylesheets="@test.css" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="addFriend" layoutX="768.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#launchAdded" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="+" textFill="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="removeFriend" layoutX="805.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#launchDialog" style="-fx-background-color: #383838; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="--" textFill="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
+      <Slider fx:id="PublicOrPrivate" blockIncrement="100.0" layoutX="737.0" layoutY="396.0" majorTickUnit="100.0" minorTickCount="0" onMouseClicked="#launchPrivate" pickOnBounds="false" prefHeight="21.0" prefWidth="0.0" snapToTicks="true" />
+      <Label layoutX="702.0" layoutY="49.0" prefHeight="27.0" prefWidth="131.0" text="Friends                     " textFill="WHITE" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="705.0" layoutY="214.0" prefHeight="27.0" prefWidth="131.0" text="Playlist                     " textFill="WHITE" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

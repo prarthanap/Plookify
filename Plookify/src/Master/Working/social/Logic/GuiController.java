@@ -38,52 +38,52 @@ import javafx.scene.layout.AnchorPane;
 public class GuiController implements Initializable {
 
     @FXML
-    private Button removeFriend, addFriend, yesConfirm, noConfirm, upgradeClose;
+    public Button removeFriend, addFriend, yesConfirm, noConfirm, upgradeClose;
 
     @FXML
-    private Slider PublicOrPrivate;
+    public Slider PublicOrPrivate;
 
     @FXML
-    private TextField searchField;
+    public TextField searchField;
 
     @FXML
-    private ListView<String> fPlaylist;
+    public ListView<String> fPlaylist;
     private ObservableList<String> friendPlayList = FXCollections.observableArrayList();
 
     @FXML
-    private ListView<String> showUsers;
+    public ListView<String> showUsers;
     private ObservableList<String> userData = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Tracks> FriendPlaylistTable;
+    public TableView<Tracks> FriendPlaylistTable;
     @FXML
-    private TableColumn IDCol;
+    public TableColumn IDCol;
     @FXML
-    private TableColumn trackNameCol;
+    public TableColumn trackNameCol;
     @FXML
-    private TableColumn artistCol;
+    public TableColumn artistCol;
     @FXML
-    private TableColumn timeCol;
+    public TableColumn timeCol;
     @FXML
-    private TableColumn genreCol;
+    public TableColumn genreCol;
 
     @FXML
-    private AnchorPane friendView;
+    public AnchorPane friendView;
     @FXML
-    private AnchorPane displayFriendResults;
+    public AnchorPane displayFriendResults;
     @FXML
-    private AnchorPane confirmDialog;
+    public AnchorPane confirmDialog;
     @FXML
-    private AnchorPane friendAddedDialog;
+    public AnchorPane friendAddedDialog;
     @FXML
-    private AnchorPane upgradeDialog;
+    public AnchorPane upgradeDialog;
     @FXML
-    private AnchorPane friendPlaylist;
+    public AnchorPane friendPlaylist;
     @FXML
-    private AnchorPane FriendPlaylistDialog;
+    public AnchorPane FriendPlaylistDialog;
 
     @FXML
-    private ListView<String> ViewFriends;
+    public ListView<String> ViewFriends;
     private ObservableList<String> friendTest = FXCollections.observableArrayList();
 
     private int ID = 9999;
@@ -187,7 +187,7 @@ public class GuiController implements Initializable {
     }
 
     @FXML  //delete friend dialog
-    private void launchDialog(MouseEvent event) {
+    public void launchDialog(MouseEvent event) {
 
         int prem = 1;
 //        String uname = unameField.getText();
@@ -200,7 +200,7 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    private void yesDelete(MouseEvent event) throws SQLException {
+    public void yesDelete(MouseEvent event) throws SQLException {
         
        String delAcc="DELETE FROM FRIENDLIST WHERE FRIENDID='"+ViewFriends.getSelectionModel().getSelectedItem()+"'";
         Statement statementD;
@@ -214,12 +214,12 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    private void noDelete(MouseEvent event) {
+    public void noDelete(MouseEvent event) {
         confirmDialog.setVisible(false);
     }
 
     @FXML
-    private void launchPrivate() {
+    public void launchPrivate() {
         sliderValue = PublicOrPrivate.getValue();
         if (sliderValue == 100) {
             String privateUpdate = "UPDATE ACCOUNT set PUBLICITY = '100.0' where ID='" + ID + "'";
@@ -235,7 +235,7 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    private void launchAdded(MouseEvent event) throws SQLException {
+    public void launchAdded(MouseEvent event) throws SQLException {
         int prem = 1;
         if (prem == 1) {
             int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt(1);
@@ -250,12 +250,12 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    private void acceptDialog(MouseEvent event) throws SQLException {
+    public void acceptDialog(MouseEvent event) throws SQLException {
         friendAddedDialog.setVisible(false);
     }
 
     @FXML
-    private void closeUpgrade(MouseEvent event) {
+    public void closeUpgrade(MouseEvent event) {
         upgradeDialog.setVisible(false);
     }
 
