@@ -11,7 +11,7 @@
       <TableView fx:id="table" layoutX="107.0" layoutY="61.0" prefHeight="326.0" prefWidth="557.0" stylesheets="@../../social/GUI/test.css">
          <columns>
             <TableColumn fx:id="IDCol" editable="false" prefWidth="42.0" sortable="false" text="ID" visible="false" />
-            <TableColumn fx:id="trackNameCol" editable="false" prefWidth="170.0" sortable="false" text="Track Name" />
+            <TableColumn fx:id="trackNameCol" editable="false" prefWidth="170.0" sortable="false" text="Song" />
             <TableColumn fx:id="artistCol" editable="false" prefWidth="153.0" sortable="false" text="Artist" />
             <TableColumn fx:id="timeCol" editable="false" prefWidth="93.0" sortable="false" text="Time" />
             <TableColumn fx:id="genreCol" editable="false" prefWidth="115.0" sortable="false" text="Genre" />
