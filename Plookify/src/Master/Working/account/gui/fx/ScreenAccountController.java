@@ -68,24 +68,7 @@ public class ScreenAccountController implements Initializable {
     public void initVariables()
     {
         deviceTable.setVisible(false);
-        int check=logicA.premCheck(ID);
-        System.out.println(check);
-        if (check==2)
-            {
-                premStatusButton.setText("Premium");
-                String exp="Next Due : "+logicA.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE");
-                Label expiry=new Label(exp);
-                expiry.setStyle("-fx-text-fill: red;");
-                expiry.relocate(440,75);
-                accountPane.getChildren().add(expiry);
-            }
-        else if(check==0)
-            {premStatusButton.setText("error");}
-        else if(check==-1)
-        {premStatusButton.setText("Subscribe");
-        deviceDialogMsg.setText("Your account has been downgraded due to subscription expiring. Subscribe to regain premium status.");}
-        else{premStatusButton.setText("Subscribe");}
-        
+        buttonCheck();
         String fullname=logicA.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.stringGet(ID,"ID","ACCOUNT", "LASTNAME");
         titleName.setText(fullname);
         tableInfo=logicA.makeTableInfo(ID);
@@ -261,10 +244,31 @@ public class ScreenAccountController implements Initializable {
         if (premStatusButton.getText().equals("Subscribe"))
         {
             logicA.extendPrem(ID);
+            buttonCheck();
         }
     }
     public void getWindowHandle(Button p)
     {
         this.hand=p;
+    }
+    public void buttonCheck()
+    {
+        int check=logicA.premCheck(ID);
+        System.out.println(check);
+        if (check==2)
+            {
+                premStatusButton.setText("Premium");
+                String exp="Next Due : "+logicA.stringGet(ID,"USERID","SUBSCRIPTION","DUEDATE");
+                Label expiry=new Label(exp);
+                expiry.setStyle("-fx-text-fill: red;");
+                expiry.relocate(440,75);
+                accountPane.getChildren().add(expiry);
+            }
+        else if(check==0)
+            {premStatusButton.setText("error");}
+        else if(check==-1)
+        {premStatusButton.setText("Subscribe");
+        deviceDialogMsg.setText("Your account has been downgraded due to subscription expiring. Subscribe to regain premium status.");}
+        else{premStatusButton.setText("Subscribe");}
     }
 }
