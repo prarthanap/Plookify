@@ -84,12 +84,6 @@ public class GuiController implements Initializable {
     private ObservableList<String> friendTest = FXCollections.observableArrayList();
 
     private int ID = 9999;
-    private final logic accLogic = new logic();
-
-//    private ObservableList<Users> userData = FXCollections.observableArrayList();
-    private ObservableList<friendPlaylist> plData = FXCollections.observableArrayList();
-
-    private ObservableList<Friends> lists = FXCollections.observableArrayList();
 
     private ObservableList<Tracks> FriendsTracks = FXCollections.observableArrayList();
 
@@ -143,7 +137,7 @@ public class GuiController implements Initializable {
                 namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+rs.getInt(1)+"'").getString(1));
             }
             System.out.println(namesList.size()+" friends");
-            for (String a : namesList)
+            for(String a : namesList)
             {
                 friendTest.add(a);
                 ViewFriends.setItems(friendTest);
@@ -277,7 +271,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void yesDelete(MouseEvent event) throws SQLException {
-             
+        
         int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
         data.conClose();
         String delFriend="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
@@ -305,13 +299,13 @@ public class GuiController implements Initializable {
             data.makeUpdate(privateUpdate);
             data.conClose();
             System.out.println("Public");
-        }
+        }       
     }
 
     @FXML
     public void launchAdded(MouseEvent event) throws SQLException {
         int prem = data.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION where USERID='"+ID+"'").getInt(1);
-        data.conClose();
+//        data.conClose();
         String uname=showUsers.getSelectionModel().getSelectedItem();
         if (prem == 1) {
             int temp;
@@ -340,6 +334,7 @@ public class GuiController implements Initializable {
     public void searchingC(String bar) {
         try {
             displayFriendResults.setVisible(true);
+            FriendPlaylistDialog.setVisible(false);
             System.out.println("runs2");
             ResultSet pubID2 = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             userData.clear();
