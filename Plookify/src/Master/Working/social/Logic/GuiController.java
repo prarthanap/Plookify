@@ -26,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -271,6 +272,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void yesDelete(MouseEvent event) throws SQLException {
+        if(! ViewFriends.getSelectionModel().isEmpty()){
         
         int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
         data.conClose();
@@ -279,6 +281,9 @@ public class GuiController implements Initializable {
         data.conClose();
         confirmDialog.setVisible(false);
         friendss();
+        }else{
+            JOptionPane.showMessageDialog(null,"Please select a friend to delete");
+        }
     }
 
     @FXML
@@ -305,7 +310,8 @@ public class GuiController implements Initializable {
     @FXML
     public void launchAdded(MouseEvent event) throws SQLException {
         int prem = data.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION where USERID='"+ID+"'").getInt(1);
-//        data.conClose();
+        data.conClose();
+        System.out.println(prem);
         String uname=showUsers.getSelectionModel().getSelectedItem();
         if (prem == 1) {
             int temp;
