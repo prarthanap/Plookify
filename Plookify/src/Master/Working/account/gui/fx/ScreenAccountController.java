@@ -268,7 +268,8 @@ public class ScreenAccountController implements Initializable {
             {premStatusButton.setText("error");}
         else if(check==-1)
         {premStatusButton.setText("Subscribe");
-        deviceDialogMsg.setText("Your account has been downgraded due to subscription expiring. Subscribe to regain premium status.");}
+        deviceDialogMsg.setText("Your account has been downgraded due to subscription expiring. Subscribe to regain premium status.");
+        accountDialog.relocate(150,100);}
         else{premStatusButton.setText("Subscribe");}
     }
 }

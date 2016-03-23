@@ -149,7 +149,7 @@ public class logic
                 //System.out.println(date.after(dateB));
                 if(date.after(dateB))//if current date is past due date(so not paid)
                 {
-                    
+                    changeRecord("UPDATE SUBSCRIPTION SET PREMIUM=0 WHERE USERID='"+iD+"'");
                     return -1;//expired premium
                 }
                 else{
