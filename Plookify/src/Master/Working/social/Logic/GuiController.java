@@ -98,24 +98,23 @@ public class GuiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
+
     }
-    
-    public void IDintialize()
-    {
-        
+
+    public void IDintialize() {
+
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
         upgradeDialog.setVisible(false);
         //Making user public or private (setting slider to position last placed in)
         PublicOrPrivate.setValue(sliderValue);
         displayFriendResults.setVisible(false);
-        
+
         updatePlaylist();
         tSong.setCellValueFactory(new PropertyValueFactory("songName"));
         tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
         tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
-        
+
         FriendPlaylistTable.setVisible(false);
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
@@ -125,22 +124,21 @@ public class GuiController implements Initializable {
         playlistNames();
         friendss();
     }
-    
+
     @FXML
     public void friendss() {
         friendTest.removeAll();
         try {
-            friendTest=FXCollections.observableArrayList();
-            ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='"+ID+"' and ADDED=1");
-            
-            ArrayList<String> namesList=new ArrayList<>();
+            friendTest = FXCollections.observableArrayList();
+            ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='" + ID + "' and ADDED=1");
+
+            ArrayList<String> namesList = new ArrayList<>();
             while (rs.next())//for every matching record a username is gotten
             {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+rs.getInt(1)+"'").getString(1));
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='" + rs.getInt(1) + "'").getString(1));
             }
-            System.out.println(namesList.size()+" friends");
-            for(String a : namesList)
-            {
+            System.out.println(namesList.size() + " friends");
+            for (String a : namesList) {
                 friendTest.add(a);
                 ViewFriends.setItems(friendTest);
             }
@@ -158,7 +156,7 @@ public class GuiController implements Initializable {
     }
 
     public void updateTable() {
-        
+
         try {
             ResultSet rs = data.makeQuery("SELECT * FROM TRACKS");
             while (rs.next()) {
@@ -175,7 +173,7 @@ public class GuiController implements Initializable {
             System.err.println(e2);
         }
     }
-    
+
     @FXML
     private TableView<Songs> table;
     @FXML
@@ -185,48 +183,46 @@ public class GuiController implements Initializable {
     @FXML
     private TableColumn<?, ?> tDuration;
     ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
-    
-    public void updatePlaylist(){
-            FriendPlaylistDialog.setVisible(true);
-        ArrayList<String> songIDs = getSavedSongs();
-        try{ 
-        for(int i = 0; i < songIDs.size(); i++) {  
-            String song =songIDs.get(i);
-        ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID ='"+song+"'"); // TEMP
-            while (rs.next()){
-                    playlistSongs.add(new Songs(
-                        rs.getString("TRACKNAME"),
-                        rs.getString("ARTIST"),
-                        rs.getString("DURATION")
-                    ));
-            }
-    
-            table.setItems(this.playlistSongs);
-            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-            }
-        }
-        catch(Exception e){
-        }
-    }
-        
-    public ArrayList<String> getSavedSongs(){
-        ArrayList<String> songIDs = new ArrayList<String>();
-       try{  
-        ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =1");
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
 
-        while (rs.next()) {
-            for(int i=1; i<=columnsNumber; i++){
-                songIDs.add(rs.getString(i));
-            }   
+    public void updatePlaylist() {
+        FriendPlaylistDialog.setVisible(true);
+        ArrayList<String> songIDs = getSavedSongs();
+        try {
+            for (int i = 0; i < songIDs.size(); i++) {
+                String song = songIDs.get(i);
+                ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID ='" + song + "'"); // TEMP
+                while (rs.next()) {
+                    playlistSongs.add(new Songs(
+                            rs.getString("TRACKNAME"),
+                            rs.getString("ARTIST"),
+                            rs.getString("DURATION")
+                    ));
+                }
+
+                table.setItems(this.playlistSongs);
+                table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            }
+        } catch (Exception e) {
         }
-        }
-        catch(Exception e){
-        } 
-       return songIDs;
     }
-    
+
+    public ArrayList<String> getSavedSongs() {
+        ArrayList<String> songIDs = new ArrayList<String>();
+        try {
+            ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =1");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+
+            while (rs.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    songIDs.add(rs.getString(i));
+                }
+            }
+        } catch (Exception e) {
+        }
+        return songIDs;
+    }
+
     @FXML
     public void playlistNames() {
         ViewFriends.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -234,7 +230,7 @@ public class GuiController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
                     FriendPlaylistDialog.setVisible(true);
-                    int rs1 = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
+                    int rs1 = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
                     data.conClose();
                     ResultSet rs = data.makeQuery("SELECT * FROM PLAYLIST WHERE PLAYLISTOWNER='" + rs1 + "'");
                     while (rs.next()) {
@@ -243,7 +239,7 @@ public class GuiController implements Initializable {
                     }
                     rs.close();
                     data.conClose();
-                    
+
                 } catch (Exception e) {
                     Logger.getLogger(GuiController.class.getName()).log(Level.SEVERE, null, e);
                 }
@@ -274,17 +270,17 @@ public class GuiController implements Initializable {
 
     @FXML
     public void yesDelete(MouseEvent event) throws SQLException {
-        if(! ViewFriends.getSelectionModel().isEmpty()){
-        
-        int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
-        data.conClose();
-        String delFriend="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
-        data.makeUpdate(delFriend);
-        data.conClose();
-        confirmDialog.setVisible(false);
-        friendss();
-        }else{
-            JOptionPane.showMessageDialog(null,"Please select a friend to delete");
+        if (!ViewFriends.getSelectionModel().isEmpty()) {
+
+            int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
+            data.conClose();
+            String delFriend = "DELETE FROM FRIENDLIST WHERE OWNERID='" + ID + "' AND FRIENDID='" + a + "'";
+            data.makeUpdate(delFriend);
+            data.conClose();
+            confirmDialog.setVisible(false);
+            friendss();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a friend to delete");
         }
     }
 
@@ -306,29 +302,31 @@ public class GuiController implements Initializable {
             data.makeUpdate(privateUpdate);
             data.conClose();
             System.out.println("Public");
-        }       
+        }
     }
 
     @FXML
     public void launchAdded(MouseEvent event) throws SQLException {
-        if(! showUsers.getSelectionModel().isEmpty()){
-        int prem = data.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION where USERID='"+ID+"'").getInt(1);
-        data.conClose();
-        System.out.println(prem);
-        String uname=showUsers.getSelectionModel().getSelectedItem();
-        if (prem == 1) {
-            int temp;
-            temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+uname+"'").getInt(1);
+        if (!showUsers.getSelectionModel().isEmpty()) {
+            int prem = data.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION where USERID='" + ID + "'").getInt(1);
             data.conClose();
-            data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','1')");
-            data.conClose();
-            friendss();
-            displayFriendResults.setVisible(false);
-            friendAddedDialog.setVisible(true);
+            System.out.println(prem);
+            String uname = showUsers.getSelectionModel().getSelectedItem();
+            if (prem == 1) {
+                int temp;
+                temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + uname + "'").getInt(1);
+                String check = Integer.toString(temp);
+                
+                    data.conClose();
+                    data.makeUpdate("INSERT INTO FRIENDLIST (OWNERID,FRIENDID,ADDED)VALUES('" + ID + "','" + temp + "','1')");
+                    data.conClose();
+                    friendss();
+                    displayFriendResults.setVisible(false);
+                    friendAddedDialog.setVisible(true);
+            } else {
+                upgradeDialog.setVisible(true);
+            }
         } else {
-            upgradeDialog.setVisible(true);
-        }
-        }else{
             JOptionPane.showMessageDialog(null, "Please search and select friend to add.");
         }
     }
@@ -350,30 +348,27 @@ public class GuiController implements Initializable {
             System.out.println("runs2");
             ResultSet pubID2 = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             userData.clear();
-            
-            ArrayList<String> namesList=new ArrayList<>();
-            ArrayList<Integer> idList=new ArrayList<>();
+
+            ArrayList<String> namesList = new ArrayList<>();
+            ArrayList<Integer> idList = new ArrayList<>();
             while (pubID2.next())//for every matching record a username is gotten
             {
                 idList.add(pubID2.getInt(1));
             }
             pubID2.close();
-            for(Integer b: idList)
-            {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+b+"'").getString(1));
+            for (Integer b : idList) {
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='" + b + "'").getString(1));
                 data.conClose();
             }
             System.out.println(namesList.size());
-            for (String a : namesList)
-            {
-                if(a.startsWith(bar))
-                {
+            for (String a : namesList) {
+                if (a.startsWith(bar)) {
                     userData.add(a);
                     showUsers.setItems(userData);
                 }
             }
             data.conClose();
-            
+
         } catch (Exception e2) {
             System.err.println(e2);
         }
@@ -387,17 +382,15 @@ public class GuiController implements Initializable {
             ResultSet pubID = data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM='1' and PUBLICITY='0.0'");
             String searchF = searchField.getText();
             userData.clear();
-            
-            ArrayList<String> namesList=new ArrayList<>();
+
+            ArrayList<String> namesList = new ArrayList<>();
             while (pubID.next())//for every matching record a username is gotten
             {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
+                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='" + pubID.getInt(1) + "'").getString(1));
             }
             data.conClose();
-            for (String a : namesList)
-            {
-                if(a.startsWith(searchF))
-                {
+            for (String a : namesList) {
+                if (a.startsWith(searchF)) {
                     userData.add(a);
                     showUsers.setItems(userData);
                 }
@@ -418,7 +411,7 @@ public class GuiController implements Initializable {
         showUsers.getSelectionModel().clearSelection();
         fPlaylist.getSelectionModel().clearSelection();
         FriendPlaylistTable.getSelectionModel().clearSelection();
-//        ViewFriends.getSelectionModel().clearSelection();
+//        ViewFriends.getSelectionModel()
         table.getSelectionModel().clearSelection();
     }
 }
