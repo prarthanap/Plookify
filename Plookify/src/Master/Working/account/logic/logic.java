@@ -138,6 +138,7 @@ public class logic
     {
         try {
             int premValue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getInt(2);
+            data.conClose();
             String dateDue=data.makeQuery("SELECT * FROM SUBSCRIPTION WHERE USERID='"+iD+"'").getString(4);
             data.conClose();
             if(premValue==1)
