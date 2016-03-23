@@ -311,6 +311,7 @@ public class GuiController implements Initializable {
     @FXML
     public void launchAdded(MouseEvent event) throws SQLException {
         int prem = data.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION where USERID='"+ID+"'").getInt(1);
+        data.conClose();
         String uname=showUsers.getSelectionModel().getSelectedItem();
         if (prem == 1) {
             int temp;
