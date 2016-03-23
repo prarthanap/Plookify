@@ -119,6 +119,7 @@ public class TsController implements Initializable {
     @FXML
     private void pressRadio(ActionEvent event)
     {
+        radioPane.setVisible(true);
         socialController.displayFriendResults.setVisible(false);
         radioPane.toFront();
         
@@ -127,6 +128,7 @@ public class TsController implements Initializable {
     private void pressTracks(ActionEvent event)
     {
         socialController.displayFriendResults.setVisible(false);
+        radioPane.setVisible(false);
         mainPane.toFront();
         tracksAdd.toFront();
         
@@ -150,6 +152,7 @@ public class TsController implements Initializable {
     @FXML
     private void pressSocial(ActionEvent event)
     {
+        radioPane.setVisible(false);
         rightSidePane.toFront();
     }
 }
