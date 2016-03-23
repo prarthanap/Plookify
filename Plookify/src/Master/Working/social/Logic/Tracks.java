@@ -9,24 +9,18 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Tracks {
 
-    private final SimpleStringProperty ID;
     private final SimpleStringProperty trackName;
     private final SimpleStringProperty artist;
     private final SimpleStringProperty time;
     private final SimpleStringProperty genre;
 
 
-    public Tracks(String ID, String trackName, String artist, String time, String genre) {
-        this.ID = new SimpleStringProperty(ID);
+    public Tracks(String trackName, String artist, String time, String genre) {
         this.trackName = new SimpleStringProperty(trackName);
         this.artist = new SimpleStringProperty(artist);
         this.time = new SimpleStringProperty(time);
         this.genre = new SimpleStringProperty(genre);
         
-    }
-
-    public String getID() {
-        return ID.get();
     }
 
     public String getTrackName() {
@@ -43,10 +37,6 @@ public class Tracks {
 
     public String getGenre() {
         return genre.get();
-    }
-
-    public void setID(String TrackID) {
-        ID.set(TrackID);
     }
 
     public void setTrackName(String tName) {

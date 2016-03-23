@@ -1,14 +1,10 @@
 package Master.Working.social.Logic;
 
 import Master.Working.Common.database;
-import Master.Working.account.gui.fx.AccountLoginController;
-import Master.Working.player.logic.Tracks;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -112,13 +108,15 @@ public class GuiController implements Initializable {
     
     public void IDintialize()
     {
+        
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
         upgradeDialog.setVisible(false);
         //Making user public or private (setting slider to position last placed in)
         PublicOrPrivate.setValue(sliderValue);
         displayFriendResults.setVisible(false);
-        IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
+        
+        FriendPlaylistTable.setVisible(false);
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
         timeCol.setCellValueFactory(new PropertyValueFactory("time"));
@@ -126,8 +124,12 @@ public class GuiController implements Initializable {
         updateTable();
         playlistNames();
         friendss();
+        updatePlaylist();
+        tSong.setCellValueFactory(new PropertyValueFactory("songName"));
+        tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
+        tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
     }
-
+    
     @FXML
     public void friendss() {
         friendTest.removeAll();
@@ -160,11 +162,11 @@ public class GuiController implements Initializable {
     }
 
     public void updateTable() {
+        
         try {
             ResultSet rs = data.makeQuery("SELECT * FROM TRACKS");
             while (rs.next()) {
                 FriendsTracks.add(new Tracks(
-                        rs.getString("TRACKID"),
                         rs.getString("TRACKNAME"),
                         rs.getString("ARTIST"),
                         rs.getString("DURATION"),
@@ -177,7 +179,57 @@ public class GuiController implements Initializable {
             System.err.println(e2);
         }
     }
+    
+    @FXML
+    private TableView<Songs> table;
+    @FXML
+    private TableColumn<?, ?> tSong;
+    @FXML
+    private TableColumn<?, ?> tArtist;
+    @FXML
+    private TableColumn<?, ?> tDuration;
+    ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
+    
+    public void updatePlaylist(){
+        ArrayList<String> songIDs = getSavedSongs();
+        try{ 
+        for(int i = 0; i < songIDs.size(); i++) {  
+            String song =songIDs.get(i);
+        ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID ='"+song+"'"); // TEMP
+            while (rs.next()){
+                    playlistSongs.add(new Songs(
+                        rs.getString("TRACKNAME"),
+                        rs.getString("ARTIST"),
+                        rs.getString("DURATION")
+                    ));
+            }
+    
+            table.setItems(this.playlistSongs);
+            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            }
+        }
+        catch(Exception e){
+        }
+    }
+        
+    public ArrayList<String> getSavedSongs(){
+        ArrayList<String> songIDs = new ArrayList<String>();
+       try{  
+        ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =1");
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
 
+        while (rs.next()) {
+            for(int i=1; i<=columnsNumber; i++){
+                songIDs.add(rs.getString(i));
+            }   
+        }
+        }
+        catch(Exception e){
+        } 
+       return songIDs;
+    }
+    
     @FXML
     public void playlistNames() {
         ViewFriends.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -225,7 +277,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void yesDelete(MouseEvent event) throws SQLException {
-        
+             
         int a = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
         data.conClose();
         String delFriend="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' AND FRIENDID='"+a+"'";
@@ -359,5 +411,6 @@ public class GuiController implements Initializable {
         fPlaylist.getSelectionModel().clearSelection();
         FriendPlaylistTable.getSelectionModel().clearSelection();
 //        ViewFriends.getSelectionModel().clearSelection();
+        table.getSelectionModel().clearSelection();
     }
 }
