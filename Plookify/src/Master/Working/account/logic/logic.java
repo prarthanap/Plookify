@@ -59,13 +59,20 @@ public class logic
     public void deleteAccount(int ID) throws SQLException
     {
         String delAcc="DELETE FROM ACCOUNT WHERE ID='"+ID+"'";
+        String delFL="DELETE FROM FRIENDLIST WHERE OWNERID='"+ID+"' OR FRIENDID='"+ID+"'";
         Statement statementD;
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-            statementD = conn.createStatement();
-            statementD.setQueryTimeout(10);
-            statementD.execute("PRAGMA foreign_keys = ON");
-            statementD.execute(delAcc);
-        }
+        Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db");
+        statementD = conn.createStatement();
+        statementD.setQueryTimeout(10);
+        statementD.execute("PRAGMA foreign_keys = ON");
+        statementD.execute(delAcc);
+        conn.close();
+        conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db");
+        statementD = conn.createStatement();
+        statementD.setQueryTimeout(10);
+        statementD.execute("PRAGMA foreign_keys = ON");
+        statementD.execute(delFL);
+        conn.close();
     }
     public void addDevice(int iID,String dName,String dType)
     {

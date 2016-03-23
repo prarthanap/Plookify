@@ -21,11 +21,11 @@ public class test2
     {
         try {
             database data=new database();
-            ResultSet rs=data.makeQuery("Select * from subscription where USERID=5");
+            ResultSet rs=data.makeQuery("Select username from ACCOUNT");
+            while(rs.next())
+            {
             System.out.println(rs.getString(1));
-            System.out.println(rs.getString(2));
-            System.out.println(rs.getString(3));
-            System.out.println(rs.getString(4));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(test2.class.getName()).log(Level.SEVERE, null, ex);
         }
