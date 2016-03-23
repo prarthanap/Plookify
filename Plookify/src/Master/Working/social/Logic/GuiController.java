@@ -309,6 +309,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void launchAdded(MouseEvent event) throws SQLException {
+        if(! showUsers.getSelectionModel().isEmpty()){
         int prem = data.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION where USERID='"+ID+"'").getInt(1);
         data.conClose();
         System.out.println(prem);
@@ -324,6 +325,9 @@ public class GuiController implements Initializable {
             friendAddedDialog.setVisible(true);
         } else {
             upgradeDialog.setVisible(true);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Please search and select friend to add.");
         }
     }
 
