@@ -16,6 +16,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * @author jlleow
@@ -100,19 +108,21 @@ public class logic
             String endDate=getDueDateString(months);
             int premSet=0;
             int monthSet=0;
-            if(daysBeforeNow(endDate)<-29)
+            if(daysBeforeNow(endDate)<-29)//if the enddate is more than a month than now date(months is more than 0 prem is set)
             {
                 premSet=1;
                 monthSet=months;
             }
             try (Connection conn2 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-                PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, SUBSCRIPTIONTYPE=?, DUEDATE=? WHERE USERID=?");
+                PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, \"SUBSCRIPTION TYPE\"=?, DUEDATE=? WHERE USERID=?");
                 pStat1.setInt(1,premSet);
                 pStat1.setInt(2,monthSet);
                 pStat1.setString(3,endDate);
                 pStat1.setInt(4,ID);
                 pStat1.execute();
-                System.out.println("update Made");
+                pStat1.close();
+                conn2.close();
+                System.out.println("new subscription update Made");
             }
         } catch (SQLException ex) {
             Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,5 +262,60 @@ public class logic
             }
         
         return null;
+    }
+
+    public void extendPrem(int ID)//only works when button text is subscribe meaning account is not premium
+    {
+        Stage extP=new Stage();
+        Pane ex=new Pane();
+        ex.setPrefSize(300, 150);
+        Label msg=new Label("Choose Subscription Period");
+        ComboBox months=new ComboBox();
+        Button button1=new Button("OK");
+        months.getItems().setAll(0,3,6,12);
+        months.setValue(0);
+        ex.getChildren().addAll(msg,months,button1);
+        msg.relocate(55,20);
+        months.relocate(100,50);
+        button1.relocate(115,80);
+        ex.setStyle("-fx-background-color:#383838;");
+        msg.setStyle("-fx-text-fill: #ffffff;");
+        button1.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                int extValue=(int)months.getValue();
+                String endDate=getDueDateString(extValue);
+                int premSet=0;
+                int monthSet=0;
+                if(daysBeforeNow(endDate)<-29)//if the enddate is more than a month than now date(months is more than 0 prem is set)
+                {
+                    premSet=1;
+                    monthSet=extValue;
+                }
+                
+                try (Connection conn2 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+                PreparedStatement pStat1=conn2.prepareStatement("UPDATE SUBSCRIPTION SET PREMIUM=?, \"SUBSCRIPTION TYPE\"=?, DUEDATE=? WHERE USERID=?");
+                pStat1.setInt(1,1);
+                pStat1.setInt(2,extValue);
+                pStat1.setString(3,endDate);
+                pStat1.setInt(4,ID);
+                pStat1.execute();
+                pStat1.close();
+                conn2.close();
+                System.out.println("extenstion update Made");
+                extP.close();
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(logic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        });
+
+        
+        Scene exP=new Scene(ex);
+        extP.setScene(exP);
+        extP.showAndWait();
     }
 }

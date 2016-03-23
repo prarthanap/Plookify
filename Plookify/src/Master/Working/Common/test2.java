@@ -21,15 +21,14 @@ public class test2
     {
         try {
             database data=new database();
-            ResultSet pubID=data.makeQuery("SELECT USERID FROM SUBSCRIPTION WHERE PREMIUM=1 and PUBLICITY='0.0'");
-            ArrayList<String> namesList=new ArrayList<>();
-            while (pubID.next())//for every matching record a username is gotten
-            {
-                namesList.add(data.makeQuery("SELECT USERNAME FROM ACCOUNT WHERE ID='"+pubID.getInt(1)+"'").getString(1));
-            }
-            for (String a : namesList)
-            {System.out.println(a);}
-        } catch (SQLException ex) {Logger.getLogger(test2.class.getName()).log(Level.SEVERE, null, ex);}
+            ResultSet rs=data.makeQuery("Select * from subscription where USERID=5");
+            System.out.println(rs.getString(1));
+            System.out.println(rs.getString(2));
+            System.out.println(rs.getString(3));
+            System.out.println(rs.getString(4));
+        } catch (SQLException ex) {
+            Logger.getLogger(test2.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }

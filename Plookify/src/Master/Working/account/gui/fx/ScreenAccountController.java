@@ -213,6 +213,8 @@ public class ScreenAccountController implements Initializable {
            {
                ke.consume();
                System.out.println("consumed");
+               deviceDialogMsg.setText("Devicename max 12 characters long");
+               accountDialog.relocate(150,100);
            }
     }
     
@@ -256,7 +258,10 @@ public class ScreenAccountController implements Initializable {
     @FXML
     public void pressedPremButton(ActionEvent event)
     {
-        
+        if (premStatusButton.getText().equals("Subscribe"))
+        {
+            logicA.extendPrem(ID);
+        }
     }
     public void getWindowHandle(Button p)
     {
