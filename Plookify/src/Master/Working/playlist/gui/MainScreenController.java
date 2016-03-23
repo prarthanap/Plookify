@@ -159,6 +159,12 @@ public class MainScreenController implements Initializable {
                 setPlaylistID(currentPlaylist1);
                 String selected = playlist.getName();
                 playlistLabel.setText(selected);
+                String type = playlist.getType();
+                if(type.equals("N"))
+                    type="Friend";
+                else
+                    type="Private";                      
+                pType.setValue(type);
                 System.out.println("playlist ID " + currentPlaylist1);
             }catch (Exception ex) {
                 Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,7 +172,28 @@ public class MainScreenController implements Initializable {
             updatePlaylist();
         });
     }
-    
+    public void changePlaylistType(){
+        String newType;
+        if(pType.getValue().toString().equals("Private")){
+           newType="Y";
+        }         
+        else{
+           newType="N"; 
+        }    
+        System.out.println("Type set to: " +newType);
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+            PreparedStatement ps=conn.prepareStatement("UPDATE PLAYLIST SET PRIVATE=? WHERE PLAYLISTID =?");
+            ps.setString(1, newType);
+            ps.setInt(2, currentPlaylist);
+            ps.executeUpdate(); 
+            ResultSet rs = ps.getGeneratedKeys();
+            ps.close();
+            conn.close();
+       } 
+       catch(Exception e){
+           
+       }    
+    }
     
     public void updateList(){
         try {
@@ -239,20 +266,20 @@ public class MainScreenController implements Initializable {
     @FXML
     public void addToPlaylist(){
         searchTable.setOnMousePressed((MouseEvent event) -> {
-            Songs song = searchTable.getSelectionModel().getSelectedItem();
-            String songID = song.getSongID(); 
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-                PreparedStatement ps=conn.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)");
-                ps.setInt(1, currentPlaylist);
-                ps.setString(2, songID);
-                ps.executeUpdate();
-                ResultSet rs = ps.getGeneratedKeys();
-                ps.close();
-                conn.close();
-            }
-            catch (Exception e2) {
-                System.err.println(e2);
-            }
+        Songs song = searchTable.getSelectionModel().getSelectedItem();
+        String songID = song.getSongID(); 
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+            PreparedStatement ps=conn.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)");
+            ps.setInt(1, currentPlaylist);
+            ps.setString(2, songID);
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            ps.close();
+            conn.close();
+        }
+        catch (Exception e2) {
+            System.err.println(e2);
+        }
         });
     }
     
