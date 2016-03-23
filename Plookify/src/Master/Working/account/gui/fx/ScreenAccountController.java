@@ -68,7 +68,6 @@ public class ScreenAccountController implements Initializable {
     public void initVariables()
     {
         deviceTable.setVisible(false);
-        buttonCheck();
         String fullname=logicA.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.stringGet(ID,"ID","ACCOUNT", "LASTNAME");
         titleName.setText(fullname);
         tableInfo=logicA.makeTableInfo(ID);
@@ -85,6 +84,7 @@ public class ScreenAccountController implements Initializable {
         delete5.setVisible(false);
         addDevice.setVisible(false);
         logicA.data.conClose();
+        buttonCheck();
         
     }
     
