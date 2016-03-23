@@ -73,7 +73,7 @@ public class TsController implements Initializable {
             Pane rPane =radioLoader.load();
             rCon=radioLoader.getController();
             rCon.setUser(UserID);
-            rPane.relocate(-250, 50);
+            rPane.relocate(120,0);
             radioPane.getChildren().add(rPane);
             FXMLLoader pBarLoader=new FXMLLoader(getClass().getResource("/Master/Working/player/gui/playbar.fxml"));
             Pane pBar=pBarLoader.load();
