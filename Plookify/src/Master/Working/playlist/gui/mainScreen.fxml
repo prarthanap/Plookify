@@ -28,7 +28,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="searchTable" layoutX="215.0" layoutY="191.0" onMouseClicked="#addToPlaylist" onMouseReleased="#addToPlaylist" prefHeight="377.0" prefWidth="703.0">
+            <TableView fx:id="searchTable" layoutX="215.0" layoutY="191.0" onMouseClicked="#addToPlaylist" onMouseReleased="#addToPlaylist" prefHeight="377.0" prefWidth="703.0" visible="false">
                <columns>
                   <TableColumn fx:id="stSong" prefWidth="200.0" text="Song" />
                   <TableColumn fx:id="stArtist" minWidth="0.0" prefWidth="200.0" text="Artist" />
