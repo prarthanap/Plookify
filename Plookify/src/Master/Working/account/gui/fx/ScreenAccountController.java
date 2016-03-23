@@ -5,8 +5,7 @@
  */
 package Master.Working.account.gui.fx;
 
-import Master.Working.account.logic.deviceInfo;
-import Master.Working.account.logic.logic;
+import Master.Working.account.logic.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -129,6 +128,7 @@ public class ScreenAccountController implements Initializable {
         oldy.close();
         oldy=(Stage)hand.getScene().getWindow();
         oldy.close();
+        ID=9999;//resets ID to default
     }
     
     @FXML
