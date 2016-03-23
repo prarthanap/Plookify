@@ -19,8 +19,14 @@ public class test2
 {
     public static void main(String[] args)
     {
+        database data=new database();
+        String update="INSERT INTO ACCOUNT (USERNAME,PASSWORD,FIRSTNAME,LASTNAME,DOORNO,STREET,CITY,COUNTY,POSTCODE,CONTACTNO) VALUES('jll301','pass','j','l','55','asd','asds','asd','asdasd','555')";
+            //System.out.println(update);
+            
+            data.makeUpdate(update);
+            System.out.println("added acc");
+            data.conClose();
         try {
-            database data=new database();
             ResultSet rs=data.makeQuery("Select username from ACCOUNT");
             while(rs.next())
             {
