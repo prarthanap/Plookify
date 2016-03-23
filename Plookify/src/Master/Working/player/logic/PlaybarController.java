@@ -49,10 +49,8 @@ public class PlaybarController implements Initializable {
 
         NowPlaying play = new NowPlaying();
         nowPlayingMenu.getItems().clear();
-        tracksList.removeAll(tracksList);
+        tracksList.clear();
         nowPlayingMenu.getItems().addAll(play.getNowPlaying());
-        
-          nowPlayingMenu.getSelectionModel().selectFirst();
 
         ObservableList<String> items = nowPlayingMenu.getItems();
         for (String item : items) {
@@ -60,17 +58,26 @@ public class PlaybarController implements Initializable {
         }
 
         System.out.println(tracksList);
+
+        nowPlayingMenu.getSelectionModel().selectFirst();
     }
 
     @FXML
     private void onRemove(ActionEvent event) {
-        Object o = nowPlayingMenu.getSelectionModel().getSelectedItem();
 
-        tracksList.remove(o + ".mp3");
         NowPlaying play = new NowPlaying();
-        play.removeNowPlaying(o);
-        nowPlayingMenu.getItems().remove(o);
 
+        if (nowPlayingMenu.getSelectionModel().isSelected(0)) {
+            Duration end = player.getStopTime();
+            player.seek(end);
+        } else {
+            Object o = nowPlayingMenu.getSelectionModel().getSelectedItem();
+
+            tracksList.remove(o + ".mp3");
+
+            play.removeNowPlaying(o);
+            nowPlayingMenu.getItems().remove(o);
+        }
     }
 
     @FXML
@@ -86,8 +93,6 @@ public class PlaybarController implements Initializable {
     }
 
     private void play(String mediaFile) {
-        
-       nowPlayingMenu.getSelectionModel().selectFirst();
 
         //Resumes
         if (status.equals("Paused")) {
@@ -98,7 +103,7 @@ public class PlaybarController implements Initializable {
 
             Media media;
             try {
-                URL resource = getClass().getResource("/Master/Working/player/logic/Tracks/" +mediaFile);
+                URL resource = getClass().getResource("/Master/Working/player/logic/Tracks/" + mediaFile);
                 media = new Media(resource.toString());
 
             } catch (Exception e) {
@@ -110,6 +115,8 @@ public class PlaybarController implements Initializable {
             player = new MediaPlayer(media);
 
             player.play();
+
+            nowPlayingMenu.getSelectionModel().selectFirst();
 
             status = "Playing";
 

@@ -131,9 +131,6 @@ public class TrackTableController implements Initializable {
 
             db.makeUpdate("INSERT INTO NOWPLAYING(TRACKNAME) " + "VALUES  ('" + nowPlaying + "');");
         }
-        
-        
-        
 
     }
 
