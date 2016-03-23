@@ -22,13 +22,13 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <ComboBox fx:id="pType" layoutX="798.0" layoutY="162.0" prefHeight="23.0" prefWidth="118.0" style="-fx-background-radius: 15;" />
-            <Label fx:id="label" focusTraversable="false" layoutX="804.0" layoutY="127.0" prefHeight="42.0" prefWidth="140.0" text="Playlist Privacy">
+            <ComboBox fx:id="pType" layoutX="670.0" layoutY="149.0" onAction="#changePlaylistType" prefHeight="23.0" prefWidth="118.0" style="-fx-background-radius: 15;" />
+            <Label fx:id="label" focusTraversable="false" layoutX="676.0" layoutY="114.0" prefHeight="42.0" prefWidth="140.0" text="Playlist Privacy">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="searchTable" layoutX="215.0" layoutY="191.0" onMouseClicked="#addToPlaylist" onMouseReleased="#addToPlaylist" prefHeight="377.0" prefWidth="703.0" visible="false">
+            <TableView fx:id="searchTable" layoutX="215.0" layoutY="191.0" onMouseClicked="#addToPlaylist" onMouseReleased="#addToPlaylist" prefHeight="377.0" prefWidth="703.0">
                <columns>
                   <TableColumn fx:id="stSong" prefWidth="200.0" text="Song" />
                   <TableColumn fx:id="stArtist" minWidth="0.0" prefWidth="200.0" text="Artist" />
@@ -37,7 +37,7 @@
             </TableView>
             <TextField fx:id="searchBar" layoutX="570.0" layoutY="44.0" prefHeight="31.0" prefWidth="251.0" promptText="Search for songs by Artist" style="-fx-background-radius: 15;" />
             <Button fx:id="search" layoutX="835.0" layoutY="44.0" mnemonicParsing="false" onAction="#searchSongs" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
-            <Button fx:id="addButton" layoutX="606.0" layoutY="147.0" mnemonicParsing="false" onAction="#addToPlaylist" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
+            <Button fx:id="addButton" layoutX="816.0" layoutY="143.0" mnemonicParsing="false" onAction="#addToPlaylist" prefHeight="31.0" prefWidth="94.0" style="-fx-background-radius: 15;" text="Add to Playlist" visible="false" />
          </children>
       </Pane>
       <TableView fx:id="playlistsTable" layoutX="14.0" layoutY="192.0" onMouseClicked="#switchPlaylists" onMouseReleased="#switchPlaylists" prefHeight="295.0" prefWidth="154.0">
