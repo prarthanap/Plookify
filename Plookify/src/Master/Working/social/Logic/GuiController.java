@@ -111,6 +111,11 @@ public class GuiController implements Initializable {
         PublicOrPrivate.setValue(sliderValue);
         displayFriendResults.setVisible(false);
         
+        updatePlaylist();
+        tSong.setCellValueFactory(new PropertyValueFactory("songName"));
+        tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
+        tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
+        
         FriendPlaylistTable.setVisible(false);
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
@@ -119,10 +124,6 @@ public class GuiController implements Initializable {
         updateTable();
         playlistNames();
         friendss();
-        updatePlaylist();
-        tSong.setCellValueFactory(new PropertyValueFactory("songName"));
-        tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
-        tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
     }
     
     @FXML
@@ -186,6 +187,7 @@ public class GuiController implements Initializable {
     ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
     
     public void updatePlaylist(){
+            FriendPlaylistDialog.setVisible(true);
         ArrayList<String> songIDs = getSavedSongs();
         try{ 
         for(int i = 0; i < songIDs.size(); i++) {  
