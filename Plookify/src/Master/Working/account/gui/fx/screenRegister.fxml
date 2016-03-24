@@ -123,7 +123,7 @@
                     <String fx:value="0" />
                 </value>
             </ComboBox>
-            <ComboBox fx:id="payType" layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="73.0">
+            <ComboBox fx:id="payType" layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="100.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="PayPal" />
