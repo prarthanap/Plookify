@@ -70,9 +70,9 @@ public class ScreenAccountController implements Initializable {
         String fullname=logicA.stringGet(ID,"ID","ACCOUNT", "FIRSTNAME")+" "+logicA.stringGet(ID,"ID","ACCOUNT", "LASTNAME");
         titleName.setText(fullname);
         tableInfo=logicA.makeTableInfo(ID);
-        TableColumn col1 = new TableColumn("Device Name");col1.setMinWidth(150);col1.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
-        TableColumn col2 = new TableColumn("Device Type");col2.setMinWidth(100);col2.setCellValueFactory(new PropertyValueFactory<>("deviceType"));
-        TableColumn col3 = new TableColumn("Days since added"); col3.setMinWidth(130);col3.setCellValueFactory(new PropertyValueFactory<>("deviceDate"));
+        TableColumn col1 = new TableColumn("Device Name");col1.setMinWidth(120);col1.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
+        TableColumn col2 = new TableColumn("Device Type");col2.setMinWidth(110);col2.setCellValueFactory(new PropertyValueFactory<>("deviceType"));
+        TableColumn col3 = new TableColumn("Days since added"); col3.setMinWidth(150);col3.setCellValueFactory(new PropertyValueFactory<>("deviceDate"));
         deviceTable.getColumns().addAll(col1,col2,col3);
         deviceTable.setPrefSize(385,180);
         deviceTable.setItems(tableInfo);
