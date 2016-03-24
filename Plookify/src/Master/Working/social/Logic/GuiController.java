@@ -53,19 +53,6 @@ public class GuiController implements Initializable {
     private ObservableList<String> userData = FXCollections.observableArrayList();
 
     @FXML
-    public TableView<Tracks> FriendPlaylistTable;
-    @FXML
-    public TableColumn IDCol;
-    @FXML
-    public TableColumn trackNameCol;
-    @FXML
-    public TableColumn artistCol;
-    @FXML
-    public TableColumn timeCol;
-    @FXML
-    public TableColumn genreCol;
-
-    @FXML
     public AnchorPane friendView;
     @FXML
     public AnchorPane displayFriendResults;
@@ -110,18 +97,6 @@ public class GuiController implements Initializable {
         PublicOrPrivate.setValue(sliderValue);
         displayFriendResults.setVisible(false);
 
-        updatePlaylist();
-        table.setVisible(false);
-        tSong.setCellValueFactory(new PropertyValueFactory("songName"));
-        tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
-        tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
-
-        FriendPlaylistTable.setVisible(true);
-        trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
-        artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
-        timeCol.setCellValueFactory(new PropertyValueFactory("time"));
-        genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
-        updateTable();
         playlistNames();
         friendss();
     }
@@ -154,84 +129,6 @@ public class GuiController implements Initializable {
         } catch (Exception e2) {
             System.err.println(e2);
         }
-    }
-
-    public void updateTable() {
-        FriendsTracks = FXCollections.observableArrayList();
-        try {
-            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
-                    data.conClose();
-            int temp2 = data.makeQuery("SELECT PLAYLISTID WHERE PLAYLISTOWNER='"+temp+"' AND PLAYLISTNAME="+fPlaylist.getSelectionModel().getSelectedItem()+"").getInt("PLAYLISTID");
-                data.conClose();
-            
-            ResultSet rs = data.makeQuery("SELECT * FROM TRACKS");
-            while (rs.next()) {         
-                FriendsTracks.add(new Tracks(
-                        rs.getString("TRACKNAME"),
-                        rs.getString("ARTIST"),
-                        rs.getString("DURATION"),
-                        rs.getString("GENRE")
-                ));
-                FriendPlaylistTable.setItems(this.FriendsTracks);
-                FriendPlaylistTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-            }
-        } catch (Exception e2) {
-            System.err.println(e2);
-        }
-    }
-
-    @FXML
-    private TableView<Songs> table;
-    @FXML
-    private TableColumn<?, ?> tSong;
-    @FXML
-    private TableColumn<?, ?> tArtist;
-    @FXML
-    private TableColumn<?, ?> tDuration;
-    ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
-
-    public void updatePlaylist() {
-        FriendPlaylistDialog.setVisible(true);
-        ArrayList<String> songIDs = getSavedSongs();
-        try {
-            for (int i = 0; i < songIDs.size(); i++) {
-                String song = songIDs.get(i);
-                ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID ='" + song + "'"); // TEMP
-                while (rs.next()) {
-                    playlistSongs.add(new Songs(
-                            rs.getString("TRACKNAME"),
-                            rs.getString("ARTIST"),
-                            rs.getString("DURATION")
-                    ));
-                }
-
-                table.setItems(this.playlistSongs);
-                table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    public ArrayList<String> getSavedSongs() {
-        ArrayList<String> songIDs = new ArrayList<String>();
-        try {
-            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
-                    data.conClose();
-            int temp2 = data.makeQuery("SELECT PLAYLISTID WHERE PLAYLISTOWNER='"+temp+"' AND PLAYLISTNAME="+fPlaylist.getSelectionModel().getSelectedItem()+"").getInt("PLAYLISTID");
-                data.conClose();
-            ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST ='"+temp2+"'");
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-
-            while (rs.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    songIDs.add(rs.getString(i));
-                }
-            }
-            data.conClose();
-        } catch (Exception e) {
-        }
-        return songIDs;
     }
 
     @FXML
@@ -422,8 +319,6 @@ public class GuiController implements Initializable {
     public void deselect(MouseEvent event) {
         showUsers.getSelectionModel().clearSelection();
         fPlaylist.getSelectionModel().clearSelection();
-        FriendPlaylistTable.getSelectionModel().clearSelection();
 //        ViewFriends.getSelectionModel()
-        table.getSelectionModel().clearSelection();
     }
 }
