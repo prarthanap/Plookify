@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Master.Working.playlist.gui;
+package Master.Working.playlist.logic;
 
 import Master.Working.Common.database;
+import Master.Working.playlist.gui.MainScreenController;
 import Master.Working.playlist.gui.Playlist;
+import Master.Working.playlist.gui.Playlist;
+import Master.Working.playlist.gui.Songs;
 import Master.Working.playlist.gui.Songs;
 import java.net.URL;
 import java.sql.Connection;

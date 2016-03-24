@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="200.0" stylesheets="@../../../../../../../Plookify/build/classes/Master/Working/social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.playlist.logic.PlaylistListController">
+   <children>
+      <Button fx:id="createPlaylistBTN" layoutX="14.0" layoutY="370.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="31.0" prefWidth="127.0" style="-fx-background-radius: 15;" text="Create Playlist" />
+      <TextField fx:id="newPlaylistName" layoutX="14.0" layoutY="333.0" prefHeight="31.0" prefWidth="174.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
+      <TableView fx:id="playlistsTable" layoutX="14.0" layoutY="25.0" onMouseClicked="#switchPlaylists" onMouseReleased="#switchPlaylists" prefHeight="299.0" prefWidth="174.0">
+         <columns>
+            <TableColumn fx:id="tPlaylists" prefWidth="149.0" text="Playlists" />
+         </columns>
+      </TableView>
+      <Button fx:id="renamePlaylist" layoutX="147.0" layoutY="370.0" mnemonicParsing="false" onAction="#renamePlaylist" prefHeight="31.0" prefWidth="33.0" style="-fx-background-radius: 15; -fx-font-size: 9.5;" text="X" />
+   </children>
+</Pane>
