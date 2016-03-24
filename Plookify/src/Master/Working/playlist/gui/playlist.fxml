@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="680.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.playlist.logic.PlaylistController">
    <children>
-      <Pane fx:id="leftPane" prefHeight="420.0" prefWidth="176.0">
+      <Pane fx:id="leftPane" prefHeight="420.0" prefWidth="176.0" stylesheets="@../../social/GUI/test.css">
          <children>
             <TableView fx:id="playlistsTable" layoutX="4.0" layoutY="117.0" onMouseClicked="#switchPlaylists" onMouseReleased="#switchPlaylists" prefHeight="206.0" prefWidth="146.0">
                <columns>
@@ -19,7 +19,7 @@
             <TextField fx:id="newPlaylistName" layoutX="4.0" layoutY="330.0" prefHeight="31.0" prefWidth="146.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
          </children>
       </Pane>
-      <Pane fx:id="rightPane" layoutX="171.0" prefHeight="420.0" prefWidth="509.0">
+      <Pane fx:id="rightPane" layoutX="171.0" prefHeight="420.0" prefWidth="509.0" stylesheets="@../../social/GUI/test.css">
          <children>
             <TableView fx:id="table" layoutX="18.0" layoutY="116.0" prefHeight="290.0" prefWidth="467.0">
                <columns>
