@@ -176,6 +176,7 @@ public class GuiController implements Initializable {
 
     public void updateTable(MouseEvent arg0) {
         try {
+            FriendsTracks.clear();
             int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME= '" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
             data.conClose();
             int temp1 = data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST WHERE PLAYLISTOWNER= '" + temp + "' AND PLAYLISTNAME='" + fPlaylist.getSelectionModel().getSelectedItem() + "'").getInt("PLAYLISTID");
