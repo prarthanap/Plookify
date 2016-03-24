@@ -102,12 +102,11 @@ public class GuiController implements Initializable {
 
     public void IDintialize() {
 
+        
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
         timeCol.setCellValueFactory(new PropertyValueFactory("time"));
         genreCol.setCellValueFactory(new PropertyValueFactory("genre"));
-
-        updateTable();
 
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
@@ -175,39 +174,41 @@ public class GuiController implements Initializable {
         });
     }
 
-    public void updateTable() {
-        fPlaylist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                try {
-                    int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME=" + ViewFriends.getSelectionModel().getSelectedItem() + "").getInt("ID");
+    public void updateTable(MouseEvent arg0) {
+        try {
+            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME= '" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
+            data.conClose();
+            int temp1 = data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST WHERE PLAYLISTOWNER= '" + temp + "' AND PLAYLISTNAME='" + fPlaylist.getSelectionModel().getSelectedItem() + "'").getInt("PLAYLISTID");
+            ResultSet temp2 = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST= '" + temp1 + "'");
+            ArrayList<String> songIDs = new ArrayList<>();
+            ResultSetMetaData rsmd = temp2.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
 
-                    int temp1 = data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST WHERE PLAYLISTOWNER='" + temp + "' AND PLAYLISTNAME=" + fPlaylist.getSelectionModel().getSelectedItem() + "").getInt("PLAYLISTID");
-                    int temp2 = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST='" + temp1 + "'").getInt("TRACK");
-                    ArrayList<String> a = new ArrayList<String>();
-                    
-
-                    ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID=" + temp2 + "");
-
-                    while (rs.next()) {
-                        FriendsTracks.add(new Tracks(
-                                rs.getString("TRACKNAME"),
-                                rs.getString("ARTIST"),
-                                rs.getString("DURATION"),
-                                rs.getString("GENRE")
-                        ));
-
-                        table.setItems(FriendsTracks);
-                        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-                    }
-
-                } catch (Exception e2) {
-                    System.err.println(e2);
-
+            while (temp2.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    songIDs.add(temp2.getString(i));
                 }
             }
-        });
+            data.conClose();
+            for (int i = 0; i < songIDs.size(); i++) {
+                String song = songIDs.get(i);
+                ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID=" + song + "");
+
+                while (rs.next()) {
+                    FriendsTracks.add(new Tracks(
+                            rs.getString("TRACKNAME"),
+                            rs.getString("ARTIST"),
+                            rs.getString("DURATION"),
+                            rs.getString("GENRE")
+                    ));
+                    table.setItems(FriendsTracks);
+                    table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+
+        }
     }
 
     public void setUser(int pass) {
