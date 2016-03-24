@@ -323,9 +323,7 @@ public class logic
                         payLabel.setVisible(true);
                 }
             }
-        });
-
-        
+        });        
         Scene exP=new Scene(ex);
         extP.setScene(exP);
         extP.showAndWait();
