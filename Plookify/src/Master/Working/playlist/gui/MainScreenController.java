@@ -339,21 +339,21 @@ public class MainScreenController implements Initializable {
         addButton.setVisible(false); 
     }
     
-//    public void changeCombo(){
-//        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-//        PreparedStatement ps=conn.prepareStatement("SELECT PLAYLISTNAME FROM PLAYLIST WHERE PLAYLISTOWNER=?)");
-//        ps.setInt(1,user);
-//        ResultSet rs = ps.executeQuery();
-//        while(rs.next()){
-//        options.add(rs.getString("PLAYLISTNAME"));  
-//        }
-//        rs.close();
-//        ps.close();
-//        conn.close();
-//        }
-//        catch(Exception e){
-//        }
-//    }
+    public void changeCombo(){
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+        PreparedStatement ps=conn.prepareStatement("SELECT PLAYLISTNAME FROM PLAYLIST WHERE PLAYLISTOWNER=?)");
+        ps.setInt(1,user);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+        options.add(rs.getString("PLAYLISTNAME")); 
+        }
+        rs.close();
+        ps.close();
+        conn.close();
+        }
+        catch(Exception e){
+        }
+    }
     
     public int getID(){
         return 2;
