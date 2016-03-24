@@ -9,14 +9,14 @@
    <children>
       <Pane fx:id="leftPane" prefHeight="420.0" prefWidth="176.0">
          <children>
-            <TableView fx:id="playlistsTable" layoutX="14.0" layoutY="117.0" onMouseClicked="#switchPlaylists" onMouseReleased="#switchPlaylists" prefHeight="206.0" prefWidth="146.0">
+            <TableView fx:id="playlistsTable" layoutX="4.0" layoutY="117.0" onMouseClicked="#switchPlaylists" onMouseReleased="#switchPlaylists" prefHeight="206.0" prefWidth="146.0">
                <columns>
                   <TableColumn fx:id="tPlaylists" prefWidth="149.0" text="Playlists" />
                </columns>
             </TableView>
-            <Button fx:id="createPlaylistBTN" layoutX="17.0" layoutY="367.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="31.0" prefWidth="106.0" style="-fx-background-radius: 15; -fx-font-size: 11;" text="Create Playlist" />
-            <Button fx:id="renamePlaylist" layoutX="127.0" layoutY="367.0" mnemonicParsing="false" onAction="#renamePlaylist" prefHeight="31.0" prefWidth="33.0" style="-fx-background-radius: 15; -fx-font-size: 9.5;" text="X" />
-            <TextField fx:id="newPlaylistName" layoutX="14.0" layoutY="330.0" prefHeight="31.0" prefWidth="146.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
+            <Button fx:id="createPlaylistBTN" layoutX="7.0" layoutY="367.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="31.0" prefWidth="106.0" style="-fx-background-radius: 15; -fx-font-size: 11;" text="Create Playlist" />
+            <Button fx:id="renamePlaylist" layoutX="117.0" layoutY="367.0" mnemonicParsing="false" onAction="#renamePlaylist" prefHeight="31.0" prefWidth="33.0" style="-fx-background-radius: 15; -fx-font-size: 9.5;" text="X" />
+            <TextField fx:id="newPlaylistName" layoutX="4.0" layoutY="330.0" prefHeight="31.0" prefWidth="146.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
          </children>
       </Pane>
       <Pane fx:id="rightPane" layoutX="171.0" prefHeight="420.0" prefWidth="509.0">
