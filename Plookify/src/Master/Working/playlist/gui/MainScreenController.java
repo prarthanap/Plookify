@@ -101,7 +101,7 @@ public class MainScreenController implements Initializable {
     ObservableList<Songs> songList = FXCollections.observableArrayList();
     final ObservableList options = FXCollections.observableArrayList();
     //String user = getUsername();
-    int user=getID();
+    int user;
     int currentPlaylist= 1 ;
     /**
      * Initializes the controller class.
@@ -359,8 +359,8 @@ public class MainScreenController implements Initializable {
         return 2;
     }
     
-    public int getID(int id){
-        return id;
+    public void setID(int id){
+        user= id;
     }
     
     public void setPlaylistID(int id){

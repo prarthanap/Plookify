@@ -52,46 +52,48 @@ import javafx.util.StringConverter;
  */
 public class PlaylistController implements Initializable {
 
+    public int user=9999;
+    public int currentPlaylist= 1 ;
     @FXML
-    private TableView<Songs> table;
+    public TableView<Songs> table;
     @FXML
-    private TableColumn<?, ?> tSong;
+    public TableColumn<?, ?> tSong;
     @FXML
-    private TableColumn<?, ?> tArtist;
+    public TableColumn<?, ?> tArtist;
     @FXML
-    private TableColumn<?, ?> tDuration;
+    public TableColumn<?, ?> tDuration;
     @FXML
-    private TableView<Songs> searchTable;
+    public TableView<Songs> searchTable;
     @FXML
-    private TableColumn<?, ?> tsSong;
+    public TableColumn<?, ?> tsSong;
     @FXML
-    private TableColumn<?, ?> tsArtist;
+    public TableColumn<?, ?> tsArtist;
     @FXML
-    private TableColumn<?, ?> tsDuration;
+    public TableColumn<?, ?> tsDuration;
     @FXML
-    private TableView<Playlist> playlistsTable;
+    public TableView<Playlist> playlistsTable;
     @FXML
-    private TableColumn<?, ?> tPlaylists;
+    public TableColumn<?, ?> tPlaylists;
     @FXML
-    private TextField newPlaylistName;
+    public TextField newPlaylistName;
     @FXML
-    private Button createPlaylistBTN;
+    public Button createPlaylistBTN;
     @FXML
-    private Button search;
+    public Button search;
     @FXML
-    private TextField searchBar;
+    public TextField searchBar;
     @FXML
-    private Label label;
+    public Label label;
     @FXML
-    private ComboBox<String> pType;
+    public ComboBox<String> pType;
     @FXML
-    private Label playlistLabel;
+    public Label playlistLabel;
     @FXML
-    private Button nowPlayingBTN;
+    public Button nowPlayingBTN;
     @FXML
-    private Button removeSongBTN;
+    public Button removeSongBTN;
     @FXML
-    private Button renamePlaylist;
+    public Button renamePlaylist;
     /**
      * Initializes the controller class.
      */
@@ -99,8 +101,7 @@ public class PlaylistController implements Initializable {
     ObservableList<Playlist> playlistList = FXCollections.observableArrayList();
     ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
     ObservableList<Songs> songList = FXCollections.observableArrayList();
-    private int user;
-    private int currentPlaylist= 1 ;
+
     @FXML
     public Pane leftPane;
     @FXML
@@ -124,11 +125,12 @@ public class PlaylistController implements Initializable {
          
         pType.getItems().addAll("Private","Friend");
         //setID(2);
+        System.out.println(user);
         updateList();
     }
 
     @FXML
-    private void switchPlaylists() {
+    public void switchPlaylists() {
         
         playlistsTable.setOnMousePressed((MouseEvent event) -> {
             Playlist playlist = playlistsTable.getSelectionModel().getSelectedItem();
@@ -159,7 +161,7 @@ public class PlaylistController implements Initializable {
     }
 
     @FXML
-    private void createPlaylist() {
+    public void createPlaylist() {
         String playlistName = newPlaylistName.getText();
         Playlist newPlaylist = new Playlist(playlistName);
         String type = "Y";
@@ -369,7 +371,7 @@ public class PlaylistController implements Initializable {
     }
 
     @FXML
-    private void changePlaylistType(ActionEvent event) {
+    public void changePlaylistType(ActionEvent event) {
         String newType;
         if(pType.getValue().equals("Private")){
            newType="Y";
@@ -449,8 +451,11 @@ public class PlaylistController implements Initializable {
         label.setVisible(true);
     }
     
-    public void setID(int id){
+    public void setUser(int id){
         this.user = id;
+    }
+    public int getUser(){
+        return this.user;
     }
     
     public void setPlaylistID(int id){
