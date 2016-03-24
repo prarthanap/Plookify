@@ -39,7 +39,7 @@ public class PlaybarController implements Initializable {
     private Iterator<String> itr;
     private MediaPlayer player;
     private Duration currentDuration;
-    private static final double MIN_CHANGE = 0.5;
+    private static final double CHANGE = 0.3;
 
     /**
      * Initializes the controller class.
@@ -170,27 +170,27 @@ public class PlaybarController implements Initializable {
 
     public void getDuration() {
 
-        player.totalDurationProperty().addListener((obs, oldDuration, newDuration) -> slider.setMax(newDuration.toSeconds()));
-        slider.valueChangingProperty().addListener((obs, wasChanging, isChanging) -> {
-            if (!isChanging) {
+        player.totalDurationProperty().addListener((observ, oldTime, newTime) -> slider.setMax(newTime.toSeconds()));
+        slider.valueChangingProperty().addListener((observ, oldChanging, newChanging) -> {
+            if (!newChanging) {
                 player.seek(Duration.seconds(slider.getValue()));
             }
         });
 
-        slider.valueProperty().addListener((obs, oldValue, newValue) -> {
+        slider.valueProperty().addListener((observ, oldValue, newValue) -> {
             if (!slider.isValueChanging()) {
                 double currentTime = player.getCurrentTime().toSeconds();
-                if (Math.abs(currentTime - newValue.doubleValue()) > MIN_CHANGE) {
+                if (Math.abs(currentTime - newValue.doubleValue()) > CHANGE) {
                     player.seek(Duration.seconds(newValue.doubleValue()));
                 }
             }
         });
 
-        player.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+        player.currentTimeProperty().addListener((observ, oldDur, newDur) -> {
             if (!slider.isValueChanging()) {
-                slider.setValue(newTime.toSeconds());
+                slider.setValue(newDur.toSeconds());
 
-                duration.setText(formatDuration(newTime));
+                duration.setText(formatDuration(newDur));
 
             }
         });

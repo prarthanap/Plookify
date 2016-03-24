@@ -11,7 +11,7 @@
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Scratch/Images%20png/play.png" />
+                  <Image url="@Images%20png/play.png" />
                </image>
             </ImageView>
          </graphic>
@@ -20,7 +20,7 @@
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Scratch/Images%20png/pause.png" />
+                  <Image url="@Images%20png/pause.png" />
                </image>
             </ImageView>
          </graphic>
@@ -29,7 +29,7 @@
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Scratch/Images%20png/restart.png" />
+                  <Image url="@Images%20png/restart.png" />
                </image>
             </ImageView>
          </graphic>
@@ -42,7 +42,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Scratch/Images%20png/remove.png" />
+                  <Image url="@Images%20png/remove.png" />
                </image>
             </ImageView>
          </graphic></Button>
