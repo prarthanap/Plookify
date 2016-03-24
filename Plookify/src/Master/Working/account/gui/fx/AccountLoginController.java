@@ -396,7 +396,6 @@ public class AccountLoginController implements Initializable {
      @FXML
      private void paymentSelect(ActionEvent event)
      {
-         System.out.println(subMonths.getSelectionModel().getSelectedItem());
          if (subMonths.getSelectionModel().getSelectedItem().equals("0"))
          {
              payType.setVisible(false);
