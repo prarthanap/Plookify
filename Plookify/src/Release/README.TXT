@@ -71,3 +71,9 @@ press the "Play playlist" once on the playlist which you want to play
 Select the privacy of the playlist in the dropdown menu above the playlist,either "Private" or "Friend".
 
 
+
+---Player module---
+
+To add a track to the Now Playing playlist, click add and then click play to start playing music.
+To select multiple tracks, press the shift key.
+
