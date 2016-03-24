@@ -5,6 +5,7 @@
  */
 package Master.Working.social.Logic;
 
+import Master.Working.Common.database;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +30,7 @@ import java.util.logging.Logger;
  * @author Hamza
  */
 public class LogOnController implements Initializable {
-    private final logic logic1=new logic();
+    private final database logic1=new database();
     private final int[] dumpster1={-500,500};
     private final int[] dumpster2={-1000,500};
     private int userID=9999;
@@ -67,8 +68,8 @@ public class LogOnController implements Initializable {
     @FXML
     private void loginPressedSubmit(ActionEvent event)
     {
-        userID=logic1.data.authCheckD(loginUnameField.getText(),loginPassField.getText());
-        logic1.data.conClose();
+        userID=logic1.authCheckD(loginUnameField.getText(),loginPassField.getText());
+        logic1.conClose();
         if(userID==9999)
         {
             loginDialogMessage.setText("Error! Incorrect Username and/or Password");
