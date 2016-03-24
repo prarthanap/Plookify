@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="680.0" stylesheets="@../../social/GUI/test.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.playlist.logic.PlaylistController">
+   <children>
+      <TableView fx:id="table" layoutX="196.0" layoutY="116.0" prefHeight="290.0" prefWidth="467.0">
+         <columns>
+            <TableColumn fx:id="tSong" prefWidth="200.0" text="Song" />
+            <TableColumn fx:id="tArtist" minWidth="0.0" prefWidth="168.0" text="Artist" />
+            <TableColumn fx:id="tDuration" prefWidth="97.0" text="Duration" />
+         </columns>
+      </TableView>
+      <TableView fx:id="searchTable" layoutX="196.0" layoutY="116.0" onMouseClicked="#addToPlaylist" prefHeight="290.0" prefWidth="467.0">
+         <columns>
+            <TableColumn fx:id="tsSong" prefWidth="200.0" text="Song" />
+            <TableColumn fx:id="tsArtist" minWidth="0.0" prefWidth="168.0" text="Artist" />
+            <TableColumn fx:id="tsDuration" prefWidth="97.0" text="Duration" />
+         </columns>
+      </TableView>
+      <TableView fx:id="playlistsTable" layoutX="14.0" layoutY="116.0" onMouseClicked="#switchPlaylists" onMouseReleased="#switchPlaylists" prefHeight="206.0" prefWidth="146.0">
+         <columns>
+            <TableColumn fx:id="tPlaylists" prefWidth="149.0" text="Playlists" />
+         </columns>
+      </TableView>
+      <TextField fx:id="newPlaylistName" layoutX="14.0" layoutY="330.0" prefHeight="31.0" prefWidth="146.0" promptText="New Playlist Name" style="-fx-background-radius: 15;" />
+      <Button fx:id="createPlaylistBTN" layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#createPlaylist" prefHeight="31.0" prefWidth="106.0" style="-fx-background-radius: 15;" text="Create Playlist" />
+      <Button fx:id="search" layoutX="585.0" layoutY="3.0" mnemonicParsing="false" onAction="#searchSongs" prefHeight="31.0" prefWidth="76.0" style="-fx-background-radius: 15;" text="Search" />
+      <TextField fx:id="searchBar" layoutX="320.0" layoutY="3.0" prefHeight="31.0" prefWidth="251.0" promptText="Search for songs by Artist" style="-fx-background-radius: 15;" />
+      <Label fx:id="label" focusTraversable="false" layoutX="396.0" layoutY="56.0" prefHeight="42.0" prefWidth="140.0" text="Playlist Privacy">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="pType" layoutX="390.0" layoutY="87.0" onAction="#changePlaylistType" prefHeight="23.0" prefWidth="118.0" style="-fx-background-radius: 15;" />
+      <Button fx:id="nowPlayingBTN" layoutX="523.0" layoutY="89.0" mnemonicParsing="false" onAction="#addToNowPlaying" prefHeight="23.0" prefWidth="94.0" style="-fx-background-radius: 15; -fx-font-size: 9.5;" text="Play Playlist" />
+      <Label fx:id="playlistLabel" focusTraversable="false" layoutX="196.0" layoutY="58.0" prefHeight="51.0" prefWidth="205.0" text="Playlist">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Button fx:id="removeSongBTN" layoutX="636.0" layoutY="89.0" mnemonicParsing="false" onAction="#removeSong" prefHeight="23.0" prefWidth="25.0" style="-fx-background-radius: 15; -fx-font-size: 9.5;" text="X" />
+      <Button fx:id="renamePlaylist" layoutX="127.0" layoutY="367.0" mnemonicParsing="false" onAction="#renamePlaylist" prefHeight="31.0" prefWidth="33.0" style="-fx-background-radius: 15; -fx-font-size: 9.5;" text="X" />
+   </children>
+</Pane>
