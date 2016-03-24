@@ -42,6 +42,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
 
 /**
@@ -87,6 +88,10 @@ public class PlaylistController implements Initializable {
     private Label playlistLabel;
     @FXML
     private Button nowPlayingBTN;
+    @FXML
+    private Button removeSongBTN;
+    @FXML
+    private Button renamePlaylist;
     /**
      * Initializes the controller class.
      */
@@ -97,10 +102,10 @@ public class PlaylistController implements Initializable {
     int user;
     int currentPlaylist= 1 ;
     @FXML
-    private Button removeSongBTN;
+    public Pane leftPane;
     @FXML
-    private Button renamePlaylist;
-    
+    public Pane rightPane;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tSong.setCellValueFactory(new PropertyValueFactory("songName"));
@@ -232,7 +237,7 @@ public class PlaylistController implements Initializable {
        } 
        catch(Exception e){      
        }   
-       updateList();
+       updatePlaylist();
         
     }
     @FXML
@@ -259,25 +264,45 @@ public class PlaylistController implements Initializable {
     
     @FXML
     public void addToPlaylist(){
-        searchTable.setOnMousePressed((MouseEvent event) -> {
-            if (event.getClickCount() == 2){
-                Songs song = searchTable.getSelectionModel().getSelectedItem();
-                String songID = song.getSongID(); 
-                System.out.println(songID);
-                try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-                    PreparedStatement ps=conn.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)");
-                    ps.setInt(1, currentPlaylist);
-                    ps.setString(2, songID);
-                    ps.executeUpdate();
-                    ResultSet rs = ps.getGeneratedKeys();
-                    ps.close();
-                    conn.close();
-                }
-                catch (Exception e2) {
-                    System.err.println(e2);
-                }
+        ArrayList<Integer> songIDs = new ArrayList<>();
+        ArrayList<String> songNames = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+            PreparedStatement ps=conn.prepareStatement("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =?");
+            PreparedStatement ps2=conn.prepareStatement("SELECT TRACKNAME FROM TRACKS WHERE TRACKID=?");
+            PreparedStatement ps3=conn.prepareStatement("INSERT INTO NOWPLAYING (TRACKNAME) VALUES(?)");
+            ps.setInt(1, currentPlaylist);
+            ps.executeQuery(); 
+            ResultSet rs = ps.getGeneratedKeys();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+                
+            while (rs.next()) {
+                for(int i=1; i<=columnsNumber; i++){
+                    songIDs.add(rs.getInt(i));
+                }   
             }
-        });
+            ps.close();
+            for(int x = 0; x < songIDs.size(); x++) {  
+                int songID =songIDs.get(x);   
+                ps2.setInt(1, songID);
+                ps2.executeQuery();
+                ResultSet rs2 = ps2.getGeneratedKeys();
+                songNames.add(rs.getString("TRACKNAME"));
+            }
+            ps2.close();
+            for(int y = 0; y < songNames.size(); y++){  
+                String name = songNames.get(y);
+                ps3.setString(1, name);
+                ps3.executeUpdate();
+                ResultSet rs3 = ps3.getGeneratedKeys();
+                
+            }
+            ps3.close();
+            
+            conn.close();
+       } 
+        catch(Exception e){  
+        }
     }
     
     public ArrayList<String> getSavedSongs(){
