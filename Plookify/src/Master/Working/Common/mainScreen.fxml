@@ -20,7 +20,7 @@
             <TextField fx:id="searchBar" layoutX="726.0" layoutY="42.0" maxHeight="30.0" maxWidth="235.0" minHeight="30.0" minWidth="150.0" onKeyReleased="#commonSearch" prefHeight="30.0" prefWidth="235.0" promptText="Search" style="-fx-background-radius: 70;" />
             <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="28.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Scratch/ICONS/logo.png" />
+                  <Image url="@../account/resources/logo.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="83.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lookify">
