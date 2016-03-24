@@ -53,7 +53,8 @@
                   <Button fx:id="saveAsPlaylist" layoutX="194.0" layoutY="392.0" mnemonicParsing="false" onAction="#savePlaylist" style="-fx-background-radius: 20;" text="Save As Playlist" />
                   <TextField fx:id="playlistNameField" layoutX="16.0" layoutY="359.0" prefHeight="25.0" prefWidth="273.0" promptText="Enter Playlist Name" />
                   <Label fx:id="playlistSavedLabel" layoutX="17.0" layoutY="396.0" text="Playlist Saved" visible="false" />
-                  <Label fx:id="noSongsLabel" layoutX="17.0" layoutY="395.0" text="No Songs in Radio Channel" visible="false" />
+                  <Label fx:id="noSongsLabel" layoutX="17.0" layoutY="395.0" text="No Songs in Radio Channel" visible="false" />                  
+                  <Label fx:id="noSubLabel" layoutX="7.0" layoutY="75.0" text="User Does Not Have Subscription" visible="false" />
                </children>
             </AnchorPane>
          </children>

@@ -74,9 +74,12 @@ public class RadioController implements Initializable {
     @FXML
     private Label noSongsLabel;
     @FXML
+    private Label noSubLabel;
+    @FXML
     private TextField playlistNameField;
     @FXML
     private TextField searchField;
+    
     
     private final ObservableList<Tracks> data = FXCollections.observableArrayList();
     private ObservableList<Tracks> radioData = FXCollections.observableArrayList();
@@ -92,6 +95,8 @@ public class RadioController implements Initializable {
     private int lastID = 0;
     private int trackID = 0;
     private int ID = 9999;
+    private int isSub = 0;
+    private int defaultNum = 0;
  
     
     @Override
@@ -115,18 +120,24 @@ public class RadioController implements Initializable {
     
     @FXML
     private void savePlaylist(ActionEvent event) throws SQLException { 
+        noSongsLabel.setVisible(false);
+        playlistSavedLabel.setVisible(false);
+        defaultNum++;
         if (radioData.isEmpty()) {
             noSongsLabel.setVisible(true);
         }
         else {
        String playlistName = playlistNameField.getText();
+       if (playlistName.isEmpty()) {
+           playlistName = "Radio " + defaultNum; //If playlist name text box is empty
+       }
        int playlistUser = getUser();
        try (Connection conn1 = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
                 PreparedStatement ps1=conn1.prepareStatement("INSERT INTO PLAYLIST (PLAYLISTOWNER, PLAYLISTNAME, PRIVATE) VALUES(?,?,?)");
                 PreparedStatement ps2=conn1.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
                 ps1.setInt(1, playlistUser);
                 ps1.setString(2, playlistName);
-                ps1.setString(3, "Y"); //Default
+                ps1.setString(3, "N"); //Default
                 ps1.executeUpdate(); 
                 ResultSet rs = ps1.getGeneratedKeys();
                 while (rs.next()) {
@@ -172,6 +183,16 @@ public class RadioController implements Initializable {
     
     @FXML
     private void viewRadioPane(ActionEvent event2) {
+        noSubLabel.setVisible(false);
+        try {
+            ResultSet rs3 = db.makeQuery("SELECT PREMIUM FROM SUBSCRIPTION WHERE USERID = '"+ID+"'");
+            isSub = rs3.getInt(1);
+            //System.out.println(isSub);
+            rs3.close();
+         }
+            catch (Exception e2) {
+            System.err.println(e2);
+         }
         noSongsLabel.setVisible(false);
         playlistSavedLabel.setVisible(false);
         radioPane.setStyle("-fx-background-color: #383838");
@@ -179,6 +200,13 @@ public class RadioController implements Initializable {
             radioPane.setVisible(true);
             radioStatus = true;
             viewRadioButton.setText("Close Radio View");
+            if (isSub == 0) {
+                radioTable.setVisible(false);
+                playlistNameField.setVisible(false);
+                currentGenre.setVisible(false);
+                saveAsPlaylist.setVisible(false);
+                noSubLabel.setVisible(true);
+            }          
         }
         else {
             viewRadioButton.setText("View Radio Channel");
