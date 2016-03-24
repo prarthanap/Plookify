@@ -8,6 +8,7 @@ package Master.Working.Common;
 import Master.Working.account.gui.fx.ScreenAccountController;
 import Master.Working.player.logic.PlaybarController;
 import Master.Working.player.logic.TrackTableController;
+import Master.Working.playlist.logic.PlaylistController;
 import Master.Working.radio.logic.RadioController;
 import Master.Working.social.Logic.GuiController;
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class TsController implements Initializable {
     private RadioController rCon;
     private GuiController socialController;
     private TrackTableController tbc;
+    private PlaylistController plc;
     private Stage accManager;
     
     @FXML
@@ -96,6 +98,13 @@ public class TsController implements Initializable {
             rightSidePane.getChildren().add(socialP);
             radioPane.toBack();
             mainPane.toBack();
+            FXMLLoader plLoader=new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/playlist.fxml"));
+            plc=plLoader.getController();
+            plc.setID(UserID);
+            plc.initP();
+            Pane pll=plLoader.load();
+            Playlist.getChildren().add(pll);
+            
             accManager = new Stage();
             FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/screenAccount.fxml"));
             Pane accPane = (Pane)accLoader.load();

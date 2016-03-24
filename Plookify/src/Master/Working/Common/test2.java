@@ -21,13 +21,13 @@ public class test2
     {
         database data=new database();
         
-        data.makeUpdate("DELETE FROM PLAYLISTTRACK WHERE PLAYLIST=1 AND TRACK=22");
-        data.conClose();
+        //data.makeUpdate("DELETE FROM PLAYLISTTRACK WHERE PLAYLIST=1 AND TRACK=22");
+        //data.conClose();
         try {
             ResultSet rs=data.makeQuery("Select * from PLAYLISTTRACK");
             while(rs.next())
             {
-            System.out.println(rs.getString(2));
+            System.out.println(rs.getString(1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(test2.class.getName()).log(Level.SEVERE, null, ex);

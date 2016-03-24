@@ -99,8 +99,8 @@ public class PlaylistController implements Initializable {
     ObservableList<Playlist> playlistList = FXCollections.observableArrayList();
     ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
     ObservableList<Songs> songList = FXCollections.observableArrayList();
-    int user;
-    int currentPlaylist= 1 ;
+    private int user;
+    private int currentPlaylist= 1 ;
     @FXML
     public Pane leftPane;
     @FXML
@@ -108,6 +108,10 @@ public class PlaylistController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    }
+       
+    public void initP()
+    {
         tSong.setCellValueFactory(new PropertyValueFactory("songName"));
         tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
         tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
@@ -119,10 +123,9 @@ public class PlaylistController implements Initializable {
         tPlaylists.setCellValueFactory(new PropertyValueFactory("name"));
          
         pType.getItems().addAll("Private","Friend");
-        setID(2);
+        //setID(2);
         updateList();
     }
-          
 
     @FXML
     private void switchPlaylists() {
@@ -447,10 +450,21 @@ public class PlaylistController implements Initializable {
     }
     
     public void setID(int id){
-        user = id;
+        this.user = id;
     }
     
     public void setPlaylistID(int id){
         currentPlaylist = id;
+    }
+    public Pane getPane(String p)
+    {
+        if (p.equals("l"))
+        {
+            return leftPane;
+        }
+        else
+        {
+            return rightPane;
+        }
     }
 }
