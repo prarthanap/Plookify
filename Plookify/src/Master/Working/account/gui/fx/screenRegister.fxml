@@ -107,9 +107,9 @@
                </font>
             </Label>
             <Label layoutX="51.0" layoutY="78.0" prefHeight="38.0" prefWidth="199.0" styleClass="subDialog" text="You can choose a monthly, quartlerly, bi-yearly or yearly subscription." wrapText="true" />
-            <Label layoutX="150.0" layoutY="153.0" prefHeight="17.0" prefWidth="50.0" text="Months" />
-            <Button layoutX="119.0" layoutY="198.0" mnemonicParsing="false" onAction="#subConfirmPressed" text="Confirm" />
-            <ComboBox fx:id="subMonths" layoutX="70.0" layoutY="150.0" prefHeight="25.0" prefWidth="73.0">
+            <Label layoutX="150.0" layoutY="129.0" prefHeight="17.0" prefWidth="50.0" text="Months" />
+            <Button layoutX="119.0" layoutY="210.0" mnemonicParsing="false" onAction="#subConfirmPressed" text="Confirm" />
+            <ComboBox fx:id="subMonths" layoutX="70.0" layoutY="126.0" prefHeight="25.0" prefWidth="73.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="1" />
@@ -122,6 +122,8 @@
                     <String fx:value="0" />
                 </value>
             </ComboBox>
+            <ComboBox layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="73.0" />
+            <Label layoutX="153.0" layoutY="168.0" text="Payment Method" />
          </children>
       </Pane>
       <Pane fx:id="dialogPaneReg" layoutX="-480.0" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" styleClass="dialog" stylesheets="@accountmodule.css">
