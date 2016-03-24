@@ -209,7 +209,11 @@ public class GuiController implements Initializable {
     public ArrayList<String> getSavedSongs() {
         ArrayList<String> songIDs = new ArrayList<String>();
         try {
-            ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =1");
+            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
+                    data.conClose();
+            int temp2 = data.makeQuery("SELECT PLAYLISTID WHERE PLAYLISTOWNER='"+temp+"' AND PLAYLISTNAME="+fPlaylist.getSelectionModel().getSelectedItem()+"").getInt("PLAYLISTID");
+                data.conClose();
+            ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST ='"+temp2+"'");
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
 
@@ -218,6 +222,7 @@ public class GuiController implements Initializable {
                     songIDs.add(rs.getString(i));
                 }
             }
+            data.conClose();
         } catch (Exception e) {
         }
         return songIDs;
