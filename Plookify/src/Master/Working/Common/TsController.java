@@ -58,10 +58,13 @@ public class TsController implements Initializable {
     @FXML
     private Pane radioPane;
     @FXML
+    private Pane plPane;
+    @FXML
     private TextField searchBar;
     @FXML
     private Button tracksAdd;
     @FXML Button tracksButton;
+    @FXML Button playlistButton;
     
 
     @Override
@@ -104,6 +107,9 @@ public class TsController implements Initializable {
             plc.setUser(UserID);
             plc.initP();
             Playlist.getChildren().add(plc.getPane("l"));
+            Pane temp=plc.getPane("r");
+            plPane.getChildren().add(temp);
+            temp.relocate(50,0);
             
             accManager = new Stage();
             FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/screenAccount.fxml"));
@@ -163,5 +169,12 @@ public class TsController implements Initializable {
     {
         radioPane.setVisible(false);
         rightSidePane.toFront();
+    }
+    @FXML
+    private void pressPlaylist(ActionEvent event)
+    {
+        socialController.displayFriendResults.setVisible(false);
+        radioPane.setVisible(false);
+        plPane.toFront();
     }
 }
