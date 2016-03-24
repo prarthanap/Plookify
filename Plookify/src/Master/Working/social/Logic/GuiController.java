@@ -1,6 +1,7 @@
 package Master.Working.social.Logic;
 
 import Master.Working.Common.database;
+import Master.Working.playlist.gui.Playlist;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -27,6 +28,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
+
 
 /**
  * FXML Controller class
@@ -88,8 +90,24 @@ public class GuiController implements Initializable {
 
     }
 
+    @FXML
+    public TableView<Songs> table;
+    @FXML
+    public TableColumn<?, ?> tSong;
+    @FXML
+    public TableColumn<?, ?> tArtist;
+    @FXML
+    public TableColumn<?, ?> tAlbum;
+    @FXML
+    public TableColumn<?, ?> tDuration;
+    ObservableList<Songs> playlistSongs = FXCollections.observableArrayList();
+    
     public void IDintialize() {
 
+        tSong.setCellValueFactory(new PropertyValueFactory("songName"));
+        tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
+        tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
+        
         confirmDialog.setVisible(false);
         friendAddedDialog.setVisible(false);
         upgradeDialog.setVisible(false);
@@ -155,7 +173,55 @@ public class GuiController implements Initializable {
             }
         });
     }
+   
+    public ArrayList<String> getSavedSongs(){
+        ArrayList<String> songIDs = new ArrayList<>();
+        try{  
+            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='"+ViewFriends.getSelectionModel().getSelectedItem()+"'").getInt("ID");
+            data.conClose();
+            int name = data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST WHERE PLAYLISTOWNER='"+temp+"' AND PLAYLISTNAME="+fPlaylist.getSelectionModel().getSelectedItem()+"").getInt("PLAYLISTOWNER");
+            data.conClose();
+            
+            ResultSet rs = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST = '"+name+"'");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
 
+            while (rs.next()) {
+                for(int i=1; i<=columnsNumber; i++){
+                    songIDs.add(rs.getString(i));
+                }   
+            }
+        }
+        catch(Exception e){
+        } 
+       return songIDs;
+    }
+    
+    public void updatePlaylist(){
+        ArrayList<String> songIDs = getSavedSongs();
+        playlistSongs.clear();
+        try{ 
+        for(int i = 0; i < songIDs.size(); i++) {  
+            String song =songIDs.get(i);
+        ResultSet rs = data.makeQuery("SELECT * FROM TRACKS WHERE TRACKID ='"+song+"'"); // TEMP
+            while (rs.next()){
+                    playlistSongs.add(new Songs(
+                        rs.getString("TRACKNAME"),
+                        rs.getString("ARTIST"),
+                        rs.getString("DURATION")
+                    ));
+            }
+            table.getSelectionModel().clearSelection();     
+            table.setItems(this.playlistSongs);
+            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+             }
+         }
+         catch(Exception e){
+         }
+        
+     }
+    
+    
     public void setUser(int pass) {
         this.ID = pass;
     }
