@@ -11,12 +11,13 @@
    <children>
       <AnchorPane fx:id="FriendPlaylistDialog" layoutX="49.0" layoutY="48.0" prefHeight="333.0" prefWidth="609.0">
          <children>
-            <TableView fx:id="table" layoutY="-2.0" prefHeight="333.0" prefWidth="613.0">
-               <columns>
-                  <TableColumn fx:id="tSong" prefWidth="200.0" text="Song" />
-                  <TableColumn fx:id="tArtist" minWidth="0.0" prefWidth="193.0" text="Artist" />
-                  <TableColumn fx:id="tDuration" prefWidth="219.0" text="Duration" />
-               </columns>
+            <TableView fx:id="table" layoutY="7.0" prefHeight="200.0" prefWidth="546.0">
+              <columns>
+                <TableColumn fx:id="trackNameCol" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="artistCol" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="timeCol" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="genreCol" prefWidth="75.0" text="Column X" />
+              </columns>
             </TableView>
          </children></AnchorPane>
       <AnchorPane fx:id="displayFriendResults" layoutX="489.0" layoutY="27.0" prefHeight="173.0" prefWidth="169.0">
