@@ -179,6 +179,7 @@ public class GuiController implements Initializable {
             int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME= '" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
             data.conClose();
             int temp1 = data.makeQuery("SELECT PLAYLISTID FROM PLAYLIST WHERE PLAYLISTOWNER= '" + temp + "' AND PLAYLISTNAME='" + fPlaylist.getSelectionModel().getSelectedItem() + "'").getInt("PLAYLISTID");
+            data.conClose();
             ResultSet temp2 = data.makeQuery("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST= '" + temp1 + "'");
             ArrayList<String> songIDs = new ArrayList<>();
             ResultSetMetaData rsmd = temp2.getMetaData();
