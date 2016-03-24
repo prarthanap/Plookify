@@ -20,17 +20,14 @@ public class test2
     public static void main(String[] args)
     {
         database data=new database();
-        String update="INSERT INTO ACCOUNT (USERNAME,PASSWORD,FIRSTNAME,LASTNAME,DOORNO,STREET,CITY,COUNTY,POSTCODE,CONTACTNO) VALUES('jll301','pass','j','l','55','asd','asds','asd','asdasd','555')";
-            //System.out.println(update);
-            
-            data.makeUpdate(update);
-            System.out.println("added acc");
-            data.conClose();
+        
+        data.makeUpdate("DELETE FROM PLAYLISTTRACK WHERE PLAYLIST=1 AND TRACK=22");
+        data.conClose();
         try {
-            ResultSet rs=data.makeQuery("Select username from ACCOUNT");
+            ResultSet rs=data.makeQuery("Select * from PLAYLISTTRACK");
             while(rs.next())
             {
-            System.out.println(rs.getString(1));
+            System.out.println(rs.getString(2));
             }
         } catch (SQLException ex) {
             Logger.getLogger(test2.class.getName()).log(Level.SEVERE, null, ex);
