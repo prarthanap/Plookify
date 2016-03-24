@@ -63,6 +63,8 @@ public class AccountLoginController implements Initializable {
     @FXML private Pane subDialogPane;
     @FXML private Pane dialogPaneReg;
     @FXML private Label regDialogMsg;
+    @FXML private Label payLabel;
+    @FXML private ComboBox payType;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -341,6 +343,8 @@ public class AccountLoginController implements Initializable {
                     postcode1R.setText("");
                     contactNoR.setText("");
                     regDialogMsg.setText("Account Created!");
+                    payType.setVisible(false);
+                    payLabel.setVisible(false);
                     dialogPaneReg.relocate(100,150);
                     dialogPaneReg.toFront();
                }
@@ -388,6 +392,20 @@ public class AccountLoginController implements Initializable {
      {
          dialogPaneReg.relocate(dumpster1[0],dumpster1[1]);
          subDialogPane.relocate(95,290);
+     }
+     @FXML
+     private void paymentSelect(ActionEvent event)
+     {
+         if (payType.getSelectionModel().getSelectedItem().equals("0"))
+         {
+             payType.setVisible(false);
+             payLabel.setVisible(false);
+         }
+         else
+         {
+                 payType.setVisible(true);
+                 payLabel.setVisible(true);
+         }
      }
      
      public void setSolo(int val)
