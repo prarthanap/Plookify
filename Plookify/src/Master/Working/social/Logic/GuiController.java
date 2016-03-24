@@ -111,11 +111,12 @@ public class GuiController implements Initializable {
         displayFriendResults.setVisible(false);
 
         updatePlaylist();
+        table.setVisible(false);
         tSong.setCellValueFactory(new PropertyValueFactory("songName"));
         tArtist.setCellValueFactory(new PropertyValueFactory("songArtist"));
         tDuration.setCellValueFactory(new PropertyValueFactory("songDur"));
 
-        FriendPlaylistTable.setVisible(false);
+        FriendPlaylistTable.setVisible(true);
         trackNameCol.setCellValueFactory(new PropertyValueFactory("trackName"));
         artistCol.setCellValueFactory(new PropertyValueFactory("artist"));
         timeCol.setCellValueFactory(new PropertyValueFactory("time"));
@@ -129,7 +130,7 @@ public class GuiController implements Initializable {
     public void friendss() {
         friendTest.removeAll();
         try {
-            friendTest = FXCollections.observableArrayList();
+//            friendTest = FXCollections.observableArrayList();
             ResultSet rs = data.makeQuery("SELECT FRIENDID FROM FRIENDLIST where OWNERID='" + ID + "' and ADDED=1");
 
             ArrayList<String> namesList = new ArrayList<>();
@@ -156,10 +157,15 @@ public class GuiController implements Initializable {
     }
 
     public void updateTable() {
-
+        FriendsTracks = FXCollections.observableArrayList();
         try {
+            int temp = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
+                    data.conClose();
+            int temp2 = data.makeQuery("SELECT PLAYLISTID WHERE PLAYLISTOWNER='"+temp+"' AND PLAYLISTNAME="+fPlaylist.getSelectionModel().getSelectedItem()+"").getInt("PLAYLISTID");
+                data.conClose();
+            
             ResultSet rs = data.makeQuery("SELECT * FROM TRACKS");
-            while (rs.next()) {
+            while (rs.next()) {         
                 FriendsTracks.add(new Tracks(
                         rs.getString("TRACKNAME"),
                         rs.getString("ARTIST"),
@@ -234,6 +240,7 @@ public class GuiController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
+                    friendPlayList.clear();
                     FriendPlaylistDialog.setVisible(true);
                     int rs1 = data.makeQuery("SELECT ID FROM ACCOUNT WHERE USERNAME='" + ViewFriends.getSelectionModel().getSelectedItem() + "'").getInt("ID");
                     data.conClose();

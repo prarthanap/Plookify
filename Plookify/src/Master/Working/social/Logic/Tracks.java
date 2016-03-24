@@ -1,6 +1,5 @@
 package Master.Working.social.Logic;
 
-import Master.Working.player.gui.*;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
