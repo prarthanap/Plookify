@@ -112,6 +112,7 @@
             <ComboBox fx:id="subMonths" layoutX="70.0" layoutY="126.0" prefHeight="25.0" prefWidth="73.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="0" />
                         <String fx:value="1" />
                         <String fx:value="3" />
                         <String fx:value="6" />
@@ -122,7 +123,14 @@
                     <String fx:value="0" />
                 </value>
             </ComboBox>
-            <ComboBox layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="73.0" />
+            <ComboBox layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="73.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="PayPal" />
+                        <String fx:value="Credit/Debit" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
             <Label layoutX="153.0" layoutY="168.0" text="Payment Method" />
          </children>
       </Pane>
