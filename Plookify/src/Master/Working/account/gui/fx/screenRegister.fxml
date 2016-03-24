@@ -95,7 +95,7 @@
             </HBox>
          </children>
       </Pane>
-      <Label layoutX="210.0" layoutY="178.0" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="80.0" styleClass="bigLabel" text="Plookify" />
+      <Label layoutX="210.0" layoutY="178.0" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="100.0" styleClass="bigLabel" text="Plookify" />
       <Button fx:id="submitButtonR" layoutX="78.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#submitButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="SUBMIT" />
       <Button fx:id="resetButtonR" layoutX="200.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="RESET" />
       <Button fx:id="backButtonR" layoutX="319.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#backButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="BACK" />
