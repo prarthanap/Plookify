@@ -186,7 +186,7 @@ public class PlaylistController implements Initializable {
             playlistsTable.getSelectionModel().clearSelection();
             playlistsTable.setItems(this.playlistList);
             playlistsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-            
+            rs.close();            
             }   
         }
         catch(Exception e){
@@ -210,6 +210,7 @@ public class PlaylistController implements Initializable {
             table.getSelectionModel().clearSelection();     
             table.setItems(this.playlistSongs);
             table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            rs.close();
              }
          }
          catch(Exception e){
@@ -261,45 +262,25 @@ public class PlaylistController implements Initializable {
     
     @FXML
     public void addToPlaylist(){
-        ArrayList<Integer> songIDs = new ArrayList<>();
-        ArrayList<String> songNames = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
-            PreparedStatement ps=conn.prepareStatement("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =?");
-            PreparedStatement ps2=conn.prepareStatement("SELECT TRACKNAME FROM TRACKS WHERE TRACKID=?");
-            PreparedStatement ps3=conn.prepareStatement("INSERT INTO NOWPLAYING (TRACKNAME) VALUES(?)");
-            ps.setInt(1, currentPlaylist);
-            ps.executeQuery(); 
-            ResultSet rs = ps.getGeneratedKeys();
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-                
-            while (rs.next()) {
-                for(int i=1; i<=columnsNumber; i++){
-                    songIDs.add(rs.getInt(i));
-                }   
+        searchTable.setOnMousePressed((MouseEvent event) -> {
+            if (event.getClickCount() == 2){
+                Songs song = searchTable.getSelectionModel().getSelectedItem();
+                String songID = song.getSongID(); 
+                System.out.println(songID);
+                try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
+                    PreparedStatement ps=conn.prepareStatement("INSERT INTO PLAYLISTTRACK (PLAYLIST,TRACK) VALUES(?,?)");
+                    ps.setInt(1, currentPlaylist);
+                    ps.setString(2, songID);
+                    ps.executeUpdate();
+                    ResultSet rs = ps.getGeneratedKeys();
+                    ps.close();
+                    conn.close();
+                }
+                catch (Exception e2) {
+                    System.err.println(e2);
+                }
             }
-            ps.close();
-            for(int x = 0; x < songIDs.size(); x++) {  
-                int songID =songIDs.get(x);   
-                ps2.setInt(1, songID);
-                ps2.executeQuery();
-                ResultSet rs2 = ps2.getGeneratedKeys();
-                songNames.add(rs.getString("TRACKNAME"));
-            }
-            ps2.close();
-            for(int y = 0; y < songNames.size(); y++){  
-                String name = songNames.get(y);
-                ps3.setString(1, name);
-                ps3.executeUpdate();
-                ResultSet rs3 = ps3.getGeneratedKeys();
-                
-            }
-            ps3.close();
-            
-            conn.close();
-       } 
-        catch(Exception e){  
-        }
+        });
     }
     
     public ArrayList<String> getSavedSongs(){

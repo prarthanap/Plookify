@@ -32,7 +32,7 @@
             <HBox layoutY="214.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
                <children>
                   <Label maxHeight="20.0" maxWidth="80.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="CONTACT NO." />
-                  <TextField fx:id="contactNoR" maxHeight="20.0" maxWidth="95.0" minHeight="20.0" minWidth="95.0" onKeyTyped="#contactNoTrim" prefHeight="20.0" prefWidth="95.0" style="-fx-background-radius: 20;" />
+                  <TextField fx:id="contactNoR" maxHeight="20.0" maxWidth="95.0" minHeight="20.0" minWidth="115.0" onKeyTyped="#contactNoTrim" prefHeight="20.0" prefWidth="95.0" style="-fx-background-radius: 20;" />
                </children>
             </HBox>
             <HBox layoutY="104.0" maxHeight="22.0" maxWidth="250.0" minHeight="22.0" minWidth="250.0" prefHeight="22.0" prefWidth="250.0" styleClass="editmode">
