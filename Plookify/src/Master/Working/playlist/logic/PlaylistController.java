@@ -391,19 +391,39 @@ public class PlaylistController implements Initializable {
     
     @FXML
     public void addToNowPlaying(){
+        ArrayList<Integer> songIDs = new ArrayList<>();
+        ArrayList<String> songNames = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite::resource:Master/Working/Common/data.db")) {
             PreparedStatement ps=conn.prepareStatement("SELECT TRACK FROM PLAYLISTTRACK WHERE PLAYLIST =?");
-            PreparedStatement ps2=conn.prepareStatement("INSERT INTO NOWPLAYING (TRACKNAME) VALUES(?)");
+            PreparedStatement ps2=conn.prepareStatement("SELECT TRACKNAME FROM TRACKS WHERE TRACKID=?");
+            PreparedStatement ps3=conn.prepareStatement("INSERT INTO NOWPLAYING (TRACKNAME) VALUES(?)");
             ps.setInt(1, currentPlaylist);
             ps.executeQuery(); 
             ResultSet rs = ps.getGeneratedKeys();
-            while(rs.next()){
-                String name =rs.toString();
-                ps2.setString(1,name);
-                ps2.executeUpdate();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (rs.next()) {
+                for(int i=1; i<=columnsNumber; i++){
+                    songIDs.add(rs.getInt(i));
+                }   
             }
             ps.close();
+            for(int x = 0; x < songIDs.size(); x++) {  
+                int songID =songIDs.get(x);   
+                ps2.setInt(1, songID);
+                ps2.executeQuery();
+                ResultSet rs2 = ps2.getGeneratedKeys();
+                songNames.add(rs.getString("TRACKNAME"));
+            }
             ps2.close();
+            for(int y = 0; y < songNames.size(); y++){  
+                String name = songNames.get(y);
+                ps3.setString(1, name);
+                ps3.executeUpdate();
+                ResultSet rs3 = ps3.getGeneratedKeys();
+                
+            }
+            ps3.close();
             conn.close();
        } 
         catch(Exception e){  

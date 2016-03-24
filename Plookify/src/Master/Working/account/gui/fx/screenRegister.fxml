@@ -95,7 +95,7 @@
             </HBox>
          </children>
       </Pane>
-      <Label layoutX="210.0" layoutY="178.0" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="80.0" styleClass="bigLabel" text="Plookify" />
+      <Label layoutX="210.0" layoutY="178.0" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="100.0" styleClass="bigLabel" text="Plookify" />
       <Button fx:id="submitButtonR" layoutX="78.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#submitButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="SUBMIT" />
       <Button fx:id="resetButtonR" layoutX="200.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="RESET" />
       <Button fx:id="backButtonR" layoutX="319.0" layoutY="501.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#backButtonRPressed" prefHeight="30.0" prefWidth="100.0" text="BACK" />
@@ -109,7 +109,7 @@
             <Label layoutX="51.0" layoutY="78.0" prefHeight="38.0" prefWidth="199.0" styleClass="subDialog" text="You can choose a monthly, quartlerly, bi-yearly or yearly subscription." wrapText="true" />
             <Label layoutX="150.0" layoutY="129.0" prefHeight="17.0" prefWidth="50.0" text="Months" />
             <Button layoutX="119.0" layoutY="210.0" mnemonicParsing="false" onAction="#subConfirmPressed" text="Confirm" />
-            <ComboBox fx:id="subMonths" layoutX="70.0" layoutY="126.0" prefHeight="25.0" prefWidth="73.0">
+            <ComboBox fx:id="subMonths" layoutX="70.0" layoutY="126.0" prefHeight="25.0" prefWidth="73.0" onAction="#paymentSelect">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="0" />
@@ -123,13 +123,16 @@
                     <String fx:value="0" />
                 </value>
             </ComboBox>
-            <ComboBox fx:id="payType" layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="73.0" onAction="#paymentSelect">
+            <ComboBox fx:id="payType" layoutX="70.0" layoutY="164.0" prefHeight="25.0" prefWidth="73.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="PayPal" />
                         <String fx:value="Credit/Debit" />
                     </FXCollections>
                 </items>
+                <value>
+                    <String fx:value="PayPal" />
+                </value>
             </ComboBox>
             <Label fx:id="payLabel" layoutX="153.0" layoutY="168.0" text="Payment Method" />
          </children>

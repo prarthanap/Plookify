@@ -276,17 +276,26 @@ public class logic
     {
         Stage extP=new Stage();
         Pane ex=new Pane();
-        ex.setPrefSize(300, 150);
+        ex.setPrefSize(300, 160);
         Label msg=new Label("Choose Subscription Period");
+        Label payLabel=new Label("Payment Type");
+        ComboBox pType=new ComboBox();
+        pType.getItems().addAll("PayPal","Credit/Debit");
+        pType.setValue("PayPal");
         ComboBox months=new ComboBox();
         Button button1=new Button("OK");
         months.getItems().setAll(0,3,6,12);
         months.setValue(0);
-        ex.getChildren().addAll(msg,months,button1);
+        ex.getChildren().addAll(msg,months,button1,payLabel,pType);
         msg.relocate(55,20);
-        months.relocate(100,50);
-        button1.relocate(115,80);
+        payLabel.relocate(70,75);
+        pType.relocate(70,100);
+        months.relocate(100,40);
+        button1.relocate(115,130);
+        pType.setVisible(false);
+        payLabel.setVisible(false);
         ex.setStyle("-fx-background-color:#383838;");
+        payLabel.setStyle("-fx-text-fill: #ffffff;");
         msg.setStyle("-fx-text-fill: #ffffff;");
         button1.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -298,8 +307,23 @@ public class logic
             }
 
         });
-
-        
+        months.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                System.out.println(months.getValue());
+                if ((int)months.getValue()==0)
+                {
+                    pType.setVisible(false);
+                    payLabel.setVisible(false);
+                }
+                else
+                {
+                        pType.setVisible(true);
+                        payLabel.setVisible(true);
+                }
+            }
+        });        
         Scene exP=new Scene(ex);
         extP.setScene(exP);
         extP.showAndWait();

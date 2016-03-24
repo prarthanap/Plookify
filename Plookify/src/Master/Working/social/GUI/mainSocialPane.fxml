@@ -9,7 +9,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseReleased="#deselect" prefHeight="430.0" prefWidth="850.0" style="-fx-background-color: #383838;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Master.Working.social.Logic.GuiController">
    <children>
-      <AnchorPane fx:id="FriendPlaylistDialog" layoutX="49.0" layoutY="48.0" prefHeight="333.0" prefWidth="609.0" />
+      <AnchorPane fx:id="FriendPlaylistDialog" layoutX="49.0" layoutY="48.0" prefHeight="333.0" prefWidth="609.0">
+         <children>
+            <TableView fx:id="table" layoutY="-2.0" prefHeight="333.0" prefWidth="613.0">
+               <columns>
+                  <TableColumn fx:id="tSong" prefWidth="200.0" text="Song" />
+                  <TableColumn fx:id="tArtist" minWidth="0.0" prefWidth="193.0" text="Artist" />
+                  <TableColumn fx:id="tDuration" prefWidth="219.0" text="Duration" />
+               </columns>
+            </TableView>
+         </children></AnchorPane>
       <AnchorPane fx:id="displayFriendResults" layoutX="489.0" layoutY="27.0" prefHeight="173.0" prefWidth="169.0">
          <children>
             <ListView fx:id="showUsers" prefHeight="178.0" prefWidth="169.0" style="-fx-background-color: #383838;" stylesheets="@test.css" />
