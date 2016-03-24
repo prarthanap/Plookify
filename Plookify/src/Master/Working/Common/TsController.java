@@ -98,7 +98,12 @@ public class TsController implements Initializable {
             rightSidePane.getChildren().add(socialP);
             radioPane.toBack();
             mainPane.toBack();
-            
+            FXMLLoader plLoader=new FXMLLoader(getClass().getResource("/Master/Working/playlist/gui/playlist.fxml"));
+            Pane plp=(Pane)plLoader.load();
+            plc=plLoader.getController();
+            plc.setUser(UserID);
+            plc.initP();
+            Playlist.getChildren().add(plc.getPane("l"));
             
             accManager = new Stage();
             FXMLLoader accLoader = new FXMLLoader(getClass().getResource("/Master/Working/account/gui/fx/screenAccount.fxml"));

@@ -6,10 +6,7 @@
 package Master.Working.playlist.logic;
 
 import Master.Working.Common.database;
-import Master.Working.playlist.gui.MainScreenController;
 import Master.Working.playlist.gui.Playlist;
-import Master.Working.playlist.gui.Playlist;
-import Master.Working.playlist.gui.Songs;
 import Master.Working.playlist.gui.Songs;
 import java.net.URL;
 import java.sql.Connection;
@@ -22,10 +19,6 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -43,7 +36,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.util.StringConverter;
 
 /**
  * FXML Controller class
@@ -152,7 +144,7 @@ public class PlaylistController implements Initializable {
                 }
             
             catch (Exception ex) {
-                Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PlaylistController.class.getName()).log(Level.SEVERE, null, ex);
             }
             updatePlaylist();
             }
