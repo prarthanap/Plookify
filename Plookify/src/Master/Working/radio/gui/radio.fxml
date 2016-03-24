@@ -54,6 +54,7 @@
                   <TextField fx:id="playlistNameField" layoutX="16.0" layoutY="345.0" prefHeight="25.0" prefWidth="273.0" promptText="Enter Playlist Name" />
                   <Label fx:id="playlistSavedLabel" layoutX="18.0" layoutY="381.0" text="Playlist Saved" visible="false" />
                   <Label fx:id="noSongsLabel" layoutX="18.0" layoutY="381.0" text="No Songs in Radio Channel" visible="false" />
+                  <Label fx:id="noSubLabel" layoutX="7.0" layoutY="75.0" text="User Does Not Have Subscription" visible="false" />
                </children>
             </AnchorPane>
          </children>
