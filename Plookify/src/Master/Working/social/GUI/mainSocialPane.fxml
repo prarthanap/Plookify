@@ -103,5 +103,15 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label layoutX="695.0" layoutY="398.0" text="Public" textFill="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="803.0" layoutY="398.0" text="Private" textFill="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
