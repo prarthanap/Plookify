@@ -33,8 +33,8 @@ To delete account:
 -confirm
 
 ---Player module---
-
-If you want to play a track you have to add the track to the Now Playing playlist: click add and then click play to start playing music.
+Navigate to the Tracks tab.
+To play a track you have to add the track to the Now Playing playlist: click add and then click play to start playing music.
 To select multiple tracks, press the shift key.
 
 ---Radio module---
