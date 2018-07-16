@@ -32,6 +32,11 @@ To delete account:
 -input password
 -confirm
 
+---Player module---
+
+If you want to play a track you have to add the track to the Now Playing playlist: click add and then click play to start playing music.
+To select multiple tracks, press the shift key.
+
 ---Radio module---
 User will need to have been subscribed proir to logging in
 Click radio button on the main screen
@@ -72,8 +77,5 @@ Select the privacy of the playlist in the dropdown menu above the playlist,eithe
 
 
 
----Player module---
 
-To add a track to the Now Playing playlist, click add and then click play to start playing music.
-To select multiple tracks, press the shift key.
 
